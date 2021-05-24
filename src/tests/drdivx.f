@@ -26,6 +26,7 @@ c
      1  (TSPECS(4), TFINAL)
       double precision TOL
       integer NDIG
+      external DIVAF, DIVAO
 c++S Default NDIG = 4
 c++  Default NDIG = 10
 c++ Substitute for NDIG below
