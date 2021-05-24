@@ -52,7 +52,7 @@ jobs:
     - name: Run tests
       run: |
         ./bin/drdiva
-        ./bin/drdivadb
+        ./bin/drdivdb
         ./bin/drdivx
 
     - name: Build documentation
