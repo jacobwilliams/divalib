@@ -1,4 +1,8 @@
     
+!***********************************************************************
+!>
+!  Replacement for the old D1MACH routine.  
+!
 !````
 ! d1mach(1) = b**(emin-1), the smallest positive magnitude.
 ! d1mach(2) = b**emax*(1 - b**(-t)), the largest magnitude.
@@ -7,7 +11,7 @@
 ! d1mach(5) = log10(b)
 !````
 
-pure function d1mach(i) result(d)
+    pure function d1mach(i) result(d)
 
     use iso_fortran_env, only: rp => real64
 
@@ -25,4 +29,5 @@ pure function d1mach(i) result(d)
 
     d = constants(i)
 
-end function d1mach
+    end function d1mach
+!***********************************************************************
