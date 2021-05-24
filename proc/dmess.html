@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="Modern Fortran Edition of DIVA">
+    
+    <meta name="author" content="Jacob Williams" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>DMESS &ndash; diva</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">diva </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+               
+        
+            <li><a href="../lists/programs.html">Programs</a></li>
+        
+            </ul>
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>DMESS
+      <small>Subroutine</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title=" 4.2% of total for procedures.">173 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/dmess.f"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/dmess.f.html'>dmess.f</a></li>
+    
+  
+     <li class="active">DMESS</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading
+  text-left"><h3 class="panel-title"><a data-toggle="collapse"
+  href="#common-0">Common Blocks</a></h3></div>
+  <div id="common-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/dmess.html#common-cmessi~7">CMESSI</a>
+      
+      <a class="list-group-item" href="../proc/dmess.html#common-cmessc~7">CMESSC</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>
+subroutine DMESS(MACT, TEXT, IDAT, FDAT)
+    
+    
+   
+</h2>
+    
+  
+
+
+    
+    <blockquote>
+<p>2009-09-27 DMESS Krogh  Same as below, in another place.
+2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.
+2008-06-13 DMESS Krogh  Changed -0's to 0.
+2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.
+2006-10-08 DMESS Krogh  Another try, see 2005-05-26
+2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.
+2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).
+2006-07-01 DMESS Krogh  messxc =&gt; dmessxc (and not static) (for C)
+2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.
+2006-04-04 DMESS Krogh  Fixes in C code for vectors &amp; matrices.
+2006-04-02 DMESS Krogh  Added code for output of sparse vector.
+2005-07-10 DMESS Krogh  Small adjustment for last correction.
+2005-05-26 DMESS Krogh  Fixed "<strong>*</strong>" output in boundary case.
+2002-05-16 DMESS Krogh  Added way for user to get error count.
+2002-03-27 DMESS Krogh  Fixed crash when number is -INF.
+2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.
+2001-05-25 DMESS Krogh  Added a couple of commas in formats.
+1997-06-17 DMESS Krogh  In C code made messxc, static.
+1996-07-12 DMESS Krogh  Changes to use .C. and C%%.
+1996-03-30 DMESS Krogh  Added external statement.
+1994-10-20 DMESS Krogh  Changes to use M77CON
+1994-09-21 DMESS Krogh  Added CHGTYP code.
+1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.
+1994-08-17 DMESS Krogh  Removed duplicate save statement.
+1994-04-19 DMESS Krogh  Removed blank line from DMESS.
+1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.
+1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)
+1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.
+1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.
+1992-05-14 DMESS Krogh  Put common blocks in save statement.
+1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format
+1992-02-28 DMESS Krogh  Initial Code.</p>
+</blockquote>
+<p>--D replaces "?": ?MESS,?MESSXC</p>
+<p>Processes Messages -- Actions are controlled by MACT().  See
+ comment is subroutine MESS.  This program is for the extra
+ argument of type real.</p>
+<p>BUF    In common CMESSC, see MESS.
+ DOLS   In common for intitialization, not used here.  See MESS.
+ EUNIT  In common for intitialization, not used here.  See MESS.
+ FDAT   Formal argument -- gives floating point data to print.
+ FBIG   Largest magnitude of floating point number to output.
+ FSMA   Smalles magnitude floating point number to be printed.
+ FMTF   In common CMESSC, format for printing floating point number.
+ FMTG   In common CMESSC, user format to use in place of FMTF.
+ FMTSP  Format for printing sparse vectors.
+ FOUT   Floating point number to be output.
+ FSMA   Smallest postitive floating point number.
+ ICOL   In common CMESSI, see MESS.
+ ID     Number of decimal digits for floating point format statement.
+ IDAT   Integer data -- passed to MESS.
+ IVAR   In common CMESSI, see MESS.
+ IWF    In common CMESSI, see MESS.
+ IWG    In common CMESSI, see MESS.
+ J      Temporary index.
+ K      Temporary index.
+ KSMA   Number of leading 0's in "F" format.  If &lt; 0, -KSMA gives the
+    number of extra digits to the left of the decimal point.
+    KSMA depends on abs(smallest number printed).
+ KBIG   Number of extra digits before the decimal point required by the
+    largest number to be printed if "F" format is used.
+ KDF    In common CMESSI, see MESS.
+ KDFDEF In common CMESSI, see MESS.
+ KDIAG  In common CMESSI, not used here, see MESS.
+ KEXE   Extra space required for E format.
+ KF     In common CMESSI, see MESS.
+ KLINE  In common CMESSI, see MESS.
+ KSCRN  In common CMESSI, see MESS.
+ KRES1  In common CMESSI, see MESS.
+ KSPEC  In common CMESSI, see MESS.
+ LASTER In common CMESSI, not used here, see MESS.
+ LASTI  In common CMESSI, see MESS.
+ LBUF   In common CMESSI, see MESS.
+ LDFDEF Value of KDFDEF for this routine.  (Saved)
+ LENBUF In common CMESSI, see MESS.
+ LENLIN In common CMESSI, not used here, see MESS.
+ LENTRY In common CMESSI, see MESS.
+ LHEAD  In common CMESSI, not used here, see MESS.
+ LINERR In common CMESSI, not used here, see MESS.
+ LINMSG In common CMESSI, not used here, see MESS.
+ LOCBEG In common CMESSI, see MESS.
+ LPRINT In common CMESSI, not used here, see MESS.
+ LSTOP  In common CMESSI, not used here, see MESS.
+ LSTRT  In common CMESSI, see MESS.
+ MACT   Formal argument, see MESS.
+ MDAT   In common CMESSI, not used here, see MESS.
+ MEMDA5 In common CMESSI, see MESS.
+ MESS   Program called for most of the message processing.
+ MPT    In common CMESSI, see MESS.
+ MUNIT  In common CMESSI, not used here, see MESS.
+ NCOL   In common CMESSI, see MESS.
+ NDIM   In common CMESSI, see MESS.
+ NEG    1 if any number is &lt; 0, else it is 0.
+ NFDAT  In common CMESSI, see MESS.
+ NIDAT  In common CMESSI, not used here, see MESS.
+ NMDAT  In common CMESSI, not used here, see MESS.
+ NTEXT  In common CMESSI, not used here, see MESS.
+ OUNIT  In common CMESSI, not used here, see MESS.
+ D1MACH External func. giving floating pt. info. about the environment.
+ SUNIT  In common CMESSI, not used here, see MESS.
+ TEXT   Formal argument, passed to MESS, see there.
+ XARGOK In common CMESSI, see MESS.</p>
+<p>%% void dmessxc(long int);</p>
+    
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mact~3"></span>integer</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>MACT</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-text~4"></span>character</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>TEXT</strong>(*)*(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-idat~5"></span>integer</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>IDAT</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fdat~3"></span>double precision</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>FDAT</strong>(*)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    <br>
+    
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Calls</h3>
+      </div>
+      <div class="panel-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dmess~~CallsGraph Pages: 1 -->
+<svg id="procdmessCallsGraph" width="154pt" height="74pt"
+ viewBox="0.00 0.00 154.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dmess~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~dmess~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 150,-70 150,4 -4,4"/>
+<!-- proc~dmess -->
+<g id="proc~~dmess~~CallsGraph_node1" class="node">
+<title>proc~dmess</title>
+<polygon fill="none" stroke="black" points="54,-45 0,-45 0,-21 54,-21 54,-45"/>
+<text text-anchor="middle" x="27" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
+</g>
+<!-- proc~d1mach -->
+<g id="proc~~dmess~~CallsGraph_node2" class="node">
+<title>proc~d1mach</title>
+<g id="a_proc~~dmess~~CallsGraph_node2"><a xlink:href=".././proc/d1mach.html" xlink:title="d1mach">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-66 90,-66 90,-42 146,-42 146,-66"/>
+<text text-anchor="middle" x="118" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">d1mach</text>
+</a>
+</g>
+</g>
+<!-- proc~dmess&#45;&gt;proc~d1mach -->
+<g id="proc~~dmess~~CallsGraph_edge1" class="edge">
+<title>proc~dmess&#45;&gt;proc~d1mach</title>
+<path fill="none" stroke="#000000" d="M54.22,-39.19C62.26,-41.08 71.25,-43.21 79.87,-45.24"/>
+<polygon fill="#000000" stroke="#000000" points="79.19,-48.68 89.73,-47.57 80.8,-41.86 79.19,-48.68"/>
+</g>
+<!-- proc~messfi -->
+<g id="proc~~dmess~~CallsGraph_node3" class="node">
+<title>proc~messfi</title>
+<g id="a_proc~~dmess~~CallsGraph_node3"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="145,-24 91,-24 91,0 145,0 145,-24"/>
+<text text-anchor="middle" x="118" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+</a>
+</g>
+</g>
+<!-- proc~dmess&#45;&gt;proc~messfi -->
+<g id="proc~~dmess~~CallsGraph_edge2" class="edge">
+<title>proc~dmess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M54.22,-26.81C62.64,-24.83 72.12,-22.59 81.11,-20.47"/>
+<polygon fill="#000000" stroke="#000000" points="82.04,-23.85 90.97,-18.14 80.43,-17.03 82.04,-23.85"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="597pt" height="32pt"
+ viewBox="0.00 0.00 596.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 592.5,-28 592.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="388.5,-24 243.5,-24 243.5,0 388.5,0 388.5,-24"/>
+<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="465,-24 407,-24 407,0 465,0 465,-24"/>
+<text text-anchor="middle" x="436" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="588.5,-24 483.5,-24 483.5,0 588.5,0 588.5,-24"/>
+<text text-anchor="middle" x="536" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
+    </p>
+    </div></div></div></div>
+      </div>
+    </div>
+     
+     
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Called by</h3>
+      </div>
+      <div class="panel-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dmess~~CalledByGraph Pages: 1 -->
+<svg id="procdmessCalledByGraph" width="251pt" height="322pt"
+ viewBox="0.00 0.00 251.00 322.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dmess~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 318)">
+<title>proc~~dmess~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-318 247,-318 247,4 -4,4"/>
+<!-- proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_node1" class="node">
+<title>proc~dmess</title>
+<polygon fill="none" stroke="black" points="243,-170 189,-170 189,-146 243,-146 243,-170"/>
+<text text-anchor="middle" x="216" y="-155.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
+</g>
+<!-- proc~divag -->
+<g id="proc~~dmess~~CalledByGraph_node2" class="node">
+<title>proc~divag</title>
+<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
+<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
+</a>
+</g>
+</g>
+<!-- proc~divag&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
+<title>proc~divag&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.19,-289.86C147.35,-287.16 150.45,-284.16 153,-281 178.48,-249.44 197.41,-205.7 207.29,-179.78"/>
+<polygon fill="#000000" stroke="#000000" points="210.66,-180.75 210.85,-170.16 204.1,-178.32 210.66,-180.75"/>
+</g>
+<!-- proc~divain -->
+<g id="proc~~dmess~~CalledByGraph_node3" class="node">
+<title>proc~divain</title>
+<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
+<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
+<title>proc~divain&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.2,-247.91C146.57,-245.13 150,-242.08 153,-239 171.35,-220.16 189.27,-195.92 201.09,-178.89"/>
+<polygon fill="#000000" stroke="#000000" points="204.24,-180.48 206.99,-170.25 198.46,-176.53 204.24,-180.48"/>
+</g>
+<!-- proc~dzero -->
+<g id="proc~~dmess~~CalledByGraph_node4" class="node">
+<title>proc~dzero</title>
+<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-230 99,-230 99,-206 153,-206 153,-230"/>
+<text text-anchor="middle" x="126" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
+</a>
+</g>
+</g>
+<!-- proc~dzero&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
+<title>proc~dzero&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.81,-205.86C157.45,-197.24 174.63,-185.52 188.83,-175.84"/>
+<polygon fill="#000000" stroke="#000000" points="190.93,-178.65 197.22,-170.12 186.98,-172.87 190.93,-178.65"/>
+</g>
+<!-- proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_node5" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
+<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.39,-108.25C157.24,-117.31 174.96,-129.79 189.43,-139.99"/>
+<polygon fill="#000000" stroke="#000000" points="187.76,-143.09 197.95,-145.99 191.79,-137.37 187.76,-143.09"/>
+</g>
+<!-- proc~divaa -->
+<g id="proc~~dmess~~CalledByGraph_node6" class="node">
+<title>proc~divaa</title>
+<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
+<text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+</a>
+</g>
+</g>
+<!-- proc~divaa&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
+<title>proc~divaa&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.4,-144C161.48,-145.84 170.51,-147.89 179.1,-149.84"/>
+<polygon fill="#000000" stroke="#000000" points="178.39,-153.27 188.92,-152.07 179.94,-146.44 178.39,-153.27"/>
+</g>
+<!-- program~drdivx -->
+<g id="proc~~dmess~~CalledByGraph_node7" class="node">
+<title>program~drdivx</title>
+<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-108 4,-108 4,-84 59,-84 59,-108"/>
+<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+</a>
+</g>
+</g>
+<!-- program~drdivx&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
+<title>program~drdivx&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M40.69,-108.1C51.81,-123.33 73.29,-148.76 99,-159 124.26,-169.07 155.14,-168.24 178.69,-165.2"/>
+<polygon fill="#000000" stroke="#000000" points="179.24,-168.66 188.62,-163.74 178.22,-161.73 179.24,-168.66"/>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge10" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-96C68.42,-96 78.84,-96 88.64,-96"/>
+<polygon fill="#000000" stroke="#000000" points="88.94,-99.5 98.94,-96 88.94,-92.5 88.94,-99.5"/>
+</g>
+<!-- proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_node9" class="node">
+<title>proc~diva</title>
+<g id="a_proc~~dmess~~CalledByGraph_node9"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-24 99,-24 99,0 153,0 153,-24"/>
+<text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+</a>
+</g>
+</g>
+<!-- program~drdivx&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge13" class="edge">
+<title>program~drdivx&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M51.79,-83.85C55.64,-81.11 59.56,-78.1 63,-75 81.28,-58.56 81.36,-50.13 99,-33 99.67,-32.35 100.37,-31.69 101.07,-31.04"/>
+<polygon fill="#000000" stroke="#000000" points="103.67,-33.41 108.93,-24.21 99.09,-28.13 103.67,-33.41"/>
+</g>
+<!-- proc~divacr -->
+<g id="proc~~dmess~~CalledByGraph_node8" class="node">
+<title>proc~divacr</title>
+<g id="a_proc~~dmess~~CalledByGraph_node8"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
+<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+</a>
+</g>
+</g>
+<!-- proc~divacr&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge7" class="edge">
+<title>proc~divacr&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.22,-66.06C146.59,-68.85 150.02,-71.91 153,-75 171.8,-94.53 189.96,-119.83 201.71,-137.34"/>
+<polygon fill="#000000" stroke="#000000" points="198.81,-139.3 207.24,-145.72 204.65,-135.44 198.81,-139.3"/>
+</g>
+<!-- proc~diva&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge8" class="edge">
+<title>proc~diva&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.21,-24.13C147.36,-26.83 150.46,-29.83 153,-33 178.82,-65.2 197.74,-109.91 207.5,-136.21"/>
+<polygon fill="#000000" stroke="#000000" points="204.21,-137.42 210.9,-145.64 210.8,-135.05 204.21,-137.42"/>
+</g>
+<!-- proc~divao -->
+<g id="proc~~dmess~~CalledByGraph_node10" class="node">
+<title>proc~divao</title>
+<g id="a_proc~~dmess~~CalledByGraph_node10"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
+<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-314 4.5,-314 4.5,-290 58.5,-290 58.5,-314"/>
+<text text-anchor="middle" x="31.5" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
+</a>
+</g>
+</g>
+<!-- proc~divao&#45;&gt;proc~divag -->
+<g id="proc~~dmess~~CalledByGraph_edge9" class="edge">
+<title>proc~divao&#45;&gt;proc~divag</title>
+<path fill="none" stroke="#000000" d="M58.76,-302C68.11,-302 78.82,-302 88.86,-302"/>
+<polygon fill="#000000" stroke="#000000" points="89,-305.5 99,-302 89,-298.5 89,-305.5"/>
+</g>
+<!-- program~drdiva -->
+<g id="proc~~dmess~~CalledByGraph_node11" class="node">
+<title>program~drdiva</title>
+<g id="a_proc~~dmess~~CalledByGraph_node11"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-24 4.5,-24 4.5,0 58.5,0 58.5,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
+</a>
+</g>
+</g>
+<!-- program~drdiva&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge12" class="edge">
+<title>program~drdiva&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M58.76,-12C68.11,-12 78.82,-12 88.86,-12"/>
+<polygon fill="#000000" stroke="#000000" points="89,-15.5 99,-12 89,-8.5 89,-15.5"/>
+</g>
+<!-- program~drdivdb -->
+<g id="proc~~dmess~~CalledByGraph_node12" class="node">
+<title>program~drdivdb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node12"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-66 0,-66 0,-42 63,-42 63,-66"/>
+<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+</a>
+</g>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge11" class="edge">
+<title>program~drdivdb&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-66.15C68.72,-70.44 79.51,-75.35 89.58,-79.92"/>
+<polygon fill="#000000" stroke="#000000" points="88.39,-83.22 98.94,-84.17 91.28,-76.85 88.39,-83.22"/>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge14" class="edge">
+<title>program~drdivdb&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M59.25,-41.85C68.72,-37.56 79.51,-32.65 89.58,-28.08"/>
+<polygon fill="#000000" stroke="#000000" points="91.28,-31.15 98.94,-23.83 88.39,-24.78 91.28,-31.15"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="597pt" height="32pt"
+ viewBox="0.00 0.00 596.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 592.5,-28 592.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="388.5,-24 243.5,-24 243.5,0 388.5,0 388.5,-24"/>
+<text text-anchor="middle" x="316" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="465,-24 407,-24 407,0 465,0 465,-24"/>
+<text text-anchor="middle" x="436" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="588.5,-24 483.5,-24 483.5,0 588.5,0 588.5,-24"/>
+<text text-anchor="middle" x="536" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
+    </p>
+    </div></div></div></div>
+      </div>
+    </div>
+     
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading
+  text-left"><h3 class="panel-title"><a data-toggle="collapse"
+  href="#common-1">Common Blocks</a></h3></div>
+  <div id="common-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/dmess.html#common-cmessi~7">CMESSI</a>
+      
+      <a class="list-group-item" href="../proc/dmess.html#common-cmessc~7">CMESSC</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+    <section>
+      <h2>Common Blocks</h2>
+      
+      
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="common-cmessi~7"></span><h3>
+      <a data-toggle="popover" data-html="true" tabindex="0" 
+     data-trigger="focus"
+   data-content="<h4>Used Elsewhere:</h4><a href='../proc/mess.html#common-cmessi'>MESS</a> (subroutine)<br><a href='../proc/messfd.html#common-cmessi~2'>MESSFD</a> (subroutine)<br><a href='../proc/messfi.html#common-cmessi~3'>MESSFI</a> (subroutine)<br><a href='../proc/messmh.html#common-cmessi~4'>MESSMH</a> (subroutine)<br><a href='../proc/messpr.html#common-cmessi~5'>MESSPR</a> (subroutine)<br><a href='../proc/messft.html#common-cmessi~6'>MESSFT</a> (subroutine)<br>">common /CMESSI/</a>
+      
+  </h3></div>
+  <div class="panel-body">
+    
+    
+    
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-sunit~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>SUNIT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lhead~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LHEAD</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdfdef~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KDFDEF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-linmsg~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LINMSG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-linerr~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LINERR</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-munit~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>MUNIT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-eunit~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>EUNIT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kscrn~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KSCRN</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdiag~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KDIAG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxerr~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>MAXERR</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lstop~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LSTOP</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lprint~8"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LPRINT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdf~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KDF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ntext~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NTEXT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nidat~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NIDAT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nfdat~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NFDAT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nmdat~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NMDAT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mdat~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>MDAT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tabspa~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>TABSPA</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-errcnt~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>ERRCNT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ichar0~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>ICHAR0</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-imag~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>IMAG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-inc~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>INC</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-irc~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>IRC</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-itext~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>ITEXT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iwf~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>IWF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iwg~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>IWG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdi~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KDI</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdj~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KDJ</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kline~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KLINE</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kshift~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KSHIFT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kspec~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KSPEC</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kt~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>KT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lasti~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LASTI</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lbuf~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LBUF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lenlin~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LENLIN</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lenout~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LENOUT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lentry~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LENTRY</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lentxt~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LENTXT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-locbeg~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LOCBEG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-lstrt~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LSTRT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ltext~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>LTEXT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxwid~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>MAXWID</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mpt~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>MPT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nrow~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NROW</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ncol~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NCOL</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ndim~7"></span>integer</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>NDIM</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ounit~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>OUNIT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-gotfmt~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>GOTFMT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-xarg~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>XARG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-xargok~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>XARGOK</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+</div>
+</div>
+
+      
+      
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="common-cmessc~7"></span><h3>
+      <a data-toggle="popover" data-html="true" tabindex="0" 
+     data-trigger="focus"
+   data-content="<h4>Used Elsewhere:</h4><a href='../proc/mess.html#common-cmessc'>MESS</a> (subroutine)<br><a href='../proc/messfd.html#common-cmessc~2'>MESSFD</a> (subroutine)<br><a href='../proc/messfi.html#common-cmessc~3'>MESSFI</a> (subroutine)<br><a href='../proc/messmh.html#common-cmessc~4'>MESSMH</a> (subroutine)<br><a href='../proc/messpr.html#common-cmessc~5'>MESSPR</a> (subroutine)<br><a href='../proc/messft.html#common-cmessc~6'>MESSFT</a> (subroutine)<br>">common /CMESSC/</a>
+      
+  </h3></div>
+  <div class="panel-body">
+    
+    
+    
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-buf~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>BUF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-dols~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>DOLS</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmtf~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTF</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmtg~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTG</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmti~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTI</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmtj~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTJ</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmtt~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTT</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fmtim~7"></span>real</td>
+  
+  
+  <td></td><td>::</td>
+  <td><strong>FMTIM</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+</div>
+</div>
+
+      
+    </section>
+    <br>
+    <script>
+      $(function () {
+      $('[data-toggle="popover"]').popover()
+      })
+    </script>
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    
+    </div>
+  </div>
+
+
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
+                                          </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> diva was developed by Jacob Williams</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>
