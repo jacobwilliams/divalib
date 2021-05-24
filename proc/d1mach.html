@@ -317,6 +317,14 @@ pure function d1mach(i) result(d)
 
 
     
+    <p>Replacement for the old D1MACH routine.  </p>
+<div class="codehilite"><pre><span></span><code> d1mach(1) = b**(emin-1), the smallest positive magnitude.
+ d1mach(2) = b**emax*(1 - b**(-t)), the largest magnitude.
+ d1mach(3) = b**(-t), the smallest relative spacing.
+ d1mach(4) = b**(1-t), the largest relative spacing.
+ d1mach(5) = log10(b)
+</code></pre></div>
+    
 
     <h3>Arguments</h3>
     
@@ -401,104 +409,68 @@ pure function d1mach(i) result(d)
 <path fill="none" stroke="#000000" d="M243.22,-156C251.17,-156 260.06,-156 268.59,-156"/>
 <polygon fill="#000000" stroke="#000000" points="268.73,-159.5 278.73,-156 268.73,-152.5 268.73,-159.5"/>
 </g>
-<!-- proc~divaop -->
-<g id="proc~~d1mach~~CalledByGraph_node3" class="node">
-<title>proc~divaop</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node3"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
-<polygon fill="#d9534f" stroke="#d9534f" points="243,-85 189,-85 189,-61 243,-61 243,-85"/>
-<text text-anchor="middle" x="216" y="-70.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
-</a>
-</g>
-</g>
-<!-- proc~divaop&#45;&gt;proc~d1mach -->
-<g id="proc~~d1mach~~CalledByGraph_edge2" class="edge">
-<title>proc~divaop&#45;&gt;proc~d1mach</title>
-<path fill="none" stroke="#000000" d="M230.13,-85.25C244.68,-98.81 268.31,-120.86 285.34,-136.74"/>
-<polygon fill="#000000" stroke="#000000" points="283.4,-139.71 293.1,-143.97 288.18,-134.59 283.4,-139.71"/>
-</g>
 <!-- proc~dzero -->
-<g id="proc~~d1mach~~CalledByGraph_node4" class="node">
+<g id="proc~~d1mach~~CalledByGraph_node3" class="node">
 <title>proc~dzero</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node4"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<g id="a_proc~~d1mach~~CalledByGraph_node3"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
 <text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
 </a>
 </g>
 </g>
 <!-- proc~dzero&#45;&gt;proc~d1mach -->
-<g id="proc~~d1mach~~CalledByGraph_edge3" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge2" class="edge">
 <title>proc~dzero&#45;&gt;proc~d1mach</title>
 <path fill="none" stroke="#000000" d="M142.13,-289.8C145.7,-286.92 149.49,-283.85 153,-281 199.28,-243.4 253.26,-199.23 283.14,-174.74"/>
 <polygon fill="#000000" stroke="#000000" points="285.74,-177.14 291.25,-168.09 281.3,-171.73 285.74,-177.14"/>
 </g>
 <!-- proc~dzero&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge11" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge8" class="edge">
 <title>proc~dzero&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M144.21,-289.87C147.36,-287.17 150.46,-284.17 153,-281 178.82,-248.8 197.74,-204.09 207.5,-177.79"/>
 <polygon fill="#000000" stroke="#000000" points="210.8,-178.95 210.9,-168.36 204.21,-176.58 210.8,-178.95"/>
 </g>
-<!-- program~drdivx -->
-<g id="proc~~d1mach~~CalledByGraph_node5" class="node">
-<title>program~drdivx</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node5"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-108 4,-108 4,-84 59,-84 59,-108"/>
-<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<!-- proc~divaop -->
+<g id="proc~~d1mach~~CalledByGraph_node4" class="node">
+<title>proc~divaop</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node4"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
+<polygon fill="#d9534f" stroke="#d9534f" points="243,-85 189,-85 189,-61 243,-61 243,-85"/>
+<text text-anchor="middle" x="216" y="-70.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
 </a>
 </g>
 </g>
-<!-- program~drdivx&#45;&gt;proc~dmess -->
+<!-- proc~divaop&#45;&gt;proc~d1mach -->
+<g id="proc~~d1mach~~CalledByGraph_edge3" class="edge">
+<title>proc~divaop&#45;&gt;proc~d1mach</title>
+<path fill="none" stroke="#000000" d="M230.13,-85.25C244.68,-98.81 268.31,-120.86 285.34,-136.74"/>
+<polygon fill="#000000" stroke="#000000" points="283.4,-139.71 293.1,-143.97 288.18,-134.59 283.4,-139.71"/>
+</g>
+<!-- proc~divag -->
+<g id="proc~~d1mach~~CalledByGraph_node5" class="node">
+<title>proc~divag</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node5"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-188 99,-188 99,-164 153,-164 153,-188"/>
+<text text-anchor="middle" x="126" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
+</a>
+</g>
+</g>
+<!-- proc~divag&#45;&gt;proc~dmess -->
 <g id="proc~~d1mach~~CalledByGraph_edge4" class="edge">
-<title>program~drdivx&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M59.04,-104.72C90.62,-115.11 143.51,-132.5 178.82,-144.11"/>
-<polygon fill="#000000" stroke="#000000" points="178.13,-147.56 188.73,-147.36 180.32,-140.91 178.13,-147.56"/>
+<title>proc~divag&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.4,-170C161.48,-168.16 170.51,-166.11 179.1,-164.16"/>
+<polygon fill="#000000" stroke="#000000" points="179.94,-167.56 188.92,-161.93 178.39,-160.73 179.94,-167.56"/>
 </g>
 <!-- proc~diva -->
-<g id="proc~~d1mach~~CalledByGraph_node7" class="node">
+<g id="proc~~d1mach~~CalledByGraph_node6" class="node">
 <title>proc~diva</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node7"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<g id="a_proc~~d1mach~~CalledByGraph_node6"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-24 99,-24 99,0 153,0 153,-24"/>
 <text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
 </a>
 </g>
 </g>
-<!-- program~drdivx&#45;&gt;proc~diva -->
-<g id="proc~~d1mach~~CalledByGraph_edge13" class="edge">
-<title>program~drdivx&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M51.79,-83.85C55.64,-81.11 59.56,-78.1 63,-75 81.28,-58.56 81.36,-50.13 99,-33 99.67,-32.35 100.37,-31.69 101.07,-31.04"/>
-<polygon fill="#000000" stroke="#000000" points="103.67,-33.41 108.93,-24.21 99.09,-28.13 103.67,-33.41"/>
-</g>
-<!-- proc~divadb -->
-<g id="proc~~d1mach~~CalledByGraph_node11" class="node">
-<title>proc~divadb</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node11"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
-<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~d1mach~~CalledByGraph_edge17" class="edge">
-<title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-96C68.42,-96 78.84,-96 88.64,-96"/>
-<polygon fill="#000000" stroke="#000000" points="88.94,-99.5 98.94,-96 88.94,-92.5 88.94,-99.5"/>
-</g>
-<!-- proc~divacr -->
-<g id="proc~~d1mach~~CalledByGraph_node6" class="node">
-<title>proc~divacr</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node6"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
-<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
-</a>
-</g>
-</g>
-<!-- proc~divacr&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge5" class="edge">
-<title>proc~divacr&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.2,-66.09C146.57,-68.87 150,-71.92 153,-75 171.35,-93.84 189.27,-118.08 201.09,-135.11"/>
-<polygon fill="#000000" stroke="#000000" points="198.46,-137.47 206.99,-143.75 204.24,-133.52 198.46,-137.47"/>
-</g>
 <!-- proc~diva&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge6" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge5" class="edge">
 <title>proc~diva&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M144.19,-24.14C147.35,-26.84 150.45,-29.84 153,-33 166.56,-49.8 191.84,-104.1 205.56,-134.64"/>
 <polygon fill="#000000" stroke="#000000" points="202.46,-136.29 209.73,-144 208.86,-133.44 202.46,-136.29"/>
@@ -509,71 +481,107 @@ pure function d1mach(i) result(d)
 <path fill="none" stroke="#000000" d="M144.39,-24.05C157.16,-32.91 174.73,-45.09 189.15,-55.08"/>
 <polygon fill="#000000" stroke="#000000" points="187.44,-58.15 197.65,-60.97 191.43,-52.4 187.44,-58.15"/>
 </g>
-<!-- proc~divaa -->
-<g id="proc~~d1mach~~CalledByGraph_node8" class="node">
-<title>proc~divaa</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node8"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
-<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+<!-- proc~divadb -->
+<g id="proc~~d1mach~~CalledByGraph_node7" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node7"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
+<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
 </a>
 </g>
 </g>
-<!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge7" class="edge">
-<title>proc~divaa&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.22,-247.94C146.59,-245.15 150.02,-242.09 153,-239 171.8,-219.47 189.96,-194.17 201.71,-176.66"/>
-<polygon fill="#000000" stroke="#000000" points="204.65,-178.56 207.24,-168.28 198.81,-174.7 204.65,-178.56"/>
-</g>
-<!-- proc~divag -->
-<g id="proc~~d1mach~~CalledByGraph_node9" class="node">
-<title>proc~divag</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node9"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-230 99,-230 99,-206 153,-206 153,-230"/>
-<text text-anchor="middle" x="126" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
-</a>
-</g>
-</g>
-<!-- proc~divag&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge8" class="edge">
-<title>proc~divag&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M144.39,-205.75C157.24,-196.69 174.96,-184.21 189.43,-174.01"/>
-<polygon fill="#000000" stroke="#000000" points="191.79,-176.63 197.95,-168.01 187.76,-170.91 191.79,-176.63"/>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~d1mach~~CalledByGraph_edge6" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.81,-108.14C157.45,-116.76 174.63,-128.48 188.83,-138.16"/>
+<polygon fill="#000000" stroke="#000000" points="186.98,-141.13 197.22,-143.88 190.93,-135.35 186.98,-141.13"/>
 </g>
 <!-- proc~divain -->
-<g id="proc~~d1mach~~CalledByGraph_node10" class="node">
+<g id="proc~~d1mach~~CalledByGraph_node8" class="node">
 <title>proc~divain</title>
-<g id="a_proc~~d1mach~~CalledByGraph_node10"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-188 99,-188 99,-164 153,-164 153,-188"/>
-<text text-anchor="middle" x="126" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+<g id="a_proc~~d1mach~~CalledByGraph_node8"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
+<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
 </a>
 </g>
 </g>
 <!-- proc~divain&#45;&gt;proc~dmess -->
-<g id="proc~~d1mach~~CalledByGraph_edge10" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge7" class="edge">
 <title>proc~divain&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M153.4,-170C161.48,-168.16 170.51,-166.11 179.1,-164.16"/>
-<polygon fill="#000000" stroke="#000000" points="179.94,-167.56 188.92,-161.93 178.39,-160.73 179.94,-167.56"/>
+<path fill="none" stroke="#000000" d="M143.2,-66.09C146.57,-68.87 150,-71.92 153,-75 171.35,-93.84 189.27,-118.08 201.09,-135.11"/>
+<polygon fill="#000000" stroke="#000000" points="198.46,-137.47 206.99,-143.75 204.24,-133.52 198.46,-137.47"/>
 </g>
-<!-- proc~divadb&#45;&gt;proc~dmess -->
+<!-- proc~divacr -->
+<g id="proc~~d1mach~~CalledByGraph_node9" class="node">
+<title>proc~divacr</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node9"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
+<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+</a>
+</g>
+</g>
+<!-- proc~divacr&#45;&gt;proc~dmess -->
 <g id="proc~~d1mach~~CalledByGraph_edge9" class="edge">
-<title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M144.81,-108.14C157.45,-116.76 174.63,-128.48 188.83,-138.16"/>
-<polygon fill="#000000" stroke="#000000" points="186.98,-141.13 197.22,-143.88 190.93,-135.35 186.98,-141.13"/>
+<title>proc~divacr&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.22,-247.94C146.59,-245.15 150.02,-242.09 153,-239 171.8,-219.47 189.96,-194.17 201.71,-176.66"/>
+<polygon fill="#000000" stroke="#000000" points="204.65,-178.56 207.24,-168.28 198.81,-174.7 204.65,-178.56"/>
+</g>
+<!-- program~drdivx -->
+<g id="proc~~d1mach~~CalledByGraph_node10" class="node">
+<title>program~drdivx</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node10"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-108 4,-108 4,-84 59,-84 59,-108"/>
+<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+</a>
+</g>
+</g>
+<!-- program~drdivx&#45;&gt;proc~dmess -->
+<g id="proc~~d1mach~~CalledByGraph_edge10" class="edge">
+<title>program~drdivx&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M59.04,-104.72C90.62,-115.11 143.51,-132.5 178.82,-144.11"/>
+<polygon fill="#000000" stroke="#000000" points="178.13,-147.56 188.73,-147.36 180.32,-140.91 178.13,-147.56"/>
+</g>
+<!-- program~drdivx&#45;&gt;proc~diva -->
+<g id="proc~~d1mach~~CalledByGraph_edge14" class="edge">
+<title>program~drdivx&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M51.79,-83.85C55.64,-81.11 59.56,-78.1 63,-75 81.28,-58.56 81.36,-50.13 99,-33 99.67,-32.35 100.37,-31.69 101.07,-31.04"/>
+<polygon fill="#000000" stroke="#000000" points="103.67,-33.41 108.93,-24.21 99.09,-28.13 103.67,-33.41"/>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~d1mach~~CalledByGraph_edge17" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-96C68.42,-96 78.84,-96 88.64,-96"/>
+<polygon fill="#000000" stroke="#000000" points="88.94,-99.5 98.94,-96 88.94,-92.5 88.94,-99.5"/>
+</g>
+<!-- proc~divaa -->
+<g id="proc~~d1mach~~CalledByGraph_node11" class="node">
+<title>proc~divaa</title>
+<g id="a_proc~~d1mach~~CalledByGraph_node11"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-230 99,-230 99,-206 153,-206 153,-230"/>
+<text text-anchor="middle" x="126" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+</a>
+</g>
+</g>
+<!-- proc~divaa&#45;&gt;proc~dmess -->
+<g id="proc~~d1mach~~CalledByGraph_edge11" class="edge">
+<title>proc~divaa&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.39,-205.75C157.24,-196.69 174.96,-184.21 189.43,-174.01"/>
+<polygon fill="#000000" stroke="#000000" points="191.79,-176.63 197.95,-168.01 187.76,-170.91 191.79,-176.63"/>
 </g>
 <!-- proc~divao -->
 <g id="proc~~d1mach~~CalledByGraph_node12" class="node">
 <title>proc~divao</title>
 <g id="a_proc~~d1mach~~CalledByGraph_node12"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
-<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-230 4.5,-230 4.5,-206 58.5,-206 58.5,-230"/>
-<text text-anchor="middle" x="31.5" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-188 4.5,-188 4.5,-164 58.5,-164 58.5,-188"/>
+<text text-anchor="middle" x="31.5" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
 </a>
 </g>
 </g>
 <!-- proc~divao&#45;&gt;proc~divag -->
-<g id="proc~~d1mach~~CalledByGraph_edge16" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge13" class="edge">
 <title>proc~divao&#45;&gt;proc~divag</title>
-<path fill="none" stroke="#000000" d="M58.76,-218C68.11,-218 78.82,-218 88.86,-218"/>
-<polygon fill="#000000" stroke="#000000" points="89,-221.5 99,-218 89,-214.5 89,-221.5"/>
+<path fill="none" stroke="#000000" d="M58.76,-176C68.11,-176 78.82,-176 88.86,-176"/>
+<polygon fill="#000000" stroke="#000000" points="89,-179.5 99,-176 89,-172.5 89,-179.5"/>
 </g>
 <!-- program~drdiva -->
 <g id="proc~~d1mach~~CalledByGraph_node13" class="node">
@@ -585,7 +593,7 @@ pure function d1mach(i) result(d)
 </g>
 </g>
 <!-- program~drdiva&#45;&gt;proc~diva -->
-<g id="proc~~d1mach~~CalledByGraph_edge14" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge15" class="edge">
 <title>program~drdiva&#45;&gt;proc~diva</title>
 <path fill="none" stroke="#000000" d="M58.76,-12C68.11,-12 78.82,-12 88.86,-12"/>
 <polygon fill="#000000" stroke="#000000" points="89,-15.5 99,-12 89,-8.5 89,-15.5"/>
@@ -600,7 +608,7 @@ pure function d1mach(i) result(d)
 </g>
 </g>
 <!-- program~drdivdb&#45;&gt;proc~diva -->
-<g id="proc~~d1mach~~CalledByGraph_edge15" class="edge">
+<g id="proc~~d1mach~~CalledByGraph_edge16" class="edge">
 <title>program~drdivdb&#45;&gt;proc~diva</title>
 <path fill="none" stroke="#000000" d="M59.25,-41.85C68.72,-37.56 79.51,-32.65 89.58,-28.08"/>
 <polygon fill="#000000" stroke="#000000" points="91.28,-31.15 98.94,-23.83 88.39,-24.78 91.28,-31.15"/>
@@ -734,7 +742,7 @@ pure function d1mach(i) result(d)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">pure function </span><span class="n">d1mach</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>    <span class="k">pure function </span><span class="n">d1mach</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
     <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span><span class="p">:</span> <span class="n">rp</span> <span class="o">=&gt;</span> <span class="n">real64</span>
 
@@ -752,7 +760,7 @@ pure function d1mach(i) result(d)
 
     <span class="n">d</span> <span class="o">=</span> <span class="n">constants</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-<span class="k">end function </span><span class="n">d1mach</span>
+    <span class="k">end function </span><span class="n">d1mach</span>
 </pre></div>
 
     </section>
