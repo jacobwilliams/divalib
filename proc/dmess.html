@@ -225,42 +225,7 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 
 
     
-    <ul>
-<li>2009-09-27 DMESS Krogh  Same as below, in another place.</li>
-<li>2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.</li>
-<li>2008-06-13 DMESS Krogh  Changed -0's to 0.</li>
-<li>2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.</li>
-<li>2006-10-08 DMESS Krogh  Another try, see 2005-05-26</li>
-<li>2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.</li>
-<li>2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).</li>
-<li>2006-07-01 DMESS Krogh  messxc =&gt; dmessxc (and not static) (for C)</li>
-<li>2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.</li>
-<li>2006-04-04 DMESS Krogh  Fixes in C code for vectors &amp; matrices.</li>
-<li>2006-04-02 DMESS Krogh  Added code for output of sparse vector.</li>
-<li>2005-07-10 DMESS Krogh  Small adjustment for last correction.</li>
-<li>2005-05-26 DMESS Krogh  Fixed "<strong>*</strong>" output in boundary case.</li>
-<li>2002-05-16 DMESS Krogh  Added way for user to get error count.</li>
-<li>2002-03-27 DMESS Krogh  Fixed crash when number is -INF.</li>
-<li>2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.</li>
-<li>2001-05-25 DMESS Krogh  Added a couple of commas in formats.</li>
-<li>1997-06-17 DMESS Krogh  In C code made messxc, static.</li>
-<li>1996-07-12 DMESS Krogh  Changes to use .C. and C%%.</li>
-<li>1996-03-30 DMESS Krogh  Added external statement.</li>
-<li>1994-10-20 DMESS Krogh  Changes to use M77CON</li>
-<li>1994-09-21 DMESS Krogh  Added CHGTYP code.</li>
-<li>1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.</li>
-<li>1994-08-17 DMESS Krogh  Removed duplicate save statement.</li>
-<li>1994-04-19 DMESS Krogh  Removed blank line from DMESS.</li>
-<li>1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.</li>
-<li>1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)</li>
-<li>1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.</li>
-<li>1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.</li>
-<li>1992-05-14 DMESS Krogh  Put common blocks in save statement.</li>
-<li>1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format</li>
-<li>1992-02-28 DMESS Krogh  Initial Code.</li>
-</ul>
-<p>--D replaces "?": ?MESS,?MESSXC</p>
-<p>Processes Messages -- Actions are controlled by MACT().  See
+    <p>Processes Messages -- Actions are controlled by MACT().  See
  comment is subroutine MESS.  This program is for the extra
  argument of type real.</p>
 <p>BUF    In common CMESSC, see MESS.
@@ -329,6 +294,41 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
  TEXT   Formal argument, passed to MESS, see there.
  XARGOK In common CMESSI, see MESS.</p>
 <p>%% void dmessxc(long int);</p>
+<h3>History</h3>
+<ul>
+<li>2009-09-27 DMESS Krogh  Same as below, in another place.</li>
+<li>2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.</li>
+<li>2008-06-13 DMESS Krogh  Changed -0's to 0.</li>
+<li>2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.</li>
+<li>2006-10-08 DMESS Krogh  Another try, see 2005-05-26</li>
+<li>2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.</li>
+<li>2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).</li>
+<li>2006-07-01 DMESS Krogh  messxc =&gt; dmessxc (and not static) (for C)</li>
+<li>2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.</li>
+<li>2006-04-04 DMESS Krogh  Fixes in C code for vectors &amp; matrices.</li>
+<li>2006-04-02 DMESS Krogh  Added code for output of sparse vector.</li>
+<li>2005-07-10 DMESS Krogh  Small adjustment for last correction.</li>
+<li>2005-05-26 DMESS Krogh  Fixed "<strong>*</strong>" output in boundary case.</li>
+<li>2002-05-16 DMESS Krogh  Added way for user to get error count.</li>
+<li>2002-03-27 DMESS Krogh  Fixed crash when number is -INF.</li>
+<li>2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.</li>
+<li>2001-05-25 DMESS Krogh  Added a couple of commas in formats.</li>
+<li>1997-06-17 DMESS Krogh  In C code made messxc, static.</li>
+<li>1996-07-12 DMESS Krogh  Changes to use .C. and C%%.</li>
+<li>1996-03-30 DMESS Krogh  Added external statement.</li>
+<li>1994-10-20 DMESS Krogh  Changes to use M77CON</li>
+<li>1994-09-21 DMESS Krogh  Added CHGTYP code.</li>
+<li>1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.</li>
+<li>1994-08-17 DMESS Krogh  Removed duplicate save statement.</li>
+<li>1994-04-19 DMESS Krogh  Removed blank line from DMESS.</li>
+<li>1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.</li>
+<li>1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)</li>
+<li>1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.</li>
+<li>1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.</li>
+<li>1992-05-14 DMESS Krogh  Put common blocks in save statement.</li>
+<li>1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format</li>
+<li>1992-02-28 DMESS Krogh  Initial Code.</li>
+</ul>
     
 
     <h3>Arguments</h3>
@@ -525,133 +525,133 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~dmess~~CalledByGraph Pages: 1 -->
-<svg id="procdmessCalledByGraph" width="251pt" height="322pt"
- viewBox="0.00 0.00 251.00 322.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~dmess~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 318)">
+<svg id="procdmessCalledByGraph" width="251pt" height="344pt"
+ viewBox="0.00 0.00 251.00 344.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dmess~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 340)">
 <title>proc~~dmess~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-318 247,-318 247,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-340 247,-340 247,4 -4,4"/>
 <!-- proc~dmess -->
 <g id="proc~~dmess~~CalledByGraph_node1" class="node">
 <title>proc~dmess</title>
 <polygon fill="none" stroke="black" points="243,-171 189,-171 189,-147 243,-147 243,-171"/>
 <text text-anchor="middle" x="216" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
 </g>
-<!-- proc~divain -->
-<g id="proc~~dmess~~CalledByGraph_node2" class="node">
-<title>proc~divain</title>
-<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
-<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
-</a>
-</g>
-</g>
-<!-- proc~divain&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
-<title>proc~divain&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M140.77,-289.74C144.98,-285.61 149.43,-280.83 153,-276 175.71,-245.26 195.07,-205.1 205.86,-180.72"/>
-<polygon fill="#000000" stroke="#000000" points="209.17,-181.88 209.94,-171.32 202.75,-179.1 209.17,-181.88"/>
-</g>
-<!-- proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_node3" class="node">
-<title>proc~divadb</title>
-<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-234 99,-234 99,-210 153,-210 153,-234"/>
-<text text-anchor="middle" x="126" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
-</a>
-</g>
-</g>
-<!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
-<title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.97,-209.85C156.99,-200.53 175.18,-187.51 189.89,-176.98"/>
-<polygon fill="#000000" stroke="#000000" points="191.99,-179.78 198.08,-171.11 187.92,-174.09 191.99,-179.78"/>
-</g>
 <!-- program~drdivx -->
-<g id="proc~~dmess~~CalledByGraph_node4" class="node">
+<g id="proc~~dmess~~CalledByGraph_node2" class="node">
 <title>program~drdivx</title>
-<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-234 4,-234 4,-210 59,-210 59,-234"/>
-<text text-anchor="middle" x="31.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-252 4,-252 4,-228 59,-228 59,-252"/>
+<text text-anchor="middle" x="31.5" y="-237.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
 <title>program~drdivx&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M55.5,-234.06C80.7,-245.5 121.72,-258.79 153,-243 178.72,-230.01 196.41,-200.76 206.12,-180.45"/>
-<polygon fill="#000000" stroke="#000000" points="209.32,-181.87 210.25,-171.31 202.94,-178.99 209.32,-181.87"/>
-</g>
-<!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_edge9" class="edge">
-<title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-222C68.42,-222 78.84,-222 88.64,-222"/>
-<polygon fill="#000000" stroke="#000000" points="88.94,-225.5 98.94,-222 88.94,-218.5 88.94,-225.5"/>
+<path fill="none" stroke="#000000" d="M59.19,-233.69C84.17,-227.24 122.18,-216.05 153,-201 166.27,-194.52 179.98,-185.52 191.12,-177.51"/>
+<polygon fill="#000000" stroke="#000000" points="193.47,-180.12 199.44,-171.37 189.32,-174.49 193.47,-180.12"/>
 </g>
 <!-- proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_node7" class="node">
+<g id="proc~~dmess~~CalledByGraph_node6" class="node">
 <title>proc~diva</title>
-<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
-<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
+<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~diva -->
 <g id="proc~~dmess~~CalledByGraph_edge11" class="edge">
 <title>program~drdivx&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M41.94,-209.75C48.16,-201.5 56.35,-190.29 63,-180 80.5,-152.91 78.1,-141.56 99,-117 99.59,-116.3 100.21,-115.61 100.85,-114.93"/>
-<polygon fill="#000000" stroke="#000000" points="103.32,-117.42 108.21,-108.02 98.52,-112.31 103.32,-117.42"/>
+<path fill="none" stroke="#000000" d="M50.78,-252.25C64.42,-261.39 83.27,-274.03 98.55,-284.27"/>
+<polygon fill="#000000" stroke="#000000" points="96.82,-287.33 107.08,-289.99 100.72,-281.51 96.82,-287.33"/>
+</g>
+<!-- proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_node8" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node8"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
+<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge13" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-245.78C68.52,-247.79 79.07,-250.07 88.96,-252.21"/>
+<polygon fill="#000000" stroke="#000000" points="88.43,-255.67 98.94,-254.37 89.91,-248.83 88.43,-255.67"/>
 </g>
 <!-- proc~divaa -->
-<g id="proc~~dmess~~CalledByGraph_node5" class="node">
+<g id="proc~~dmess~~CalledByGraph_node3" class="node">
 <title>proc~divaa</title>
-<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-192 99,-192 99,-168 153,-168 153,-192"/>
 <text text-anchor="middle" x="126" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
 </a>
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
 <title>proc~divaa&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M153.4,-173.7C161.48,-171.77 170.51,-169.62 179.1,-167.57"/>
 <polygon fill="#000000" stroke="#000000" points="180,-170.95 188.92,-165.22 178.38,-164.14 180,-170.95"/>
 </g>
-<!-- proc~dzero -->
-<g id="proc~~dmess~~CalledByGraph_node6" class="node">
-<title>proc~dzero</title>
-<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
-<text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
-</a>
-</g>
-</g>
-<!-- proc~dzero&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
-<title>proc~dzero&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M153.4,-144.3C161.48,-146.23 170.51,-148.38 179.1,-150.43"/>
-<polygon fill="#000000" stroke="#000000" points="178.38,-153.86 188.92,-152.78 180,-147.05 178.38,-153.86"/>
-</g>
-<!-- proc~diva&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
-<title>proc~diva&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.97,-108.15C156.99,-117.47 175.18,-130.49 189.89,-141.02"/>
-<polygon fill="#000000" stroke="#000000" points="187.92,-143.91 198.08,-146.89 191.99,-138.22 187.92,-143.91"/>
-</g>
 <!-- proc~divacr -->
-<g id="proc~~dmess~~CalledByGraph_node8" class="node">
+<g id="proc~~dmess~~CalledByGraph_node4" class="node">
 <title>proc~divacr</title>
-<g id="a_proc~~dmess~~CalledByGraph_node8"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
-<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
+<text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
 </a>
 </g>
 </g>
 <!-- proc~divacr&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge7" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
 <title>proc~divacr&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.4,-144.3C161.48,-146.23 170.51,-148.38 179.1,-150.43"/>
+<polygon fill="#000000" stroke="#000000" points="178.38,-153.86 188.92,-152.78 180,-147.05 178.38,-153.86"/>
+</g>
+<!-- proc~dzero -->
+<g id="proc~~dmess~~CalledByGraph_node5" class="node">
+<title>proc~dzero</title>
+<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
+<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
+</a>
+</g>
+</g>
+<!-- proc~dzero&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
+<title>proc~dzero&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.97,-108.15C156.99,-117.47 175.18,-130.49 189.89,-141.02"/>
+<polygon fill="#000000" stroke="#000000" points="187.92,-143.91 198.08,-146.89 191.99,-138.22 187.92,-143.91"/>
+</g>
+<!-- proc~diva&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
+<title>proc~diva&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.18,-289.85C147.34,-287.16 150.44,-284.16 153,-281 178.37,-249.68 197.34,-206.3 207.25,-180.6"/>
+<polygon fill="#000000" stroke="#000000" points="210.6,-181.65 210.83,-171.06 204.04,-179.19 210.6,-181.65"/>
+</g>
+<!-- proc~divain -->
+<g id="proc~~dmess~~CalledByGraph_node7" class="node">
+<title>proc~divain</title>
+<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
+<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
+<title>proc~divain&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M143.24,-66.05C146.61,-68.84 150.03,-71.9 153,-75 172,-94.85 190.24,-120.64 201.95,-138.38"/>
 <polygon fill="#000000" stroke="#000000" points="199.07,-140.37 207.45,-146.85 204.94,-136.56 199.07,-140.37"/>
+</g>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge7" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M139.68,-247.8C143.99,-243.52 148.79,-238.63 153,-234 169.25,-216.14 186.68,-194.84 198.91,-179.51"/>
+<polygon fill="#000000" stroke="#000000" points="201.99,-181.26 205.46,-171.25 196.51,-176.91 201.99,-181.26"/>
 </g>
 <!-- proc~divag -->
 <g id="proc~~dmess~~CalledByGraph_node9" class="node">
@@ -668,25 +668,46 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <path fill="none" stroke="#000000" d="M144.22,-24.12C147.37,-26.82 150.46,-29.83 153,-33 179.07,-65.62 198.01,-110.98 207.69,-137.45"/>
 <polygon fill="#000000" stroke="#000000" points="204.4,-138.66 211.05,-146.91 211,-136.31 204.4,-138.66"/>
 </g>
-<!-- program~drdiva -->
+<!-- program~drdivdb -->
 <g id="proc~~dmess~~CalledByGraph_node10" class="node">
+<title>program~drdivdb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node10"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-294 0,-294 0,-270 63,-270 63,-294"/>
+<text text-anchor="middle" x="31.5" y="-279.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+</a>
+</g>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge9" class="edge">
+<title>program~drdivdb&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M63.04,-288.6C71.37,-290.4 80.46,-292.37 89.05,-294.23"/>
+<polygon fill="#000000" stroke="#000000" points="88.31,-297.65 98.83,-296.34 89.79,-290.81 88.31,-297.65"/>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge12" class="edge">
+<title>program~drdivdb&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M63.04,-274.74C71.37,-272.76 80.46,-270.59 89.05,-268.55"/>
+<polygon fill="#000000" stroke="#000000" points="89.91,-271.94 98.83,-266.22 88.29,-265.13 89.91,-271.94"/>
+</g>
+<!-- program~drdiva -->
+<g id="proc~~dmess~~CalledByGraph_node11" class="node">
 <title>program~drdiva</title>
-<g id="a_proc~~dmess~~CalledByGraph_node10"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-108 4.5,-108 4.5,-84 58.5,-84 58.5,-108"/>
-<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
+<g id="a_proc~~dmess~~CalledByGraph_node11"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-336 4.5,-336 4.5,-312 58.5,-312 58.5,-336"/>
+<text text-anchor="middle" x="31.5" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
 </a>
 </g>
 </g>
 <!-- program~drdiva&#45;&gt;proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_edge12" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge10" class="edge">
 <title>program~drdiva&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M58.76,-96C68.11,-96 78.82,-96 88.86,-96"/>
-<polygon fill="#000000" stroke="#000000" points="89,-99.5 99,-96 89,-92.5 89,-99.5"/>
+<path fill="none" stroke="#000000" d="M58.76,-317.75C68.21,-315.51 79.05,-312.93 89.18,-310.52"/>
+<polygon fill="#000000" stroke="#000000" points="90.08,-313.9 99,-308.18 88.46,-307.09 90.08,-313.9"/>
 </g>
 <!-- proc~divao -->
-<g id="proc~~dmess~~CalledByGraph_node11" class="node">
+<g id="proc~~dmess~~CalledByGraph_node12" class="node">
 <title>proc~divao</title>
-<g id="a_proc~~dmess~~CalledByGraph_node11"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
+<g id="a_proc~~dmess~~CalledByGraph_node12"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
 <polygon fill="#d9534f" stroke="#d9534f" points="58.5,-24 4.5,-24 4.5,0 58.5,0 58.5,-24"/>
 <text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
 </a>
@@ -697,27 +718,6 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <title>proc~divao&#45;&gt;proc~divag</title>
 <path fill="none" stroke="#000000" d="M58.76,-12C68.11,-12 78.82,-12 88.86,-12"/>
 <polygon fill="#000000" stroke="#000000" points="89,-15.5 99,-12 89,-8.5 89,-15.5"/>
-</g>
-<!-- program~drdivdb -->
-<g id="proc~~dmess~~CalledByGraph_node12" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~dmess~~CalledByGraph_node12"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-171 0,-171 0,-147 63,-147 63,-171"/>
-<text text-anchor="middle" x="31.5" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_edge10" class="edge">
-<title>program~drdivdb&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M50.33,-171.15C64.03,-180.47 83.14,-193.49 98.61,-204.02"/>
-<polygon fill="#000000" stroke="#000000" points="96.98,-207.15 107.22,-209.89 100.92,-201.37 96.98,-207.15"/>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_edge13" class="edge">
-<title>program~drdivdb&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M50.33,-146.85C64.03,-137.53 83.14,-124.51 98.61,-113.98"/>
-<polygon fill="#000000" stroke="#000000" points="100.92,-116.63 107.22,-108.11 96.98,-110.85 100.92,-116.63"/>
 </g>
 </g>
 </svg>

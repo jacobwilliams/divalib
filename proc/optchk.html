@@ -209,17 +209,7 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 
 
     
-    <ul>
-<li>1998-11-01 OPTCHK  Krogh  ERRSEV =&gt; MACT(2) for "mangle".</li>
-<li>1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.</li>
-<li>1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."</li>
-<li>1994-11-11 OPTCHK  Krogh  Declared all vars.</li>
-<li>1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.</li>
-<li>1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.</li>
-<li>1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.</li>
-<li>1991-06-27 OPTCHK  Krogh  Initial Code.</li>
-</ul>
-<p>OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
+    <p>OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
  This subroutine is intended for the use of other library routines.
  It is used to check the storage used by options for some array.</p>
 <p>INTCHK is an array that provides information on how storage has been
@@ -329,6 +319,17 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
  NERBAD Array telling what to do concerning errrors.  ERRBAD is set
         from NERBAD(mod(INTCHK(0), 10)), and the default value for
         MACT(2) is set from NERBAD(INTCHK(0)+4).</p>
+<h3>History</h3>
+<ul>
+<li>1998-11-01 OPTCHK  Krogh  ERRSEV =&gt; MACT(2) for "mangle".</li>
+<li>1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.</li>
+<li>1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."</li>
+<li>1994-11-11 OPTCHK  Krogh  Declared all vars.</li>
+<li>1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.</li>
+<li>1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.</li>
+<li>1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.</li>
+<li>1991-06-27 OPTCHK  Krogh  Initial Code.</li>
+</ul>
     
 
     <h3>Arguments</h3>
@@ -435,18 +436,18 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 <path fill="none" stroke="#000000" d="M153.07,-54C161.12,-54 170.14,-54 178.76,-54"/>
 <polygon fill="#000000" stroke="#000000" points="179,-57.5 189,-54 179,-50.5 179,-57.5"/>
 </g>
-<!-- program~drdivx -->
+<!-- program~drdivdb -->
 <g id="proc~~optchk~~CalledByGraph_node3" class="node">
-<title>program~drdivx</title>
-<g id="a_proc~~optchk~~CalledByGraph_node3"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-108 4,-108 4,-84 59,-84 59,-108"/>
-<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<title>program~drdivdb</title>
+<g id="a_proc~~optchk~~CalledByGraph_node3"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-108 0,-108 0,-84 63,-84 63,-108"/>
+<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
 </a>
 </g>
 </g>
-<!-- program~drdivx&#45;&gt;proc~diva -->
+<!-- program~drdivdb&#45;&gt;proc~diva -->
 <g id="proc~~optchk~~CalledByGraph_edge2" class="edge">
-<title>program~drdivx&#45;&gt;proc~diva</title>
+<title>program~drdivdb&#45;&gt;proc~diva</title>
 <path fill="none" stroke="#000000" d="M59.25,-83.85C68.72,-79.56 79.51,-74.65 89.58,-70.08"/>
 <polygon fill="#000000" stroke="#000000" points="91.28,-73.15 98.94,-65.83 88.39,-66.78 91.28,-73.15"/>
 </g>
@@ -465,18 +466,18 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 <path fill="none" stroke="#000000" d="M58.76,-54C68.11,-54 78.82,-54 88.86,-54"/>
 <polygon fill="#000000" stroke="#000000" points="89,-57.5 99,-54 89,-50.5 89,-57.5"/>
 </g>
-<!-- program~drdivdb -->
+<!-- program~drdivx -->
 <g id="proc~~optchk~~CalledByGraph_node5" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~optchk~~CalledByGraph_node5"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-24 0,-24 0,0 63,0 63,-24"/>
-<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+<title>program~drdivx</title>
+<g id="a_proc~~optchk~~CalledByGraph_node5"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-24 4,-24 4,0 59,0 59,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
-<!-- program~drdivdb&#45;&gt;proc~diva -->
+<!-- program~drdivx&#45;&gt;proc~diva -->
 <g id="proc~~optchk~~CalledByGraph_edge4" class="edge">
-<title>program~drdivdb&#45;&gt;proc~diva</title>
+<title>program~drdivx&#45;&gt;proc~diva</title>
 <path fill="none" stroke="#000000" d="M59.25,-24.15C68.72,-28.44 79.51,-33.35 89.58,-37.92"/>
 <polygon fill="#000000" stroke="#000000" points="88.39,-41.22 98.94,-42.17 91.28,-34.85 88.39,-41.22"/>
 </g>
@@ -605,8 +606,6 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">OPTCHK</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">,</span> <span class="n">IOPT</span><span class="p">,</span> <span class="n">ETEXT</span><span class="p">)</span>
 
-<span class="c">! ************************** Variable Declarations *********************</span>
-<span class="c">!</span>
       <span class="kt">integer </span><span class="n">INTCHK</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="o">*</span><span class="p">),</span> <span class="n">IOPT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">character </span><span class="n">ETEXT</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">ISTRT</span><span class="p">,</span> <span class="n">KEX</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LAST</span><span class="p">,</span> <span class="n">LNEG</span><span class="p">,</span> <span class="n">LOPT</span><span class="p">,</span> <span class="n">LWANT</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">MV</span><span class="p">,</span> <span class="n">N</span>

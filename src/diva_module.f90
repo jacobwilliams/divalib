@@ -29,10 +29,11 @@
 
 !*************************************************************************
 !>
+!  Main routine.
+!
 !--D replaces "?": ?IVA,?IVAA,?IVABU,?IVACO,?IVACR,?IVAEV,?IVAF,?IVAHC,
 !-- & ?IVAG,?IVAIN,?IVAMC,?IVAO,?IVAOP,?IVAPR,?IVASC,?IVACE,?IVAIE,
 !-- & ?IVAPE,?MESS
-!
 !
 ! Note a "*" at the start of a name is used to indicate "D" for the
 ! double precision version and "S" for the single precision version.
@@ -4245,8 +4246,6 @@
 
 !*************************************************************************
 !>
-!  * 1988-01-13 DIVAPR Krogh   Initial code.
-!
 ! THIS SUBROUTINE
 !   1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
 !      DONE ALREADY).
@@ -4260,6 +4259,9 @@
 !   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
 !       EQUATIONS HAVE DIFFERENT ORDERS).
 !   KQ= VECTOR OF INTEGRATION ORDERS.
+!
+!### History
+!  * 1988-01-13 DIVAPR Krogh   Initial code.
 
     subroutine DIVAPR(Y, YN, F, KORD)
 
@@ -4476,6 +4478,23 @@
 
 !*************************************************************************
 !>
+! SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR
+!
+!  LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
+!    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
+!    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
+!           ALL PERTINENT CONTENTS OF KORD, AND TOL.
+!    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
+!    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES
+!
+!    N2=1   DO NOT PRINT ANY VARIABLES INTERNAL TO THE INTEGRATOR
+!    N2=2   PRINT ALL SCALAR VARIABLES IN INTERPOLATION COMMON BLOCK
+!    N2=3   ABOVE + ALL SCALAR VARIABLES IN MAIN INTEG. COMMON BLOCK
+!    N2=4   SAME AS N1=3 + ALL USED IN ARRAYS XI,BETA,ALPHA, FIRST
+!           COLUMN OF G, GS,RBQ,SIGMA
+!    N2=5   SAME AS N1=4 + ALL USED IN ARRAYS G,D,DS,V
+!
+!### History
 !  * 2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.
 !  * 2000-12-01 DIVADB Krogh Removed unused parameter METXTF.
 !  * 1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.
@@ -4496,24 +4515,6 @@
 !  * 1989-07-21 DIVADB Krogh Code for integrating discontinuities
 !  * 1988-06-07 DIVADB Krogh Dim. of IVC2 and DVC2 upped by 1 (old bug)
 !  * 1987-12-07 DIVADB Krogh Initial code.
-!
-!--D replaces "?": ?IVADB, ?IVAEV, ?IVAMC, ?IVASC, ?MESS
-!
-! SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR
-!
-!  LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
-!    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
-!    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
-!           ALL PERTINENT CONTENTS OF KORD, AND TOL.
-!    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
-!    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES
-!
-!    N2=1   DO NOT PRINT ANY VARIABLES INTERNAL TO THE INTEGRATOR
-!    N2=2   PRINT ALL SCALAR VARIABLES IN INTERPOLATION COMMON BLOCK
-!    N2=3   ABOVE + ALL SCALAR VARIABLES IN MAIN INTEG. COMMON BLOCK
-!    N2=4   SAME AS N1=3 + ALL USED IN ARRAYS XI,BETA,ALPHA, FIRST
-!           COLUMN OF G, GS,RBQ,SIGMA
-!    N2=5   SAME AS N1=4 + ALL USED IN ARRAYS G,D,DS,V
 
     subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 
@@ -4863,6 +4864,11 @@
 
 !*************************************************************************
 !>
+!  SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
+!  FUNCTIONS  **** GSTOPS **** FOR DIFFERENTIAL EQUATION
+!  INTEGRATOR -ODE (OR -IVA).
+!
+!### History
 !  * 2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.
 !  * 1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.
 !  * 1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
@@ -4878,14 +4884,6 @@
 !  * 1992-03-10 DIVAG  Krogh  Fixed value for KDIM in single p. version.
 !  * 1990-01-29 DIVAG  Krogh  Added arg to call to DERMN.
 !  * 1988-03-04 DIVAG  Krogh  Initial code.
-!
-!--D replaces "?": ?IVAG,?IVABU,?IVAEV,?IVAIN,?IVAMC,?IVASC,?MESS,?ZERO
-!
-!     -XXXG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
-!
-!  SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
-!  FUNCTIONS  **** GSTOPS **** FOR DIFFERENTIAL EQUATION
-!  INTEGRATOR -ODE (OR -IVA).
 
     subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 
@@ -5185,41 +5183,6 @@
 
 !*************************************************************************
 !>
-!  * 2009-09-27 DMESS Krogh  Same as below, in another place.
-!  * 2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.
-!  * 2008-06-13 DMESS Krogh  Changed -0's to 0.
-!  * 2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.
-!  * 2006-10-08 DMESS Krogh  Another try, see 2005-05-26
-!  * 2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.
-!  * 2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).
-!  * 2006-07-01 DMESS Krogh  messxc => dmessxc (and not static) (for C)
-!  * 2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.
-!  * 2006-04-04 DMESS Krogh  Fixes in C code for vectors & matrices.
-!  * 2006-04-02 DMESS Krogh  Added code for output of sparse vector.
-!  * 2005-07-10 DMESS Krogh  Small adjustment for last correction.
-!  * 2005-05-26 DMESS Krogh  Fixed "*****" output in boundary case.
-!  * 2002-05-16 DMESS Krogh  Added way for user to get error count.
-!  * 2002-03-27 DMESS Krogh  Fixed crash when number is -INF.
-!  * 2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.
-!  * 2001-05-25 DMESS Krogh  Added a couple of commas in formats.
-!  * 1997-06-17 DMESS Krogh  In C code made messxc, static.
-!  * 1996-07-12 DMESS Krogh  Changes to use .C. and C%%.
-!  * 1996-03-30 DMESS Krogh  Added external statement.
-!  * 1994-10-20 DMESS Krogh  Changes to use M77CON
-!  * 1994-09-21 DMESS Krogh  Added CHGTYP code.
-!  * 1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.
-!  * 1994-08-17 DMESS Krogh  Removed duplicate save statement.
-!  * 1994-04-19 DMESS Krogh  Removed blank line from DMESS.
-!  * 1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.
-!  * 1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)
-!  * 1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.
-!  * 1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.
-!  * 1992-05-14 DMESS Krogh  Put common blocks in save statement.
-!  * 1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format
-!  * 1992-02-28 DMESS Krogh  Initial Code.
-!
-!--D replaces "?": ?MESS,?MESSXC
-!
 ! Processes Messages -- Actions are controlled by MACT().  See
 ! comment is subroutine MESS.  This program is for the extra
 ! argument of type real.
@@ -5291,6 +5254,40 @@
 ! XARGOK In common CMESSI, see MESS.
 !
 !%% void dmessxc(long int);
+!
+!### History
+!  * 2009-09-27 DMESS Krogh  Same as below, in another place.
+!  * 2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.
+!  * 2008-06-13 DMESS Krogh  Changed -0's to 0.
+!  * 2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.
+!  * 2006-10-08 DMESS Krogh  Another try, see 2005-05-26
+!  * 2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.
+!  * 2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).
+!  * 2006-07-01 DMESS Krogh  messxc => dmessxc (and not static) (for C)
+!  * 2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.
+!  * 2006-04-04 DMESS Krogh  Fixes in C code for vectors & matrices.
+!  * 2006-04-02 DMESS Krogh  Added code for output of sparse vector.
+!  * 2005-07-10 DMESS Krogh  Small adjustment for last correction.
+!  * 2005-05-26 DMESS Krogh  Fixed "*****" output in boundary case.
+!  * 2002-05-16 DMESS Krogh  Added way for user to get error count.
+!  * 2002-03-27 DMESS Krogh  Fixed crash when number is -INF.
+!  * 2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.
+!  * 2001-05-25 DMESS Krogh  Added a couple of commas in formats.
+!  * 1997-06-17 DMESS Krogh  In C code made messxc, static.
+!  * 1996-07-12 DMESS Krogh  Changes to use .C. and C%%.
+!  * 1996-03-30 DMESS Krogh  Added external statement.
+!  * 1994-10-20 DMESS Krogh  Changes to use M77CON
+!  * 1994-09-21 DMESS Krogh  Added CHGTYP code.
+!  * 1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.
+!  * 1994-08-17 DMESS Krogh  Removed duplicate save statement.
+!  * 1994-04-19 DMESS Krogh  Removed blank line from DMESS.
+!  * 1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.
+!  * 1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)
+!  * 1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.
+!  * 1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.
+!  * 1992-05-14 DMESS Krogh  Put common blocks in save statement.
+!  * 1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format
+!  * 1992-02-28 DMESS Krogh  Initial Code.
 
     subroutine DMESS (MACT, TEXT, IDAT, FDAT)
 
@@ -5633,28 +5630,6 @@
 
 !*************************************************************************
 !>
-!  * 2010-04-14 DZERO  Krogh  No discontinuity message if |F1-F2| small.
-!  * 2010-04-12 DZERO  Krogh  Fixed KNKP to get discontinuity diagnostic.
-!  * 2010-02-20 DZERO  Krogh  $G => $F for print out of iterations
-!  * 2008-03-01 DZERO  Krogh  Minor change in diagnostic print.
-!  * 2000-12-01 DZERO  Krogh  Removed unused variable C1P01.
-!  * 1998-11-01 DZERO  Krogh  Set so errors stop less easily.
-!  * 1998-11-01 DZERO  Krogh  For "mangle", INDIC replaced with MACT(3).
-!  * 1996-03-30 DZERO  Krogh  Added external statement.
-!  * 1995-11-09 DZERO  Krogh  Fixed so char. data at col. 72 is not ' '.
-!  * 1994-11-11 DZERO  Krogh  Declared all vars.
-!  * 1994-10-20 DZERO  Krogh  Changes to use M77CON
-!  * 1994-09-08 DZERO  Krogh  Added CHGTYP code.
-!  * 1993-04-27 DZERO  Krogh  Additions for Conversion to C.
-!  * 1993-04-13 DZERO  Krogh  Minor change for new MESS.
-!  * 1992-04-08 DZERO  Krogh  Unused label 400 removed.
-!  * 1992-01-09 DZERO  Krogh  Moved calc. of XXMXO up (for error msg.)
-!  * 1991-11-26 DZERO  Krogh  Converted to new error processor.
-!  * 1988-08-14 DZERO  Krogh  Labels runumbered.
-!  * 1988-03-07 DZERO  Krogh  Initial code.
-!
-!--D replaces "?": ?ZERO, ?MESS
-!
 ! SUBROUTINE TO FIND A BOUNDED ZERO
 !
 ! analysis and coding by Fred T.Krogh at the Jet Propulsion
@@ -5696,13 +5671,6 @@
 !     TOL  = 0  Iterate until the zero is determined as
 !              precisely as possible.  MODE = 3 is impossible
 !              in this case.
-!
-! Parameters in the calling sequence have the following types
-
-    subroutine DZERO(X1, F1, X2, F2, MODE, TOL)
-
-      integer MODE
-      double precision X1, X2, F1, F2, TOL
 !
 ! Usage is as follows (of course, variations are possible.)
 !         Somehow one has available X1, F1, X2, and F2 such
@@ -5831,6 +5799,32 @@
 ! XXMXO  XX - XO = length of interval in which 0 lies.
 ! XXMXOL Value of XXMXO from a previous iteration.
 !
+!### History
+!  * 2010-04-14 DZERO  Krogh  No discontinuity message if |F1-F2| small.
+!  * 2010-04-12 DZERO  Krogh  Fixed KNKP to get discontinuity diagnostic.
+!  * 2010-02-20 DZERO  Krogh  $G => $F for print out of iterations
+!  * 2008-03-01 DZERO  Krogh  Minor change in diagnostic print.
+!  * 2000-12-01 DZERO  Krogh  Removed unused variable C1P01.
+!  * 1998-11-01 DZERO  Krogh  Set so errors stop less easily.
+!  * 1998-11-01 DZERO  Krogh  For "mangle", INDIC replaced with MACT(3).
+!  * 1996-03-30 DZERO  Krogh  Added external statement.
+!  * 1995-11-09 DZERO  Krogh  Fixed so char. data at col. 72 is not ' '.
+!  * 1994-11-11 DZERO  Krogh  Declared all vars.
+!  * 1994-10-20 DZERO  Krogh  Changes to use M77CON
+!  * 1994-09-08 DZERO  Krogh  Added CHGTYP code.
+!  * 1993-04-27 DZERO  Krogh  Additions for Conversion to C.
+!  * 1993-04-13 DZERO  Krogh  Minor change for new MESS.
+!  * 1992-04-08 DZERO  Krogh  Unused label 400 removed.
+!  * 1992-01-09 DZERO  Krogh  Moved calc. of XXMXO up (for error msg.)
+!  * 1991-11-26 DZERO  Krogh  Converted to new error processor.
+!  * 1988-08-14 DZERO  Krogh  Labels runumbered.
+!  * 1988-03-07 DZERO  Krogh  Initial code.
+
+    subroutine DZERO(X1, F1, X2, F2, MODE, TOL)
+
+      integer MODE
+      double precision X1, X2, F1, F2, TOL
+
       !external D1MACH
       integer LINIT, KS, KTYP, J, I
       parameter (LINIT = -40)
@@ -6172,60 +6166,6 @@
 
 !*************************************************************************
 !>
-!  * 2010-02-22 MESS  Krogh  Moved NSKIP=0 to start of code.
-!  * 2009-10-30 MESS  Krogh  Defined DSCRN.
-!  * 2009-02-28 MESS  Krogh  Added FMTT = ' ' for NAG compiler.
-!  * 2009-02-28 MESS  Krogh  Fixed "f" format for C code.
-!  * 2007-09-08 MESS  Krogh  Fixed definitions of MEVLAS.
-!  * 2006-07-27 MESS  Krogh  Fixed boundary case in printing long text.
-!  * 2006-03-20 MESS  Krogh  Added code for output of sparse vector.
-!  * 2005-04-07 MESS  Krogh  Declared LFLGDB integer in MESSMH.
-!  * 2004-12-15 MESS  Krogh  Added " - 1" at end of line on label 410.
-!  * 2002-05-17 MESS  Krogh  Added way for user to get error count.
-!  * 2001-12-28 MESS  Krogh  Added NSKIP for more flexible output values.
-!  * 2000-12-30 MESS  Krogh  Fixed some types/casts in C code.
-!  * 1997-12-12 MESS  Krogh  Prefixed 0P edit descriptor to F format.
-!  * 1996-07-11 MESS  Krogh  Transpose matrix output for C.
-!  * 1996-06-27 MESS  Krogh  fprintf(stdout, => printf( & memset now used
-!  * 1996-06-18 MESS  Krogh  "Saved" NTEXTR.
-!  * 1996-05-15 MESS  Krogh  Changes to use .C. and C%%.
-!  * 1996-03-30 MESS  Krogh  Added external statement.
-!  * 1996-01-24 MESS  Krogh  Fixed minor bug introduced with "$ " stuff.
-!  * 1996-01-23 MESS  Krogh  Minor changes for C conversion.
-!  * 1995-11-10 MESS  Krogh  Add code to change "$ " to " " in headings.
-!  * 1995-08-11 MESS  Krogh  Made code default to not using UMESS.
-!  * 1995-01-20 MESS  Krogh  Fixed unusual case in matrix output.
-!  * 1994-12-15 MESS  Krogh  Removed block data for Cray T3D.
-!  * 1994-11-11 MESS  Krogh  Declared all vars.
-!  * 1994-09-14 MESS  Krogh  Fixed to get 1 more "$" in C output.
-!  * 1994-09-08 MESS  Krogh  Added new matrix/vector capabilities.
-!  * 1994-08-22 MESS  Krogh  Fix for conversion to C for new converter.
-!  * 1994-07-05 MESS  Krogh  Fixed bug, KDI and FMTI could be inconsist.
-!  * 1994-05-20 MESS  Krogh  Changes to MESSFT so line 1 can go to file.
-!  * 1994-05-20 MESS  Krogh  Changes to setting output unit.
-!  * 1994-05-09 MESS  Krogh  Integer vectors had overflow & space probs.
-!  * 1993-05-19 MESS  Krogh  Changed TEXT to array of character strings.
-!  * 1993-04-14 MESS  Krogh  Fixes for conversion to C. (C%% comments.)
-!  * 1993-03-10 MESS  Krogh  Broke into smaller pieces.
-!  * 1992-12-02 MESS  Krogh  Added save statement to block data subpr.
-!  * 1992-07-13 MESS  Krogh  Add checks in heading set up.
-!  * 1992-07-12 MESS  Krogh  Fixed so $$ prints a single $ in TEXT.
-!  * 1992-07-12 MESS  Krogh  Set out of bound inputs to limit values.
-!  * 1992-07-12 MESS  Krogh  Fixed so output works to alternate files.
-!  * 1992-07-12 MESS  Krogh  Added integer declarations for parameters.
-!  * 1992-06-24 MESS  Krogh  More blanks allowed on break of long lines.
-!  * 1992-06-10 MESS  Krogh  Minor fix to vector output.
-!  * 1992-05-27 MESS  Krogh  Fixed bug on line width setting.
-!  * 1992-05-14 MESS  Krogh  Put common blocks in save statement.
-!  * 1992-05-11 MESS  Krogh  Added label to assigned go to & a comment.
-!  * 1992-04-08 MESS  Krogh  Unused labels 60, 220 and 320 removed.
-!  * 1992-03-20 MESS  Krogh  Changed status on open to SCRATCH.
-!  * 1992-03-10 MESS  Krogh  1 line below label 690 changed max to min.
-!  * 1992-02-05 MESS  Krogh  Fixed bugs in printing matrix labels.
-!  * 1992-01-29 MESS  Krogh  Added UMESS and multiple print option.
-!  * 1991-12-09 MESS  Krogh  Fine tuning of vector output.
-!  * 1991-10-10 MESS  Krogh  Insure no stop if stop level = 9.
-!  * 1991-06-26 MESS  Krogh  Initial Code.
 ! Processes Messages -- Actions are controlled by MACT().
 ! This routine is intended for use primarily by other library routines.
 ! Users of library routines may want to use values of MACT from MERET-
@@ -6734,6 +6674,62 @@
 !      common /MESSCC/ kciwid,kccwid,kcrwid,lbeg,lend,lfprec,lgprec
 !%%    long int kc;
 !++ END
+!
+!### History
+!  * 2010-02-22 MESS  Krogh  Moved NSKIP=0 to start of code.
+!  * 2009-10-30 MESS  Krogh  Defined DSCRN.
+!  * 2009-02-28 MESS  Krogh  Added FMTT = ' ' for NAG compiler.
+!  * 2009-02-28 MESS  Krogh  Fixed "f" format for C code.
+!  * 2007-09-08 MESS  Krogh  Fixed definitions of MEVLAS.
+!  * 2006-07-27 MESS  Krogh  Fixed boundary case in printing long text.
+!  * 2006-03-20 MESS  Krogh  Added code for output of sparse vector.
+!  * 2005-04-07 MESS  Krogh  Declared LFLGDB integer in MESSMH.
+!  * 2004-12-15 MESS  Krogh  Added " - 1" at end of line on label 410.
+!  * 2002-05-17 MESS  Krogh  Added way for user to get error count.
+!  * 2001-12-28 MESS  Krogh  Added NSKIP for more flexible output values.
+!  * 2000-12-30 MESS  Krogh  Fixed some types/casts in C code.
+!  * 1997-12-12 MESS  Krogh  Prefixed 0P edit descriptor to F format.
+!  * 1996-07-11 MESS  Krogh  Transpose matrix output for C.
+!  * 1996-06-27 MESS  Krogh  fprintf(stdout, => printf( & memset now used
+!  * 1996-06-18 MESS  Krogh  "Saved" NTEXTR.
+!  * 1996-05-15 MESS  Krogh  Changes to use .C. and C%%.
+!  * 1996-03-30 MESS  Krogh  Added external statement.
+!  * 1996-01-24 MESS  Krogh  Fixed minor bug introduced with "$ " stuff.
+!  * 1996-01-23 MESS  Krogh  Minor changes for C conversion.
+!  * 1995-11-10 MESS  Krogh  Add code to change "$ " to " " in headings.
+!  * 1995-08-11 MESS  Krogh  Made code default to not using UMESS.
+!  * 1995-01-20 MESS  Krogh  Fixed unusual case in matrix output.
+!  * 1994-12-15 MESS  Krogh  Removed block data for Cray T3D.
+!  * 1994-11-11 MESS  Krogh  Declared all vars.
+!  * 1994-09-14 MESS  Krogh  Fixed to get 1 more "$" in C output.
+!  * 1994-09-08 MESS  Krogh  Added new matrix/vector capabilities.
+!  * 1994-08-22 MESS  Krogh  Fix for conversion to C for new converter.
+!  * 1994-07-05 MESS  Krogh  Fixed bug, KDI and FMTI could be inconsist.
+!  * 1994-05-20 MESS  Krogh  Changes to MESSFT so line 1 can go to file.
+!  * 1994-05-20 MESS  Krogh  Changes to setting output unit.
+!  * 1994-05-09 MESS  Krogh  Integer vectors had overflow & space probs.
+!  * 1993-05-19 MESS  Krogh  Changed TEXT to array of character strings.
+!  * 1993-04-14 MESS  Krogh  Fixes for conversion to C. (C%% comments.)
+!  * 1993-03-10 MESS  Krogh  Broke into smaller pieces.
+!  * 1992-12-02 MESS  Krogh  Added save statement to block data subpr.
+!  * 1992-07-13 MESS  Krogh  Add checks in heading set up.
+!  * 1992-07-12 MESS  Krogh  Fixed so $$ prints a single $ in TEXT.
+!  * 1992-07-12 MESS  Krogh  Set out of bound inputs to limit values.
+!  * 1992-07-12 MESS  Krogh  Fixed so output works to alternate files.
+!  * 1992-07-12 MESS  Krogh  Added integer declarations for parameters.
+!  * 1992-06-24 MESS  Krogh  More blanks allowed on break of long lines.
+!  * 1992-06-10 MESS  Krogh  Minor fix to vector output.
+!  * 1992-05-27 MESS  Krogh  Fixed bug on line width setting.
+!  * 1992-05-14 MESS  Krogh  Put common blocks in save statement.
+!  * 1992-05-11 MESS  Krogh  Added label to assigned go to & a comment.
+!  * 1992-04-08 MESS  Krogh  Unused labels 60, 220 and 320 removed.
+!  * 1992-03-20 MESS  Krogh  Changed status on open to SCRATCH.
+!  * 1992-03-10 MESS  Krogh  1 line below label 690 changed max to min.
+!  * 1992-02-05 MESS  Krogh  Fixed bugs in printing matrix labels.
+!  * 1992-01-29 MESS  Krogh  Added UMESS and multiple print option.
+!  * 1991-12-09 MESS  Krogh  Fine tuning of vector output.
+!  * 1991-10-10 MESS  Krogh  Insure no stop if stop level = 9.
+!  * 1991-06-26 MESS  Krogh  Initial Code.
 
     subroutine MESS(MACT, TEXT, IDAT)
 
@@ -8343,15 +8339,6 @@
 
 !*************************************************************************
 !>
-!  * 1998-11-01 OPTCHK  Krogh  ERRSEV => MACT(2) for "mangle".
-!  * 1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.
-!  * 1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."
-!  * 1994-11-11 OPTCHK  Krogh  Declared all vars.
-!  * 1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.
-!  * 1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.
-!  * 1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.
-!  * 1991-06-27 OPTCHK  Krogh  Initial Code.
-!
 ! OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
 ! This subroutine is intended for the use of other library routines.
 ! It is used to check the storage used by options for some array.
@@ -8465,11 +8452,19 @@
 ! NERBAD Array telling what to do concerning errrors.  ERRBAD is set
 !        from NERBAD(mod(INTCHK(0), 10)), and the default value for
 !        MACT(2) is set from NERBAD(INTCHK(0)+4).
+!
+!### History
+!  * 1998-11-01 OPTCHK  Krogh  ERRSEV => MACT(2) for "mangle".
+!  * 1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.
+!  * 1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."
+!  * 1994-11-11 OPTCHK  Krogh  Declared all vars.
+!  * 1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.
+!  * 1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.
+!  * 1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.
+!  * 1991-06-27 OPTCHK  Krogh  Initial Code.
 
     subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 
-! ************************** Variable Declarations *********************
-!
       integer INTCHK(0:*), IOPT(*)
       character ETEXT*(*)
       integer I, ISTRT, KEX, L, LAST, LNEG, LOPT, LWANT, MI, MV, N

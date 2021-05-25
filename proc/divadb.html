@@ -227,7 +227,23 @@ public subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 
 
     
-    <ul>
+    <p>SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR</p>
+<p>LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
+    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
+    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
+           ALL PERTINENT CONTENTS OF KORD, AND TOL.
+    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
+    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">N2</span><span class="o">=</span><span class="mi">1</span>   <span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">PRINT</span> <span class="nv">ANY</span> <span class="nv">VARIABLES</span> <span class="nv">INTERNAL</span> <span class="nv">TO</span> <span class="nv">THE</span> <span class="nv">INTEGRATOR</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">2</span>   <span class="nv">PRINT</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">INTERPOLATION</span> <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">3</span>   <span class="nv">ABOVE</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">MAIN</span> <span class="nv">INTEG</span>. <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">4</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">3</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">XI</span>,<span class="nv">BETA</span>,<span class="nv">ALPHA</span>, <span class="nv">FIRST</span>
+       <span class="nv">COLUMN</span> <span class="nv">OF</span> <span class="nv">G</span>, <span class="nv">GS</span>,<span class="nv">RBQ</span>,<span class="nv">SIGMA</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">5</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">4</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">G</span>,<span class="nv">D</span>,<span class="nv">DS</span>,<span class="nv">V</span>
+</code></pre></div>
+
+<h3>History</h3>
+<ul>
 <li>2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.</li>
 <li>2000-12-01 DIVADB Krogh Removed unused parameter METXTF.</li>
 <li>1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.</li>
@@ -249,21 +265,6 @@ public subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 <li>1988-06-07 DIVADB Krogh Dim. of IVC2 and DVC2 upped by 1 (old bug)</li>
 <li>1987-12-07 DIVADB Krogh Initial code.</li>
 </ul>
-<p>--D replaces "?": ?IVADB, ?IVAEV, ?IVAMC, ?IVASC, ?MESS</p>
-<p>SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR</p>
-<p>LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
-    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
-    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
-           ALL PERTINENT CONTENTS OF KORD, AND TOL.
-    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
-    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">N2</span><span class="o">=</span><span class="mi">1</span>   <span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">PRINT</span> <span class="nv">ANY</span> <span class="nv">VARIABLES</span> <span class="nv">INTERNAL</span> <span class="nv">TO</span> <span class="nv">THE</span> <span class="nv">INTEGRATOR</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">2</span>   <span class="nv">PRINT</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">INTERPOLATION</span> <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">3</span>   <span class="nv">ABOVE</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">MAIN</span> <span class="nv">INTEG</span>. <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">4</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">3</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">XI</span>,<span class="nv">BETA</span>,<span class="nv">ALPHA</span>, <span class="nv">FIRST</span>
-       <span class="nv">COLUMN</span> <span class="nv">OF</span> <span class="nv">G</span>, <span class="nv">GS</span>,<span class="nv">RBQ</span>,<span class="nv">SIGMA</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">5</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">4</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">G</span>,<span class="nv">D</span>,<span class="nv">DS</span>,<span class="nv">V</span>
-</code></pre></div>
     
 
     <h3>Arguments</h3>
@@ -388,160 +389,160 @@ public subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~divadb~~CallsGraph Pages: 1 -->
-<svg id="procdivadbCallsGraph" width="428pt" height="217pt"
- viewBox="0.00 0.00 428.00 216.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~divadb~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 212.75)">
+<svg id="procdivadbCallsGraph" width="428pt" height="212pt"
+ viewBox="0.00 0.00 428.00 211.66" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~divadb~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 207.66)">
 <title>proc~~divadb~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-212.75 424,-212.75 424,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-207.66 424,-207.66 424,4 -4,4"/>
 <!-- proc~divadb -->
 <g id="proc~~divadb~~CallsGraph_node1" class="node">
 <title>proc~divadb</title>
-<polygon fill="none" stroke="black" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
-<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
-</g>
-<!-- proc~mess -->
-<g id="proc~~divadb~~CallsGraph_node2" class="node">
-<title>proc~mess</title>
-<g id="a_proc~~divadb~~CallsGraph_node2"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="235,-106 181,-106 181,-82 235,-82 235,-106"/>
-<text text-anchor="middle" x="208" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESS</text>
-</a>
-</g>
-</g>
-<!-- proc~divadb&#45;&gt;proc~mess -->
-<g id="proc~~divadb~~CallsGraph_edge2" class="edge">
-<title>proc~divadb&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M54.26,-63.97C65.19,-67.84 78.09,-72.04 90,-75 116.67,-81.63 147.35,-86.52 170.61,-89.67"/>
-<polygon fill="#000000" stroke="#000000" points="170.36,-93.17 180.73,-91 171.27,-86.23 170.36,-93.17"/>
+<polygon fill="none" stroke="black" points="54,-99.66 0,-99.66 0,-75.66 54,-75.66 54,-99.66"/>
+<text text-anchor="middle" x="27" y="-85.26" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
 </g>
 <!-- proc~messft -->
-<g id="proc~~divadb~~CallsGraph_node3" class="node">
+<g id="proc~~divadb~~CallsGraph_node2" class="node">
 <title>proc~messft</title>
-<g id="a_proc~~divadb~~CallsGraph_node3"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
-<polygon fill="#d9534f" stroke="#d9534f" points="145,-66 90,-66 90,-42 145,-42 145,-66"/>
-<text text-anchor="middle" x="117.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
+<g id="a_proc~~divadb~~CallsGraph_node2"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
+<polygon fill="#d9534f" stroke="#d9534f" points="145,-139.66 90,-139.66 90,-115.66 145,-115.66 145,-139.66"/>
+<text text-anchor="middle" x="117.5" y="-125.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
 </a>
 </g>
 </g>
 <!-- proc~divadb&#45;&gt;proc~messft -->
-<g id="proc~~divadb~~CallsGraph_edge3" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge1" class="edge">
 <title>proc~divadb&#45;&gt;proc~messft</title>
-<path fill="none" stroke="#000000" d="M54.07,-54C62.12,-54 71.14,-54 79.76,-54"/>
-<polygon fill="#000000" stroke="#000000" points="80,-57.5 90,-54 80,-50.5 80,-57.5"/>
+<path fill="none" stroke="#000000" d="M54.07,-99.45C62.39,-103.2 71.73,-107.43 80.62,-111.44"/>
+<polygon fill="#000000" stroke="#000000" points="79.45,-114.76 90,-115.69 82.33,-108.38 79.45,-114.76"/>
 </g>
 <!-- proc~dmess -->
-<g id="proc~~divadb~~CallsGraph_node4" class="node">
+<g id="proc~~divadb~~CallsGraph_node3" class="node">
 <title>proc~dmess</title>
-<g id="a_proc~~divadb~~CallsGraph_node4"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="235,-24 181,-24 181,0 235,0 235,-24"/>
-<text text-anchor="middle" x="208" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
+<g id="a_proc~~divadb~~CallsGraph_node3"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
+<polygon fill="#d9534f" stroke="#d9534f" points="235,-58.66 181,-58.66 181,-34.66 235,-34.66 235,-58.66"/>
+<text text-anchor="middle" x="208" y="-44.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
 </a>
 </g>
 </g>
 <!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~divadb~~CallsGraph_edge1" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge2" class="edge">
 <title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M54.29,-44.13C65.22,-40.28 78.11,-36.06 90,-33 116.69,-26.13 147.37,-20.71 170.62,-17.1"/>
-<polygon fill="#000000" stroke="#000000" points="171.37,-20.53 180.74,-15.57 170.33,-13.6 171.37,-20.53"/>
+<path fill="none" stroke="#000000" d="M54.03,-81.7C84.78,-74.66 136.14,-62.89 170.77,-54.96"/>
+<polygon fill="#000000" stroke="#000000" points="171.97,-58.28 180.94,-52.63 170.41,-51.45 171.97,-58.28"/>
 </g>
-<!-- proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_node5" class="node">
-<title>proc~messfi</title>
-<g id="a_proc~~divadb~~CallsGraph_node5"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="420,-106 366,-106 366,-82 420,-82 420,-106"/>
-<text text-anchor="middle" x="393" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+<!-- proc~mess -->
+<g id="proc~~divadb~~CallsGraph_node4" class="node">
+<title>proc~mess</title>
+<g id="a_proc~~divadb~~CallsGraph_node4"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
+<polygon fill="#d9534f" stroke="#d9534f" points="235,-119.66 181,-119.66 181,-95.66 235,-95.66 235,-119.66"/>
+<text text-anchor="middle" x="208" y="-105.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESS</text>
 </a>
 </g>
 </g>
-<!-- proc~mess&#45;&gt;proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_edge4" class="edge">
-<title>proc~mess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M211.97,-106.27C218.3,-129.35 235.52,-178.74 271,-199 293.77,-212 307.23,-212 330,-199 361.05,-181.28 378.11,-141.24 386.13,-116.05"/>
-<polygon fill="#000000" stroke="#000000" points="389.55,-116.85 389.03,-106.27 382.83,-114.86 389.55,-116.85"/>
+<!-- proc~divadb&#45;&gt;proc~mess -->
+<g id="proc~~divadb~~CallsGraph_edge3" class="edge">
+<title>proc~divadb&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M54.03,-90.57C84.78,-94.01 136.14,-99.75 170.77,-103.61"/>
+<polygon fill="#000000" stroke="#000000" points="170.61,-107.12 180.94,-104.75 171.39,-100.16 170.61,-107.12"/>
 </g>
-<!-- proc~messgs -->
-<g id="proc~~divadb~~CallsGraph_node6" class="node">
-<title>proc~messgs</title>
-<g id="a_proc~~divadb~~CallsGraph_node6"><a xlink:href=".././proc/messgs.html" xlink:title="MESSGS">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="329,-190 272,-190 272,-166 329,-166 329,-190"/>
-<text text-anchor="middle" x="300.5" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSGS</text>
-</a>
-</g>
-</g>
-<!-- proc~mess&#45;&gt;proc~messgs -->
+<!-- proc~messft&#45;&gt;proc~mess -->
 <g id="proc~~divadb~~CallsGraph_edge5" class="edge">
-<title>proc~mess&#45;&gt;proc~messgs</title>
-<path fill="none" stroke="#000000" d="M219.9,-106.17C231.89,-119.3 251.98,-140.52 271,-157 271.99,-157.86 273.02,-158.72 274.06,-159.58"/>
-<polygon fill="#000000" stroke="#000000" points="272.24,-162.6 282.28,-165.99 276.55,-157.08 272.24,-162.6"/>
-</g>
-<!-- proc~messmh -->
-<g id="proc~~divadb~~CallsGraph_node7" class="node">
-<title>proc~messmh</title>
-<g id="a_proc~~divadb~~CallsGraph_node7"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
-<polygon fill="#d9534f" stroke="#d9534f" points="330,-148 271,-148 271,-124 330,-124 330,-148"/>
-<text text-anchor="middle" x="300.5" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
-</a>
-</g>
-</g>
-<!-- proc~mess&#45;&gt;proc~messmh -->
-<g id="proc~~divadb~~CallsGraph_edge6" class="edge">
-<title>proc~mess&#45;&gt;proc~messmh</title>
-<path fill="none" stroke="#000000" d="M235.18,-106.15C244.18,-110.33 254.42,-115.08 264.04,-119.54"/>
-<polygon fill="#000000" stroke="#000000" points="262.84,-122.84 273.38,-123.88 265.79,-116.49 262.84,-122.84"/>
+<title>proc~messft&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M145.05,-121.66C153.18,-119.83 162.25,-117.77 170.9,-115.82"/>
+<polygon fill="#000000" stroke="#000000" points="171.79,-119.21 180.77,-113.59 170.25,-112.38 171.79,-119.21"/>
 </g>
 <!-- proc~messpr -->
-<g id="proc~~divadb~~CallsGraph_node8" class="node">
+<g id="proc~~divadb~~CallsGraph_node5" class="node">
 <title>proc~messpr</title>
-<g id="a_proc~~divadb~~CallsGraph_node8"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
-<polygon fill="#d9534f" stroke="#d9534f" points="328,-64 273,-64 273,-40 328,-40 328,-64"/>
-<text text-anchor="middle" x="300.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
+<g id="a_proc~~divadb~~CallsGraph_node5"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
+<polygon fill="#d9534f" stroke="#d9534f" points="328,-203.66 273,-203.66 273,-179.66 328,-179.66 328,-203.66"/>
+<text text-anchor="middle" x="300.5" y="-189.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
 </a>
 </g>
+</g>
+<!-- proc~messft&#45;&gt;proc~messpr -->
+<g id="proc~~divadb~~CallsGraph_edge4" class="edge">
+<title>proc~messft&#45;&gt;proc~messpr</title>
+<path fill="none" stroke="#000000" d="M145.21,-137.11C176.44,-148.15 228.31,-166.49 263.18,-178.82"/>
+<polygon fill="#000000" stroke="#000000" points="262.38,-182.25 272.98,-182.28 264.72,-175.65 262.38,-182.25"/>
+</g>
+<!-- proc~messfi -->
+<g id="proc~~divadb~~CallsGraph_node8" class="node">
+<title>proc~messfi</title>
+<g id="a_proc~~divadb~~CallsGraph_node8"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="420,-79.66 366,-79.66 366,-55.66 420,-55.66 420,-79.66"/>
+<text text-anchor="middle" x="393" y="-65.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+</a>
+</g>
+</g>
+<!-- proc~dmess&#45;&gt;proc~messfi -->
+<g id="proc~~divadb~~CallsGraph_edge6" class="edge">
+<title>proc~dmess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M222.61,-34.56C234.45,-24.89 252.57,-12.09 271,-6.66 296.15,0.75 305.73,3.27 330,-6.66 349.9,-14.81 366.85,-32.78 377.97,-47.11"/>
+<polygon fill="#000000" stroke="#000000" points="375.37,-49.48 384.12,-55.45 381,-45.32 375.37,-49.48"/>
 </g>
 <!-- proc~mess&#45;&gt;proc~messpr -->
 <g id="proc~~divadb~~CallsGraph_edge7" class="edge">
 <title>proc~mess&#45;&gt;proc~messpr</title>
-<path fill="none" stroke="#000000" d="M235.18,-81.85C244.18,-77.67 254.42,-72.92 264.04,-68.46"/>
-<polygon fill="#000000" stroke="#000000" points="265.79,-71.51 273.38,-64.12 262.84,-65.16 265.79,-71.51"/>
+<path fill="none" stroke="#000000" d="M219.9,-119.84C231.89,-132.96 251.98,-154.18 271,-170.66 271.99,-171.52 273.02,-172.39 274.06,-173.25"/>
+<polygon fill="#000000" stroke="#000000" points="272.24,-176.26 282.28,-179.65 276.55,-170.74 272.24,-176.26"/>
 </g>
 <!-- proc~messfd -->
-<g id="proc~~divadb~~CallsGraph_node9" class="node">
+<g id="proc~~divadb~~CallsGraph_node6" class="node">
 <title>proc~messfd</title>
-<g id="a_proc~~divadb~~CallsGraph_node9"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
-<polygon fill="#d9534f" stroke="#d9534f" points="328.5,-106 272.5,-106 272.5,-82 328.5,-82 328.5,-106"/>
-<text text-anchor="middle" x="300.5" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
+<g id="a_proc~~divadb~~CallsGraph_node6"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
+<polygon fill="#d9534f" stroke="#d9534f" points="328.5,-161.66 272.5,-161.66 272.5,-137.66 328.5,-137.66 328.5,-161.66"/>
+<text text-anchor="middle" x="300.5" y="-147.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messfd -->
 <g id="proc~~divadb~~CallsGraph_edge8" class="edge">
 <title>proc~mess&#45;&gt;proc~messfd</title>
-<path fill="none" stroke="#000000" d="M235.18,-94C243.67,-94 253.27,-94 262.4,-94"/>
-<polygon fill="#000000" stroke="#000000" points="262.44,-97.5 272.44,-94 262.44,-90.5 262.44,-97.5"/>
+<path fill="none" stroke="#000000" d="M235.18,-119.81C244.18,-123.99 254.42,-128.74 264.04,-133.21"/>
+<polygon fill="#000000" stroke="#000000" points="262.84,-136.51 273.38,-137.54 265.79,-130.16 262.84,-136.51"/>
 </g>
-<!-- proc~messft&#45;&gt;proc~mess -->
-<g id="proc~~divadb~~CallsGraph_edge10" class="edge">
-<title>proc~messft&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M145.05,-66C153.35,-69.75 162.65,-73.95 171.46,-77.94"/>
-<polygon fill="#000000" stroke="#000000" points="170.22,-81.22 180.77,-82.14 173.1,-74.84 170.22,-81.22"/>
+<!-- proc~messgs -->
+<g id="proc~~divadb~~CallsGraph_node7" class="node">
+<title>proc~messgs</title>
+<g id="a_proc~~divadb~~CallsGraph_node7"><a xlink:href=".././proc/messgs.html" xlink:title="MESSGS">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="329,-119.66 272,-119.66 272,-95.66 329,-95.66 329,-119.66"/>
+<text text-anchor="middle" x="300.5" y="-105.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSGS</text>
+</a>
 </g>
-<!-- proc~messft&#45;&gt;proc~messpr -->
+</g>
+<!-- proc~mess&#45;&gt;proc~messgs -->
 <g id="proc~~divadb~~CallsGraph_edge9" class="edge">
-<title>proc~messft&#45;&gt;proc~messpr</title>
-<path fill="none" stroke="#000000" d="M145.21,-53.7C176.31,-53.36 227.86,-52.79 262.73,-52.41"/>
-<polygon fill="#000000" stroke="#000000" points="263.02,-55.9 272.98,-52.29 262.94,-48.9 263.02,-55.9"/>
+<title>proc~mess&#45;&gt;proc~messgs</title>
+<path fill="none" stroke="#000000" d="M235.18,-107.66C243.43,-107.66 252.72,-107.66 261.62,-107.66"/>
+<polygon fill="#000000" stroke="#000000" points="261.81,-111.16 271.81,-107.66 261.81,-104.16 261.81,-111.16"/>
 </g>
-<!-- proc~dmess&#45;&gt;proc~messfi -->
+<!-- proc~mess&#45;&gt;proc~messfi -->
+<g id="proc~~divadb~~CallsGraph_edge10" class="edge">
+<title>proc~mess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M235.26,-97.66C246.18,-93.79 259.08,-89.59 271,-86.66 299.06,-79.76 331.42,-74.83 355.62,-71.73"/>
+<polygon fill="#000000" stroke="#000000" points="356.29,-75.17 365.78,-70.47 355.43,-68.22 356.29,-75.17"/>
+</g>
+<!-- proc~messmh -->
+<g id="proc~~divadb~~CallsGraph_node9" class="node">
+<title>proc~messmh</title>
+<g id="a_proc~~divadb~~CallsGraph_node9"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
+<polygon fill="#d9534f" stroke="#d9534f" points="330,-39.66 271,-39.66 271,-15.66 330,-15.66 330,-39.66"/>
+<text text-anchor="middle" x="300.5" y="-25.26" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
+</a>
+</g>
+</g>
+<!-- proc~mess&#45;&gt;proc~messmh -->
 <g id="proc~~divadb~~CallsGraph_edge11" class="edge">
-<title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M235.48,-11.47C261.03,-12.01 300.12,-15.65 330,-31 349.44,-40.99 366.44,-59.37 377.7,-73.7"/>
-<polygon fill="#000000" stroke="#000000" points="375.13,-76.11 383.94,-82 380.73,-71.9 375.13,-76.11"/>
+<title>proc~mess&#45;&gt;proc~messmh</title>
+<path fill="none" stroke="#000000" d="M222.75,-95.51C237.45,-82.52 260.96,-61.73 278.09,-46.59"/>
+<polygon fill="#000000" stroke="#000000" points="280.75,-48.91 285.92,-39.67 276.11,-43.67 280.75,-48.91"/>
 </g>
 <!-- proc~messfd&#45;&gt;proc~messfi -->
 <g id="proc~~divadb~~CallsGraph_edge12" class="edge">
 <title>proc~messfd&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M328.65,-94C337.11,-94 346.58,-94 355.56,-94"/>
-<polygon fill="#000000" stroke="#000000" points="355.8,-97.5 365.8,-94 355.8,-90.5 355.8,-97.5"/>
+<path fill="none" stroke="#000000" d="M318.68,-137.61C322.49,-134.78 326.45,-131.69 330,-128.66 345.27,-115.64 361.39,-99.7 373.37,-87.38"/>
+<polygon fill="#000000" stroke="#000000" points="376.18,-89.51 380.59,-79.88 371.13,-84.66 376.18,-89.51"/>
 </g>
 </g>
 </svg>
@@ -630,35 +631,35 @@ public subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 <polygon fill="none" stroke="black" points="153,-45 99,-45 99,-21 153,-21 153,-45"/>
 <text text-anchor="middle" x="126" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
 </g>
-<!-- program~drdivx -->
-<g id="proc~~divadb~~CalledByGraph_node2" class="node">
-<title>program~drdivx</title>
-<g id="a_proc~~divadb~~CalledByGraph_node2"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-66 4,-66 4,-42 59,-42 59,-66"/>
-<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
-</a>
-</g>
-</g>
-<!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~divadb~~CalledByGraph_edge1" class="edge">
-<title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-47.93C68.52,-45.82 79.07,-43.43 88.96,-41.18"/>
-<polygon fill="#000000" stroke="#000000" points="89.97,-44.54 98.94,-38.92 88.42,-37.72 89.97,-44.54"/>
-</g>
 <!-- program~drdivdb -->
-<g id="proc~~divadb~~CalledByGraph_node3" class="node">
+<g id="proc~~divadb~~CalledByGraph_node2" class="node">
 <title>program~drdivdb</title>
-<g id="a_proc~~divadb~~CalledByGraph_node3"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-24 0,-24 0,0 63,0 63,-24"/>
-<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+<g id="a_proc~~divadb~~CalledByGraph_node2"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-66 0,-66 0,-42 63,-42 63,-66"/>
+<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
 </a>
 </g>
 </g>
 <!-- program~drdivdb&#45;&gt;proc~divadb -->
-<g id="proc~~divadb~~CalledByGraph_edge2" class="edge">
+<g id="proc~~divadb~~CalledByGraph_edge1" class="edge">
 <title>program~drdivdb&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M63.04,-18.93C71.37,-20.82 80.46,-22.89 89.05,-24.84"/>
-<polygon fill="#000000" stroke="#000000" points="88.3,-28.26 98.83,-27.06 89.85,-21.43 88.3,-28.26"/>
+<path fill="none" stroke="#000000" d="M63.04,-47.07C71.37,-45.18 80.46,-43.11 89.05,-41.16"/>
+<polygon fill="#000000" stroke="#000000" points="89.85,-44.57 98.83,-38.94 88.3,-37.74 89.85,-44.57"/>
+</g>
+<!-- program~drdivx -->
+<g id="proc~~divadb~~CalledByGraph_node3" class="node">
+<title>program~drdivx</title>
+<g id="a_proc~~divadb~~CalledByGraph_node3"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-24 4,-24 4,0 59,0 59,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+</a>
+</g>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~divadb~~CalledByGraph_edge2" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-18.07C68.52,-20.18 79.07,-22.57 88.96,-24.82"/>
+<polygon fill="#000000" stroke="#000000" points="88.42,-28.28 98.94,-27.08 89.97,-21.46 88.42,-28.28"/>
 </g>
 </g>
 </svg>
