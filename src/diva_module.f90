@@ -1,4 +1,18 @@
+!*************************************************************************
+!>
+!  Modernized version of the DIVA Variable Order Adams Method
+!  Ordinary Differential Equation Solver From the MATH77 library.
+!
+!### Original Copyright
+!
+! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
+! ALL RIGHTS RESERVED.
+! Based on Government Sponsored Research NAS7-03001.
+
+
     module diva_module
+!*************************************************************************
+
     use iso_fortran_env, only: wp => real64
 
     implicit none
@@ -11,94 +25,10 @@
          log10(real(radix(1.0_wp),wp))]
 
     contains
+!*************************************************************************
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
-!  * 2015-03-15 DIVA  Krogh  Removed extra call divabu after noise test
-!  * 2015-03-15 DIVA  Krogh  Forced restart needs more reduction in h.
-!  * 2010-02-20 DIVA  Krogh  Fixed calling DIVAOP with array other than F
-!  * 2009-11-03 DIVA  Krogh  Added option 11, more variables initialized.
-!  * 2009-10-30 DIVA  Krogh  Gave KSSTRT and ROBND initial values.
-!  * 2009-10-30 DIVA  Krogh  Fixed reference to undefined location in F.
-!  * 2009-10-21 DIVA  Krogh  Got rid of NaN in diag. print when LSC=3.
-!  * 2009-10-15 DIVA  Krogh  A few changes on how noise is handled.
-!  * 2002-11-12 DIVA  Krogh  Fixed problem integrating to final output pt
-!  * 2002-08-29 DIVA  Krogh  Added test for invalid HMIN/HMAX.
-!  * 2002-07-26 DIVA  Krogh  Added KOUTKO to fully support Option 10.
-!  * 2002-05-14 DIVA  Krogh  Fix starting prob. for Option 18.
-!  * 2002-05-13 DIVA  Krogh  Put exponent letter in  numbers missing them
-!  * 2002-05-12 DIVA  Krogh  Added error message for bad option 5 usage.
-!  * 2001-09-07 DIVA  Krogh  Changes to allow user tol on G-Stops.
-!  * 2001-05-25 DIVA  Krogh  Minor change for making .f90 version.
-!  * 2001-05-18 DIVA  Krogh  Less computing with no error test
-!  * 2001-05-17 DIVA  Krogh  Fixed so with no error test can't start dump
-!  * 2001-04-24 DIVA  Krogh  Inserted comments from ivacom.
-!  * 2000-12-01 DIVA  Krogh  Removed (some of) unused C1, MAXSTF, METEXT.
-!  * 1999-12-28 DIVA  Krogh  Saved S in DIVACR for output consistency.
-!  * 1999-08-19 DIVA  Krogh  Removed superfluous test above label 3520.
-!  * 1997-04-22 DIVA  Krogh  Got rid of assigned go to's. F=0 if diag.
-!  * 1996-08-26 DIVA  Krogh  Initialize F to 0 if dumping solution.
-!  * 1996-08-23 DIVA  Krogh  Print TN not TSPECS(1) in error messages.
-!  * 1996-05-30 DIVA  Krogh  Changed DERIVS/OUTPUT to  DIVAF/DIVAO.
-!  * 1996-04-27 DIVA  Krogh  Changes to use .C. and C%%.
-!  * 1996-03-30 DIVA  Krogh  Added external statement.
-!  * 1996-03-25 DIVA  Krogh  Introduced TEXT1 to comply with F77.
-!  * 1996-02-27 DIVA  Krogh  Fixed so DUMP not affected by ignored eqs.
-!  * 1995-12-18 DIVA  Krogh  Fixed so no solution dump on 0 length integ.
-!  * 1995-11-09 DIVA  Krogh  Fixed so char. data at col. 72 is not ' '.
-!  * 1995-06-19 DIVA  Krogh  Fixed prob. with discon. just after restart.
-!  * 1995-05-09 DIVA  Krogh  Fixed G-Stop/discontinuity code interaction
-!  * 1995-04-26 DIVA  Krogh  Use KQMAXS instead of KQMAXI when LDIS>1000.
-!  * 1995-04-26 DIVA  Krogh  Keep current KQL on discontinutiy.
-!  * 1994-12-16 DIVA  Krogh  Fixed option 12 with K12 < 0.
-!  * 1994-11-11 DIVA  Krogh  Declared all vars.
-!  * 1994-11-02 DIVA  Krogh  Changes to use M77CON
-!  * 1994-09-08 DIVA  Krogh  Added CHGTYP code.
-!  * 1994-07-11 DIVA  Krogh  Fix to get same state with/without var. eqs.
-!  * 1994-03-07 DIVA  Krogh  Allow larger order in single precision.
-!  * 1994-01-14 DIVA  Krogh  Minor change to allow changing TFINAL.
-!  * 1993-04-27 DIVA  Krogh  Additions for Conversion to C.
-!  * 1993-04-12 DIVA  Krogh  Converted to use slightly altered MESS.
-!  * 1993-04-12 DIVA  Krogh  Fixed LSC so sol. saved when HMAX is small.
-!  * 1992-10-13 DIVA  Krogh  Fixed G-Stop/discontinuity code interaction.
-!  * 1992-09-21 DIVA  Krogh  Fixed bug in discontinuity code.
-!  * 1992-09-09 DIVA  Krogh  Fixed bug - Var. Eqs. with discontinuities.
-!  * 1992-08-07 DIVA  Krogh  Storage map printed only if option 10 /= 0
-!  * 1992-07-16 DIVA  Krogh  Restored correct discontinuity code.
-!  * 1992-06-16 DIVA  Krogh  Eliminate reuse of storage for option 12.
-!  * 1992-04-08 DIVA  Krogh  Removed unused labels, 1020, 2120.
-!  * 1992-03-30 DIVA  Krogh  Fixed bug in DIVAOP error message.
-!  * 1992-03-12 DIVA  Krogh  Simplified DIVABU, more digits in B's.
-!  * 1992-01-16 DIVA  Krogh  Fixed minor bug in error messages.
-!  * 1991-12-03 DIVA  Krogh  Major change for improved error checks.
-!  * 1991-06-17 DIVA  Krogh  Fixed bug in checking storage allocation.
-!  * 1991-04-11 DIVA  Krogh  Fixed minor bug re. option 12 in DIVAOP.
-!  * 1991-03-28 DIVA  Krogh  Removed check at label 650 for KORD2I<0.
-!  * 1991-02-08 DIVA  Krogh  Changed some floats to generics
-!  * 1990-11-08 DIVA  Krogh  Fixed bug on TSPECS on discon.
-!  * 1990-09-14 DIVA  Krogh  Fixed bug when discon. and sol. save.
-!  * 1990-09-13 DIVA  Krogh  Increased dimension of BETA by 1.
-!  * 1990-09-13 DIVA  Krogh  Added one more poss. on rel. error test.
-!  * 1990-09-11 DIVA  Krogh  Recent change messed up getting dump output.
-!  * 1990-06-05 DIVA  Krogh  Fixed bug in noise test, comments in IVACOM.
-!  * 1990-05-08 DIVA  Krogh  Fixed new bug when TMARK hit in DIVAG.
-!  * 1990-04-17 DIVA  Krogh  Fixed minor problem in DIVAIN error msg.
-!  * 1990-04-10 DIVA  Krogh  Fixed interaction between discon. & dump.
-!  * 1990-03-23 DIVA  Krogh  Fixed bug on option "-2", see 1989-12-07.
-!  * 1990-03-20 DIVA  Krogh  Fixed rarely occuring loop.
-!  * 1990-01-29 DIVA  Krogh  Removed unneeded labels.
-!  * 1989-12-14 DIVA  Krogh  Saved common block DIVAEV.
-!  * 1989-12-07 DIVA  Krogh  Added option "2" to DIVAOP.
-!  * 1989-11-09 DIVA  Krogh  Made GG a save var. in DIVAHC
-!  * 1989-08-21 DIVA  Krogh  Fix out of bounds ref. to V in DIVABU
-!  * 1989-07-26 DIVA  Krogh  Fix bug in initial dim. check
-!  * 1989-07-21 DIVA  Krogh  Code for integrating discontinuities
-!  * 1987-12-07 DIVA  Krogh  Initial code.
-!
 !--D replaces "?": ?IVA,?IVAA,?IVABU,?IVACO,?IVACR,?IVAEV,?IVAF,?IVAHC,
 !-- & ?IVAG,?IVAIN,?IVAMC,?IVAO,?IVAOP,?IVAPR,?IVASC,?IVACE,?IVAIE,
 !-- & ?IVAPE,?MESS
@@ -936,12 +866,93 @@
 ! YN     (formal, in *IVAPR)  Base values of y, these follow the
 !   current values of the dependent variable, y, in Y().
 !
-!
 !++S Default KDIM = 16
 !++  Default KDIM = 20
 !++  Default MAXORD = 2, MAXSTF = 1
 !++  Default INTEGO, VAREQ, OUTPUT, DUMP, GSTOP, EXTRAP
 !++  Default STIFF=.F., ARGM=.F., ERRSTO=.F.
+!
+!### History
+!  * 2015-03-15 DIVA  Krogh  Removed extra call divabu after noise test
+!  * 2015-03-15 DIVA  Krogh  Forced restart needs more reduction in h.
+!  * 2010-02-20 DIVA  Krogh  Fixed calling DIVAOP with array other than F
+!  * 2009-11-03 DIVA  Krogh  Added option 11, more variables initialized.
+!  * 2009-10-30 DIVA  Krogh  Gave KSSTRT and ROBND initial values.
+!  * 2009-10-30 DIVA  Krogh  Fixed reference to undefined location in F.
+!  * 2009-10-21 DIVA  Krogh  Got rid of NaN in diag. print when LSC=3.
+!  * 2009-10-15 DIVA  Krogh  A few changes on how noise is handled.
+!  * 2002-11-12 DIVA  Krogh  Fixed problem integrating to final output pt
+!  * 2002-08-29 DIVA  Krogh  Added test for invalid HMIN/HMAX.
+!  * 2002-07-26 DIVA  Krogh  Added KOUTKO to fully support Option 10.
+!  * 2002-05-14 DIVA  Krogh  Fix starting prob. for Option 18.
+!  * 2002-05-13 DIVA  Krogh  Put exponent letter in  numbers missing them
+!  * 2002-05-12 DIVA  Krogh  Added error message for bad option 5 usage.
+!  * 2001-09-07 DIVA  Krogh  Changes to allow user tol on G-Stops.
+!  * 2001-05-25 DIVA  Krogh  Minor change for making .f90 version.
+!  * 2001-05-18 DIVA  Krogh  Less computing with no error test
+!  * 2001-05-17 DIVA  Krogh  Fixed so with no error test can't start dump
+!  * 2001-04-24 DIVA  Krogh  Inserted comments from ivacom.
+!  * 2000-12-01 DIVA  Krogh  Removed (some of) unused C1, MAXSTF, METEXT.
+!  * 1999-12-28 DIVA  Krogh  Saved S in DIVACR for output consistency.
+!  * 1999-08-19 DIVA  Krogh  Removed superfluous test above label 3520.
+!  * 1997-04-22 DIVA  Krogh  Got rid of assigned go to's. F=0 if diag.
+!  * 1996-08-26 DIVA  Krogh  Initialize F to 0 if dumping solution.
+!  * 1996-08-23 DIVA  Krogh  Print TN not TSPECS(1) in error messages.
+!  * 1996-05-30 DIVA  Krogh  Changed DERIVS/OUTPUT to  DIVAF/DIVAO.
+!  * 1996-04-27 DIVA  Krogh  Changes to use .C. and C%%.
+!  * 1996-03-30 DIVA  Krogh  Added external statement.
+!  * 1996-03-25 DIVA  Krogh  Introduced TEXT1 to comply with F77.
+!  * 1996-02-27 DIVA  Krogh  Fixed so DUMP not affected by ignored eqs.
+!  * 1995-12-18 DIVA  Krogh  Fixed so no solution dump on 0 length integ.
+!  * 1995-11-09 DIVA  Krogh  Fixed so char. data at col. 72 is not ' '.
+!  * 1995-06-19 DIVA  Krogh  Fixed prob. with discon. just after restart.
+!  * 1995-05-09 DIVA  Krogh  Fixed G-Stop/discontinuity code interaction
+!  * 1995-04-26 DIVA  Krogh  Use KQMAXS instead of KQMAXI when LDIS>1000.
+!  * 1995-04-26 DIVA  Krogh  Keep current KQL on discontinutiy.
+!  * 1994-12-16 DIVA  Krogh  Fixed option 12 with K12 < 0.
+!  * 1994-11-11 DIVA  Krogh  Declared all vars.
+!  * 1994-11-02 DIVA  Krogh  Changes to use M77CON
+!  * 1994-09-08 DIVA  Krogh  Added CHGTYP code.
+!  * 1994-07-11 DIVA  Krogh  Fix to get same state with/without var. eqs.
+!  * 1994-03-07 DIVA  Krogh  Allow larger order in single precision.
+!  * 1994-01-14 DIVA  Krogh  Minor change to allow changing TFINAL.
+!  * 1993-04-27 DIVA  Krogh  Additions for Conversion to C.
+!  * 1993-04-12 DIVA  Krogh  Converted to use slightly altered MESS.
+!  * 1993-04-12 DIVA  Krogh  Fixed LSC so sol. saved when HMAX is small.
+!  * 1992-10-13 DIVA  Krogh  Fixed G-Stop/discontinuity code interaction.
+!  * 1992-09-21 DIVA  Krogh  Fixed bug in discontinuity code.
+!  * 1992-09-09 DIVA  Krogh  Fixed bug - Var. Eqs. with discontinuities.
+!  * 1992-08-07 DIVA  Krogh  Storage map printed only if option 10 /= 0
+!  * 1992-07-16 DIVA  Krogh  Restored correct discontinuity code.
+!  * 1992-06-16 DIVA  Krogh  Eliminate reuse of storage for option 12.
+!  * 1992-04-08 DIVA  Krogh  Removed unused labels, 1020, 2120.
+!  * 1992-03-30 DIVA  Krogh  Fixed bug in DIVAOP error message.
+!  * 1992-03-12 DIVA  Krogh  Simplified DIVABU, more digits in B's.
+!  * 1992-01-16 DIVA  Krogh  Fixed minor bug in error messages.
+!  * 1991-12-03 DIVA  Krogh  Major change for improved error checks.
+!  * 1991-06-17 DIVA  Krogh  Fixed bug in checking storage allocation.
+!  * 1991-04-11 DIVA  Krogh  Fixed minor bug re. option 12 in DIVAOP.
+!  * 1991-03-28 DIVA  Krogh  Removed check at label 650 for KORD2I<0.
+!  * 1991-02-08 DIVA  Krogh  Changed some floats to generics
+!  * 1990-11-08 DIVA  Krogh  Fixed bug on TSPECS on discon.
+!  * 1990-09-14 DIVA  Krogh  Fixed bug when discon. and sol. save.
+!  * 1990-09-13 DIVA  Krogh  Increased dimension of BETA by 1.
+!  * 1990-09-13 DIVA  Krogh  Added one more poss. on rel. error test.
+!  * 1990-09-11 DIVA  Krogh  Recent change messed up getting dump output.
+!  * 1990-06-05 DIVA  Krogh  Fixed bug in noise test, comments in IVACOM.
+!  * 1990-05-08 DIVA  Krogh  Fixed new bug when TMARK hit in DIVAG.
+!  * 1990-04-17 DIVA  Krogh  Fixed minor problem in DIVAIN error msg.
+!  * 1990-04-10 DIVA  Krogh  Fixed interaction between discon. & dump.
+!  * 1990-03-23 DIVA  Krogh  Fixed bug on option "-2", see 1989-12-07.
+!  * 1990-03-20 DIVA  Krogh  Fixed rarely occuring loop.
+!  * 1990-01-29 DIVA  Krogh  Removed unneeded labels.
+!  * 1989-12-14 DIVA  Krogh  Saved common block DIVAEV.
+!  * 1989-12-07 DIVA  Krogh  Added option "2" to DIVAOP.
+!  * 1989-11-09 DIVA  Krogh  Made GG a save var. in DIVAHC
+!  * 1989-08-21 DIVA  Krogh  Fix out of bounds ref. to V in DIVABU
+!  * 1989-07-26 DIVA  Krogh  Fix bug in initial dim. check
+!  * 1989-07-21 DIVA  Krogh  Code for integrating discontinuities
+!  * 1987-12-07 DIVA  Krogh  Initial code.
 
     subroutine DIVA(TSPECS, Y, F, KORD, NEQ, DIVAF, DIVAO, IDIMT,     &
                     IDIMY, IDIMF, IDIMK, IOPT)
@@ -1480,12 +1491,13 @@
 
 !*************************************************************************
 !>
+!  Main subroutine for variable order integration of ordinary
+!  differential equations
+!
+!### History
 !  * 1989-02-24 DIVAA  Krogh   Big error with BETA(2)=1+epsilon -- looped
 !  * 1988-07-27 DIVAA  Krogh   Fixed to allow restart on a restart.
 !  * 1988-03-07 DIVAA  Krogh   Initial code.
-!
-!  MAIN SUBROUTINE FOR VARIABLE ORDER INTEGRATION OF ORDINARY
-!  DIFFERENTIAL EQUATIONS
 
     subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
 
@@ -4464,10 +4476,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.
 !  * 2000-12-01 DIVADB Krogh Removed unused parameter METXTF.
 !  * 1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.
@@ -4855,10 +4863,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.
 !  * 1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.
 !  * 1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
@@ -5181,10 +5185,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 2009-09-27 DMESS Krogh  Same as below, in another place.
 !  * 2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.
 !  * 2008-06-13 DMESS Krogh  Changed -0's to 0.
@@ -5633,10 +5633,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 2010-04-14 DZERO  Krogh  No discontinuity message if |F1-F2| small.
 !  * 2010-04-12 DZERO  Krogh  Fixed KNKP to get discontinuity diagnostic.
 !  * 2010-02-20 DZERO  Krogh  $G => $F for print out of iterations
@@ -6176,10 +6172,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 2010-02-22 MESS  Krogh  Moved NSKIP=0 to start of code.
 !  * 2009-10-30 MESS  Krogh  Defined DSCRN.
 !  * 2009-02-28 MESS  Krogh  Added FMTT = ' ' for NAG compiler.
@@ -8351,10 +8343,6 @@
 
 !*************************************************************************
 !>
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-!
 !  * 1998-11-01 OPTCHK  Krogh  ERRSEV => MACT(2) for "mangle".
 !  * 1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.
 !  * 1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."
