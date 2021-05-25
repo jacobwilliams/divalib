@@ -12,5 +12,5 @@ The latest API documentation can be found [here](http://jacobwilliams.github.io/
 
 ## See also
 
- * [MATH77](http://jacobwilliams.github.io/math77)
+ * [MATH77](https://github.com/jacobwilliams/math77)
 
