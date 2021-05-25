@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">DIVAPR</li>
@@ -196,6 +202,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divapr.html#src">DIVAPR</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -203,7 +217,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine DIVAPR(Y, YN, F, KORD)
+public subroutine DIVAPR(Y, YN, F, KORD)
     
     
    
@@ -212,6 +226,22 @@ subroutine DIVAPR(Y, YN, F, KORD)
   
 
 
+    
+    <ul>
+<li>1988-01-13 DIVAPR Krogh   Initial code.</li>
+</ul>
+<p>THIS SUBROUTINE
+   1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
+      DONE ALREADY).
+   2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
+      THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.</p>
+<p>Y = VECTOR OF PREDICTED VALUES COMPUTED BY THIS SUBROUTINE.
+   YN= VECTOR OF VALUES OF Y COMPUTED ON THE LAST STEP.
+   F = VECTOR OF DERIVATIVE VALUES.
+   DT= ARRAY CONTAINING DIFFERENCE TABLES.
+   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
+       EQUATIONS HAVE DIFFERENT ORDERS).
+   KQ= VECTOR OF INTEGRATION ORDERS.</p>
     
 
     <h3>Arguments</h3>
@@ -232,7 +262,7 @@ subroutine DIVAPR(Y, YN, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~5"></span>double precision</td>
+  <td><span class="anchor" id="variable-y~11"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -262,7 +292,7 @@ subroutine DIVAPR(Y, YN, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-f~6"></span>double precision</td>
+  <td><span class="anchor" id="variable-f~12"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -277,26 +307,12 @@ subroutine DIVAPR(Y, YN, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-kord~6"></span>integer</td>
+  <td><span class="anchor" id="variable-kord~12"></span>integer</td>
   <td></td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td><blockquote>
-<p>1988-01-13 DIVAPR Krogh   Initial code.</p>
-</blockquote>
-<p>THIS SUBROUTINE
-   1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
-      DONE ALREADY).
-   2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
-      THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.</p>
-<p>Y = VECTOR OF PREDICTED VALUES COMPUTED BY THIS SUBROUTINE.
-   YN= VECTOR OF VALUES OF Y COMPUTED ON THE LAST STEP.
-   F = VECTOR OF DERIVATIVE VALUES.
-   DT= ARRAY CONTAINING DIFFERENCE TABLES.
-   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
-       EQUATIONS HAVE DIFFERENT ORDERS).
-   KQ= VECTOR OF INTEGRATION ORDERS.</p></td>
+  <td><strong>KORD</strong>(*)</td><td></td>
   
 </tr>
 
@@ -351,6 +367,14 @@ subroutine DIVAPR(Y, YN, F, KORD)
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divapr.html#src">DIVAPR</a>
+  </div>
+</div>
 
 
 
@@ -2113,6 +2137,224 @@ subroutine DIVAPR(Y, YN, F, KORD)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAPR</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">YN</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
+
+      <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">YN</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
+<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TN</span>
+      <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
+      <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
+      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">double precision </span><span class="n">DS</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">),</span> <span class="n">GS</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">SIGMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">DNOISE</span>
+      <span class="kt">double precision </span><span class="n">EAVE</span><span class="p">,</span> <span class="n">EIMAX</span><span class="p">,</span> <span class="n">EIMIN</span><span class="p">,</span> <span class="n">EMAX</span><span class="p">,</span> <span class="n">EREP</span><span class="p">,</span> <span class="n">ROBND</span><span class="p">,</span> <span class="n">SNOISE</span>
+<span class="c">!</span>
+<span class="c">!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.</span>
+      <span class="kt">double precision </span><span class="n">EEPS10</span><span class="p">,</span> <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span><span class="p">,</span> <span class="n">EEPS2</span>
+      <span class="kt">double precision </span><span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+      <span class="kt">integer </span><span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span> <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span><span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span><span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span><span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span><span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span>       <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">DIVAMC</span><span class="o">/</span> <span class="n">TG</span><span class="p">,</span><span class="n">TGSTOP</span><span class="p">,</span><span class="n">TMARK</span><span class="p">,</span><span class="n">TMARKX</span><span class="p">,</span><span class="n">TOUT</span><span class="p">,</span><span class="n">TOLG</span><span class="p">,</span><span class="n">HC</span><span class="p">,</span><span class="n">HDEC</span><span class="p">,</span><span class="n">HINC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">HINCC</span><span class="p">,</span><span class="n">HMAX</span><span class="p">,</span><span class="n">HMAXP9</span><span class="p">,</span><span class="n">HMIN</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">,</span><span class="n">BETA</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">GS</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">RBQ</span><span class="p">,</span><span class="n">DNOISE</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EAVE</span><span class="p">,</span><span class="n">EIMAX</span><span class="p">,</span><span class="n">EIMIN</span><span class="p">,</span><span class="n">EMAX</span><span class="p">,</span><span class="n">EREP</span><span class="p">,</span><span class="n">ROBND</span><span class="p">,</span><span class="n">SNOISE</span><span class="p">,</span><span class="n">FDAT</span><span class="p">,</span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IGTYPE</span><span class="p">,</span><span class="n">IGSTOP</span><span class="p">,</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span><span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span><span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span><span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span><span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span><span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span><span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAMC</span> <span class="o">/</span> <span class="p">,</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+      <span class="kt">double precision </span><span class="n">C0</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">INTEG</span><span class="p">,</span> <span class="n">INTEGS</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">KQQ</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span>
+      <span class="kt">double precision </span><span class="n">TEMP</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">TP1</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">XP</span>
+      <span class="k">data </span><span class="n">INTEGS</span> <span class="o">/</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span>
+<span class="c">!</span>
+<span class="c">!++  Code for ARGM is inactive</span>
+<span class="c">!      RETURN</span>
+<span class="c">!      ENTRY DIVAPE</span>
+<span class="c">!++  End</span>
+<span class="c">! ********</span>
+<span class="c">! START OF CODE</span>
+<span class="c">! ********</span>
+      <span class="n">IY</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">L</span> <span class="o">=</span> <span class="n">NDTF</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="k">do </span><span class="mi">4680</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NTE</span>
+         <span class="n">INTEG</span> <span class="o">=</span> <span class="n">KORDI</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">NKDKO</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">INTEG</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">NKDKO</span> <span class="o">+</span> <span class="n">I</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">KQQ</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">KQQ</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQQ</span><span class="p">)</span> <span class="mi">4530</span><span class="p">,</span> <span class="mi">4520</span><span class="p">,</span> <span class="mi">4540</span>
+ <span class="mi">4520</span>    <span class="n">IY</span> <span class="o">=</span> <span class="n">IY</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">INTEG</span><span class="p">)</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">4670</span>
+<span class="c">! ********</span>
+<span class="c">! EQUATION IS STIFF, OR IMPLICIT</span>
+<span class="c">! ********</span>
+ <span class="mi">4530</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      KQQ=-KQQ</span>
+<span class="c">!      N=KQQ-1</span>
+<span class="c">!      JS=abs(KORD(NJSKO+I-1))-1</span>
+<span class="c">!      IMPLIC=INTEG</span>
+<span class="c">!      INTEG=abs(IMPLIC)-JS</span>
+<span class="c">!c.    SET INTEGS FOR STIFF EQUATIONS</span>
+<span class="c">!      INTEGS=0</span>
+<span class="c">!      IF (K-KSC) 160,160,140</span>
+<span class="c">!c.END OF SET-UP FOR STIFF EQUATIONS</span>
+<span class="c">!++  End</span>
+<span class="c">! ********</span>
+<span class="c">! EQUATION IS NOT STIFF</span>
+<span class="c">! ********</span>
+ <span class="mi">4540</span>    <span class="n">N</span> <span class="o">=</span> <span class="n">KQQ</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LDT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">-</span> <span class="n">KSC</span><span class="p">)</span> <span class="mi">4570</span><span class="p">,</span> <span class="mi">4570</span><span class="p">,</span> <span class="mi">4550</span>
+<span class="c">!     DIFFERENCE TABLE HAS NOT BEEN UPDATED</span>
+         <span class="n">TP1</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">-</span> <span class="n">KSC</span><span class="p">)</span> <span class="mi">4610</span><span class="p">,</span> <span class="mi">4610</span><span class="p">,</span> <span class="mi">4590</span>
+<span class="c">! END OF SET-UP FOR EQUATIONS WHICH ARE NOT STIFF</span>
+<span class="c">! ********</span>
+<span class="c">! GET PREDICTED DIFFERENCES FROM UPDATED DIFFERENCE TABLE</span>
+<span class="c">! ********</span>
+ <span class="mi">4550</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="c">! LOOP FOR MODIFIED DIVIDED DIFFERENCES</span>
+ <span class="mi">4560</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&lt;=</span> <span class="n">KSC</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">4580</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">4560</span>
+<span class="c">! CODE FOR BACKWARD DIFFERENCES</span>
+ <span class="mi">4570</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c">!</span>
+ <span class="mi">4580</span>    <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">4580</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">4630</span>
+<span class="c">! ********</span>
+<span class="c">! UPDATE DIFFERENCE TABLE AND GET PREDICTED DIFFERENCES</span>
+<span class="c">! ********</span>
+<span class="c">! CODE FOR MODIFIED DIVIDED DIFFERENCES</span>
+ <span class="mi">4590</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+ <span class="mi">4600</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&lt;=</span> <span class="n">KSC</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">4620</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span><span class="p">)</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">4600</span>
+<span class="c">! CODE FOR BACKWARD DIFFERENCES</span>
+ <span class="mi">4610</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span><span class="p">)</span>
+         <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c">!</span>
+ <span class="mi">4620</span>    <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">TP1</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">4620</span>
+<span class="c">! ********</span>
+<span class="c">! COMPUTE Y-S OBTAINED USING INTEGRATION</span>
+<span class="c">! ********</span>
+<span class="c">!     TEST IF NEXT Y TO BE OBTAINED BY INTERPOLATION</span>
+ <span class="mi">4630</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      IF (INTEG==0) GO TO 4662</span>
+<span class="c">!++  End</span>
+         <span class="n">IY</span> <span class="o">=</span> <span class="n">IY</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="c">!     FORM INNER PRODUCT</span>
+         <span class="n">XP</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="k">do </span><span class="mi">4650</span> <span class="n">J</span> <span class="o">=</span> <span class="n">INTEGS</span> <span class="o">+</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">INTEGS</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c">!++  Code for ~{p,x} is active</span>
+            <span class="n">XP</span> <span class="o">=</span> <span class="n">XP</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">INTEG</span><span class="p">)</span> <span class="o">*</span> <span class="n">TEMP</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+<span class="c">!++  Code for {p,x} is inactive</span>
+<span class="c">!c--D Next line special: P=&gt;D, X=&gt;Q</span>
+<span class="c">!            XP = XP + dble(G(J, INTEG)) * dble(TEMP(J))</span>
+<span class="c">!++  END</span>
+ <span class="mi">4650</span>    <span class="k">continue</span>
+<span class="k">         </span><span class="n">K</span> <span class="o">=</span> <span class="n">INTEG</span> <span class="o">+</span> <span class="n">INTEGS</span>
+         <span class="k">do </span><span class="mi">4660</span> <span class="n">J</span> <span class="o">=</span> <span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c">!++  Code for ~{p,x} is active</span>
+            <span class="n">XP</span> <span class="o">=</span> <span class="n">XP</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span> <span class="o">*</span> <span class="n">YN</span><span class="p">(</span><span class="n">IY</span> <span class="o">+</span> <span class="n">J</span><span class="p">)</span>
+<span class="c">!++  Code for {p,x} is inactive</span>
+<span class="c">!c--D Next line special: P=&gt;D, X=&gt;Q</span>
+<span class="c">!            XP = XP + dble(G(1, J)) * dble(YN(IY + J))</span>
+<span class="c">!++  END</span>
+ <span class="mi">4660</span>    <span class="k">continue</span>
+<span class="k">         </span><span class="n">Y</span><span class="p">(</span><span class="n">IY</span><span class="p">)</span> <span class="o">=</span> <span class="n">YN</span><span class="p">(</span><span class="n">IY</span><span class="p">)</span> <span class="o">+</span> <span class="n">XP</span>
+         <span class="n">INTEG</span> <span class="o">=</span> <span class="n">INTEG</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="mi">4670</span><span class="p">,</span> <span class="mi">4670</span><span class="p">,</span> <span class="mi">4630</span>
+<span class="c">! END OF COMPUTING Y-S OBTAINED BY INTEGRATION</span>
+<span class="c">! ********</span>
+<span class="c">! COMPUTE Y-S OBTAINED USING INTERPOLATION AND DIFFERENTIATION</span>
+<span class="c">! ********</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!c.    RESTORE INTEGS FOR EQUATIONS WHICH ARE NOT STIFF</span>
+<span class="c">! 4662 INTEGS=-1</span>
+<span class="c">!      IY=IY+1</span>
+<span class="c">!c.    COMPUTE Y USING INTERPOLATION</span>
+<span class="c">!      Y(IY)=YN(IY) + F(L+2)</span>
+<span class="c">!      IF (KQQ==1) Y(IY)=YN(IY)</span>
+<span class="c">! 4663 INTEG=INTEG+1</span>
+<span class="c">!      IF (INTEG==JS) IF (IMPLIC) 4680,4680,4664</span>
+<span class="c">!c.    COMPUTE INTEG-TH DERIVATIVE</span>
+<span class="c">!      XP = C0</span>
+<span class="c">! 4664 DO 4666 J = KQQ+1, INTEG+1, -1</span>
+<span class="c">!         XP = XP + D(J, INTEG) * TEMP(J)</span>
+<span class="c">! 4666 CONTINUE</span>
+<span class="c">!      IF (INTEG==JS) GO TO 4667</span>
+<span class="c">!      IY=IY+1</span>
+<span class="c">!      Y(IY)=XP</span>
+<span class="c">!      GO TO 4663</span>
+<span class="c">!c.STORE PREDICTED VALUE FOR F</span>
+<span class="c">! 4667 CONTINUE</span>
+<span class="c">!      F(L+NUMDT)=XP</span>
+<span class="c">!++  End</span>
+ <span class="mi">4670</span>    <span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">NUMDT</span>
+ <span class="mi">4680</span>    <span class="k">continue</span>
+<span class="k">      </span><span class="n">LDT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+      <span class="k">return</span>
+<span class="k">    end subroutine </span><span class="n">divapr</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

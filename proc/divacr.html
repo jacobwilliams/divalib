@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">DIVACR</li>
@@ -196,6 +202,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divacr.html#src">DIVACR</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -203,7 +217,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
+public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
     
     
    
@@ -212,6 +226,28 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
   
 
 
+    
+    <ul>
+<li>1988-08-25 DIVACR Krogh   Fix bug in relative error test.</li>
+<li>1988-01-15 DIVACR Krogh   Initial code.</li>
+</ul>
+<p>THIS SUBROUTINE
+   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
+   2. ESTIMATES ERRORS
+   3. SELECTS INTEGRATION ORDERS
+   4. TESTS IF NOISE LIMITS THE PRECISION</p>
+<div class="codehilite"><pre><span></span><code> <span class="nv">Y</span> <span class="o">=</span> <span class="nv">VECTOR</span> <span class="nv">OF</span> <span class="nv">PREDICTED</span> <span class="nv">VALUES</span> <span class="nv">ON</span> <span class="nv">ENTRY</span>, <span class="nv">AND</span> <span class="nv">OF</span> <span class="nv">CORRECTED</span>
+     <span class="nv">VALUES</span> <span class="nv">WHEN</span> <span class="nv">THE</span> <span class="k">RETURN</span> <span class="nv">IS</span> <span class="nv">MADE</span>.
+</code></pre></div>
+
+<p>LGROUP= VECTOR INDICATING HOW ERROR TOLERANCES ARE TO BE GROUPED
+         (AND POSSIBLY HOW INTEGRATION ORDERS ARE TO BE GROUPED).
+   TOL = VECTOR CONTAINING ERROR TOLERANCES (AND POSSIBLY RELATIVE
+         ERROR FACTORS).
+     F = VECTOR GIVING PREDICTED DERIVATIVE VALUES AND DIFF. TABLES.
+    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
+         (IF EQUATIONS HAVE DIFFERENT ORDERS).
+    KQ = VECTOR OF INTEGRATION ORDERS.</p>
     
 
     <h3>Arguments</h3>
@@ -232,7 +268,7 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~3"></span>double precision</td>
+  <td><span class="anchor" id="variable-y~9"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -247,7 +283,7 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
   
 <tr>
   
-  <td><span class="anchor" id="variable-f~4"></span>double precision</td>
+  <td><span class="anchor" id="variable-f~10"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -262,32 +298,12 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
   
 <tr>
   
-  <td><span class="anchor" id="variable-kord~4"></span>integer</td>
+  <td><span class="anchor" id="variable-kord~10"></span>integer</td>
   <td></td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td><blockquote>
-<p>1988-08-25 DIVACR Krogh   Fix bug in relative error test.
-1988-01-15 DIVACR Krogh   Initial code.</p>
-</blockquote>
-<p>THIS SUBROUTINE
-   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
-   2. ESTIMATES ERRORS
-   3. SELECTS INTEGRATION ORDERS
-   4. TESTS IF NOISE LIMITS THE PRECISION</p>
-<div class="codehilite"><pre><span></span><code> <span class="nv">Y</span> <span class="o">=</span> <span class="nv">VECTOR</span> <span class="nv">OF</span> <span class="nv">PREDICTED</span> <span class="nv">VALUES</span> <span class="nv">ON</span> <span class="nv">ENTRY</span>, <span class="nv">AND</span> <span class="nv">OF</span> <span class="nv">CORRECTED</span>
-     <span class="nv">VALUES</span> <span class="nv">WHEN</span> <span class="nv">THE</span> <span class="k">RETURN</span> <span class="nv">IS</span> <span class="nv">MADE</span>.
-</code></pre></div>
-
-<p>LGROUP= VECTOR INDICATING HOW ERROR TOLERANCES ARE TO BE GROUPED
-         (AND POSSIBLY HOW INTEGRATION ORDERS ARE TO BE GROUPED).
-   TOL = VECTOR CONTAINING ERROR TOLERANCES (AND POSSIBLY RELATIVE
-         ERROR FACTORS).
-     F = VECTOR GIVING PREDICTED DERIVATIVE VALUES AND DIFF. TABLES.
-    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
-         (IF EQUATIONS HAVE DIFFERENT ORDERS).
-    KQ = VECTOR OF INTEGRATION ORDERS.</p></td>
+  <td><strong>KORD</strong>(*)</td><td></td>
   
 </tr>
 
@@ -317,27 +333,7 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>LGROUP</strong>(*)</td><td><blockquote>
-<p>1988-08-25 DIVACR Krogh   Fix bug in relative error test.
-1988-01-15 DIVACR Krogh   Initial code.</p>
-</blockquote>
-<p>THIS SUBROUTINE
-   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
-   2. ESTIMATES ERRORS
-   3. SELECTS INTEGRATION ORDERS
-   4. TESTS IF NOISE LIMITS THE PRECISION</p>
-<div class="codehilite"><pre><span></span><code> <span class="nv">Y</span> <span class="o">=</span> <span class="nv">VECTOR</span> <span class="nv">OF</span> <span class="nv">PREDICTED</span> <span class="nv">VALUES</span> <span class="nv">ON</span> <span class="nv">ENTRY</span>, <span class="nv">AND</span> <span class="nv">OF</span> <span class="nv">CORRECTED</span>
-     <span class="nv">VALUES</span> <span class="nv">WHEN</span> <span class="nv">THE</span> <span class="k">RETURN</span> <span class="nv">IS</span> <span class="nv">MADE</span>.
-</code></pre></div>
-
-<p>LGROUP= VECTOR INDICATING HOW ERROR TOLERANCES ARE TO BE GROUPED
-         (AND POSSIBLY HOW INTEGRATION ORDERS ARE TO BE GROUPED).
-   TOL = VECTOR CONTAINING ERROR TOLERANCES (AND POSSIBLY RELATIVE
-         ERROR FACTORS).
-     F = VECTOR GIVING PREDICTED DERIVATIVE VALUES AND DIFF. TABLES.
-    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
-         (IF EQUATIONS HAVE DIFFERENT ORDERS).
-    KQ = VECTOR OF INTEGRATION ORDERS.</p></td>
+  <td><strong>LGROUP</strong>(*)</td><td></td>
   
 </tr>
 
@@ -361,61 +357,46 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~divacr~~CallsGraph Pages: 1 -->
-<svg id="procdivacrCallsGraph" width="244pt" height="74pt"
- viewBox="0.00 0.00 244.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~divacr~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<svg id="procdivacrCallsGraph" width="242pt" height="32pt"
+ viewBox="0.00 0.00 242.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~divacr~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>proc~~divacr~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 240,-70 240,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 238,-28 238,4 -4,4"/>
 <!-- proc~divacr -->
 <g id="proc~~divacr~~CallsGraph_node1" class="node">
 <title>proc~divacr</title>
-<polygon fill="none" stroke="black" points="54,-45 0,-45 0,-21 54,-21 54,-45"/>
-<text text-anchor="middle" x="27" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVACR</text>
+<polygon fill="none" stroke="black" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVACR</text>
 </g>
 <!-- proc~dmess -->
 <g id="proc~~divacr~~CallsGraph_node2" class="node">
 <title>proc~dmess</title>
 <g id="a_proc~~divacr~~CallsGraph_node2"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="144,-45 90,-45 90,-21 144,-21 144,-45"/>
-<text text-anchor="middle" x="117" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="144,-24 90,-24 90,0 144,0 144,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
 </a>
 </g>
 </g>
 <!-- proc~divacr&#45;&gt;proc~dmess -->
 <g id="proc~~divacr~~CallsGraph_edge1" class="edge">
 <title>proc~divacr&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M54.4,-33C62.39,-33 71.31,-33 79.82,-33"/>
-<polygon fill="#000000" stroke="#000000" points="79.92,-36.5 89.92,-33 79.92,-29.5 79.92,-36.5"/>
-</g>
-<!-- proc~d1mach -->
-<g id="proc~~divacr~~CallsGraph_node3" class="node">
-<title>proc~d1mach</title>
-<g id="a_proc~~divacr~~CallsGraph_node3"><a xlink:href=".././proc/d1mach.html" xlink:title="d1mach">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="236,-66 180,-66 180,-42 236,-42 236,-66"/>
-<text text-anchor="middle" x="208" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">d1mach</text>
-</a>
-</g>
-</g>
-<!-- proc~dmess&#45;&gt;proc~d1mach -->
-<g id="proc~~divacr~~CallsGraph_edge2" class="edge">
-<title>proc~dmess&#45;&gt;proc~d1mach</title>
-<path fill="none" stroke="#000000" d="M144.22,-39.19C152.26,-41.08 161.25,-43.21 169.87,-45.24"/>
-<polygon fill="#000000" stroke="#000000" points="169.19,-48.68 179.73,-47.57 170.8,-41.86 169.19,-48.68"/>
+<path fill="none" stroke="#000000" d="M54.4,-12C62.39,-12 71.31,-12 79.82,-12"/>
+<polygon fill="#000000" stroke="#000000" points="79.92,-15.5 89.92,-12 79.92,-8.5 79.92,-15.5"/>
 </g>
 <!-- proc~messfi -->
-<g id="proc~~divacr~~CallsGraph_node4" class="node">
+<g id="proc~~divacr~~CallsGraph_node3" class="node">
 <title>proc~messfi</title>
-<g id="a_proc~~divacr~~CallsGraph_node4"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="235,-24 181,-24 181,0 235,0 235,-24"/>
-<text text-anchor="middle" x="208" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+<g id="a_proc~~divacr~~CallsGraph_node3"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 180,-24 180,0 234,0 234,-24"/>
+<text text-anchor="middle" x="207" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
 </a>
 </g>
 </g>
 <!-- proc~dmess&#45;&gt;proc~messfi -->
-<g id="proc~~divacr~~CallsGraph_edge3" class="edge">
+<g id="proc~~divacr~~CallsGraph_edge2" class="edge">
 <title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M144.22,-26.81C152.64,-24.83 162.12,-22.59 171.11,-20.47"/>
-<polygon fill="#000000" stroke="#000000" points="172.04,-23.85 180.97,-18.14 170.43,-17.03 172.04,-23.85"/>
+<path fill="none" stroke="#000000" d="M144.4,-12C152.39,-12 161.31,-12 169.82,-12"/>
+<polygon fill="#000000" stroke="#000000" points="169.92,-15.5 179.92,-12 169.92,-8.5 169.92,-15.5"/>
 </g>
 </g>
 </svg>
@@ -525,6 +506,14 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divacr.html#src">DIVACR</a>
+  </div>
+</div>
 
 
 
@@ -2287,6 +2276,661 @@ subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVACR</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TOL</span><span class="p">,</span> <span class="n">LGROUP</span><span class="p">)</span>
+
+      <span class="kt">integer </span><span class="n">LGROUP</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">TOL</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
+<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TN</span>
+      <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
+      <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
+      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">double precision </span><span class="n">DS</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">),</span> <span class="n">GS</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">SIGMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">DNOISE</span>
+      <span class="kt">double precision </span><span class="n">EAVE</span><span class="p">,</span> <span class="n">EIMAX</span><span class="p">,</span> <span class="n">EIMIN</span><span class="p">,</span> <span class="n">EMAX</span><span class="p">,</span> <span class="n">EREP</span><span class="p">,</span> <span class="n">ROBND</span><span class="p">,</span> <span class="n">SNOISE</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span> <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span><span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span><span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span><span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span><span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span>       <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">DIVAMC</span><span class="o">/</span> <span class="n">TG</span><span class="p">,</span><span class="n">TGSTOP</span><span class="p">,</span><span class="n">TMARK</span><span class="p">,</span><span class="n">TMARKX</span><span class="p">,</span><span class="n">TOUT</span><span class="p">,</span><span class="n">TOLG</span><span class="p">,</span><span class="n">HC</span><span class="p">,</span><span class="n">HDEC</span><span class="p">,</span><span class="n">HINC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">HINCC</span><span class="p">,</span><span class="n">HMAX</span><span class="p">,</span><span class="n">HMAXP9</span><span class="p">,</span><span class="n">HMIN</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">,</span><span class="n">BETA</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">GS</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">RBQ</span><span class="p">,</span><span class="n">DNOISE</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EAVE</span><span class="p">,</span><span class="n">EIMAX</span><span class="p">,</span><span class="n">EIMIN</span><span class="p">,</span><span class="n">EMAX</span><span class="p">,</span><span class="n">EREP</span><span class="p">,</span><span class="n">ROBND</span><span class="p">,</span><span class="n">SNOISE</span><span class="p">,</span><span class="n">FDAT</span><span class="p">,</span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IGTYPE</span><span class="p">,</span><span class="n">IGSTOP</span><span class="p">,</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span><span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span><span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span><span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span><span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span><span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span><span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAMC</span> <span class="o">/</span> <span class="p">,</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+<span class="c">!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.</span>
+      <span class="kt">double precision </span><span class="n">EEPS10</span><span class="p">,</span> <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span><span class="p">,</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span>
+      <span class="kt">double precision </span><span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">L</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">KQL</span><span class="p">,</span> <span class="n">KQN</span><span class="p">,</span> <span class="n">KQD</span><span class="p">,</span> <span class="n">JLGREP</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">ILGROR</span><span class="p">,</span> <span class="n">ITOLOR</span><span class="p">,</span> <span class="n">JLGROR</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IORD</span><span class="p">,</span> <span class="n">KOUTKO</span><span class="p">,</span> <span class="n">KQLORD</span><span class="p">,</span> <span class="n">LL</span><span class="p">,</span> <span class="n">LKQMAX</span>
+      <span class="kt">double precision </span><span class="n">CM8</span><span class="p">,</span> <span class="n">CM2</span><span class="p">,</span> <span class="n">CMP5</span><span class="p">,</span> <span class="n">C0</span><span class="p">,</span> <span class="n">CQ3125</span><span class="p">,</span> <span class="n">CP1</span><span class="p">,</span> <span class="n">CP125</span><span class="p">,</span> <span class="n">CP25</span><span class="p">,</span> <span class="n">CP5</span>
+      <span class="kt">double precision </span><span class="n">CP75</span><span class="p">,</span> <span class="n">CP8</span><span class="p">,</span> <span class="n">CP9375</span><span class="p">,</span> <span class="n">C1</span><span class="p">,</span> <span class="n">C1P4</span><span class="p">,</span> <span class="n">C2</span><span class="p">,</span> <span class="n">C4</span><span class="p">,</span> <span class="n">C10</span><span class="p">,</span> <span class="n">C20</span>
+      <span class="kt">double precision </span><span class="n">C1000</span><span class="p">,</span> <span class="n">C40</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CM8</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CM2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CMP5</span> <span class="o">=</span> <span class="o">-</span><span class="p">.</span><span class="mi">5</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CQ3125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">03125</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP1</span> <span class="o">=</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">125</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP25</span> <span class="o">=</span> <span class="p">.</span><span class="mi">25</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP5</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP75</span> <span class="o">=</span> <span class="p">.</span><span class="mi">75</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP8</span> <span class="o">=</span> <span class="p">.</span><span class="mi">8</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP9375</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9375</span><span class="n">D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1P4</span> <span class="o">=</span> <span class="mf">1.4D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C2</span> <span class="o">=</span> <span class="mf">2.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C4</span> <span class="o">=</span> <span class="mf">4.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C10</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C20</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">0.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C40</span> <span class="o">=</span> <span class="mi">4</span><span class="mf">0.D0</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1000</span> <span class="o">=</span> <span class="mi">100</span><span class="mf">0.D0</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">TPP</span><span class="p">,</span> <span class="n">HH</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">EI</span><span class="p">,</span> <span class="n">EPS</span><span class="p">,</span> <span class="n">ERCOEF</span><span class="p">,</span> <span class="n">RND</span><span class="p">,</span> <span class="n">RNOISE</span><span class="p">,</span> <span class="n">S</span>
+      <span class="kt">double precision </span><span class="n">TP2</span><span class="p">,</span> <span class="n">TPS1</span><span class="p">,</span> <span class="n">TPS2</span><span class="p">,</span> <span class="n">TPS3</span><span class="p">,</span> <span class="n">TPS4</span><span class="p">,</span> <span class="n">TPS5</span><span class="p">,</span> <span class="n">TPS6</span><span class="p">,</span> <span class="n">TPS7</span>
+      <span class="kt">double precision </span><span class="n">REF</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">EIBND</span><span class="p">(</span><span class="n">KDIM</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">!++  Code for INTEGO is active</span>
+      <span class="kt">double precision </span><span class="n">TEMPA</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">TEMPAO</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="c">!++  End</span>
+      <span class="k">save </span><span class="n">KOUTKO</span><span class="p">,</span> <span class="n">LKQMAX</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">TPS1</span><span class="p">,</span><span class="n">TEMPA</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="n">TPS2</span><span class="p">,</span><span class="n">TEMPA</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="p">(</span><span class="n">TPS3</span><span class="p">,</span><span class="n">TEMPA</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="p">(</span><span class="n">TPS4</span><span class="p">,</span> <span class="n">TEMPA</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">G</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">HH</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">MACT1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MACT2</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="c">!             Parameters for Interface to MESS and DMESS</span>
+      <span class="kt">integer </span><span class="n">MERET</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">METABL</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METABL</span> <span class="o">=</span><span class="mi">55</span><span class="p">)</span>
+<span class="c">! ********* Error message text ***************</span>
+<span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
+<span class="c">!AA KSTEP=$(I6) T=$(E15.8) H=$(E12.5) LSC=$(I3) $C</span>
+<span class="c">!   EIMIN=$(E8.2) EAVE=$G KSC=$(I2) SIGMA($J)=$G $C</span>
+<span class="c">!   RQ=$(E11.5)$G$E</span>
+<span class="c">!   $</span>
+<span class="c">!AB I$HKQ$HLI$HE$HEI$HEPS$HF$H$H$H$H</span>
+<span class="c">!   HIGH ORDER PREDICTED DIFFERENCES$HRNOISE$HSTIFF$HBETA$E</span>
+      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span>  <span class="mi">1</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">104</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAB</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">88</span><span class="p">)</span>
+      <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;KSTEP=$(I6) T=$(E15.8) H=$(E12.5) LSC=$(I3) EIMIN=$(E&amp;</span>
+<span class="s1">     &amp;8.2) EAVE=$G KSC=$(I2) SIGMA($J)=$G RQ=$(E11.5)$G$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAB</span><span class="o">/</span><span class="s1">&#39;I$HKQ$HLI$HE$HEI$HEPS$HF$H$H$H$HHIGH ORDER PREDICTED$&amp;</span>
+<span class="s1">     &amp; DIFFERENCES$HRNOISE$HSTIFF$HBETA$E&#39;</span><span class="o">/</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">MACT1</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">! (rr=repeat, t=3/5 for I/E format)  wwddtrr  wwddtrr  wwddtrr</span>
+      <span class="k">data </span><span class="n">MACT2</span> <span class="o">/</span> <span class="n">METABL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0400201</span><span class="p">,</span> <span class="mi">0300202</span><span class="p">,</span> <span class="mi">0801503</span><span class="p">,</span>         <span class="p">&amp;</span>
+     <span class="p">&amp;</span>    <span class="mi">1507501</span><span class="p">,</span> <span class="mi">1103504</span><span class="p">,</span> <span class="mi">0901501</span><span class="p">,</span> <span class="mi">1002501</span><span class="p">,</span> <span class="mi">1205501</span> <span class="o">/</span>
+<span class="c">!         wwddtrr  wwddtrr  wwddtrr  wwddtrr  wwddtrr</span>
+<span class="c">!          End of stuff for interface to message processor</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">REF</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">REF</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">REF</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">REF</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span><span class="p">,</span> <span class="n">CP9375</span><span class="p">,</span> <span class="n">CP75</span><span class="p">,</span> <span class="n">CP5</span> <span class="o">/</span>
+<span class="c">!++ Save data by elements if ~.C.</span>
+<span class="c">!++ Of next 20 lines, only the first KDIM-1 are active</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">14</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">19</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">26</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">36</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">50</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">69</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="o">/</span> <span class="p">.</span><span class="mi">94</span><span class="n">D0</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">EIBND</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span> <span class="o">/</span> <span class="n">C1</span> <span class="o">/</span>
+<span class="c">!     data EIBND(20) / C1 /</span>
+<span class="c">!</span>
+<span class="c">!++  Code for ARGM is inactive</span>
+<span class="c">!      RETURN</span>
+<span class="c">!      ENTRY DIVACE</span>
+<span class="c">!++  End</span>
+<span class="c">! ********</span>
+<span class="c">! START OF CODE</span>
+<span class="c">! ********</span>
+      <span class="n">L</span> <span class="o">=</span> <span class="n">NDTF</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ICS</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="p">(</span><span class="n">ICS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">NUMDT</span>
+      <span class="k">do </span><span class="mi">3340</span> <span class="n">I</span> <span class="o">=</span> <span class="n">ICS</span><span class="p">,</span> <span class="n">ICF</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">NKDKO</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">KORDI</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">NKDKO</span> <span class="o">+</span> <span class="n">I</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">IY</span> <span class="o">=</span> <span class="n">IY</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KORDI</span><span class="p">)</span>
+         <span class="n">KQL</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+         <span class="n">KQN</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KQL</span><span class="p">)</span>
+         <span class="n">KQD</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">KQN</span><span class="p">)</span>
+<span class="c">! ********</span>
+<span class="c">! OBTAIN ERROR TOLERANCE SPECIFIED BY THE USER</span>
+<span class="c">! ********</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&lt;=</span> <span class="n">ILGREP</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">2600</span><span class="p">,</span> <span class="mi">3310</span><span class="p">,</span> <span class="mi">2610</span>
+         <span class="n">ITOLEP</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">ITOLEP</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="n">EPS</span> <span class="o">=</span> <span class="n">TOL</span><span class="p">(</span><span class="n">ITOLEP</span><span class="p">)</span>
+         <span class="n">ILGREP</span> <span class="o">=</span> <span class="n">LGROUP</span><span class="p">(</span><span class="n">ITOLEP</span><span class="p">)</span>
+<span class="c">!   TEST IF SIMPLE ABSOLUTE ERROR TEST IS BEING USED</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">ILGREP</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2580</span>
+         <span class="n">JLGREP</span> <span class="o">=</span> <span class="n">ILGREP</span>
+<span class="c">!     GET OLD RELATIVE ERROR FACTOR</span>
+         <span class="n">TPS6</span> <span class="o">=</span> <span class="n">TOL</span><span class="p">(</span><span class="n">ITOLEP</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">ILGREP</span> <span class="o">=</span> <span class="n">LGROUP</span><span class="p">(</span><span class="n">ITOLEP</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">ITOLEP</span> <span class="o">=</span> <span class="o">-</span><span class="n">ITOLEP</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c">!</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">JLGREP</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2540</span><span class="p">,</span> <span class="mi">2570</span><span class="p">,</span> <span class="mi">2510</span>
+<span class="c">!   NO CHECK ON THE ERROR ESTIMATE IS TO BE MADE</span>
+ <span class="mi">2510</span>    <span class="k">if</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">+</span> <span class="n">C1</span><span class="p">)</span> <span class="mi">2520</span><span class="p">,</span> <span class="mi">2590</span><span class="p">,</span> <span class="mi">2520</span>
+<span class="c">!   ERROR TOLERANCE IS SPECIFIED IMPROPERLY</span>
+ <span class="mi">2520</span>    <span class="n">KEMAX</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="n">NEPTOL</span> <span class="o">=</span> <span class="n">ITOLEP</span>
+         <span class="n">LINC</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+         <span class="n">EREP</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">EREP</span><span class="p">)</span>
+         <span class="k">return</span>
+<span class="c">!   COMPUTE NEW RELATIVE ERROR FACTOR</span>
+ <span class="mi">2540</span>    <span class="k">continue</span>
+<span class="k">         </span><span class="n">TPS1</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="k">do </span><span class="mi">2550</span> <span class="n">J</span> <span class="o">=</span> <span class="n">I</span><span class="p">,</span> <span class="n">ILGREP</span>
+            <span class="n">TPS1</span> <span class="o">=</span> <span class="n">TPS1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">J</span><span class="p">))</span>
+ <span class="mi">2550</span>       <span class="k">continue</span>
+<span class="k">         </span><span class="n">TPS1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">HH</span><span class="p">)</span> <span class="o">*</span> <span class="n">TPS1</span> <span class="o">/</span> <span class="nb">dble</span><span class="p">(</span><span class="n">ILGREP</span> <span class="o">-</span> <span class="n">I</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2560</span>
+<span class="c">!     ON FIRST 3 STEPS INCREASE TPS6 WHEN COMPUTING REL. ERROR FACTOR</span>
+         <span class="n">TPS6</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">C4</span> <span class="o">*</span> <span class="n">TPS1</span><span class="p">,</span> <span class="n">TPS6</span><span class="p">)</span>
+<span class="c">!     ON 1-ST TIME THROUGH THE FIRST STEP, REL. ERR. FAC. IS NOT STORED</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2570</span>
+ <span class="mi">2560</span>    <span class="k">continue</span>
+<span class="k">         </span><span class="n">TPS6</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">TPS1</span><span class="p">,</span> <span class="n">TPS6</span><span class="p">)</span>
+<span class="c">!   STORE NEW RELATIVE ERROR FACTOR</span>
+         <span class="n">TOL</span><span class="p">(</span><span class="o">-</span><span class="n">ITOLEP</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPS6</span> <span class="o">*</span> <span class="n">REF</span><span class="p">(</span><span class="o">-</span><span class="n">JLGREP</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c">!   COMPUTE ABSOLUTE ERROR TOLERANCE</span>
+ <span class="mi">2570</span>    <span class="n">EPS</span> <span class="o">=</span> <span class="n">EPS</span> <span class="o">*</span> <span class="n">TPS6</span>
+ <span class="mi">2580</span>    <span class="k">if</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">&lt;=</span> <span class="n">C0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2520</span>
+ <span class="mi">2590</span>    <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">2600</span><span class="p">,</span> <span class="mi">3330</span><span class="p">,</span> <span class="mi">2610</span>
+<span class="c">! END OF OBTAINING ERROR TOLERANCE</span>
+<span class="c">! ********</span>
+<span class="c">! OBTAIN INFORMATION USED FOR ERROR ESTIMATION, ORDER SELECTION, ETC.</span>
+<span class="c">! ********</span>
+<span class="c">! EQUATION IS STIFF</span>
+ <span class="mi">2600</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      JS=abs(KORD(NJSKO+I-1))-1</span>
+<span class="c">!      JSI=JS</span>
+<span class="c">!      TPP=C0</span>
+<span class="c">!      TPS4=F(L+KQD+2)</span>
+<span class="c">!      TPS3=F(L+KQD+1)</span>
+<span class="c">!      TPS2=F(L+KQD)</span>
+<span class="c">!      TPS1=F(L+KQD-1)</span>
+<span class="c">!      IF (KQD==2) TPS1=Y(IY-1)</span>
+<span class="c">!      E=ABS(TPS3)+ABS(TPS4)</span>
+<span class="c">!      EI=E+ABS(TPS2)</span>
+<span class="c">!      RND=EI</span>
+<span class="c">!      IF (KORDI&gt;=0) GO TO 2604</span>
+<span class="c">!c.    EQUATION IS IMPLICIT</span>
+<span class="c">!      JSI=JSI-1</span>
+<span class="c">!      IF (JSI/=0) GO TO 2604</span>
+<span class="c">!      IF (KORDI==-1) GO TO 2602</span>
+<span class="c">!      ERCOEF=GS(KQN+1)</span>
+<span class="c">!      GO TO 2606</span>
+<span class="c">! 2602 ERCOEF=.5D0*DS(KQD,1)</span>
+<span class="c">!      JSI=1</span>
+<span class="c">!      GO TO 2606</span>
+<span class="c">!c.    END OF SPECIAL CODE FOR IMPLICIT EQUATIONS</span>
+<span class="c">! 2604 ERCOEF = DS(KQD,JSI)</span>
+<span class="c">! 2606 ERCOEF = ABS(ERCOEF) / EPS</span>
+<span class="c">!      IF (LSC&lt;=2)  GO TO 2710</span>
+<span class="c">!      IF (LSC-5) 2650,2710,2710</span>
+<span class="c">!c.  END OF CODE FOR STIFF EQUATIONS</span>
+<span class="c">!++  End</span>
+<span class="c">!</span>
+<span class="c">! EQUATION IS NOT STIFF</span>
+ <span class="mi">2610</span>    <span class="n">TPP</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">TPS3</span> <span class="o">=</span> <span class="n">TPP</span>
+         <span class="n">TPS4</span> <span class="o">=</span> <span class="n">TPP</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">TPS2</span> <span class="o">=</span> <span class="n">TPP</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQD</span><span class="p">)</span>
+         <span class="n">TPS1</span> <span class="o">=</span> <span class="n">TPP</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">E</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span>
+         <span class="n">RND</span> <span class="o">=</span> <span class="n">E</span>
+         <span class="n">EI</span> <span class="o">=</span> <span class="n">E</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS2</span><span class="p">)</span>
+         <span class="n">ERCOEF</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">GS</span><span class="p">(</span><span class="n">KQN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">EPS</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2710</span>
+<span class="c">!   TEST IF STARTING OR IF INTEGRATION ORDER IS ONE</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">2660</span><span class="p">,</span> <span class="mi">2710</span><span class="p">,</span> <span class="mi">2710</span>
+<span class="c">! ********</span>
+<span class="c">! LOGIC ASSOCIATED WITH STARTING THE INTEGRATION</span>
+<span class="c">! ********</span>
+         <span class="n">TPS4</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">2650</span><span class="p">,</span> <span class="mi">2640</span><span class="p">,</span> <span class="mi">2620</span>
+<span class="c">! FIRST STEP</span>
+ <span class="mi">2620</span>    <span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">*</span> <span class="n">CQ3125</span>
+         <span class="n">TPS3</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="n">S</span> <span class="o">=</span> <span class="n">C0</span>
+<span class="c">!   TEST IF FIRST TIME THROUGH THE FIRST STEP</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2690</span>
+<span class="c">!   COMPUTE S=ESTIMATE OF H * EIGENVALUE OF JACOBIAN = 2*(F(A)-F(B))/</span>
+<span class="c">!   (F(B)-F(C)) WHERE F(A)=CURRENT F(I), AND F(B) AND F(C) PRECEDING</span>
+<span class="c">!   VALUES OR ESTIMATES OF F(I)</span>
+         <span class="n">TPP</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+         <span class="n">TPS4</span> <span class="o">=</span> <span class="n">TPP</span>
+         <span class="n">E</span> <span class="o">=</span> <span class="n">C2</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">S</span> <span class="o">/=</span> <span class="n">C0</span><span class="p">)</span> <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="n">TPS4</span> <span class="o">+</span> <span class="n">TPS4</span><span class="p">)</span> <span class="o">/</span> <span class="n">S</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="n">CP125</span><span class="p">)</span> <span class="mi">2630</span><span class="p">,</span> <span class="mi">2700</span><span class="p">,</span> <span class="mi">2700</span>
+<span class="c">!     SET LDT=-5  TO INDICATE POSSIBLE PROBLEMS DUE TO INSTABILITY</span>
+ <span class="mi">2630</span>    <span class="n">LDT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">2690</span>
+<span class="c">!   ADJUST CORRECTION MADE ON SECOND STEP</span>
+ <span class="mi">2640</span>    <span class="n">TPP</span> <span class="o">=</span> <span class="n">CP8</span> <span class="o">*</span> <span class="n">TPP</span>
+<span class="c">!   ADJUST ESTIMATED ERRORS ON SECOND AND THIRD STEPS</span>
+ <span class="mi">2650</span>    <span class="n">E</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">)</span>
+         <span class="n">RND</span> <span class="o">=</span> <span class="n">C4</span> <span class="o">*</span> <span class="n">E</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">2710</span>
+<span class="c">! END OF SPECIAL LOGIC FOR STARTING</span>
+<span class="c">! ********</span>
+<span class="c">! INTEGRATION ORDER =1 IS TREATED AS A SPECIAL CASE</span>
+<span class="c">! ********</span>
+ <span class="mi">2660</span>    <span class="n">TPP</span> <span class="o">=</span> <span class="n">TPP</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">BETA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">C1P4</span><span class="p">)</span> <span class="n">EI</span> <span class="o">=</span> <span class="n">EI</span> <span class="o">*</span> <span class="n">C1000</span>
+<span class="c">!   ESTIMATE NEW VALUE FOR S</span>
+         <span class="n">S</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">S</span> <span class="o">==</span> <span class="n">C0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2680</span>
+         <span class="n">S</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">CM8</span><span class="p">,</span> <span class="n">C2</span> <span class="o">*</span> <span class="n">BETA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">TPS1</span> <span class="o">-</span> <span class="n">TPS2</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">5</span><span class="p">))</span> <span class="o">/</span> <span class="n">S</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">S</span> <span class="o">&gt;=</span> <span class="n">CMP5</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2670</span>
+<span class="c">!   MODIFY TPP (TO GET BETTER STABILITY CHARACTERISTICS)</span>
+         <span class="n">TPP</span> <span class="o">=</span> <span class="n">TPP</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">CP25</span><span class="p">,</span> <span class="p">(</span><span class="n">CM2</span> <span class="o">-</span> <span class="n">C2</span> <span class="o">*</span> <span class="n">S</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">S</span> <span class="o">*</span> <span class="n">S</span><span class="p">))</span>
+ <span class="mi">2670</span>    <span class="n">TPS4</span> <span class="o">=</span> <span class="n">TPS4</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+ <span class="mi">2680</span>    <span class="n">E</span> <span class="o">=</span> <span class="n">CP25</span> <span class="o">*</span> <span class="p">(</span><span class="n">E</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">))</span>
+         <span class="n">EI</span> <span class="o">=</span> <span class="n">EI</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span> <span class="o">*</span> <span class="n">S</span><span class="p">)</span>
+<span class="c">!     STORE INFORMATION REQUIRED TO ESTIMATE S ON NEXT STEP</span>
+ <span class="mi">2690</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPP</span>
+ <span class="mi">2700</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="c">! END OF SPECIAL CODE FOR INTEGRATION ORDER =1</span>
+<span class="c">! ********</span>
+<span class="c">! CODE FOR NOISE TEST AND GETTING ERROR ESTIMATE</span>
+<span class="c">! ********</span>
+ <span class="mi">2710</span>    <span class="n">E</span> <span class="o">=</span> <span class="n">E</span> <span class="o">*</span> <span class="n">ERCOEF</span>
+         <span class="n">RNOISE</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">&lt;</span> <span class="n">C0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2810</span>
+         <span class="n">TPS5</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">TPS5</span> <span class="o">==</span> <span class="n">C0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2760</span>
+ <span class="mi">2720</span>    <span class="n">RNOISE</span> <span class="o">=</span> <span class="n">RND</span> <span class="o">/</span> <span class="n">TPS5</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">RNOISE</span> <span class="o">&gt;</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KQD</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">RNOISE</span> <span class="o">-</span> <span class="n">C1</span><span class="p">)</span> <span class="mi">2760</span><span class="p">,</span> <span class="mi">2750</span><span class="p">,</span> <span class="mi">2750</span>
+<span class="c">!   NOISE IS APPARENTLY SLOWING CONVERGENCE OF THE DIFFERENCES</span>
+<span class="c">!     REDUCE EI</span>
+         <span class="n">EI</span> <span class="o">=</span> <span class="n">RND</span>
+         <span class="n">TPS5</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">EEPS2</span> <span class="o">*</span> <span class="n">Y</span><span class="p">(</span><span class="n">IY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">EPS</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">TPS5</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">E</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span><span class="p">)</span> <span class="mi">2730</span><span class="p">,</span> <span class="mi">2730</span><span class="p">,</span> <span class="mi">2760</span>
+         <span class="n">E</span> <span class="o">=</span> <span class="n">TPS5</span>
+         <span class="n">RNOISE</span> <span class="o">=</span> <span class="n">C0</span>
+ <span class="mi">2730</span>    <span class="n">E</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">EIMIN</span> <span class="o">&gt;</span> <span class="n">CP1</span><span class="p">)</span> <span class="n">EI</span> <span class="o">=</span> <span class="p">(</span><span class="n">C10</span> <span class="o">*</span> <span class="n">EIMIN</span><span class="p">)</span> <span class="o">*</span> <span class="n">EI</span>
+<span class="c">!     COMPUTE REDUCTION TO BE MADE IN EI</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">RNOISE</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">C20</span> <span class="o">*</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KQD</span><span class="p">)))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2760</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span> <span class="o">-</span> <span class="n">LSC</span>
+ <span class="mi">2740</span>    <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2760</span>
+<span class="c">!     REDUCE EI WHEN NOISE APPARENTLY LIMITS PRECISION</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+         <span class="n">EI</span> <span class="o">=</span> <span class="n">CP5</span> <span class="o">*</span> <span class="n">EI</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">EI</span> <span class="o">&gt;</span> <span class="n">EIMIN</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2740</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">2760</span>
+ <span class="mi">2750</span>    <span class="n">TPS4</span> <span class="o">=</span> <span class="mf">1.1D0</span> <span class="o">*</span> <span class="n">RND</span>
+         <span class="n">TPS3</span> <span class="o">=</span> <span class="n">RND</span>
+ <span class="mi">2760</span>    <span class="k">continue</span>
+<span class="c">!   TEST FOR STIFFNESS GOES HERE WHEN IMPLEMENTED</span>
+<span class="c">! *       INGREDIENTS OF TEST MAY INCLUDE --</span>
+<span class="c">! *       RNOISE, WHETHER (ABS(TPS4)&gt;ABS(TPS3)),</span>
+<span class="c">! *       WHETHER EMAX IS INCREASING, RESULT OF TEST ON</span>
+<span class="c">! *       PREVIOUS STEPS, ETC.</span>
+<span class="c">!</span>
+<span class="c">! ********</span>
+<span class="c">! COMPUTE ERROR ESTIMATES AND INFORMATION FOR SELECTING THE STEPSIZE</span>
+<span class="c">! ********</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">E</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">EMAX</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2770</span>
+         <span class="k">if</span> <span class="p">(</span><span class="o">-</span><span class="n">E</span> <span class="o">&lt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">EMAX</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2780</span>
+         <span class="n">SNOISE</span> <span class="o">=</span> <span class="n">RNOISE</span>
+         <span class="n">DNOISE</span> <span class="o">=</span> <span class="n">RND</span>
+         <span class="n">NOISEQ</span> <span class="o">=</span> <span class="n">KQD</span>
+<span class="c">!   STORE PARAMETERS ASSOCIATED WITH LARGEST VALUE OF E</span>
+ <span class="mi">2770</span>    <span class="n">EMAX</span> <span class="o">=</span> <span class="n">E</span>
+         <span class="n">KEMAX</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="n">NEPTOL</span> <span class="o">=</span> <span class="n">ITOLEP</span>
+<span class="c">!   DETERMINE HOW MUCH STEPSIZE CAN BE INCREASED</span>
+ <span class="mi">2780</span>    <span class="n">EI</span> <span class="o">=</span> <span class="n">EI</span> <span class="o">*</span> <span class="n">ERCOEF</span> <span class="o">*</span> <span class="n">SIGMA</span><span class="p">(</span><span class="n">KQD</span><span class="p">)</span>
+         <span class="n">EIMAX</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">EIMAX</span><span class="p">,</span> <span class="n">EI</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LINC</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2810</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="mi">2790</span>    <span class="k">if</span> <span class="p">(</span><span class="n">EI</span> <span class="o">&gt;=</span> <span class="nb">min</span><span class="p">(</span><span class="n">EIMIN</span><span class="p">,</span> <span class="n">EIBND</span><span class="p">(</span><span class="n">KQN</span><span class="p">)))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2800</span>
+         <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">==</span> <span class="n">LINC</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2810</span>
+         <span class="n">EI</span> <span class="o">=</span> <span class="n">EI</span> <span class="o">*</span> <span class="n">SIGMA</span><span class="p">(</span><span class="n">KQD</span><span class="p">)</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">2790</span>
+ <span class="mi">2800</span>    <span class="n">LINC</span> <span class="o">=</span> <span class="n">K</span>
+<span class="c">! END OF COMPUTING ERROR ESTIMATES</span>
+ <span class="mi">2810</span>    <span class="k">continue</span>
+<span class="c">!++  Code for ERRSTO is inactive</span>
+<span class="c">!      IF (IOP20 == 0) GO TO 780</span>
+<span class="c">!c.********</span>
+<span class="c">!c.STORE ERROR ESTIMATE (OPTIONAL)</span>
+<span class="c">!c.********</span>
+<span class="c">!      F(IOP20+I-1)=TPS3*GS(KQN+1)</span>
+<span class="c">!c.END OF STORING ERROR ESTIMATE</span>
+<span class="c">!++  Code for INTEGO | ERRSTO is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">IOP19</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3090</span>
+<span class="c">!.********</span>
+<span class="c">!.EQUATIONS ARE GROUPED TO USE SAME INTEGRATION METHOD (OPTIONAL)</span>
+<span class="c">!.********</span>
+<span class="c">!++  Code for INTEGO is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">ILGROR</span><span class="p">)</span> <span class="mi">2900</span><span class="p">,</span> <span class="mi">2900</span><span class="p">,</span> <span class="mi">2830</span>
+         <span class="n">ITOLOR</span> <span class="o">=</span> <span class="n">IOP19</span>
+ <span class="mi">2830</span>    <span class="n">JLGROR</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">ITOLOR</span><span class="p">)</span>
+         <span class="n">ITOLOR</span> <span class="o">=</span> <span class="n">ITOLOR</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2870</span>
+         <span class="n">ILGROR</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="n">ITOLOR</span><span class="p">)</span>
+         <span class="n">ITOLOR</span> <span class="o">=</span> <span class="n">ITOLOR</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">2840</span><span class="p">,</span> <span class="mi">2850</span><span class="p">,</span> <span class="mi">2890</span>
+ <span class="mi">2840</span>    <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQD</span> <span class="o">+</span> <span class="n">JLGROR</span><span class="p">)</span> <span class="mi">2850</span><span class="p">,</span> <span class="mi">2880</span><span class="p">,</span> <span class="mi">2880</span>
+<span class="c">!.INITIALIZE FOR ACCUMULATING VARIABLES USED IN ORDER SELECTION</span>
+ <span class="mi">2850</span>    <span class="n">IORD</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="n">KQLORD</span> <span class="o">=</span> <span class="n">KQL</span>
+         <span class="k">do </span><span class="mi">2860</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
+ <span class="mi">2860</span>       <span class="n">TEMPAO</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TEMPA</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">2930</span>
+<span class="c">!.ORDERS IN CURRENT GROUP CAN BE DIFFERENT</span>
+ <span class="mi">2870</span>    <span class="n">ILGROR</span> <span class="o">=</span> <span class="n">JLGROR</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">3090</span>
+<span class="c">!.ORDER IS NOT GOING TO BE CHANGED</span>
+ <span class="mi">2880</span>    <span class="n">JLGROR</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="mi">2890</span>    <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3240</span><span class="p">,</span> <span class="mi">3270</span><span class="p">,</span> <span class="mi">3270</span>
+<span class="c">!.TAKE ACTION FOR EQUATION WHICH IS NOT THE FIRST IN THE GROUP</span>
+ <span class="mi">2900</span>    <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span><span class="p">)</span> <span class="mi">2910</span><span class="p">,</span> <span class="mi">2890</span><span class="p">,</span> <span class="mi">3090</span>
+<span class="c">!.ACCUMULATE VARIABLES USED IN ORDER SELECTION</span>
+ <span class="mi">2910</span>    <span class="k">do </span><span class="mi">2920</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
+ <span class="mi">2920</span>       <span class="n">TEMPAO</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMPAO</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TEMPA</span><span class="p">(</span><span class="n">K</span><span class="p">))</span>
+<span class="c">!.    TEST IF THIS IS LAST EQUATION IN THE GROUP</span>
+ <span class="mi">2930</span>    <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">/=</span> <span class="n">ILGROR</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3310</span><span class="p">,</span> <span class="mi">3290</span><span class="p">,</span> <span class="mi">3290</span>
+<span class="c">!.SET UP TO GO SELECT INTEGRATION ORDER</span>
+         <span class="n">KQL</span> <span class="o">=</span> <span class="mi">0</span>
+         <span class="k">do </span><span class="mi">2940</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span>
+ <span class="mi">2940</span>       <span class="n">TEMPA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEMPAO</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">3090</span>
+<span class="c">!.INTEGRATION ORDER HAS BEEN SELECTED</span>
+<span class="c">!++  Code for INTEGO | STIFF is active</span>
+ <span class="mi">2950</span>    <span class="k">continue</span>
+<span class="c">!++  Code for INTEGO is active</span>
+         <span class="n">KQL</span> <span class="o">=</span> <span class="n">KQLORD</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KQL</span><span class="p">))</span> <span class="mi">2960</span><span class="p">,</span> <span class="mi">2980</span><span class="p">,</span> <span class="mi">3020</span>
+<span class="c">!.  TEST IF ORDER CAN BE DECREASED</span>
+ <span class="mi">2960</span>    <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3010</span><span class="p">,</span> <span class="mi">3040</span><span class="p">,</span> <span class="mi">3040</span>
+<span class="c">!.    INTEGRATION ORDER WAS SELECTED OUTSIDE PERMITTED RANGE</span>
+ <span class="mi">2970</span>    <span class="n">KQN</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KQL</span><span class="p">)</span>
+<span class="c">!.    INTEGRATION ORDER IS NOT GOING TO BE CHANGED</span>
+ <span class="mi">2980</span>    <span class="k">if</span> <span class="p">((</span><span class="n">KQL</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3030</span><span class="p">,</span> <span class="mi">3040</span><span class="p">,</span> <span class="mi">3040</span>
+<span class="c">!.    SET  4-TH ENTRY IN DIFFERENCE TABLES SO THAT STANDARD ADAMS</span>
+<span class="c">!.    METHOD IS USED WHEN KQL=1</span>
+ <span class="mi">2990</span>    <span class="k">do </span><span class="mi">3000</span> <span class="n">K</span> <span class="o">=</span> <span class="n">IORD</span><span class="p">,</span> <span class="n">I</span>
+ <span class="mi">3000</span>       <span class="n">F</span><span class="p">(</span><span class="n">NDTF</span> <span class="o">+</span> <span class="n">K</span><span class="o">*</span><span class="n">NUMDT</span> <span class="o">-</span> <span class="n">NUMDT</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">3270</span>
+<span class="c">!.  ORDER FOR STIFF EQUATION WAS REDUCED</span>
+ <span class="mi">3010</span>    <span class="k">continue</span>
+<span class="c">!++  Code for INTEGO &amp; STIFF is inactive</span>
+<span class="c">!      IF (KQN&lt;JSI) GO TO 990</span>
+<span class="c">!      TPP=-C1</span>
+<span class="c">!      GO TO 1090</span>
+<span class="c">!c.  TEST IF ORDER CAN BE INCREASED</span>
+<span class="c">!++  Code for INTEGO is active</span>
+ <span class="mi">3020</span>    <span class="k">if</span> <span class="p">(</span><span class="n">JLGROR</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">2970</span>
+<span class="c">!++  Code for INTEGO &amp; STIFF is inactive</span>
+<span class="c">!      IF (KQL&gt;=0) GO TO 1140</span>
+<span class="c">!      IF ((JSI/=0).AND.(KQN&gt;(MAXKQD+JSI))) GO TO 990</span>
+<span class="c">!      TPP=C1</span>
+<span class="c">!c.  STORE RESULTS FOR STIFF EQUATIONS</span>
+<span class="c">!++  Code for INTEGO is active</span>
+ <span class="mi">3030</span>    <span class="k">continue</span>
+<span class="c">!++  Code for INTEGO &amp; STIFF is inactive</span>
+<span class="c">!      DO 3035 K=IORD,I</span>
+<span class="c">!      KORD(K+3) = -KQN</span>
+<span class="c">! 3035 F(NDTF+K*NUMDT-NUMDT)=TPP</span>
+<span class="c">!      GO TO 3245</span>
+<span class="c">!c.  STORE RESULTS FOR EQUATIONS WHICH ARE NOT STIFF</span>
+<span class="c">!++  Code for INTEGO is active</span>
+ <span class="mi">3040</span>    <span class="n">LL</span> <span class="o">=</span> <span class="n">NDTF</span> <span class="o">+</span> <span class="n">NUMDT</span> <span class="o">*</span> <span class="n">IORD</span> <span class="o">-</span> <span class="n">NUMDT</span>
+         <span class="k">do </span><span class="mi">3080</span> <span class="n">J</span> <span class="o">=</span> <span class="n">IORD</span><span class="p">,</span> <span class="n">I</span>
+            <span class="n">KORD</span><span class="p">(</span><span class="n">J</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KQN</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">-</span> <span class="n">KQL</span><span class="p">)</span> <span class="mi">3050</span><span class="p">,</span> <span class="mi">3070</span><span class="p">,</span> <span class="mi">3060</span>
+ <span class="mi">3050</span>       <span class="n">F</span><span class="p">(</span><span class="n">LL</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">LL</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">LL</span><span class="p">))</span>
+            <span class="n">go</span> <span class="n">to</span> <span class="mi">3080</span>
+ <span class="mi">3060</span>       <span class="n">F</span><span class="p">(</span><span class="n">LL</span> <span class="o">+</span> <span class="n">KQN</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">LL</span> <span class="o">+</span> <span class="n">KQD</span><span class="p">)</span>
+ <span class="mi">3070</span>       <span class="n">F</span><span class="p">(</span><span class="n">LL</span> <span class="o">+</span> <span class="n">KQD</span><span class="p">)</span> <span class="o">=</span> <span class="n">C0</span>
+ <span class="mi">3080</span>       <span class="n">LL</span> <span class="o">=</span> <span class="n">LL</span> <span class="o">+</span> <span class="n">NUMDT</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">3270</span><span class="p">,</span> <span class="mi">2990</span><span class="p">,</span> <span class="mi">3270</span>
+<span class="c">!++  End</span>
+<span class="c">!.********</span>
+<span class="c">!.SELECT INTEGRATION ORDER</span>
+<span class="c">!.********</span>
+ <span class="mi">3090</span>    <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3120</span>
+<span class="c">!. SPECIAL ORDER SELECTION WHEN STARTING</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3110</span><span class="p">,</span> <span class="mi">3210</span><span class="p">,</span> <span class="mi">3100</span>
+ <span class="mi">3100</span>    <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="p">.</span><span class="mi">125</span><span class="n">D0</span><span class="p">)</span> <span class="mi">3160</span><span class="p">,</span> <span class="mi">3130</span><span class="p">,</span> <span class="mi">3130</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">3130</span><span class="p">,</span> <span class="mi">3130</span><span class="p">,</span> <span class="mi">3210</span>
+ <span class="mi">3110</span>    <span class="k">if</span> <span class="p">(</span><span class="n">C40</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">))</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS2</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">/=</span> <span class="o">-</span><span class="n">C1</span><span class="p">)</span> <span class="n">LSC</span> <span class="o">=</span> <span class="mi">2</span>
+         <span class="k">end if</span>
+<span class="k">         if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">))</span> <span class="k">if</span> <span class="p">(</span><span class="n">C4</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS2</span><span class="p">))</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>      <span class="mi">3130</span><span class="p">,</span> <span class="mi">3130</span><span class="p">,</span> <span class="mi">3210</span>
+<span class="c">!.  CHECK IF ORDER CAN BE INCREASED OR SHOULD BE DECREASED</span>
+ <span class="mi">3120</span>    <span class="n">TPS5</span> <span class="o">=</span> <span class="n">ROBND</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span>
+         <span class="n">TPS6</span> <span class="o">=</span> <span class="n">ROBND</span> <span class="o">*</span> <span class="p">(</span><span class="n">TPS5</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">))</span>
+         <span class="n">TPS7</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS2</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">TPS5</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3140</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">TPS6</span> <span class="o">&gt;=</span> <span class="n">TPS7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3210</span>
+ <span class="mi">3130</span>    <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">&gt;=</span> <span class="n">MAXKQI</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3210</span>
+<span class="c">!.    INCREASE THE INTEGRATION ORDER</span>
+         <span class="n">KQN</span> <span class="o">=</span> <span class="n">KQN</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="c">!++  Code for INTEGO | STIFF is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3230</span><span class="p">,</span> <span class="mi">2950</span><span class="p">,</span> <span class="mi">3250</span>
+<span class="c">!++  Code for ~(INTEGO | STIFF) is inactive</span>
+<span class="c">!      GO TO 3250</span>
+<span class="c">!++  End</span>
+<span class="c">!.  CHECK IF ORDER SHOULD BE DECREASED</span>
+ <span class="mi">3140</span>    <span class="k">if</span> <span class="p">(</span><span class="n">TPS6</span> <span class="o">&lt;</span> <span class="n">TPS7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3210</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">TPS5</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS3</span> <span class="o">-</span> <span class="n">TPS4</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3210</span>
+         <span class="k">if</span> <span class="p">((</span><span class="n">TPS3</span><span class="o">==</span><span class="n">TPS4</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">LSC</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3210</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">3210</span><span class="p">,</span> <span class="mi">3160</span><span class="p">,</span> <span class="mi">3180</span>
+ <span class="mi">3160</span>    <span class="n">KQN</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c">!++  Code for INTEGO | STIFF is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3220</span><span class="p">,</span> <span class="mi">2950</span><span class="p">,</span> <span class="mi">3170</span>
+<span class="c">!++  End</span>
+<span class="c">!.    WHEN ORDER IS REDUCED TO 1 WITH ADAMS METHOD SET F(L+4)=0</span>
+ <span class="mi">3170</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">C0</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">3260</span>
+<span class="c">!.    DECREASE THE INTEGRATION ORDER</span>
+ <span class="mi">3180</span>    <span class="n">KQN</span> <span class="o">=</span> <span class="n">KQN</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="c">!++  Code for INTEGO | STIFF is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3220</span><span class="p">,</span> <span class="mi">2950</span><span class="p">,</span> <span class="mi">3200</span>
+<span class="c">!++  End</span>
+ <span class="mi">3200</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">KQD</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">KQD</span><span class="p">)</span> <span class="o">+</span> <span class="n">TPP</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">3260</span>
+<span class="c">!   NO CHANGE IN INTEGRATION ORDER IS BEING MADE</span>
+ <span class="mi">3210</span>    <span class="k">continue</span>
+<span class="c">!++  Code for INTEGO is active</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span><span class="p">)</span> <span class="mi">3240</span><span class="p">,</span> <span class="mi">2950</span><span class="p">,</span> <span class="mi">3270</span>
+<span class="c">!++  Code for ~INTEGO is inactive</span>
+<span class="c">!         TPS1 = EEPS10</span>
+<span class="c">!      GO TO 1530</span>
+<span class="c">!++  End</span>
+<span class="c">! END OF SELECTING INTEGRATION ORDER</span>
+<span class="c">! ********</span>
+<span class="c">! COMPUTE MAXIMUM INTEGRATION ORDERS AND SET NEW ONES (IF ANY)</span>
+<span class="c">! ********</span>
+<span class="c">! EQUATION IS STIFF</span>
+<span class="c">!     ORDER WAS DECREASED</span>
+<span class="c">!++  Code for INTEGO | STIFF is active</span>
+ <span class="mi">3220</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      IF (KQN&lt;JSI) GO TO 3236</span>
+<span class="c">!      F(L+1)=-C1</span>
+<span class="c">!      GO TO 3233</span>
+<span class="c">!c.    ORDER WAS INCREASED</span>
+<span class="c">!++  Code for INTEGO |  STIFF  is active</span>
+ <span class="mi">3230</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      IF ((JSI/=0).AND.(KQN&gt;(MAXKQD+JSI))) GO TO 3236</span>
+<span class="c">!      F(L+1)=C1</span>
+<span class="c">! 3233 KORD(I+3) = -KQN</span>
+<span class="c">!      GO TO 3245</span>
+<span class="c">!      ORDER WAS SET TO AN UNACCEPTABLE VALUE</span>
+<span class="c">! 3236 KQN=abs(KQL)</span>
+<span class="c">!      ORDER IS NOT BEING CHANGED</span>
+<span class="c">!++  Code for STIFF |  INTEGO is active</span>
+ <span class="mi">3240</span>    <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!      F(L+1)=C0</span>
+<span class="c">! 3245 IF (JSI/=0) KQMAXD=max(KQN,KQMAXD)</span>
+<span class="c">!      IF (JS&lt;abs(KORDI)) KQMAXI=max(KQN,KQMAXI)</span>
+<span class="c">!      GO TO 3290</span>
+<span class="c">!++  End</span>
+<span class="c">! EQUATION IS NOT STIFF</span>
+<span class="c">!     ORDER INCREASED</span>
+ <span class="mi">3250</span>    <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="c">!     ORDER CHANGED</span>
+ <span class="mi">3260</span>    <span class="n">KORD</span><span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KQN</span>
+ <span class="mi">3270</span>    <span class="n">KQMAXI</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">KQN</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">&gt;</span> <span class="n">C0</span><span class="p">)</span> <span class="n">KQMAXS</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">KQN</span><span class="p">,</span> <span class="n">KQMAXS</span><span class="p">)</span>
+         <span class="n">F</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">KQD</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">C0</span>
+ <span class="mi">3290</span>    <span class="k">continue</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">&gt;</span> <span class="n">KIS</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3310</span>
+<span class="c">!.********</span>
+<span class="c">!.DETERMINE IF TIME TO STORE SOLUTION (OPTIONAL)</span>
+<span class="c">!.********</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KIS</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">TP2</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.5D0</span><span class="p">,</span> <span class="nb">dble</span><span class="p">(</span><span class="n">KQN</span><span class="p">)</span> <span class="o">*</span> <span class="n">C2</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1001</span> <span class="o">-</span> <span class="n">KIS</span><span class="p">))</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">TPS4</span><span class="p">)</span>
+ <span class="mi">3295</span>       <span class="k">if</span> <span class="p">(</span><span class="n">TP2</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">KQN</span><span class="p">)))</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">&lt;=</span> <span class="n">KQL</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                  </span><span class="n">KQN</span> <span class="o">=</span> <span class="n">KQN</span> <span class="o">-</span> <span class="mi">1</span>
+                  <span class="k">if</span> <span class="p">(</span><span class="n">KQN</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3295</span>
+                  <span class="n">KQN</span> <span class="o">=</span> <span class="mi">1</span>
+               <span class="k">end if</span>
+<span class="k">            end if</span>
+<span class="k">            </span><span class="n">KORD</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KQN</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">LKQMAX</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">LKQMAX</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">KQN</span><span class="p">,</span> <span class="n">LKQMAX</span><span class="p">)</span>
+            <span class="n">KQMAXI</span> <span class="o">=</span> <span class="n">LKQMAX</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">KIS</span> <span class="o">==</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="n">KEMAX</span><span class="p">)</span> <span class="n">EMAX</span> <span class="o">=</span> <span class="nb">dble</span><span class="p">(</span><span class="mi">8</span> <span class="o">+</span> <span class="n">KQN</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">EMAX</span><span class="p">)</span>
+               <span class="n">go</span> <span class="n">to</span> <span class="mi">3325</span>
+            <span class="k">end if</span>
+<span class="c">!++  Code for DUMP is active</span>
+         <span class="k">else if</span> <span class="p">((</span><span class="n">E</span> <span class="o">/=</span> <span class="n">C0</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">EPS</span> <span class="o">&gt;</span> <span class="n">C0</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">IOP9</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">KIS</span><span class="o">-</span><span class="n">KQN</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">KQN</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="mf">1.D-2</span><span class="p">)&amp;</span>
+     <span class="p">&amp;</span>         <span class="mi">3310</span><span class="p">,</span> <span class="mi">3310</span><span class="p">,</span> <span class="mi">3300</span>
+ <span class="mi">3300</span>       <span class="n">KIS</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c">!++  End</span>
+         <span class="k">end if</span>
+<span class="k"> </span><span class="mi">3310</span>    <span class="k">continue</span>
+<span class="c">! ********</span>
+<span class="c">! CORRECT</span>
+<span class="c">! ********</span>
+         <span class="k">do </span><span class="mi">3320</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">KORDI</span>
+<span class="c">!++  Code for ~{p,x} is active</span>
+            <span class="n">Y</span><span class="p">(</span><span class="n">IY</span> <span class="o">-</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">IY</span> <span class="o">-</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="n">KQL</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="o">*</span> <span class="n">TPP</span>
+<span class="c">!++  Code for {p,x} is inactive</span>
+<span class="c">!c--D Next line special: P=&gt;D, X=&gt;Q</span>
+<span class="c">!            Y(IY - K) = Y(IY - K) + dble(G(KQL + 1, K)) * dble(TPP)</span>
+<span class="c">!++  END</span>
+ <span class="mi">3320</span>    <span class="k">continue</span>
+<span class="c">! END OF CORRECTING</span>
+ <span class="mi">3325</span> <span class="k">continue</span>
+<span class="c">!++  Code for OUTPUT is active</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IOP10</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">IDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">KSTEP</span>
+            <span class="n">IDAT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">LSC</span>
+            <span class="n">IDAT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KSC</span>
+            <span class="n">IDAT</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">IOP11</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TN</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">HH</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">EIMIN</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">EAVE</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">SIGMA</span><span class="p">(</span><span class="n">IOP11</span><span class="p">)</span>
+            <span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">ROBND</span>
+            <span class="n">MACT2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">NTE</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+            <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
+            <span class="n">KOUTKO</span> <span class="o">=</span> <span class="n">NOUTKO</span>
+         <span class="k">end if</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">KOUTKO</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">KORD</span><span class="p">(</span><span class="n">KOUTKO</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&lt;</span> <span class="n">KORD</span><span class="p">(</span><span class="n">KOUTKO</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3328</span>
+               <span class="n">KOUTKO</span> <span class="o">=</span> <span class="n">KOUTKO</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&gt;=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KORD</span><span class="p">(</span><span class="n">KOUTKO</span><span class="p">)))</span> <span class="n">KOUTKO</span> <span class="o">=</span> <span class="n">KOUTKO</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">end if</span>
+<span class="k">         end if</span>
+<span class="k">         </span><span class="n">IDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="n">IDAT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">KQL</span>
+         <span class="n">IDAT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">LINC</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">E</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">EI</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">EPS</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPS1</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPS2</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPS3</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">=</span> <span class="n">TPS4</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="o">=</span> <span class="n">RNOISE</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">FDAT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="n">S</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KQD</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+         <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT2</span><span class="p">,</span> <span class="n">MTXTAB</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
+ <span class="mi">3328</span>    <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="n">NTE</span><span class="p">)</span> <span class="n">IOP10</span> <span class="o">=</span> <span class="n">IOP10</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="k">end if</span>
+<span class="c">!++  End</span>
+ <span class="mi">3330</span>    <span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">NUMDT</span>
+ <span class="mi">3340</span>    <span class="k">continue</span>
+<span class="k">      return</span>
+<span class="k">    end subroutine </span><span class="n">divacr</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

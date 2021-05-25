@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">OPTCHK</li>
@@ -178,7 +184,13 @@
 
 
 
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/optchk.html#src">OPTCHK</a>
+  </div>
+</div>
+
 
 
 </div>
@@ -187,7 +199,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine OPTCHK(INTCHK, IOPT, ETEXT)
+public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
     
     
    
@@ -196,6 +208,127 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
   
 
 
+    
+    <ul>
+<li>1998-11-01 OPTCHK  Krogh  ERRSEV =&gt; MACT(2) for "mangle".</li>
+<li>1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.</li>
+<li>1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."</li>
+<li>1994-11-11 OPTCHK  Krogh  Declared all vars.</li>
+<li>1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.</li>
+<li>1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.</li>
+<li>1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.</li>
+<li>1991-06-27 OPTCHK  Krogh  Initial Code.</li>
+</ul>
+<p>OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
+ This subroutine is intended for the use of other library routines.
+ It is used to check the storage used by options for some array.</p>
+<p>INTCHK is an array that provides information on how storage has been
+   allocated.  Information is provided in groups of three words, after
+   an initial group of 4 that contain:
+    0. INTCHK(0) / 10 is the index to use for error messages, and
+       mod(INTCHK(0), 10) defines actions as follows:
+       Value  Action on Errors  Action if no errors
+         0    Prints &amp; Stops               Returns
+         1    Prints &amp; Returns             Returns
+         2    Prints &amp; Stops      Prints &amp; Returns
+         3    Prints &amp; Returns    Prints &amp; Returns
+        &gt;3  Any error message will be continued, subtract 4 from the
+            value to get one of the actions above.
+    1. Contains LAST, 1 more than the index of the last location in
+       INTCHK used to store the information as described below.
+    2. The amount of storage available in the array being checked.  If
+       this is 0, it is assumed that the user would like to know what
+       size to declare for the array, and if it is -1, it is assumed
+       that a library routine is doing the check without knowing what
+       the declared size is.
+    3. The amount of storage required in this array if no options were
+       used.  (This + 1 is first loc. available for option storage.)
+   The rest should be set as follows, for k = 5, LAST, 3:
+    k-1 Option index, 0 indicates storage required by default.  (This
+        may depend on input parameters, but doesn't depend explicitly
+        on an option.)
+    k   If &gt;0, gives the start of space used by the option.
+        If &lt;0, gives -(amount of space required by an option), for
+               which a starting location is to be determined.
+    k+1 If preceding entry is &gt;0, gives space required by the option.
+        Else it is assumed that the space requested is to be found,
+        and a diagnostic will be given if space can not be found.  Else
+        INTCHK(K+1) IOPT(INTCHK(k+1)) Diagnostic on successful alloc.?
+            0           ----          No
+            &lt;0          ----          Yes
+            &gt;0          /= -1       Yes
+            &gt;0          == -1       No, and IOPT(INTCHK(k+1)) is set
+                                      to starting loc. of space found.
+        When this program finds the space for an option, values of
+        INTCHK(j) for j &gt;= LAST will be used.  INTCHK(k+1) is set
+        temporarily to -(space required) and INTCHK(k-1) is reduced by
+        2000000 to flag the fact that the location index must be saved
+        after INTCHK(LAST).  INTCHK(LAST) is assumed to contain 1 if
+        the largest space requested is required, and to contain
+        -(minimal space needed) if the large amount requested is not
+        essential.
+   On exit, INTCHK(1) is set = -LAST if there was some kind of error.
+   (Unless the user has called MESS this return can't happen.)
+   INTCHK(2) is set to suggest a value for the storage to be declared.
+   The remaining locations are changed as follows:
+    k-1 Negated if there was a problem with this option, or if the
+        following location was initially &lt;0.
+    k   Starting location used or suggested for the option.
+    k+1 Last location used or suggested for the option.</p>
+<div class="codehilite"><pre><span></span><code>    <span class="n">In</span> <span class="n">addition</span> <span class="k">if</span> <span class="n">values</span> <span class="n">of</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">LAST</span> <span class="n">are</span> <span class="n">used</span><span class="p">,</span>
+    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">1</span><span class="p">,</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">set</span> <span class="n">so</span> <span class="n">that</span>
+    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="p">(</span><span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">k</span><span class="p">&#39;</span><span class="n">s</span> <span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mh">1</span> <span class="k">for</span> <span class="n">an</span> <span class="n">option</span>
+    <span class="n">that</span> <span class="n">has</span> <span class="n">had</span> <span class="n">a</span> <span class="n">starting</span> <span class="n">location</span> <span class="n">assigned</span><span class="p">,</span> <span class="k">and</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span> <span class="n">is</span>
+    <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">last</span> <span class="n">index</span> <span class="n">value</span> <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">list</span><span class="p">.</span>
+</code></pre></div>
+
+<p>IOPT  This is stored to if INTCHK(k) is &lt; 0, see above.
+ ETEXT Input text of the form 'Package_name / Argument_name$E'.  Thus
+   for argument KORD of the package DIVA, this would = 'DIVA / KORD$E'.</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> Variable definitions </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>*</p>
+<p>ERRBAD Flag to use for error severity if get an error.  17 if errors
+        are to print but not stop, 57 otherwise.
+ ETEXT  (Input) Used to construct error messages, see above.
+ I      Induction variable for accessing INTCHK().
+ INTCHK (InOut) See above.
+ IOPT   (Out) If space information is being obtained results are saved
+        here.  See above.
+ ISTRT  Starting index for placing options with unknown locations.
+ KEX    Points to the last place in INTCHK where indices of entries
+        that have had locations determined here are stored.
+ L      Temporary index.
+ LAST   First free location in INTCHK.  (=INTCHK(1))
+ LNEG   Index of the first INTCHK entry that is to be positioned.
+ LOPT   Location in IOPT to get location of INTCHK entry that is
+        positioned.
+ LTXTAx Variables setup by PMESS defining the locations in MTXTAA where
+        various error messages start.
+ LTXTEE Location in MTXTAA where data in ETEXT is stored.
+ LTXTZZ Number of characters available for saving ETEXT in MTXTAA.
+ LWANT  -Number of locations wanted by INTCHK entry being positioned.
+ MACT   Vector used to specify error printing actions, see MESS.
+        MACT(2) flags error/diagnostic level.  = 0 none; 07 is used to
+        get diagnostics only; and ERRBAD otherwise.
+ MEEMES Parameter specifying that error message is to be printed.
+ MEIDAT Parameter specifying location in INTCHK to start printing
+        integer in MESS.
+ MEIMAT Parameter specifying an integer matrix is to be printed.
+ MENTXT Parameter specifying location in INTCHK to start printing
+        text from MTXTAA in MESS.
+ MERET  Parameter specifying the end of an error message.
+ MESS   Routine to print error and diagnostc messages.
+ METEXT Parameter specifying that text is to be printed.
+ MI     Temporary index used to save in acceptable location.
+ MTXTAA Used to contain error message text and instructions, see MESS.
+ MTXTAx Character variables setup by PMESS and equivalenced into ETEXT
+        used to contain parts of the error messages.
+ MTXTZZ As for MTXTAx, except not setup by PMESS.  Used to hold text
+        from ETEXT.
+ MV     Temporary, which contains value associated with INTCHK(MI).
+ N      Temporary value.
+ NERBAD Array telling what to do concerning errrors.  ERRBAD is set
+        from NERBAD(mod(INTCHK(0), 10)), and the default value for
+        MACT(2) is set from NERBAD(INTCHK(0)+4).</p>
     
 
     <h3>Arguments</h3>
@@ -221,127 +354,7 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>INTCHK</strong>(0:*)</td><td><blockquote>
-<p>1998-11-01 OPTCHK  Krogh  ERRSEV =&gt; MACT(2) for "mangle".
-1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.
-1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."
-1994-11-11 OPTCHK  Krogh  Declared all vars.
-1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.
-1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.
-1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.
-1991-06-27 OPTCHK  Krogh  Initial Code.</p>
-</blockquote>
-<p>OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
- This subroutine is intended for the use of other library routines.
- It is used to check the storage used by options for some array.</p>
-<p>INTCHK is an array that provides information on how storage has been
-   allocated.  Information is provided in groups of three words, after
-   an initial group of 4 that contain:
-    0. INTCHK(0) / 10 is the index to use for error messages, and
-       mod(INTCHK(0), 10) defines actions as follows:
-       Value  Action on Errors  Action if no errors
-         0    Prints &amp; Stops               Returns
-         1    Prints &amp; Returns             Returns
-         2    Prints &amp; Stops      Prints &amp; Returns
-         3    Prints &amp; Returns    Prints &amp; Returns
-        &gt;3  Any error message will be continued, subtract 4 from the
-            value to get one of the actions above.
-    1. Contains LAST, 1 more than the index of the last location in
-       INTCHK used to store the information as described below.
-    2. The amount of storage available in the array being checked.  If
-       this is 0, it is assumed that the user would like to know what
-       size to declare for the array, and if it is -1, it is assumed
-       that a library routine is doing the check without knowing what
-       the declared size is.
-    3. The amount of storage required in this array if no options were
-       used.  (This + 1 is first loc. available for option storage.)
-   The rest should be set as follows, for k = 5, LAST, 3:
-    k-1 Option index, 0 indicates storage required by default.  (This
-        may depend on input parameters, but doesn't depend explicitly
-        on an option.)
-    k   If &gt;0, gives the start of space used by the option.
-        If &lt;0, gives -(amount of space required by an option), for
-               which a starting location is to be determined.
-    k+1 If preceding entry is &gt;0, gives space required by the option.
-        Else it is assumed that the space requested is to be found,
-        and a diagnostic will be given if space can not be found.  Else
-        INTCHK(K+1) IOPT(INTCHK(k+1)) Diagnostic on successful alloc.?
-            0           ----          No
-            &lt;0          ----          Yes
-            &gt;0          .ne. -1       Yes
-            &gt;0          .eq. -1       No, and IOPT(INTCHK(k+1)) is set
-                                      to starting loc. of space found.
-        When this program finds the space for an option, values of
-        INTCHK(j) for j .ge. LAST will be used.  INTCHK(k+1) is set
-        temporarily to -(space required) and INTCHK(k-1) is reduced by
-        2000000 to flag the fact that the location index must be saved
-        after INTCHK(LAST).  INTCHK(LAST) is assumed to contain 1 if
-        the largest space requested is required, and to contain
-        -(minimal space needed) if the large amount requested is not
-        essential.
-   On exit, INTCHK(1) is set = -LAST if there was some kind of error.
-   (Unless the user has called MESS this return can't happen.)
-   INTCHK(2) is set to suggest a value for the storage to be declared.
-   The remaining locations are changed as follows:
-    k-1 Negated if there was a problem with this option, or if the
-        following location was initially &lt;0.
-    k   Starting location used or suggested for the option.
-    k+1 Last location used or suggested for the option.</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">In</span> <span class="n">addition</span> <span class="k">if</span> <span class="n">values</span> <span class="n">of</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="n">LAST</span> <span class="n">are</span> <span class="n">used</span><span class="p">,</span>
-    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">1</span><span class="p">,</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">set</span> <span class="n">so</span> <span class="n">that</span>
-    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="p">(</span><span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">k</span><span class="p">&#39;</span><span class="n">s</span> <span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mh">1</span> <span class="k">for</span> <span class="n">an</span> <span class="n">option</span>
-    <span class="n">that</span> <span class="n">has</span> <span class="n">had</span> <span class="n">a</span> <span class="n">starting</span> <span class="n">location</span> <span class="n">assigned</span><span class="p">,</span> <span class="k">and</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span> <span class="n">is</span>
-    <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">last</span> <span class="n">index</span> <span class="n">value</span> <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">list</span><span class="p">.</span>
-</code></pre></div>
-
-<p>IOPT  This is stored to if INTCHK(k) is &lt; 0, see above.
- ETEXT Input text of the form 'Package_name / Argument_name$E'.  Thus
-   for argument KORD of the package DIVA, this would = 'DIVA / KORD$E'.</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> Variable definitions </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>*</p>
-<p>ERRBAD Flag to use for error severity if get an error.  17 if errors
-        are to print but not stop, 57 otherwise.
- ETEXT  (Input) Used to construct error messages, see above.
- I      Induction variable for accessing INTCHK().
- INTCHK (InOut) See above.
- IOPT   (Out) If space information is being obtained results are saved
-        here.  See above.
- ISTRT  Starting index for placing options with unknown locations.
- KEX    Points to the last place in INTCHK where indices of entries
-        that have had locations determined here are stored.
- L      Temporary index.
- LAST   First free location in INTCHK.  (=INTCHK(1))
- LNEG   Index of the first INTCHK entry that is to be positioned.
- LOPT   Location in IOPT to get location of INTCHK entry that is
-        positioned.
- LTXTAx Variables setup by PMESS defining the locations in MTXTAA where
-        various error messages start.
- LTXTEE Location in MTXTAA where data in ETEXT is stored.
- LTXTZZ Number of characters available for saving ETEXT in MTXTAA.
- LWANT  -Number of locations wanted by INTCHK entry being positioned.
- MACT   Vector used to specify error printing actions, see MESS.
-        MACT(2) flags error/diagnostic level.  = 0 none; 07 is used to
-        get diagnostics only; and ERRBAD otherwise.
- MEEMES Parameter specifying that error message is to be printed.
- MEIDAT Parameter specifying location in INTCHK to start printing
-        integer in MESS.
- MEIMAT Parameter specifying an integer matrix is to be printed.
- MENTXT Parameter specifying location in INTCHK to start printing
-        text from MTXTAA in MESS.
- MERET  Parameter specifying the end of an error message.
- MESS   Routine to print error and diagnostc messages.
- METEXT Parameter specifying that text is to be printed.
- MI     Temporary index used to save in acceptable location.
- MTXTAA Used to contain error message text and instructions, see MESS.
- MTXTAx Character variables setup by PMESS and equivalenced into ETEXT
-        used to contain parts of the error messages.
- MTXTZZ As for MTXTAx, except not setup by PMESS.  Used to hold text
-        from ETEXT.
- MV     Temporary, which contains value associated with INTCHK(MI).
- N      Temporary value.
- NERBAD Array telling what to do concerning errrors.  ERRBAD is set
-        from NERBAD(mod(INTCHK(0), 10)), and the default value for
-        MACT(2) is set from NERBAD(INTCHK(0)+4).</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> Variable Declarations </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p></td>
+  <td><strong>INTCHK</strong>(0:*)</td><td></td>
   
 </tr>
 
@@ -356,127 +369,7 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>IOPT</strong>(*)</td><td><blockquote>
-<p>1998-11-01 OPTCHK  Krogh  ERRSEV =&gt; MACT(2) for "mangle".
-1996-05-13 OPTCHK  Krogh  Changes to use .C. and C%%.
-1995-03-10 OPTCHK  Krogh  Added "abs(.) just below "do 140 ..."
-1994-11-11 OPTCHK  Krogh  Declared all vars.
-1993-05-17 OPTCHK  Krogh  Additions for Conversion to C.
-1991-11-25 OPTCHK  Krogh  More comments, little clean up of code.
-1991-10-09 OPTCHK  Krogh  More comments, little clean up of code.
-1991-06-27 OPTCHK  Krogh  Initial Code.</p>
-</blockquote>
-<p>OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
- This subroutine is intended for the use of other library routines.
- It is used to check the storage used by options for some array.</p>
-<p>INTCHK is an array that provides information on how storage has been
-   allocated.  Information is provided in groups of three words, after
-   an initial group of 4 that contain:
-    0. INTCHK(0) / 10 is the index to use for error messages, and
-       mod(INTCHK(0), 10) defines actions as follows:
-       Value  Action on Errors  Action if no errors
-         0    Prints &amp; Stops               Returns
-         1    Prints &amp; Returns             Returns
-         2    Prints &amp; Stops      Prints &amp; Returns
-         3    Prints &amp; Returns    Prints &amp; Returns
-        &gt;3  Any error message will be continued, subtract 4 from the
-            value to get one of the actions above.
-    1. Contains LAST, 1 more than the index of the last location in
-       INTCHK used to store the information as described below.
-    2. The amount of storage available in the array being checked.  If
-       this is 0, it is assumed that the user would like to know what
-       size to declare for the array, and if it is -1, it is assumed
-       that a library routine is doing the check without knowing what
-       the declared size is.
-    3. The amount of storage required in this array if no options were
-       used.  (This + 1 is first loc. available for option storage.)
-   The rest should be set as follows, for k = 5, LAST, 3:
-    k-1 Option index, 0 indicates storage required by default.  (This
-        may depend on input parameters, but doesn't depend explicitly
-        on an option.)
-    k   If &gt;0, gives the start of space used by the option.
-        If &lt;0, gives -(amount of space required by an option), for
-               which a starting location is to be determined.
-    k+1 If preceding entry is &gt;0, gives space required by the option.
-        Else it is assumed that the space requested is to be found,
-        and a diagnostic will be given if space can not be found.  Else
-        INTCHK(K+1) IOPT(INTCHK(k+1)) Diagnostic on successful alloc.?
-            0           ----          No
-            &lt;0          ----          Yes
-            &gt;0          .ne. -1       Yes
-            &gt;0          .eq. -1       No, and IOPT(INTCHK(k+1)) is set
-                                      to starting loc. of space found.
-        When this program finds the space for an option, values of
-        INTCHK(j) for j .ge. LAST will be used.  INTCHK(k+1) is set
-        temporarily to -(space required) and INTCHK(k-1) is reduced by
-        2000000 to flag the fact that the location index must be saved
-        after INTCHK(LAST).  INTCHK(LAST) is assumed to contain 1 if
-        the largest space requested is required, and to contain
-        -(minimal space needed) if the large amount requested is not
-        essential.
-   On exit, INTCHK(1) is set = -LAST if there was some kind of error.
-   (Unless the user has called MESS this return can't happen.)
-   INTCHK(2) is set to suggest a value for the storage to be declared.
-   The remaining locations are changed as follows:
-    k-1 Negated if there was a problem with this option, or if the
-        following location was initially &lt;0.
-    k   Starting location used or suggested for the option.
-    k+1 Last location used or suggested for the option.</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">In</span> <span class="n">addition</span> <span class="k">if</span> <span class="n">values</span> <span class="n">of</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="p">.</span><span class="n">ge</span><span class="p">.</span> <span class="n">LAST</span> <span class="n">are</span> <span class="n">used</span><span class="p">,</span>
-    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">1</span><span class="p">,</span> <span class="n">LAST</span><span class="o">+</span><span class="mh">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">set</span> <span class="n">so</span> <span class="n">that</span>
-    <span class="n">INTCHK</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="p">(</span><span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">k</span><span class="p">&#39;</span><span class="n">s</span> <span class="n">above</span><span class="p">)</span> <span class="o">-</span> <span class="mh">1</span> <span class="k">for</span> <span class="n">an</span> <span class="n">option</span>
-    <span class="n">that</span> <span class="n">has</span> <span class="n">had</span> <span class="n">a</span> <span class="n">starting</span> <span class="n">location</span> <span class="n">assigned</span><span class="p">,</span> <span class="k">and</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span> <span class="n">is</span>
-    <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">last</span> <span class="n">index</span> <span class="n">value</span> <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">the</span> <span class="n">above</span> <span class="n">list</span><span class="p">.</span>
-</code></pre></div>
-
-<p>IOPT  This is stored to if INTCHK(k) is &lt; 0, see above.
- ETEXT Input text of the form 'Package_name / Argument_name$E'.  Thus
-   for argument KORD of the package DIVA, this would = 'DIVA / KORD$E'.</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> Variable definitions </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>*</p>
-<p>ERRBAD Flag to use for error severity if get an error.  17 if errors
-        are to print but not stop, 57 otherwise.
- ETEXT  (Input) Used to construct error messages, see above.
- I      Induction variable for accessing INTCHK().
- INTCHK (InOut) See above.
- IOPT   (Out) If space information is being obtained results are saved
-        here.  See above.
- ISTRT  Starting index for placing options with unknown locations.
- KEX    Points to the last place in INTCHK where indices of entries
-        that have had locations determined here are stored.
- L      Temporary index.
- LAST   First free location in INTCHK.  (=INTCHK(1))
- LNEG   Index of the first INTCHK entry that is to be positioned.
- LOPT   Location in IOPT to get location of INTCHK entry that is
-        positioned.
- LTXTAx Variables setup by PMESS defining the locations in MTXTAA where
-        various error messages start.
- LTXTEE Location in MTXTAA where data in ETEXT is stored.
- LTXTZZ Number of characters available for saving ETEXT in MTXTAA.
- LWANT  -Number of locations wanted by INTCHK entry being positioned.
- MACT   Vector used to specify error printing actions, see MESS.
-        MACT(2) flags error/diagnostic level.  = 0 none; 07 is used to
-        get diagnostics only; and ERRBAD otherwise.
- MEEMES Parameter specifying that error message is to be printed.
- MEIDAT Parameter specifying location in INTCHK to start printing
-        integer in MESS.
- MEIMAT Parameter specifying an integer matrix is to be printed.
- MENTXT Parameter specifying location in INTCHK to start printing
-        text from MTXTAA in MESS.
- MERET  Parameter specifying the end of an error message.
- MESS   Routine to print error and diagnostc messages.
- METEXT Parameter specifying that text is to be printed.
- MI     Temporary index used to save in acceptable location.
- MTXTAA Used to contain error message text and instructions, see MESS.
- MTXTAx Character variables setup by PMESS and equivalenced into ETEXT
-        used to contain parts of the error messages.
- MTXTZZ As for MTXTAx, except not setup by PMESS.  Used to hold text
-        from ETEXT.
- MV     Temporary, which contains value associated with INTCHK(MI).
- N      Temporary value.
- NERBAD Array telling what to do concerning errrors.  ERRBAD is set
-        from NERBAD(mod(INTCHK(0), 10)), and the default value for
-        MACT(2) is set from NERBAD(INTCHK(0)+4).</p>
-<p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em> Variable Declarations </strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong></p></td>
+  <td><strong>IOPT</strong>(*)</td><td></td>
   
 </tr>
 
@@ -542,50 +435,50 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 <path fill="none" stroke="#000000" d="M153.07,-54C161.12,-54 170.14,-54 178.76,-54"/>
 <polygon fill="#000000" stroke="#000000" points="179,-57.5 189,-54 179,-50.5 179,-57.5"/>
 </g>
-<!-- program~drdivdb -->
-<g id="proc~~optchk~~CalledByGraph_node3" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~optchk~~CalledByGraph_node3"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-108 0,-108 0,-84 63,-84 63,-108"/>
-<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~diva -->
-<g id="proc~~optchk~~CalledByGraph_edge2" class="edge">
-<title>program~drdivdb&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M59.25,-83.85C68.72,-79.56 79.51,-74.65 89.58,-70.08"/>
-<polygon fill="#000000" stroke="#000000" points="91.28,-73.15 98.94,-65.83 88.39,-66.78 91.28,-73.15"/>
-</g>
 <!-- program~drdivx -->
-<g id="proc~~optchk~~CalledByGraph_node4" class="node">
+<g id="proc~~optchk~~CalledByGraph_node3" class="node">
 <title>program~drdivx</title>
-<g id="a_proc~~optchk~~CalledByGraph_node4"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-66 4,-66 4,-42 59,-42 59,-66"/>
-<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<g id="a_proc~~optchk~~CalledByGraph_node3"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-108 4,-108 4,-84 59,-84 59,-108"/>
+<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~diva -->
-<g id="proc~~optchk~~CalledByGraph_edge3" class="edge">
+<g id="proc~~optchk~~CalledByGraph_edge2" class="edge">
 <title>program~drdivx&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M59.25,-54C68.42,-54 78.84,-54 88.64,-54"/>
-<polygon fill="#000000" stroke="#000000" points="88.94,-57.5 98.94,-54 88.94,-50.5 88.94,-57.5"/>
+<path fill="none" stroke="#000000" d="M59.25,-83.85C68.72,-79.56 79.51,-74.65 89.58,-70.08"/>
+<polygon fill="#000000" stroke="#000000" points="91.28,-73.15 98.94,-65.83 88.39,-66.78 91.28,-73.15"/>
 </g>
 <!-- program~drdiva -->
-<g id="proc~~optchk~~CalledByGraph_node5" class="node">
+<g id="proc~~optchk~~CalledByGraph_node4" class="node">
 <title>program~drdiva</title>
-<g id="a_proc~~optchk~~CalledByGraph_node5"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-24 4.5,-24 4.5,0 58.5,0 58.5,-24"/>
-<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
+<g id="a_proc~~optchk~~CalledByGraph_node4"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-66 4.5,-66 4.5,-42 58.5,-42 58.5,-66"/>
+<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
 </a>
 </g>
 </g>
 <!-- program~drdiva&#45;&gt;proc~diva -->
-<g id="proc~~optchk~~CalledByGraph_edge4" class="edge">
+<g id="proc~~optchk~~CalledByGraph_edge3" class="edge">
 <title>program~drdiva&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M58.76,-23.92C68.41,-28.31 79.5,-33.34 89.81,-38.02"/>
-<polygon fill="#000000" stroke="#000000" points="88.44,-41.24 99,-42.19 91.34,-34.87 88.44,-41.24"/>
+<path fill="none" stroke="#000000" d="M58.76,-54C68.11,-54 78.82,-54 88.86,-54"/>
+<polygon fill="#000000" stroke="#000000" points="89,-57.5 99,-54 89,-50.5 89,-57.5"/>
+</g>
+<!-- program~drdivdb -->
+<g id="proc~~optchk~~CalledByGraph_node5" class="node">
+<title>program~drdivdb</title>
+<g id="a_proc~~optchk~~CalledByGraph_node5"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-24 0,-24 0,0 63,0 63,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+</a>
+</g>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~diva -->
+<g id="proc~~optchk~~CalledByGraph_edge4" class="edge">
+<title>program~drdivdb&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M59.25,-24.15C68.72,-28.44 79.51,-33.35 89.58,-37.92"/>
+<polygon fill="#000000" stroke="#000000" points="88.39,-41.22 98.94,-42.17 91.28,-34.85 88.39,-41.22"/>
 </g>
 </g>
 </svg>
@@ -678,7 +571,13 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 
 
 
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/optchk.html#src">OPTCHK</a>
+  </div>
+</div>
+
 
 
     </section>
@@ -701,6 +600,192 @@ subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">OPTCHK</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">,</span> <span class="n">IOPT</span><span class="p">,</span> <span class="n">ETEXT</span><span class="p">)</span>
+
+<span class="c">! ************************** Variable Declarations *********************</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">INTCHK</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="o">*</span><span class="p">),</span> <span class="n">IOPT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">ETEXT</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">ISTRT</span><span class="p">,</span> <span class="n">KEX</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LAST</span><span class="p">,</span> <span class="n">LNEG</span><span class="p">,</span> <span class="n">LOPT</span><span class="p">,</span> <span class="n">LWANT</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">MV</span><span class="p">,</span> <span class="n">N</span>
+<span class="c">! Declarations for error messages.</span>
+      <span class="kt">integer </span><span class="n">MENTXT</span><span class="p">,</span> <span class="n">MEIDAT</span><span class="p">,</span> <span class="n">MECONT</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">MEEMES</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEIMAT</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LTXTEE</span><span class="p">,</span> <span class="n">LTXEND</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MENTXT</span> <span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEIDAT</span> <span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MECONT</span> <span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span> <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEIMAT</span> <span class="o">=</span><span class="mi">58</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">MACT</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">ERRBAD</span><span class="p">,</span> <span class="n">NERBAD</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">! ********* Error message text ***************</span>
+<span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
+<span class="c">!AA OPTCHK$B</span>
+<span class="c">!AB &quot;Option #&quot; is negated if option needs attention.$N</span>
+<span class="c">!   &quot;Option 0&quot; is for space not associated with a specific option.$N</span>
+<span class="c">!   &quot;First Loc.&quot; is negated if user did not set value.$N</span>
+<span class="c">!   Space avail. = $I; all options must have first loc. &gt; $I$E</span>
+<span class="c">!AC Option #$HFirst Loc.$HLast Loc.$E</span>
+<span class="c">!AD From subprogram/argument: $B</span>
+<span class="c">!AE Space for ETEXT.$E</span>
+      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span><span class="p">,</span><span class="n">LTXTAC</span><span class="p">,</span><span class="n">LTXTAD</span><span class="p">,</span><span class="n">LTXTAE</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span>  <span class="mi">9</span><span class="p">,</span><span class="n">LTXTAC</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span><span class="n">LTXTAD</span><span class="o">=</span><span class="mi">267</span><span class="p">,</span><span class="n">LTXTAE</span><span class="o">=</span><span class="mi">295</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">156</span><span class="p">)</span>
+<span class="c">!                          Next 4 lines not automatically generated</span>
+<span class="c">!%%    #define LTXTEE  137</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTEE</span> <span class="o">=</span> <span class="n">LTXTAE</span> <span class="o">-</span> <span class="mi">156</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXEND</span> <span class="o">=</span> <span class="mi">156</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;OPTCHK$B&quot;Option #&quot; is negated if option needs attenti&amp;</span>
+<span class="s1">     &amp;on.$N&quot;Option 0&quot; is for space not associated with a specific option&amp;</span>
+<span class="s1">     &amp;.$N&quot;First Loc.&quot; is negated if user di&#39;</span><span class="p">,</span><span class="s1">&#39;d not set value.$NSpace av&amp;</span>
+<span class="s1">     &amp;ail. = $I; all options must have first loc. &gt; $I$EOption #$HFirst$&amp;</span>
+<span class="s1">     &amp; Loc.$HLast Loc.$EFrom subprogram/argument: $BSpace for ETEXT.$E&#39;</span><span class="o">/</span>
+<span class="c">!</span>
+<span class="c">!                      1 2 3      4       5  6       7      8       9</span>
+      <span class="k">data </span><span class="n">MACT</span> <span class="o">/</span> <span class="n">MEEMES</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">LTXTAD</span><span class="p">,</span> <span class="n">MEIDAT</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MENTXT</span><span class="p">,</span><span class="n">LTXTAB</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MEIMAT</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">LTXTAC</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!            10    13     14 15     16</span>
+      <span class="k">data </span><span class="n">NERBAD</span> <span class="o">/</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span> <span class="o">/</span>
+<span class="c">!</span>
+<span class="c">! *************************** Start of Executable Code *****************</span>
+<span class="c">!</span>
+      <span class="n">MACT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+      <span class="n">MACT</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">=</span><span class="n">MERET</span>
+      <span class="n">I</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">MACT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">I</span> <span class="o">=</span> <span class="n">I</span> <span class="o">-</span> <span class="mi">4</span>
+         <span class="n">MACT</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">=</span> <span class="n">MECONT</span>
+      <span class="k">end if</span>
+<span class="k">      </span><span class="n">ERRBAD</span> <span class="o">=</span> <span class="n">NERBAD</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+      <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">NERBAD</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span>
+      <span class="n">LAST</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">KEX</span> <span class="o">=</span> <span class="n">LAST</span>
+   <span class="mi">20</span> <span class="n">LNEG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">do </span><span class="mi">100</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">LAST</span><span class="p">,</span> <span class="mi">3</span>
+<span class="c">!       Loop to sort on the low indices -- Inefficient algorithm to keep</span>
+<span class="c">!       code short -- LAST should never be very big.</span>
+         <span class="n">MI</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="n">MV</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+         <span class="k">do </span><span class="mi">50</span> <span class="n">L</span> <span class="o">=</span> <span class="n">I</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="n">LAST</span><span class="p">,</span> <span class="mi">3</span>
+<span class="c">!                                    Find mimimum from here down.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">MV</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               </span><span class="n">MI</span> <span class="o">=</span> <span class="n">L</span>
+               <span class="n">MV</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+            <span class="k">end if</span>
+<span class="k">   </span><span class="mi">50</span>    <span class="k">continue</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">MI</span> <span class="o">/=</span> <span class="n">I</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!                                   Interchange to get low at top.</span>
+            <span class="k">do </span><span class="mi">70</span> <span class="n">L</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+               <span class="n">N</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">L</span><span class="p">)</span>
+               <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">MI</span><span class="o">+</span><span class="n">L</span><span class="p">)</span>
+               <span class="n">INTCHK</span><span class="p">(</span><span class="n">MI</span><span class="o">+</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">N</span>
+   <span class="mi">70</span>       <span class="k">continue</span>
+<span class="k">         end if</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">MV</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!                Save loc. of last entry that needs space to be found.</span>
+            <span class="n">LNEG</span> <span class="o">=</span> <span class="n">I</span>
+         <span class="k">else if</span> <span class="p">(</span><span class="n">LNEG</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!        Entry I and previous entries are in their correct sorted order.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1000000</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                  </span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2000000</span>
+                  <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">!                            Save INTCHK index defining allocated space.</span>
+                  <span class="n">KEX</span> <span class="o">=</span> <span class="n">KEX</span> <span class="o">+</span> <span class="mi">1</span>
+                  <span class="n">INTCHK</span><span class="p">(</span><span class="n">KEX</span><span class="p">)</span> <span class="o">=</span> <span class="n">I</span> <span class="o">-</span> <span class="mi">1</span>
+               <span class="k">else</span>
+<span class="c">!                   Error -- Got request for a negative amount of space.</span>
+                  <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">ERRBAD</span>
+                  <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+               <span class="k">end if</span>
+<span class="k">            end if</span>
+<span class="c">!                Save final location used by the option.</span>
+            <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">+</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="k">then</span>
+<span class="c">!                                           Error -- options overlap.</span>
+               <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+               <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">ERRBAD</span>
+            <span class="k">end if</span>
+<span class="k">         end if</span>
+<span class="k">  </span><span class="mi">100</span> <span class="k">continue</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">LNEG</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!     Find spaces that need to be allocated, starting with the smallest.</span>
+         <span class="n">ISTRT</span> <span class="o">=</span> <span class="n">LNEG</span>
+         <span class="n">I</span> <span class="o">=</span> <span class="n">LNEG</span>
+  <span class="mi">120</span>    <span class="n">LWANT</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="p">)</span>
+         <span class="n">LOPT</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="n">LNEG</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!                         Make fake entry to get started.</span>
+            <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+         <span class="k">end if</span>
+<span class="k">         do </span><span class="mi">140</span> <span class="n">ISTRT</span> <span class="o">=</span> <span class="n">ISTRT</span><span class="p">,</span> <span class="n">LAST</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="n">LWANT</span> <span class="o">&lt;</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">ISTRT</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>         <span class="n">go</span> <span class="n">to</span> <span class="mi">150</span>
+            <span class="n">I</span> <span class="o">=</span> <span class="n">ISTRT</span> <span class="o">+</span> <span class="mi">3</span>
+  <span class="mi">140</span>    <span class="k">continue</span>
+<span class="k">  </span><span class="mi">150</span>    <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LOPT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">LOPT</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">IOPT</span><span class="p">(</span><span class="n">LOPT</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                  </span><span class="n">IOPT</span><span class="p">(</span><span class="n">LOPT</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="p">)</span>
+                  <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
+               <span class="k">end if</span>
+<span class="k">            end if</span>
+<span class="c">!                     Error -- IOPT not expecting starting loc.</span>
+            <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">ERRBAD</span>
+         <span class="k">end if</span>
+<span class="k">  </span><span class="mi">160</span>    <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">LWANT</span>
+         <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LNEG</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2000000</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LNEG</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">20</span>
+         <span class="n">I</span> <span class="o">=</span> <span class="n">LNEG</span>
+         <span class="n">LNEG</span> <span class="o">=</span> <span class="n">LNEG</span> <span class="o">-</span> <span class="mi">3</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">180</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LAST</span> <span class="o">/=</span> <span class="n">KEX</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">KEX</span><span class="p">)</span> <span class="o">==</span> <span class="n">LAST</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                  if</span> <span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">                     </span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                     <span class="n">go</span> <span class="n">to</span> <span class="mi">180</span>
+                  <span class="k">end if</span>
+<span class="k">               end if</span>
+<span class="k">            end if</span>
+<span class="k">         end if</span>
+<span class="k">         </span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">3</span><span class="p">))</span>
+         <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">ERRBAD</span>
+      <span class="k">end if</span>
+<span class="k">  </span><span class="mi">180</span> <span class="k">if</span> <span class="p">(</span><span class="n">LAST</span> <span class="o">/=</span> <span class="n">KEX</span><span class="p">)</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="p">)</span> <span class="o">=</span> <span class="n">KEX</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">  </span><span class="mi">190</span>    <span class="k">if</span> <span class="p">(</span><span class="n">LAST</span> <span class="o">/=</span> <span class="n">KEX</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            do </span><span class="mi">200</span> <span class="n">I</span> <span class="o">=</span> <span class="n">LAST</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">KEX</span><span class="p">)</span>
+               <span class="n">INTCHK</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">INTCHK</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="mi">200</span>       <span class="k">continue</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">KEX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">210</span>
+            <span class="n">KEX</span> <span class="o">=</span> <span class="o">-</span><span class="n">KEX</span>
+         <span class="k">end if</span>
+<span class="k">         </span><span class="n">MACT</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">LAST</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="c">!%%       strcpy(&amp;mtxtaa[1][LTXTEE-1], etext);</span>
+         <span class="n">MTXTAA</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">LTXTEE</span><span class="p">:</span><span class="n">LTXEND</span><span class="p">)</span><span class="o">=</span><span class="n">ETEXT</span><span class="p">(</span><span class="mi">1</span><span class="p">:)</span>
+         <span class="k">call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">LAST</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">LAST</span> <span class="o">/=</span> <span class="n">KEX</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">190</span>
+      <span class="k">end if</span>
+<span class="k">  </span><span class="mi">210</span> <span class="n">INTCHK</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">INTCHK</span><span class="p">(</span><span class="n">LAST</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">return</span>
+<span class="k">    end subroutine </span><span class="n">optchk</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

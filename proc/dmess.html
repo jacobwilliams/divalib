@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -122,19 +126,21 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.2% of total for procedures.">173 statements</a>
+    title=" 4.2% of total for procedures.">172 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">DMESS</li>
@@ -194,6 +200,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/dmess.html#src">DMESS</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -201,7 +215,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine DMESS(MACT, TEXT, IDAT, FDAT)
+public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
     
     
    
@@ -211,40 +225,40 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 
 
     
-    <blockquote>
-<p>2009-09-27 DMESS Krogh  Same as below, in another place.
-2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.
-2008-06-13 DMESS Krogh  Changed -0's to 0.
-2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.
-2006-10-08 DMESS Krogh  Another try, see 2005-05-26
-2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.
-2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).
-2006-07-01 DMESS Krogh  messxc =&gt; dmessxc (and not static) (for C)
-2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.
-2006-04-04 DMESS Krogh  Fixes in C code for vectors &amp; matrices.
-2006-04-02 DMESS Krogh  Added code for output of sparse vector.
-2005-07-10 DMESS Krogh  Small adjustment for last correction.
-2005-05-26 DMESS Krogh  Fixed "<strong>*</strong>" output in boundary case.
-2002-05-16 DMESS Krogh  Added way for user to get error count.
-2002-03-27 DMESS Krogh  Fixed crash when number is -INF.
-2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.
-2001-05-25 DMESS Krogh  Added a couple of commas in formats.
-1997-06-17 DMESS Krogh  In C code made messxc, static.
-1996-07-12 DMESS Krogh  Changes to use .C. and C%%.
-1996-03-30 DMESS Krogh  Added external statement.
-1994-10-20 DMESS Krogh  Changes to use M77CON
-1994-09-21 DMESS Krogh  Added CHGTYP code.
-1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.
-1994-08-17 DMESS Krogh  Removed duplicate save statement.
-1994-04-19 DMESS Krogh  Removed blank line from DMESS.
-1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.
-1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)
-1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.
-1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.
-1992-05-14 DMESS Krogh  Put common blocks in save statement.
-1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format
-1992-02-28 DMESS Krogh  Initial Code.</p>
-</blockquote>
+    <ul>
+<li>2009-09-27 DMESS Krogh  Same as below, in another place.</li>
+<li>2009-07-23 DMESS Krogh  Changed ,1x to :1x in write to FMTF.</li>
+<li>2008-06-13 DMESS Krogh  Changed -0's to 0.</li>
+<li>2007-09-08 DMESS Krogh  Fixed definitions of MEVLAS.</li>
+<li>2006-10-08 DMESS Krogh  Another try, see 2005-05-26</li>
+<li>2006-10-08 DMESS Krogh  Fixed minor problem in matrix/vector output.</li>
+<li>2006-10-01 DMESS Krogh  Print NaN's and infity (at least for g77).</li>
+<li>2006-07-01 DMESS Krogh  messxc =&gt; dmessxc (and not static) (for C)</li>
+<li>2006-04-07 DMESS Krogh  Major rewrite of code for F.Pt. format.</li>
+<li>2006-04-04 DMESS Krogh  Fixes in C code for vectors &amp; matrices.</li>
+<li>2006-04-02 DMESS Krogh  Added code for output of sparse vector.</li>
+<li>2005-07-10 DMESS Krogh  Small adjustment for last correction.</li>
+<li>2005-05-26 DMESS Krogh  Fixed "<strong>*</strong>" output in boundary case.</li>
+<li>2002-05-16 DMESS Krogh  Added way for user to get error count.</li>
+<li>2002-03-27 DMESS Krogh  Fixed crash when number is -INF.</li>
+<li>2001-06-08 DMESS Krogh  Eliminated Hollerith in formats.</li>
+<li>2001-05-25 DMESS Krogh  Added a couple of commas in formats.</li>
+<li>1997-06-17 DMESS Krogh  In C code made messxc, static.</li>
+<li>1996-07-12 DMESS Krogh  Changes to use .C. and C%%.</li>
+<li>1996-03-30 DMESS Krogh  Added external statement.</li>
+<li>1994-10-20 DMESS Krogh  Changes to use M77CON</li>
+<li>1994-09-21 DMESS Krogh  Added CHGTYP code.</li>
+<li>1994-09-08 DMESS Krogh  Added new matrix/vector capabilities.</li>
+<li>1994-08-17 DMESS Krogh  Removed duplicate save statement.</li>
+<li>1994-04-19 DMESS Krogh  Removed blank line from DMESS.</li>
+<li>1993-05-14 DMESS Krogh  Changed TEXT to array of character strings.</li>
+<li>1993-04-14 DMESS Krogh  Fixes for conversion to C. (C%% comments.)</li>
+<li>1992-07-12 DMESS Krogh  Fixed so negative KDFDEF works.</li>
+<li>1992-05-27 DMESS Krogh  Initialized LDFDEF in a data statement.</li>
+<li>1992-05-14 DMESS Krogh  Put common blocks in save statement.</li>
+<li>1992-04-28 DMESS Krogh  Corrected minor error in floating pt. format</li>
+<li>1992-02-28 DMESS Krogh  Initial Code.</li>
+</ul>
 <p>--D replaces "?": ?MESS,?MESSXC</p>
 <p>Processes Messages -- Actions are controlled by MACT().  See
  comment is subroutine MESS.  This program is for the extra
@@ -409,46 +423,31 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~dmess~~CallsGraph Pages: 1 -->
-<svg id="procdmessCallsGraph" width="154pt" height="74pt"
- viewBox="0.00 0.00 154.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~dmess~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<svg id="procdmessCallsGraph" width="152pt" height="32pt"
+ viewBox="0.00 0.00 152.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dmess~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>proc~~dmess~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 150,-70 150,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 148,-28 148,4 -4,4"/>
 <!-- proc~dmess -->
 <g id="proc~~dmess~~CallsGraph_node1" class="node">
 <title>proc~dmess</title>
-<polygon fill="none" stroke="black" points="54,-45 0,-45 0,-21 54,-21 54,-45"/>
-<text text-anchor="middle" x="27" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
-</g>
-<!-- proc~d1mach -->
-<g id="proc~~dmess~~CallsGraph_node2" class="node">
-<title>proc~d1mach</title>
-<g id="a_proc~~dmess~~CallsGraph_node2"><a xlink:href=".././proc/d1mach.html" xlink:title="d1mach">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-66 90,-66 90,-42 146,-42 146,-66"/>
-<text text-anchor="middle" x="118" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">d1mach</text>
-</a>
-</g>
-</g>
-<!-- proc~dmess&#45;&gt;proc~d1mach -->
-<g id="proc~~dmess~~CallsGraph_edge1" class="edge">
-<title>proc~dmess&#45;&gt;proc~d1mach</title>
-<path fill="none" stroke="#000000" d="M54.22,-39.19C62.26,-41.08 71.25,-43.21 79.87,-45.24"/>
-<polygon fill="#000000" stroke="#000000" points="79.19,-48.68 89.73,-47.57 80.8,-41.86 79.19,-48.68"/>
+<polygon fill="none" stroke="black" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
 </g>
 <!-- proc~messfi -->
-<g id="proc~~dmess~~CallsGraph_node3" class="node">
+<g id="proc~~dmess~~CallsGraph_node2" class="node">
 <title>proc~messfi</title>
-<g id="a_proc~~dmess~~CallsGraph_node3"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="145,-24 91,-24 91,0 145,0 145,-24"/>
-<text text-anchor="middle" x="118" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+<g id="a_proc~~dmess~~CallsGraph_node2"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="144,-24 90,-24 90,0 144,0 144,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
 </a>
 </g>
 </g>
 <!-- proc~dmess&#45;&gt;proc~messfi -->
-<g id="proc~~dmess~~CallsGraph_edge2" class="edge">
+<g id="proc~~dmess~~CallsGraph_edge1" class="edge">
 <title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M54.22,-26.81C62.64,-24.83 72.12,-22.59 81.11,-20.47"/>
-<polygon fill="#000000" stroke="#000000" points="82.04,-23.85 90.97,-18.14 80.43,-17.03 82.04,-23.85"/>
+<path fill="none" stroke="#000000" d="M54.4,-12C62.39,-12 71.31,-12 79.82,-12"/>
+<polygon fill="#000000" stroke="#000000" points="79.92,-15.5 89.92,-12 79.92,-8.5 79.92,-15.5"/>
 </g>
 </g>
 </svg>
@@ -526,118 +525,118 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~dmess~~CalledByGraph Pages: 1 -->
-<svg id="procdmessCalledByGraph" width="251pt" height="344pt"
- viewBox="0.00 0.00 251.00 344.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~dmess~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 340)">
+<svg id="procdmessCalledByGraph" width="251pt" height="322pt"
+ viewBox="0.00 0.00 251.00 322.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dmess~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 318)">
 <title>proc~~dmess~~CalledByGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-340 247,-340 247,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-318 247,-318 247,4 -4,4"/>
 <!-- proc~dmess -->
 <g id="proc~~dmess~~CalledByGraph_node1" class="node">
 <title>proc~dmess</title>
 <polygon fill="none" stroke="black" points="243,-171 189,-171 189,-147 243,-147 243,-171"/>
 <text text-anchor="middle" x="216" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
 </g>
-<!-- program~drdivx -->
+<!-- proc~divain -->
 <g id="proc~~dmess~~CalledByGraph_node2" class="node">
+<title>proc~divain</title>
+<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
+<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
+<title>proc~divain&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M140.77,-289.74C144.98,-285.61 149.43,-280.83 153,-276 175.71,-245.26 195.07,-205.1 205.86,-180.72"/>
+<polygon fill="#000000" stroke="#000000" points="209.17,-181.88 209.94,-171.32 202.75,-179.1 209.17,-181.88"/>
+</g>
+<!-- proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_node3" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-234 99,-234 99,-210 153,-210 153,-234"/>
+<text text-anchor="middle" x="126" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.97,-209.85C156.99,-200.53 175.18,-187.51 189.89,-176.98"/>
+<polygon fill="#000000" stroke="#000000" points="191.99,-179.78 198.08,-171.11 187.92,-174.09 191.99,-179.78"/>
+</g>
+<!-- program~drdivx -->
+<g id="proc~~dmess~~CalledByGraph_node4" class="node">
 <title>program~drdivx</title>
-<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-252 4,-252 4,-228 59,-228 59,-252"/>
-<text text-anchor="middle" x="31.5" y="-237.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-234 4,-234 4,-210 59,-210 59,-234"/>
+<text text-anchor="middle" x="31.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
 <title>program~drdivx&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M59.19,-233.69C84.17,-227.24 122.18,-216.05 153,-201 166.27,-194.52 179.98,-185.52 191.12,-177.51"/>
-<polygon fill="#000000" stroke="#000000" points="193.47,-180.12 199.44,-171.37 189.32,-174.49 193.47,-180.12"/>
+<path fill="none" stroke="#000000" d="M55.5,-234.06C80.7,-245.5 121.72,-258.79 153,-243 178.72,-230.01 196.41,-200.76 206.12,-180.45"/>
+<polygon fill="#000000" stroke="#000000" points="209.32,-181.87 210.25,-171.31 202.94,-178.99 209.32,-181.87"/>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge9" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-222C68.42,-222 78.84,-222 88.64,-222"/>
+<polygon fill="#000000" stroke="#000000" points="88.94,-225.5 98.94,-222 88.94,-218.5 88.94,-225.5"/>
 </g>
 <!-- proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_node4" class="node">
+<g id="proc~~dmess~~CalledByGraph_node7" class="node">
 <title>proc~diva</title>
-<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
-<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
+<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_edge10" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge11" class="edge">
 <title>program~drdivx&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M50.78,-252.25C64.42,-261.39 83.27,-274.03 98.55,-284.27"/>
-<polygon fill="#000000" stroke="#000000" points="96.82,-287.33 107.08,-289.99 100.72,-281.51 96.82,-287.33"/>
-</g>
-<!-- proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_node7" class="node">
-<title>proc~divadb</title>
-<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
-<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_edge14" class="edge">
-<title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-245.78C68.52,-247.79 79.07,-250.07 88.96,-252.21"/>
-<polygon fill="#000000" stroke="#000000" points="88.43,-255.67 98.94,-254.37 89.91,-248.83 88.43,-255.67"/>
-</g>
-<!-- proc~dzero -->
-<g id="proc~~dmess~~CalledByGraph_node3" class="node">
-<title>proc~dzero</title>
-<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-192 99,-192 99,-168 153,-168 153,-192"/>
-<text text-anchor="middle" x="126" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
-</a>
-</g>
-</g>
-<!-- proc~dzero&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
-<title>proc~dzero&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M153.4,-173.7C161.48,-171.77 170.51,-169.62 179.1,-167.57"/>
-<polygon fill="#000000" stroke="#000000" points="180,-170.95 188.92,-165.22 178.38,-164.14 180,-170.95"/>
-</g>
-<!-- proc~diva&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
-<title>proc~diva&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M144.18,-289.85C147.34,-287.16 150.44,-284.16 153,-281 178.37,-249.68 197.34,-206.3 207.25,-180.6"/>
-<polygon fill="#000000" stroke="#000000" points="210.6,-181.65 210.83,-171.06 204.04,-179.19 210.6,-181.65"/>
-</g>
-<!-- proc~divag -->
-<g id="proc~~dmess~~CalledByGraph_node5" class="node">
-<title>proc~divag</title>
-<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
-<text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
-</a>
-</g>
-</g>
-<!-- proc~divag&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
-<title>proc~divag&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M153.4,-144.3C161.48,-146.23 170.51,-148.38 179.1,-150.43"/>
-<polygon fill="#000000" stroke="#000000" points="178.38,-153.86 188.92,-152.78 180,-147.05 178.38,-153.86"/>
+<path fill="none" stroke="#000000" d="M41.94,-209.75C48.16,-201.5 56.35,-190.29 63,-180 80.5,-152.91 78.1,-141.56 99,-117 99.59,-116.3 100.21,-115.61 100.85,-114.93"/>
+<polygon fill="#000000" stroke="#000000" points="103.32,-117.42 108.21,-108.02 98.52,-112.31 103.32,-117.42"/>
 </g>
 <!-- proc~divaa -->
-<g id="proc~~dmess~~CalledByGraph_node6" class="node">
+<g id="proc~~dmess~~CalledByGraph_node5" class="node">
 <title>proc~divaa</title>
-<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
-<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-192 99,-192 99,-168 153,-168 153,-192"/>
+<text text-anchor="middle" x="126" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
 </a>
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
 <title>proc~divaa&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.4,-173.7C161.48,-171.77 170.51,-169.62 179.1,-167.57"/>
+<polygon fill="#000000" stroke="#000000" points="180,-170.95 188.92,-165.22 178.38,-164.14 180,-170.95"/>
+</g>
+<!-- proc~dzero -->
+<g id="proc~~dmess~~CalledByGraph_node6" class="node">
+<title>proc~dzero</title>
+<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
+<text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
+</a>
+</g>
+</g>
+<!-- proc~dzero&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
+<title>proc~dzero&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.4,-144.3C161.48,-146.23 170.51,-148.38 179.1,-150.43"/>
+<polygon fill="#000000" stroke="#000000" points="178.38,-153.86 188.92,-152.78 180,-147.05 178.38,-153.86"/>
+</g>
+<!-- proc~diva&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
+<title>proc~diva&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M143.97,-108.15C156.99,-117.47 175.18,-130.49 189.89,-141.02"/>
 <polygon fill="#000000" stroke="#000000" points="187.92,-143.91 198.08,-146.89 191.99,-138.22 187.92,-143.91"/>
-</g>
-<!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
-<title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M139.68,-247.8C143.99,-243.52 148.79,-238.63 153,-234 169.25,-216.14 186.68,-194.84 198.91,-179.51"/>
-<polygon fill="#000000" stroke="#000000" points="201.99,-181.26 205.46,-171.25 196.51,-176.91 201.99,-181.26"/>
 </g>
 <!-- proc~divacr -->
 <g id="proc~~dmess~~CalledByGraph_node8" class="node">
@@ -654,71 +653,71 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <path fill="none" stroke="#000000" d="M143.24,-66.05C146.61,-68.84 150.03,-71.9 153,-75 172,-94.85 190.24,-120.64 201.95,-138.38"/>
 <polygon fill="#000000" stroke="#000000" points="199.07,-140.37 207.45,-146.85 204.94,-136.56 199.07,-140.37"/>
 </g>
-<!-- proc~divain -->
+<!-- proc~divag -->
 <g id="proc~~dmess~~CalledByGraph_node9" class="node">
-<title>proc~divain</title>
-<g id="a_proc~~dmess~~CalledByGraph_node9"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<title>proc~divag</title>
+<g id="a_proc~~dmess~~CalledByGraph_node9"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-24 99,-24 99,0 153,0 153,-24"/>
-<text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+<text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
 </a>
 </g>
 </g>
-<!-- proc~divain&#45;&gt;proc~dmess -->
+<!-- proc~divag&#45;&gt;proc~dmess -->
 <g id="proc~~dmess~~CalledByGraph_edge8" class="edge">
-<title>proc~divain&#45;&gt;proc~dmess</title>
+<title>proc~divag&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M144.22,-24.12C147.37,-26.82 150.46,-29.83 153,-33 179.07,-65.62 198.01,-110.98 207.69,-137.45"/>
 <polygon fill="#000000" stroke="#000000" points="204.4,-138.66 211.05,-146.91 211,-136.31 204.4,-138.66"/>
 </g>
-<!-- program~drdivdb -->
+<!-- program~drdiva -->
 <g id="proc~~dmess~~CalledByGraph_node10" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~dmess~~CalledByGraph_node10"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-294 0,-294 0,-270 63,-270 63,-294"/>
-<text text-anchor="middle" x="31.5" y="-279.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+<title>program~drdiva</title>
+<g id="a_proc~~dmess~~CalledByGraph_node10"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-108 4.5,-108 4.5,-84 58.5,-84 58.5,-108"/>
+<text text-anchor="middle" x="31.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
 </a>
 </g>
 </g>
-<!-- program~drdivdb&#45;&gt;proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_edge9" class="edge">
-<title>program~drdivdb&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M63.04,-288.6C71.37,-290.4 80.46,-292.37 89.05,-294.23"/>
-<polygon fill="#000000" stroke="#000000" points="88.31,-297.65 98.83,-296.34 89.79,-290.81 88.31,-297.65"/>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_edge13" class="edge">
-<title>program~drdivdb&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M63.04,-274.74C71.37,-272.76 80.46,-270.59 89.05,-268.55"/>
-<polygon fill="#000000" stroke="#000000" points="89.91,-271.94 98.83,-266.22 88.29,-265.13 89.91,-271.94"/>
+<!-- program~drdiva&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge12" class="edge">
+<title>program~drdiva&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M58.76,-96C68.11,-96 78.82,-96 88.86,-96"/>
+<polygon fill="#000000" stroke="#000000" points="89,-99.5 99,-96 89,-92.5 89,-99.5"/>
 </g>
 <!-- proc~divao -->
 <g id="proc~~dmess~~CalledByGraph_node11" class="node">
 <title>proc~divao</title>
 <g id="a_proc~~dmess~~CalledByGraph_node11"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
-<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-150 4.5,-150 4.5,-126 58.5,-126 58.5,-150"/>
-<text text-anchor="middle" x="31.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-24 4.5,-24 4.5,0 58.5,0 58.5,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
 </a>
 </g>
 </g>
 <!-- proc~divao&#45;&gt;proc~divag -->
-<g id="proc~~dmess~~CalledByGraph_edge12" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge14" class="edge">
 <title>proc~divao&#45;&gt;proc~divag</title>
-<path fill="none" stroke="#000000" d="M58.76,-138C68.11,-138 78.82,-138 88.86,-138"/>
-<polygon fill="#000000" stroke="#000000" points="89,-141.5 99,-138 89,-134.5 89,-141.5"/>
+<path fill="none" stroke="#000000" d="M58.76,-12C68.11,-12 78.82,-12 88.86,-12"/>
+<polygon fill="#000000" stroke="#000000" points="89,-15.5 99,-12 89,-8.5 89,-15.5"/>
 </g>
-<!-- program~drdiva -->
+<!-- program~drdivdb -->
 <g id="proc~~dmess~~CalledByGraph_node12" class="node">
-<title>program~drdiva</title>
-<g id="a_proc~~dmess~~CalledByGraph_node12"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-336 4.5,-336 4.5,-312 58.5,-312 58.5,-336"/>
-<text text-anchor="middle" x="31.5" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
+<title>program~drdivdb</title>
+<g id="a_proc~~dmess~~CalledByGraph_node12"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-171 0,-171 0,-147 63,-147 63,-171"/>
+<text text-anchor="middle" x="31.5" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
 </a>
 </g>
 </g>
-<!-- program~drdiva&#45;&gt;proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_edge11" class="edge">
-<title>program~drdiva&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M58.76,-317.75C68.21,-315.51 79.05,-312.93 89.18,-310.52"/>
-<polygon fill="#000000" stroke="#000000" points="90.08,-313.9 99,-308.18 88.46,-307.09 90.08,-313.9"/>
+<!-- program~drdivdb&#45;&gt;proc~divadb -->
+<g id="proc~~dmess~~CalledByGraph_edge10" class="edge">
+<title>program~drdivdb&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M50.33,-171.15C64.03,-180.47 83.14,-193.49 98.61,-204.02"/>
+<polygon fill="#000000" stroke="#000000" points="96.98,-207.15 107.22,-209.89 100.92,-201.37 96.98,-207.15"/>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_edge13" class="edge">
+<title>program~drdivdb&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M50.33,-146.85C64.03,-137.53 83.14,-124.51 98.61,-113.98"/>
+<polygon fill="#000000" stroke="#000000" points="100.92,-116.63 107.22,-108.11 96.98,-110.85 100.92,-116.63"/>
 </g>
 </g>
 </svg>
@@ -825,6 +824,14 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/dmess.html#src">DMESS</a>
+  </div>
+</div>
 
 
 
@@ -1745,6 +1752,328 @@ subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DMESS</span> <span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
+
+      <span class="c">!external         D1MACH</span>
+      <span class="kt">integer          </span><span class="n">MACT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">IDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character        </span><span class="n">TEXT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character        </span><span class="n">FMTSP</span><span class="o">*</span><span class="mi">29</span>
+      <span class="kt">integer          </span><span class="n">ICOL</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">KSMA</span><span class="p">,</span> <span class="n">KBIG</span><span class="p">,</span> <span class="n">KEXE</span><span class="p">,</span> <span class="n">LDFDEF</span><span class="p">,</span> <span class="n">NEG</span>
+      <span class="kt">double precision </span><span class="n">FBIG</span><span class="p">,</span> <span class="n">FOUT</span><span class="p">,</span> <span class="n">FSMA</span> <span class="c">!, D1MACH</span>
+      <span class="k">save </span><span class="n">LDFDEF</span><span class="p">,</span> <span class="n">FMTSP</span>
+      <span class="k">save</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span><span class="p">,</span> <span class="o">/</span><span class="n">CMESSC</span><span class="o">/</span>
+<span class="c">!++ CODE for .C. is inactive</span>
+<span class="c">!      integer  kciwid, kccwid, kcrwid, lbeg, lend, lfprec, lgprec</span>
+<span class="c">!      common /MESSCC/ kciwid,kccwid,kcrwid,lbeg,lend,lfprec,lgprec</span>
+<span class="c">!++ END</span>
+<span class="c">!</span>
+<span class="c">! ************************** Data from common block ********************</span>
+<span class="c">!</span>
+<span class="c">! For comments on these variables, see the listing for MESS.</span>
+<span class="c">!</span>
+      <span class="kt">integer   </span><span class="n">LENBUF</span><span class="p">,</span> <span class="n">MEVBAS</span><span class="p">,</span> <span class="n">MEVLAS</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LENBUF</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEVBAS</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEVLAS</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+      <span class="kt">logical          </span><span class="n">XARG</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARGOK</span>
+      <span class="kt">integer          </span><span class="n">ERRCNT</span><span class="p">,</span> <span class="n">EUNIT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span> <span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">:</span><span class="n">MEVLAS</span><span class="p">),</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span> <span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NDIM</span><span class="p">,</span> <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">TABSPA</span>
+<span class="c">!</span>
+      <span class="kt">character </span><span class="n">BUF</span><span class="o">*</span><span class="p">(</span><span class="n">LENBUF</span><span class="p">),</span> <span class="n">DOLS</span><span class="o">*</span><span class="mi">72</span><span class="p">,</span> <span class="n">FMTC</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTF</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> <span class="n">FMTG</span><span class="o">*</span><span class="mi">15</span><span class="p">,</span>        <span class="p">&amp;</span>
+     <span class="p">&amp;</span>  <span class="n">FMTI</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTJ</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTR</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTT</span><span class="o">*</span><span class="mi">15</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EUNIT</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">MDAT</span><span class="p">,</span> <span class="n">TABSPA</span><span class="p">,</span> <span class="n">ERRCNT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span> <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span> <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXWID</span><span class="p">,</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span> <span class="n">NDIM</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARG</span><span class="p">,</span> <span class="n">XARGOK</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSC</span> <span class="o">/</span> <span class="n">BUF</span><span class="p">,</span> <span class="n">DOLS</span><span class="p">,</span> <span class="n">FMTF</span><span class="p">,</span> <span class="n">FMTG</span><span class="p">,</span> <span class="n">FMTI</span><span class="p">,</span> <span class="n">FMTJ</span><span class="p">,</span> <span class="n">FMTT</span><span class="p">,</span> <span class="n">FMTIM</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">),</span> <span class="n">SUNIT</span><span class="p">)</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">),</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">LDFDEF</span> <span class="o">/</span> <span class="mi">0</span> <span class="o">/</span>
+<span class="c">!</span>
+
+<span class="c">! ************************* Start of Executable Code *******************</span>
+<span class="c">!</span>
+      <span class="n">XARGOK</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">LDFDEF</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">LDFDEF</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">d1mach</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+      <span class="k">end if</span>
+<span class="k">      </span><span class="n">KDFDEF</span> <span class="o">=</span> <span class="n">LDFDEF</span>
+      <span class="n">KDF</span> <span class="o">=</span> <span class="n">KDFDEF</span>
+   <span class="mi">10</span> <span class="k">call </span><span class="n">MESS</span> <span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">)</span>
+<span class="c">!             4    5    6    7    8    9   10   11</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">LENTRY</span><span class="o">-</span><span class="mi">3</span>
+      <span class="n">XARGOK</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+      <span class="n">LDFDEF</span> <span class="o">=</span> <span class="n">KDFDEF</span>
+      <span class="k">return</span>
+<span class="c">!                                      Print from FDAT</span>
+   <span class="mi">20</span> <span class="n">J</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">FOUT</span> <span class="o">=</span> <span class="n">FDAT</span><span class="p">(</span><span class="n">NFDAT</span><span class="p">)</span>
+      <span class="n">NFDAT</span> <span class="o">=</span> <span class="n">NFDAT</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">KSPEC</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">IWG</span>
+<span class="c">!%% messcc.lend = cmessi.lbuf;</span>
+<span class="c">!%% cmessc.buf[messcc.lend] = &#39; &#39;;</span>
+<span class="c">!%% if ((j &gt; 1) &amp;&amp; (cmessc.buf[j-2] &gt;= &#39;0&#39;) &amp;&amp;</span>
+<span class="c">!%%    (cmessc.buf[j-2] &lt;= &#39;9&#39;)) cmessc.buf[j++ - 1] = &#39; &#39;;</span>
+<span class="c">!%% sprintf(&amp;cmessc.buf[j-1], cmessc.fmtg, cmessi.iwg,</span>
+<span class="c">!%%    messcc.lgprec, fout);</span>
+<span class="c">!%% if (cmessc.buf[messcc.lend] != 0) {messcc.lbeg=j; dmessxc(kexe);}</span>
+         <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">J</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTG</span><span class="p">)</span> <span class="n">FOUT</span>
+         <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">FOUT</span> <span class="o">&lt;=</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">FOUT</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">FDAT</span><span class="p">(</span><span class="n">NFDAT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+          <span class="n">FOUT</span> <span class="o">=</span> <span class="mf">0.D0</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">NEG</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">end if</span>
+<span class="k">      else if</span> <span class="p">(</span><span class="n">FOUT</span> <span class="o">&gt;</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">NEG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">else</span>
+<span class="c">!               Must be a Nan</span>
+        <span class="n">NEG</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FBIG</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">FSMA</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">IWF</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
+      <span class="k">end if</span>
+
+<span class="k">      </span><span class="n">FBIG</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FOUT</span><span class="p">)</span>
+      <span class="n">FSMA</span> <span class="o">=</span> <span class="n">FBIG</span>
+      <span class="n">IWF</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c">!                                      Get the format.</span>
+   <span class="mi">40</span> <span class="k">continue</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">KDF</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">KDF</span> <span class="o">=</span> <span class="n">KDFDEF</span>
+      <span class="n">KEXE</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">FBIG</span> <span class="o">/=</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">FSMA</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="n">FSMA</span> <span class="o">=</span> <span class="mf">1.D0</span>
+        <span class="n">FBIG</span> <span class="o">=</span> <span class="n">FBIG</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.D0</span> <span class="o">+</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span> <span class="o">*</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span><span class="o">**</span><span class="nb">abs</span><span class="p">(</span><span class="n">KDF</span><span class="p">))</span>
+        <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">+</span> <span class="n">NEG</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">KDF</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">KSMA</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">KSMA</span> <span class="o">=</span> <span class="o">-</span><span class="n">log10</span><span class="p">(</span><span class="n">FSMA</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">FSMA</span> <span class="o">&lt;</span> <span class="mf">1.D0</span><span class="p">)</span> <span class="n">KSMA</span> <span class="o">=</span> <span class="n">KSMA</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">end if</span>
+<span class="k">        </span><span class="n">KBIG</span> <span class="o">=</span> <span class="n">log10</span><span class="p">(</span><span class="n">FBIG</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">FBIG</span> <span class="o">&lt;</span> <span class="mf">1.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">KBIG</span> <span class="o">=</span> <span class="n">KBIG</span> <span class="o">-</span> <span class="mi">1</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">FBIG</span> <span class="o">&gt;</span> <span class="mf">1.D0</span> <span class="o">-</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span><span class="o">**</span><span class="nb">abs</span><span class="p">(</span><span class="n">KDF</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="n">KBIG</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">end if</span>
+<span class="c">!         This is to get ininities out (at least with g77)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">KBIG</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">KBIG</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">))</span> <span class="n">KBIG</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">KSMA</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">KSMA</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">))</span> <span class="n">KSMA</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">KBIG</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">KSMA</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!               Want to use an &quot;E&quot; format</span>
+          <span class="n">KEXE</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="nb">dble</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">KBIG</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">KSMA</span><span class="p">))</span><span class="o">+</span><span class="mf">1.D-5</span><span class="p">))))</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">KDF</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">ID</span> <span class="o">=</span> <span class="o">-</span><span class="n">KDF</span>
+          <span class="k">else</span>
+<span class="k">            </span><span class="n">ID</span> <span class="o">=</span> <span class="n">KDF</span> <span class="o">-</span> <span class="mi">1</span>
+          <span class="k">end if</span>
+<span class="k">          </span><span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">+</span> <span class="n">ID</span> <span class="o">+</span> <span class="n">KEXE</span>
+<span class="c">!++ CODE for ~.C. is active</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">LENTRY</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">-</span> <span class="mi">1</span>
+          <span class="k">write</span> <span class="p">(</span><span class="n">FMTF</span><span class="p">,</span> <span class="s1">&#39;(&#39;&#39;(1P,99(E&#39;&#39;,I2,&#39;&#39;.&#39;&#39;,I2,&#39;&#39;E&#39;&#39;,I1,&#39;&#39;:1X))&#39;&#39;)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>      <span class="n">IWF</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">KEXE</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="c">!++ CODE for .C. is inactive</span>
+<span class="c">!c WATCOM C and others (?) man need an extra 1 here??</span>
+<span class="c">!%%    strcpy(cmessc.fmtf, &quot;%*.*E &quot;);</span>
+<span class="c">!      lfprec = id</span>
+<span class="c">!++ END</span>
+          <span class="n">go</span> <span class="n">to</span> <span class="mi">60</span>
+        <span class="k">end if</span>
+<span class="k">      else</span>
+<span class="k">        </span><span class="n">KSMA</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">KBIG</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+      <span class="k">end if</span>
+<span class="c">!               Want to use an &quot;F&quot; format</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">KDF</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">ID</span> <span class="o">=</span> <span class="o">-</span><span class="n">KDF</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">ID</span> <span class="o">=</span> <span class="n">KDF</span> <span class="o">+</span> <span class="n">KSMA</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="k">end if</span>
+<span class="c">!++ CODE for ~.C. is active</span>
+      <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">+</span> <span class="n">ID</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">KBIG</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">write</span> <span class="p">(</span><span class="n">FMTF</span><span class="p">,</span> <span class="s1">&#39;(&#39;&#39;(0P,99(F&#39;&#39;,I2,&#39;&#39;.&#39;&#39;,I2,&#39;&#39;:1X))&#39;&#39;)&#39;</span><span class="p">)</span> <span class="n">IWF</span><span class="p">,</span><span class="n">ID</span>
+<span class="c">!++ CODE for .C. is inactive</span>
+<span class="c">!      IWF = IWF + ID + max(KBIG, 0)</span>
+<span class="c">!%%    strcpy(cmessc.fmtf, &quot;%*.*f &quot;);</span>
+<span class="c">!      lfprec = id</span>
+<span class="c">!++ END</span>
+   <span class="mi">60</span> <span class="k">if</span> <span class="p">(</span><span class="n">LENTRY</span> <span class="o">/=</span> <span class="mi">4</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">LENTRY</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+<span class="c">!               Take care of setup for sparse vector</span>
+        <span class="nb">IMAG</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">do </span><span class="mi">70</span> <span class="n">J</span> <span class="o">=</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LASTI</span>
+          <span class="nb">IMAG</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="nb">IMAG</span><span class="p">),</span> <span class="n">IDAT</span><span class="p">(</span><span class="n">J</span><span class="p">))</span>
+   <span class="mi">70</span>   <span class="k">continue</span>
+<span class="k">        call </span><span class="n">MESSFI</span>
+<span class="c">!  Format forms:     12345678901234567890   123456789012345678  1234567</span>
+<span class="c">!                    (1P,99(Edd.ddEd:1X))   (0P,99(Fxx.xx:1X))  (99Idd)</span>
+<span class="c">!++ CODE for ~.C. is active</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">FMTF</span><span class="p">(</span><span class="mi">8</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">FMTSP</span><span class="o">=</span>                                                        <span class="p">&amp;</span>
+     <span class="p">&amp;</span>      <span class="s1">&#39;(99(&#39;</span> <span class="o">//</span> <span class="n">FMTI</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39;&#39;&#39;) &#39;&#39;,0P,&#39;</span> <span class="o">//</span> <span class="n">FMTF</span><span class="p">(</span><span class="mi">8</span><span class="p">:</span><span class="mi">18</span><span class="p">)</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">FMTSP</span><span class="o">=</span>                                                        <span class="p">&amp;</span>
+     <span class="p">&amp;</span>     <span class="s1">&#39;(99(&#39;</span> <span class="o">//</span> <span class="n">FMTI</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39;&#39;&#39;)&#39;&#39; ,1P,&#39;</span> <span class="o">//</span> <span class="n">FMTF</span><span class="p">(</span><span class="mi">8</span><span class="p">:</span><span class="mi">20</span><span class="p">)</span>
+        <span class="k">end if</span>
+<span class="c">!++ CODE for .C. is inactive</span>
+<span class="c">!c Using cmessc.fmtf in place of fmtsp</span>
+<span class="c">!%%      if (cmessc.fmtf[4] == &#39;f&#39;) {</span>
+<span class="c">!%%      strcpy(cmessc.fmtf, &quot;%*ld) %*.*f &quot;);</span>
+<span class="c">!%%      kexe = 0;</span>
+<span class="c">!%%      }</span>
+<span class="c">!%%      else strcpy(cmessc.fmtf, &quot;%*ld) %*.*E &quot;);</span>
+<span class="c">!%%      cmessi.iwf++;</span>
+<span class="c">!++ END</span>
+        <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWF</span> <span class="o">+</span> <span class="n">KDI</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+      <span class="k">end if</span>
+<span class="c">!</span>
+      <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">IWF</span>
+<span class="c">!%% messcc.lend = cmessi.lbuf;</span>
+<span class="c">!%% cmessc.buf[messcc.lend] = &#39; &#39;;</span>
+<span class="c">!%% if ((j &gt; 1) &amp;&amp; (cmessc.buf[j-2] &gt;= &#39;0&#39;) &amp;&amp;</span>
+<span class="c">!%%    (cmessc.buf[j-2] &lt;= &#39;9&#39;)) cmessc.buf[j++ - 1] = &#39; &#39;;</span>
+<span class="c">!%% sprintf(&amp;cmessc.buf[j-1], cmessc.fmtf, cmessi.iwf,</span>
+<span class="c">!%%    messcc.lfprec, fout);</span>
+<span class="c">!%% if (cmessc.buf[messcc.lend] != 0) {messcc.lbeg=j; dmessxc(kexe);}</span>
+      <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">J</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span><span class="n">FMTF</span><span class="p">)</span> <span class="n">FOUT</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+<span class="c">!                                     Get format for a vector or matrix</span>
+  <span class="mi">100</span> <span class="n">ICOL</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">LOCBEG</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">NEG</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">else if</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">LOCBEG</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">NEG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">else</span>
+<span class="c">!               Must be a Nan</span>
+        <span class="n">NEG</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FBIG</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">FSMA</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+      <span class="k">end if</span>
+
+<span class="k">      </span><span class="n">FBIG</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">LOCBEG</span><span class="p">))</span>
+      <span class="n">FSMA</span> <span class="o">=</span> <span class="n">FBIG</span>
+  <span class="mi">110</span> <span class="k">do </span><span class="mi">120</span> <span class="n">J</span> <span class="o">=</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">INC</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          if</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+          <span class="k">else</span>
+<span class="k">            </span><span class="n">NEG</span> <span class="o">=</span> <span class="mi">1</span>
+          <span class="k">end if</span>
+<span class="k">        end if</span>
+<span class="k">        </span><span class="n">FBIG</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">FBIG</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">FSMA</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">FSMA</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">))</span>
+        <span class="k">else if</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span> <span class="o">/=</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">FSMA</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">FSMA</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">J</span><span class="p">)))</span>
+        <span class="k">end if</span>
+<span class="k">  </span><span class="mi">120</span> <span class="k">continue</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">NCOL</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">ICOL</span> <span class="o">=</span> <span class="n">ICOL</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="n">LOCBEG</span> <span class="o">=</span> <span class="n">LOCBEG</span> <span class="o">+</span> <span class="n">NDIM</span>
+         <span class="n">LASTI</span> <span class="o">=</span> <span class="n">LASTI</span> <span class="o">+</span> <span class="n">NDIM</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">ICOL</span> <span class="o">&lt;=</span> <span class="n">NCOL</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+      <span class="k">end if</span>
+<span class="k">      </span><span class="n">IWF</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
+<span class="c">!                                    Floating point vector output</span>
+  <span class="mi">200</span> <span class="k">continue</span>
+<span class="c">!%% messcc.lend = cmessi.lstrt-1;</span>
+<span class="c">!%% neg = 0;</span>
+<span class="c">!%% for (j=cmessi.mpt; j&lt;cmessi.mpt+cmessi.kline; j++){</span>
+<span class="c">!%%   messcc.lbeg = messcc.lend;</span>
+<span class="c">!%%   messcc.lend = messcc.lend + cmessi.iwf;</span>
+<span class="c">!%%   if (kexe) {</span>
+<span class="c">!%%     if (kexe == 5)</span>
+<span class="c">!%%        neg = ((fabs(fdat[cmessi.inc*j-1]) &lt; 1.e100)) ? -1: 0;</span>
+<span class="c">!%%     else if (kexe ==3) neg = 1;</span>
+<span class="c">!%%   }</span>
+<span class="c">!%%   sprintf(&amp;cmessc.buf[messcc.lbeg], cmessc.fmtf,</span>
+<span class="c">!%%    cmessi.iwf+neg, messcc.lfprec, fdat[cmessi.inc*j-1]);</span>
+<span class="c">!%%   if ((kexe == 3) || ((kexe == 5) &amp;&amp; neg)) dmessxc(kexe); }</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span><span class="n">FMTF</span><span class="p">)(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="n">MPT</span><span class="p">,</span><span class="n">MPT</span><span class="o">+</span><span class="n">INC</span><span class="o">*</span><span class="p">(</span><span class="n">KLINE</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">INC</span><span class="p">)</span>
+
+
+<span class="c">!      print &#39;(/A/)&#39;, BUF(1:LBUF)</span>
+
+      <span class="n">MPT</span> <span class="o">=</span> <span class="n">MPT</span> <span class="o">+</span> <span class="n">KLINE</span> <span class="o">*</span> <span class="n">INC</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+<span class="c">!                                    Floating point matrix output</span>
+  <span class="mi">300</span> <span class="k">continue</span>
+<span class="c">!%% messcc.lend = cmessi.lstrt-1;</span>
+<span class="c">!%% neg = 0;</span>
+<span class="c">!%% for (j=cmessi.mpt; j&lt;=cmessi.lasti; j+=cmessi.ndim){</span>
+<span class="c">!%%    messcc.lbeg = messcc.lend;</span>
+<span class="c">!%%    messcc.lend = messcc.lend + cmessi.iwf;</span>
+<span class="c">!%%   if (kexe) {</span>
+<span class="c">!%%     if (kexe == 5) neg = ((fabs(fdat[j-1]) &lt; 1.e100)) ? -1: 0;</span>
+<span class="c">!%%     else if (kexe ==3) neg = 1;</span>
+<span class="c">!%%   }</span>
+<span class="c">!C%%    if ((messcc.lbeg &gt; 1) &amp;&amp; (cmessc.buf[messcc.lbeg-1] &gt;= &#39;0&#39;) &amp;&amp;</span>
+<span class="c">!C%%       (cmessc.buf[messcc.lbeg-1] &lt;= &#39;9&#39;))</span>
+<span class="c">!C%%       cmessc.buf[messcc.lbeg++] = &#39; &#39;;</span>
+<span class="c">!%%    sprintf(&amp;cmessc.buf[messcc.lbeg],</span>
+<span class="c">!%%       cmessc.fmtf, cmessi.iwf+neg, messcc.lfprec, fdat[j-1]);</span>
+<span class="c">!%%    if ((kexe == 3) || ((kexe == 5) &amp;&amp; neg)) dmessxc(kexe); }</span>
+      <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTF</span><span class="p">)</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">K</span> <span class="o">=</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">NDIM</span><span class="p">)</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+<span class="c">!                                    Table output</span>
+  <span class="mi">400</span> <span class="k">continue</span>
+<span class="c">!%% messcc.lend = cmessi.lstrt-1;</span>
+<span class="c">!%% neg=0;</span>
+<span class="c">!%% for (j=cmessi.mpt; j&lt;cmessi.mpt+cmessi.kline; j++){</span>
+<span class="c">!%%    messcc.lbeg = messcc.lend;</span>
+<span class="c">!%%    messcc.lend = messcc.lend + cmessi.iwf;</span>
+<span class="c">!C%%    if ((messcc.lbeg &gt; 1) &amp;&amp; (cmessc.buf[messcc.lbeg-1] &gt;= &#39;0&#39;) &amp;&amp;</span>
+<span class="c">!C%%       (cmessc.buf[messcc.lbeg-1] &lt;= &#39;9&#39;))</span>
+<span class="c">!C%%       cmessc.buf[messcc.lbeg++] = &#39; &#39;;</span>
+<span class="c">!%%    sprintf(&amp;cmessc.buf[messcc.lbeg], cmessc.fmtf,</span>
+<span class="c">!%%       cmessi.iwf+neg, messcc.lfprec, fdat[j-1]); }</span>
+      <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTF</span><span class="p">)</span> <span class="p">(</span><span class="n">FDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">K</span> <span class="o">=</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">MPT</span><span class="o">+</span><span class="n">KLINE</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+
+
+<span class="c">!                                   Sparse vector output</span>
+  <span class="mi">500</span> <span class="k">continue</span>
+<span class="c">!%%  messcc.lend = -1;</span>
+<span class="c">!%%  neg = 0;</span>
+<span class="c">!%%  for (j=cmessi.mpt; j&lt;cmessi.mpt+cmessi.kline; j++) {</span>
+<span class="c">!%%    messcc.lbeg = messcc.lend + 1;</span>
+<span class="c">!%%     messcc.lend = messcc.lend + cmessi.iwf;</span>
+<span class="c">!%%   if (kexe) {</span>
+<span class="c">!%%     if (kexe == 5) neg = ((fabs(fdat[j-1]) &lt; 1.e100)) ? -1: 0;</span>
+<span class="c">!%%     else if (kexe == 3) neg = 1;</span>
+<span class="c">!%%   }</span>
+<span class="c">!%%   sprintf(&amp;cmessc.buf[messcc.lbeg], cmessc.fmtf, cmessi.kdi,</span>
+<span class="c">!%%     idat[j-1],cmessi.iwf-cmessi.kdi-2+neg,messcc.lfprec,fdat[j-1]);</span>
+<span class="c">!%%     if ((kexe == 3) || ((kexe == 5) &amp;&amp; neg)) dmessxc(kexe); }</span>
+      <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTSP</span><span class="p">)</span> <span class="p">(</span><span class="n">IDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span><span class="n">FDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span><span class="n">K</span><span class="o">=</span><span class="n">MPT</span><span class="p">,</span><span class="n">MPT</span><span class="o">+</span><span class="n">KLINE</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">MPT</span> <span class="o">=</span> <span class="n">MPT</span> <span class="o">+</span> <span class="n">KLINE</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+
+    <span class="k">end subroutine </span><span class="n">dmess</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

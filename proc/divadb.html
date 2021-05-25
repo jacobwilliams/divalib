@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">DIVADB</li>
@@ -196,6 +202,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divadb.html#src">DIVADB</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -203,7 +217,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
+public subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
     
     
    
@@ -212,6 +226,44 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   
 
 
+    
+    <ul>
+<li>2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.</li>
+<li>2000-12-01 DIVADB Krogh Removed unused parameter METXTF.</li>
+<li>1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.</li>
+<li>1996-03-25 DIVADB Krogh Introduced TEXT1-TEXT4 to comply with F77.</li>
+<li>1996-01-19 DIVADB Krogh Changed NTEXT to TEXT to agree with doc.</li>
+<li>1995-04-26 DIVADB Krogh Fixed print of V &amp; G's for high order eqs.</li>
+<li>1994-11-11 DIVADB Krogh Declared all vars.</li>
+<li>1994-10-20 DIVADB Krogh Changes to use M77CON</li>
+<li>1994-09-12 DIVADB Krogh Added CHGTYP code.</li>
+<li>1994-03-07 DIVADB Krogh Allow larger order in single precision.</li>
+<li>1993-05-03 DIVADB Krogh Additions for Conversion to C.</li>
+<li>1993-04-14 DIVADB Krogh Changes for new MESS usage.</li>
+<li>1992-04-08 DIVADB Krogh Unused labels 10 and 60 removed.</li>
+<li>1992-03-10 DIVADB Krogh Fixed value for KDIM in single p. version.</li>
+<li>1992-02-17 DIVADB Krogh Made tabs depend on # digits output.</li>
+<li>1991-11-04 DIVADB Krogh Switched to use MESS, DMESS</li>
+<li>1990-03-08 DIVADB Krogh Unused stiff vars. set to 0.</li>
+<li>1989-07-21 DIVADB Krogh Code for integrating discontinuities</li>
+<li>1988-06-07 DIVADB Krogh Dim. of IVC2 and DVC2 upped by 1 (old bug)</li>
+<li>1987-12-07 DIVADB Krogh Initial code.</li>
+</ul>
+<p>--D replaces "?": ?IVADB, ?IVAEV, ?IVAMC, ?IVASC, ?MESS</p>
+<p>SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR</p>
+<p>LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
+    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
+    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
+           ALL PERTINENT CONTENTS OF KORD, AND TOL.
+    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
+    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">N2</span><span class="o">=</span><span class="mi">1</span>   <span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">PRINT</span> <span class="nv">ANY</span> <span class="nv">VARIABLES</span> <span class="nv">INTERNAL</span> <span class="nv">TO</span> <span class="nv">THE</span> <span class="nv">INTEGRATOR</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">2</span>   <span class="nv">PRINT</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">INTERPOLATION</span> <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">3</span>   <span class="nv">ABOVE</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">MAIN</span> <span class="nv">INTEG</span>. <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">4</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">3</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">XI</span>,<span class="nv">BETA</span>,<span class="nv">ALPHA</span>, <span class="nv">FIRST</span>
+       <span class="nv">COLUMN</span> <span class="nv">OF</span> <span class="nv">G</span>, <span class="nv">GS</span>,<span class="nv">RBQ</span>,<span class="nv">SIGMA</span>
+<span class="nv">N2</span><span class="o">=</span><span class="mi">5</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">4</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">G</span>,<span class="nv">D</span>,<span class="nv">DS</span>,<span class="nv">V</span>
+</code></pre></div>
     
 
     <h3>Arguments</h3>
@@ -237,43 +289,7 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>LPRINT</strong></td><td><blockquote>
-<p>2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.
-2000-12-01 DIVADB Krogh Removed unused parameter METXTF.
-1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.
-1996-03-25 DIVADB Krogh Introduced TEXT1-TEXT4 to comply with F77.
-1996-01-19 DIVADB Krogh Changed NTEXT to TEXT to agree with doc.
-1995-04-26 DIVADB Krogh Fixed print of V &amp; G's for high order eqs.
-1994-11-11 DIVADB Krogh Declared all vars.
-1994-10-20 DIVADB Krogh Changes to use M77CON
-1994-09-12 DIVADB Krogh Added CHGTYP code.
-1994-03-07 DIVADB Krogh Allow larger order in single precision.
-1993-05-03 DIVADB Krogh Additions for Conversion to C.
-1993-04-14 DIVADB Krogh Changes for new MESS usage.
-1992-04-08 DIVADB Krogh Unused labels 10 and 60 removed.
-1992-03-10 DIVADB Krogh Fixed value for KDIM in single p. version.
-1992-02-17 DIVADB Krogh Made tabs depend on # digits output.
-1991-11-04 DIVADB Krogh Switched to use MESS, DMESS
-1990-03-08 DIVADB Krogh Unused stiff vars. set to 0.
-1989-07-21 DIVADB Krogh Code for integrating discontinuities
-1988-06-07 DIVADB Krogh Dim. of IVC2 and DVC2 upped by 1 (old bug)
-1987-12-07 DIVADB Krogh Initial code.</p>
-</blockquote>
-<p>--D replaces "?": ?IVADB, ?IVAEV, ?IVAMC, ?IVASC, ?MESS</p>
-<p>SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR</p>
-<p>LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
-    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
-    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
-           ALL PERTINENT CONTENTS OF KORD, AND TOL.
-    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
-    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">N2</span><span class="o">=</span><span class="mi">1</span>   <span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">PRINT</span> <span class="nv">ANY</span> <span class="nv">VARIABLES</span> <span class="nv">INTERNAL</span> <span class="nv">TO</span> <span class="nv">THE</span> <span class="nv">INTEGRATOR</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">2</span>   <span class="nv">PRINT</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">INTERPOLATION</span> <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">3</span>   <span class="nv">ABOVE</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">MAIN</span> <span class="nv">INTEG</span>. <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">4</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">3</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">XI</span>,<span class="nv">BETA</span>,<span class="nv">ALPHA</span>, <span class="nv">FIRST</span>
-       <span class="nv">COLUMN</span> <span class="nv">OF</span> <span class="nv">G</span>, <span class="nv">GS</span>,<span class="nv">RBQ</span>,<span class="nv">SIGMA</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">5</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">4</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">G</span>,<span class="nv">D</span>,<span class="nv">DS</span>,<span class="nv">V</span>
-</code></pre></div></td>
+  <td><strong>LPRINT</strong></td><td></td>
   
 </tr>
 
@@ -283,7 +299,7 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-tspecs~3"></span>double precision</td>
+  <td><span class="anchor" id="variable-tspecs~6"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -298,7 +314,7 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~6"></span>double precision</td>
+  <td><span class="anchor" id="variable-y~12"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -313,7 +329,7 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-f~7"></span>double precision</td>
+  <td><span class="anchor" id="variable-f~13"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -328,48 +344,12 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-kord~7"></span>integer</td>
+  <td><span class="anchor" id="variable-kord~13"></span>integer</td>
   <td></td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td><blockquote>
-<p>2009-11-04 DIVADB Krogh Included TOLG, initilized the unitialized.
-2000-12-01 DIVADB Krogh Removed unused parameter METXTF.
-1996-07-02 DIVADB Krogh Transpose flag for matrix output in C.
-1996-03-25 DIVADB Krogh Introduced TEXT1-TEXT4 to comply with F77.
-1996-01-19 DIVADB Krogh Changed NTEXT to TEXT to agree with doc.
-1995-04-26 DIVADB Krogh Fixed print of V &amp; G's for high order eqs.
-1994-11-11 DIVADB Krogh Declared all vars.
-1994-10-20 DIVADB Krogh Changes to use M77CON
-1994-09-12 DIVADB Krogh Added CHGTYP code.
-1994-03-07 DIVADB Krogh Allow larger order in single precision.
-1993-05-03 DIVADB Krogh Additions for Conversion to C.
-1993-04-14 DIVADB Krogh Changes for new MESS usage.
-1992-04-08 DIVADB Krogh Unused labels 10 and 60 removed.
-1992-03-10 DIVADB Krogh Fixed value for KDIM in single p. version.
-1992-02-17 DIVADB Krogh Made tabs depend on # digits output.
-1991-11-04 DIVADB Krogh Switched to use MESS, DMESS
-1990-03-08 DIVADB Krogh Unused stiff vars. set to 0.
-1989-07-21 DIVADB Krogh Code for integrating discontinuities
-1988-06-07 DIVADB Krogh Dim. of IVC2 and DVC2 upped by 1 (old bug)
-1987-12-07 DIVADB Krogh Initial code.</p>
-</blockquote>
-<p>--D replaces "?": ?IVADB, ?IVAEV, ?IVAMC, ?IVASC, ?MESS</p>
-<p>SUBROUTINE TO GIVE DEBUG PRINT FOR VARIABLE ORDER INTEGRATOR</p>
-<p>LET ABS(LPRINT)=  10*N1 + N2     (N1,N2 DIGITS)
-    N1=1   DO NOT PRINT ANY VARIABLES EXTERNAL TO THE INTEGRATOR
-    N1=2   PRINT  TSPECS, CURRENT Y, PAST Y, CURRENT F,
-           ALL PERTINENT CONTENTS OF KORD, AND TOL.
-    N1=3   ABOVE + DIFFERENCE TABLES UP TO HIGHEST DIFFERENCE USED
-    N1=4   SAME AS N1=1 + ALL IN STORAGE ALLOCATED FOR DIFFERENCES</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">N2</span><span class="o">=</span><span class="mi">1</span>   <span class="k">DO</span> <span class="nv">NOT</span> <span class="nv">PRINT</span> <span class="nv">ANY</span> <span class="nv">VARIABLES</span> <span class="nv">INTERNAL</span> <span class="nv">TO</span> <span class="nv">THE</span> <span class="nv">INTEGRATOR</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">2</span>   <span class="nv">PRINT</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">INTERPOLATION</span> <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">3</span>   <span class="nv">ABOVE</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">SCALAR</span> <span class="nv">VARIABLES</span> <span class="nv">IN</span> <span class="nv">MAIN</span> <span class="nv">INTEG</span>. <span class="nv">COMMON</span> <span class="nv">BLOCK</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">4</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">3</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">XI</span>,<span class="nv">BETA</span>,<span class="nv">ALPHA</span>, <span class="nv">FIRST</span>
-       <span class="nv">COLUMN</span> <span class="nv">OF</span> <span class="nv">G</span>, <span class="nv">GS</span>,<span class="nv">RBQ</span>,<span class="nv">SIGMA</span>
-<span class="nv">N2</span><span class="o">=</span><span class="mi">5</span>   <span class="nv">SAME</span> <span class="nv">AS</span> <span class="nv">N1</span><span class="o">=</span><span class="mi">4</span> <span class="o">+</span> <span class="nv">ALL</span> <span class="nv">USED</span> <span class="nv">IN</span> <span class="nv">ARRAYS</span> <span class="nv">G</span>,<span class="nv">D</span>,<span class="nv">DS</span>,<span class="nv">V</span>
-</code></pre></div></td>
+  <td><strong>KORD</strong>(*)</td><td></td>
   
 </tr>
 
@@ -408,175 +388,160 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~divadb~~CallsGraph Pages: 1 -->
-<svg id="procdivadbCallsGraph" width="430pt" height="276pt"
- viewBox="0.00 0.00 430.00 276.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~divadb~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 272)">
+<svg id="procdivadbCallsGraph" width="428pt" height="217pt"
+ viewBox="0.00 0.00 428.00 216.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~divadb~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 212.75)">
 <title>proc~~divadb~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-272 426,-272 426,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-212.75 424,-212.75 424,4 -4,4"/>
 <!-- proc~divadb -->
 <g id="proc~~divadb~~CallsGraph_node1" class="node">
 <title>proc~divadb</title>
-<polygon fill="none" stroke="black" points="54,-106 0,-106 0,-82 54,-82 54,-106"/>
-<text text-anchor="middle" x="27" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
-</g>
-<!-- proc~messft -->
-<g id="proc~~divadb~~CallsGraph_node2" class="node">
-<title>proc~messft</title>
-<g id="a_proc~~divadb~~CallsGraph_node2"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
-<polygon fill="#d9534f" stroke="#d9534f" points="145,-106 90,-106 90,-82 145,-82 145,-106"/>
-<text text-anchor="middle" x="117.5" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
-</a>
-</g>
-</g>
-<!-- proc~divadb&#45;&gt;proc~messft -->
-<g id="proc~~divadb~~CallsGraph_edge1" class="edge">
-<title>proc~divadb&#45;&gt;proc~messft</title>
-<path fill="none" stroke="#000000" d="M54.07,-94C62.12,-94 71.14,-94 79.76,-94"/>
-<polygon fill="#000000" stroke="#000000" points="80,-97.5 90,-94 80,-90.5 80,-97.5"/>
-</g>
-<!-- proc~dmess -->
-<g id="proc~~divadb~~CallsGraph_node3" class="node">
-<title>proc~dmess</title>
-<g id="a_proc~~divadb~~CallsGraph_node3"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="144.5,-64 90.5,-64 90.5,-40 144.5,-40 144.5,-64"/>
-<text text-anchor="middle" x="117.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
-</a>
-</g>
-</g>
-<!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~divadb~~CallsGraph_edge2" class="edge">
-<title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M53.6,-81.85C62.4,-77.67 72.42,-72.92 81.82,-68.46"/>
-<polygon fill="#000000" stroke="#000000" points="83.43,-71.57 90.96,-64.12 80.42,-65.25 83.43,-71.57"/>
+<polygon fill="none" stroke="black" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
+<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
 </g>
 <!-- proc~mess -->
-<g id="proc~~divadb~~CallsGraph_node4" class="node">
+<g id="proc~~divadb~~CallsGraph_node2" class="node">
 <title>proc~mess</title>
-<g id="a_proc~~divadb~~CallsGraph_node4"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="236,-146 182,-146 182,-122 236,-122 236,-146"/>
-<text text-anchor="middle" x="209" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESS</text>
+<g id="a_proc~~divadb~~CallsGraph_node2"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
+<polygon fill="#d9534f" stroke="#d9534f" points="235,-106 181,-106 181,-82 235,-82 235,-106"/>
+<text text-anchor="middle" x="208" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESS</text>
 </a>
 </g>
 </g>
 <!-- proc~divadb&#45;&gt;proc~mess -->
-<g id="proc~~divadb~~CallsGraph_edge3" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge2" class="edge">
 <title>proc~divadb&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M54.26,-103.98C65.19,-107.85 78.09,-112.05 90,-115 117.07,-121.71 148.24,-126.62 171.75,-129.76"/>
-<polygon fill="#000000" stroke="#000000" points="171.6,-133.27 181.97,-131.08 172.5,-126.32 171.6,-133.27"/>
+<path fill="none" stroke="#000000" d="M54.26,-63.97C65.19,-67.84 78.09,-72.04 90,-75 116.67,-81.63 147.35,-86.52 170.61,-89.67"/>
+<polygon fill="#000000" stroke="#000000" points="170.36,-93.17 180.73,-91 171.27,-86.23 170.36,-93.17"/>
 </g>
-<!-- proc~messft&#45;&gt;proc~mess -->
-<g id="proc~~divadb~~CallsGraph_edge5" class="edge">
-<title>proc~messft&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M145.35,-106C153.91,-109.83 163.52,-114.12 172.59,-118.17"/>
-<polygon fill="#000000" stroke="#000000" points="171.22,-121.4 181.78,-122.28 174.08,-115.01 171.22,-121.4"/>
-</g>
-<!-- proc~messpr -->
-<g id="proc~~divadb~~CallsGraph_node7" class="node">
-<title>proc~messpr</title>
-<g id="a_proc~~divadb~~CallsGraph_node7"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
-<polygon fill="#d9534f" stroke="#d9534f" points="330,-104 275,-104 275,-80 330,-80 330,-104"/>
-<text text-anchor="middle" x="302.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
+<!-- proc~messft -->
+<g id="proc~~divadb~~CallsGraph_node3" class="node">
+<title>proc~messft</title>
+<g id="a_proc~~divadb~~CallsGraph_node3"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
+<polygon fill="#d9534f" stroke="#d9534f" points="145,-66 90,-66 90,-42 145,-42 145,-66"/>
+<text text-anchor="middle" x="117.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
 </a>
 </g>
 </g>
-<!-- proc~messft&#45;&gt;proc~messpr -->
-<g id="proc~~divadb~~CallsGraph_edge4" class="edge">
-<title>proc~messft&#45;&gt;proc~messpr</title>
-<path fill="none" stroke="#000000" d="M145.11,-93.71C176.55,-93.37 229.06,-92.79 264.46,-92.4"/>
-<polygon fill="#000000" stroke="#000000" points="264.9,-95.9 274.86,-92.29 264.82,-88.9 264.9,-95.9"/>
+<!-- proc~divadb&#45;&gt;proc~messft -->
+<g id="proc~~divadb~~CallsGraph_edge3" class="edge">
+<title>proc~divadb&#45;&gt;proc~messft</title>
+<path fill="none" stroke="#000000" d="M54.07,-54C62.12,-54 71.14,-54 79.76,-54"/>
+<polygon fill="#000000" stroke="#000000" points="80,-57.5 90,-54 80,-50.5 80,-57.5"/>
+</g>
+<!-- proc~dmess -->
+<g id="proc~~divadb~~CallsGraph_node4" class="node">
+<title>proc~dmess</title>
+<g id="a_proc~~divadb~~CallsGraph_node4"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
+<polygon fill="#d9534f" stroke="#d9534f" points="235,-24 181,-24 181,0 235,0 235,-24"/>
+<text text-anchor="middle" x="208" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~divadb~~CallsGraph_edge1" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M54.29,-44.13C65.22,-40.28 78.11,-36.06 90,-33 116.69,-26.13 147.37,-20.71 170.62,-17.1"/>
+<polygon fill="#000000" stroke="#000000" points="171.37,-20.53 180.74,-15.57 170.33,-13.6 171.37,-20.53"/>
 </g>
 <!-- proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_node6" class="node">
+<g id="proc~~divadb~~CallsGraph_node5" class="node">
 <title>proc~messfi</title>
-<g id="a_proc~~divadb~~CallsGraph_node6"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="422,-188 368,-188 368,-164 422,-164 422,-188"/>
-<text text-anchor="middle" x="395" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+<g id="a_proc~~divadb~~CallsGraph_node5"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="420,-106 366,-106 366,-82 420,-82 420,-106"/>
+<text text-anchor="middle" x="393" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
 </a>
 </g>
 </g>
-<!-- proc~dmess&#45;&gt;proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_edge7" class="edge">
-<title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M144.53,-47.2C187.29,-40.76 273.47,-34.05 332,-71 362.07,-89.98 379.38,-129.27 387.72,-154.04"/>
-<polygon fill="#000000" stroke="#000000" points="384.41,-155.18 390.76,-163.66 391.08,-153.07 384.41,-155.18"/>
-</g>
-<!-- proc~d1mach -->
-<g id="proc~~divadb~~CallsGraph_node10" class="node">
-<title>proc~d1mach</title>
-<g id="a_proc~~divadb~~CallsGraph_node10"><a xlink:href=".././proc/d1mach.html" xlink:title="d1mach">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="237,-24 181,-24 181,0 237,0 237,-24"/>
-<text text-anchor="middle" x="209" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">d1mach</text>
-</a>
-</g>
-</g>
-<!-- proc~dmess&#45;&gt;proc~d1mach -->
-<g id="proc~~divadb~~CallsGraph_edge6" class="edge">
-<title>proc~dmess&#45;&gt;proc~d1mach</title>
-<path fill="none" stroke="#000000" d="M144.87,-40.22C153.29,-36.45 162.76,-32.22 171.75,-28.2"/>
-<polygon fill="#000000" stroke="#000000" points="173.19,-31.39 180.89,-24.12 170.33,-25 173.19,-31.39"/>
+<!-- proc~mess&#45;&gt;proc~messfi -->
+<g id="proc~~divadb~~CallsGraph_edge4" class="edge">
+<title>proc~mess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M211.97,-106.27C218.3,-129.35 235.52,-178.74 271,-199 293.77,-212 307.23,-212 330,-199 361.05,-181.28 378.11,-141.24 386.13,-116.05"/>
+<polygon fill="#000000" stroke="#000000" points="389.55,-116.85 389.03,-106.27 382.83,-114.86 389.55,-116.85"/>
 </g>
 <!-- proc~messgs -->
-<g id="proc~~divadb~~CallsGraph_node5" class="node">
+<g id="proc~~divadb~~CallsGraph_node6" class="node">
 <title>proc~messgs</title>
-<g id="a_proc~~divadb~~CallsGraph_node5"><a xlink:href=".././proc/messgs.html" xlink:title="MESSGS">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="331,-268 274,-268 274,-244 331,-244 331,-268"/>
-<text text-anchor="middle" x="302.5" y="-253.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSGS</text>
+<g id="a_proc~~divadb~~CallsGraph_node6"><a xlink:href=".././proc/messgs.html" xlink:title="MESSGS">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="329,-190 272,-190 272,-166 329,-166 329,-190"/>
+<text text-anchor="middle" x="300.5" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSGS</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messgs -->
-<g id="proc~~divadb~~CallsGraph_edge8" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge5" class="edge">
 <title>proc~mess&#45;&gt;proc~messgs</title>
-<path fill="none" stroke="#000000" d="M216.67,-146.19C227.31,-165.11 249.33,-202.24 273,-230 274.96,-232.29 277.1,-234.58 279.32,-236.8"/>
-<polygon fill="#000000" stroke="#000000" points="277.23,-239.64 286.91,-243.96 282.03,-234.55 277.23,-239.64"/>
-</g>
-<!-- proc~mess&#45;&gt;proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_edge9" class="edge">
-<title>proc~mess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M217.6,-146.08C227.97,-161.3 248.13,-186.7 273,-197 300.82,-208.52 334.78,-200.94 359.63,-191.82"/>
-<polygon fill="#000000" stroke="#000000" points="360.97,-195.06 369.01,-188.15 358.42,-188.54 360.97,-195.06"/>
-</g>
-<!-- proc~mess&#45;&gt;proc~messpr -->
-<g id="proc~~divadb~~CallsGraph_edge10" class="edge">
-<title>proc~mess&#45;&gt;proc~messpr</title>
-<path fill="none" stroke="#000000" d="M236.47,-121.85C245.67,-117.63 256.14,-112.82 265.95,-108.32"/>
-<polygon fill="#000000" stroke="#000000" points="267.47,-111.47 275.09,-104.12 264.55,-105.11 267.47,-111.47"/>
-</g>
-<!-- proc~messfd -->
-<g id="proc~~divadb~~CallsGraph_node8" class="node">
-<title>proc~messfd</title>
-<g id="a_proc~~divadb~~CallsGraph_node8"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
-<polygon fill="#d9534f" stroke="#d9534f" points="330.5,-188 274.5,-188 274.5,-164 330.5,-164 330.5,-188"/>
-<text text-anchor="middle" x="302.5" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
-</a>
-</g>
-</g>
-<!-- proc~mess&#45;&gt;proc~messfd -->
-<g id="proc~~divadb~~CallsGraph_edge11" class="edge">
-<title>proc~mess&#45;&gt;proc~messfd</title>
-<path fill="none" stroke="#000000" d="M236.47,-146.15C245.67,-150.37 256.14,-155.18 265.95,-159.68"/>
-<polygon fill="#000000" stroke="#000000" points="264.55,-162.89 275.09,-163.88 267.47,-156.53 264.55,-162.89"/>
+<path fill="none" stroke="#000000" d="M219.9,-106.17C231.89,-119.3 251.98,-140.52 271,-157 271.99,-157.86 273.02,-158.72 274.06,-159.58"/>
+<polygon fill="#000000" stroke="#000000" points="272.24,-162.6 282.28,-165.99 276.55,-157.08 272.24,-162.6"/>
 </g>
 <!-- proc~messmh -->
-<g id="proc~~divadb~~CallsGraph_node9" class="node">
+<g id="proc~~divadb~~CallsGraph_node7" class="node">
 <title>proc~messmh</title>
-<g id="a_proc~~divadb~~CallsGraph_node9"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
-<polygon fill="#d9534f" stroke="#d9534f" points="332,-146 273,-146 273,-122 332,-122 332,-146"/>
-<text text-anchor="middle" x="302.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
+<g id="a_proc~~divadb~~CallsGraph_node7"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
+<polygon fill="#d9534f" stroke="#d9534f" points="330,-148 271,-148 271,-124 330,-124 330,-148"/>
+<text text-anchor="middle" x="300.5" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messmh -->
-<g id="proc~~divadb~~CallsGraph_edge12" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge6" class="edge">
 <title>proc~mess&#45;&gt;proc~messmh</title>
-<path fill="none" stroke="#000000" d="M236.47,-134C244.66,-134 253.86,-134 262.71,-134"/>
-<polygon fill="#000000" stroke="#000000" points="262.85,-137.5 272.85,-134 262.85,-130.5 262.85,-137.5"/>
+<path fill="none" stroke="#000000" d="M235.18,-106.15C244.18,-110.33 254.42,-115.08 264.04,-119.54"/>
+<polygon fill="#000000" stroke="#000000" points="262.84,-122.84 273.38,-123.88 265.79,-116.49 262.84,-122.84"/>
+</g>
+<!-- proc~messpr -->
+<g id="proc~~divadb~~CallsGraph_node8" class="node">
+<title>proc~messpr</title>
+<g id="a_proc~~divadb~~CallsGraph_node8"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
+<polygon fill="#d9534f" stroke="#d9534f" points="328,-64 273,-64 273,-40 328,-40 328,-64"/>
+<text text-anchor="middle" x="300.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
+</a>
+</g>
+</g>
+<!-- proc~mess&#45;&gt;proc~messpr -->
+<g id="proc~~divadb~~CallsGraph_edge7" class="edge">
+<title>proc~mess&#45;&gt;proc~messpr</title>
+<path fill="none" stroke="#000000" d="M235.18,-81.85C244.18,-77.67 254.42,-72.92 264.04,-68.46"/>
+<polygon fill="#000000" stroke="#000000" points="265.79,-71.51 273.38,-64.12 262.84,-65.16 265.79,-71.51"/>
+</g>
+<!-- proc~messfd -->
+<g id="proc~~divadb~~CallsGraph_node9" class="node">
+<title>proc~messfd</title>
+<g id="a_proc~~divadb~~CallsGraph_node9"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
+<polygon fill="#d9534f" stroke="#d9534f" points="328.5,-106 272.5,-106 272.5,-82 328.5,-82 328.5,-106"/>
+<text text-anchor="middle" x="300.5" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
+</a>
+</g>
+</g>
+<!-- proc~mess&#45;&gt;proc~messfd -->
+<g id="proc~~divadb~~CallsGraph_edge8" class="edge">
+<title>proc~mess&#45;&gt;proc~messfd</title>
+<path fill="none" stroke="#000000" d="M235.18,-94C243.67,-94 253.27,-94 262.4,-94"/>
+<polygon fill="#000000" stroke="#000000" points="262.44,-97.5 272.44,-94 262.44,-90.5 262.44,-97.5"/>
+</g>
+<!-- proc~messft&#45;&gt;proc~mess -->
+<g id="proc~~divadb~~CallsGraph_edge10" class="edge">
+<title>proc~messft&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M145.05,-66C153.35,-69.75 162.65,-73.95 171.46,-77.94"/>
+<polygon fill="#000000" stroke="#000000" points="170.22,-81.22 180.77,-82.14 173.1,-74.84 170.22,-81.22"/>
+</g>
+<!-- proc~messft&#45;&gt;proc~messpr -->
+<g id="proc~~divadb~~CallsGraph_edge9" class="edge">
+<title>proc~messft&#45;&gt;proc~messpr</title>
+<path fill="none" stroke="#000000" d="M145.21,-53.7C176.31,-53.36 227.86,-52.79 262.73,-52.41"/>
+<polygon fill="#000000" stroke="#000000" points="263.02,-55.9 272.98,-52.29 262.94,-48.9 263.02,-55.9"/>
+</g>
+<!-- proc~dmess&#45;&gt;proc~messfi -->
+<g id="proc~~divadb~~CallsGraph_edge11" class="edge">
+<title>proc~dmess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M235.48,-11.47C261.03,-12.01 300.12,-15.65 330,-31 349.44,-40.99 366.44,-59.37 377.7,-73.7"/>
+<polygon fill="#000000" stroke="#000000" points="375.13,-76.11 383.94,-82 380.73,-71.9 375.13,-76.11"/>
 </g>
 <!-- proc~messfd&#45;&gt;proc~messfi -->
-<g id="proc~~divadb~~CallsGraph_edge13" class="edge">
+<g id="proc~~divadb~~CallsGraph_edge12" class="edge">
 <title>proc~messfd&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M330.65,-176C339.11,-176 348.58,-176 357.56,-176"/>
-<polygon fill="#000000" stroke="#000000" points="357.8,-179.5 367.8,-176 357.8,-172.5 357.8,-179.5"/>
+<path fill="none" stroke="#000000" d="M328.65,-94C337.11,-94 346.58,-94 355.56,-94"/>
+<polygon fill="#000000" stroke="#000000" points="355.8,-97.5 365.8,-94 355.8,-90.5 355.8,-97.5"/>
 </g>
 </g>
 </svg>
@@ -665,35 +630,35 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 <polygon fill="none" stroke="black" points="153,-45 99,-45 99,-21 153,-21 153,-45"/>
 <text text-anchor="middle" x="126" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVADB</text>
 </g>
-<!-- program~drdivdb -->
-<g id="proc~~divadb~~CalledByGraph_node2" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~divadb~~CalledByGraph_node2"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-66 0,-66 0,-42 63,-42 63,-66"/>
-<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~divadb -->
-<g id="proc~~divadb~~CalledByGraph_edge1" class="edge">
-<title>program~drdivdb&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M63.04,-47.07C71.37,-45.18 80.46,-43.11 89.05,-41.16"/>
-<polygon fill="#000000" stroke="#000000" points="89.85,-44.57 98.83,-38.94 88.3,-37.74 89.85,-44.57"/>
-</g>
 <!-- program~drdivx -->
-<g id="proc~~divadb~~CalledByGraph_node3" class="node">
+<g id="proc~~divadb~~CalledByGraph_node2" class="node">
 <title>program~drdivx</title>
-<g id="a_proc~~divadb~~CalledByGraph_node3"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-24 4,-24 4,0 59,0 59,-24"/>
-<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<g id="a_proc~~divadb~~CalledByGraph_node2"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-66 4,-66 4,-42 59,-42 59,-66"/>
+<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~divadb~~CalledByGraph_edge2" class="edge">
+<g id="proc~~divadb~~CalledByGraph_edge1" class="edge">
 <title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-18.07C68.52,-20.18 79.07,-22.57 88.96,-24.82"/>
-<polygon fill="#000000" stroke="#000000" points="88.42,-28.28 98.94,-27.08 89.97,-21.46 88.42,-28.28"/>
+<path fill="none" stroke="#000000" d="M59.25,-47.93C68.52,-45.82 79.07,-43.43 88.96,-41.18"/>
+<polygon fill="#000000" stroke="#000000" points="89.97,-44.54 98.94,-38.92 88.42,-37.72 89.97,-44.54"/>
+</g>
+<!-- program~drdivdb -->
+<g id="proc~~divadb~~CalledByGraph_node3" class="node">
+<title>program~drdivdb</title>
+<g id="a_proc~~divadb~~CalledByGraph_node3"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-24 0,-24 0,0 63,0 63,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+</a>
+</g>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~divadb -->
+<g id="proc~~divadb~~CalledByGraph_edge2" class="edge">
+<title>program~drdivdb&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M63.04,-18.93C71.37,-20.82 80.46,-22.89 89.05,-24.84"/>
+<polygon fill="#000000" stroke="#000000" points="88.3,-28.26 98.83,-27.06 89.85,-21.43 88.3,-28.26"/>
 </g>
 </g>
 </svg>
@@ -802,6 +767,14 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divadb.html#src">DIVADB</a>
+  </div>
+</div>
 
 
 
@@ -2564,6 +2537,357 @@ subroutine DIVADB(LPRINT, TSPECS, Y, F, KORD, TEXT)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVADB</span><span class="p">(</span><span class="n">LPRINT</span><span class="p">,</span> <span class="n">TSPECS</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">)</span>
+
+      <span class="kt">integer </span><span class="n">LPRINT</span><span class="p">,</span> <span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">TEXT</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">TEXT1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">11</span><span class="p">,</span> <span class="n">TEXT2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">TEXT3</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="n">TEXT4</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span>
+      <span class="kt">integer </span><span class="n">IVC1</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">IVC2</span><span class="p">(</span><span class="mi">65</span><span class="p">),</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N1</span><span class="p">,</span> <span class="n">N2</span>
+      <span class="kt">double precision  </span><span class="n">DVC2</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">RVC2</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">EVC</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TSPECS</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">TNEQ</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">DVC1</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!++S Default KDIM = 16</span>
+<span class="c">!++  Default KDIM = 20</span>
+<span class="c">!++  Default MAXORD = 2, MAXSTF = 1</span>
+<span class="c">!++  Default STIFF=.F.</span>
+      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
+<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TN</span>
+      <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
+      <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
+      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">double precision </span><span class="n">DS</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">),</span> <span class="n">GS</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">SIGMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">DNOISE</span>
+      <span class="kt">double precision </span><span class="n">EAVE</span><span class="p">,</span> <span class="n">EIMAX</span><span class="p">,</span> <span class="n">EIMIN</span><span class="p">,</span> <span class="n">EMAX</span><span class="p">,</span> <span class="n">EREP</span><span class="p">,</span> <span class="n">ROBND</span><span class="p">,</span> <span class="n">SNOISE</span>
+<span class="c">!</span>
+<span class="c">!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.</span>
+      <span class="kt">double precision </span><span class="n">EEPS10</span><span class="p">,</span> <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span><span class="p">,</span> <span class="n">EEPS2</span>
+      <span class="kt">double precision </span><span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+      <span class="kt">integer </span><span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span> <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span><span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span><span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span><span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span><span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span>       <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">DIVAMC</span><span class="o">/</span> <span class="n">TG</span><span class="p">,</span><span class="n">TGSTOP</span><span class="p">,</span><span class="n">TMARK</span><span class="p">,</span><span class="n">TMARKX</span><span class="p">,</span><span class="n">TOUT</span><span class="p">,</span><span class="n">TOLG</span><span class="p">,</span><span class="n">HC</span><span class="p">,</span><span class="n">HDEC</span><span class="p">,</span><span class="n">HINC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">HINCC</span><span class="p">,</span><span class="n">HMAX</span><span class="p">,</span><span class="n">HMAXP9</span><span class="p">,</span><span class="n">HMIN</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">,</span><span class="n">BETA</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">GS</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">RBQ</span><span class="p">,</span><span class="n">DNOISE</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EAVE</span><span class="p">,</span><span class="n">EIMAX</span><span class="p">,</span><span class="n">EIMIN</span><span class="p">,</span><span class="n">EMAX</span><span class="p">,</span><span class="n">EREP</span><span class="p">,</span><span class="n">ROBND</span><span class="p">,</span><span class="n">SNOISE</span><span class="p">,</span><span class="n">FDAT</span><span class="p">,</span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IGTYPE</span><span class="p">,</span><span class="n">IGSTOP</span><span class="p">,</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span><span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span><span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span><span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span><span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span><span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span><span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAMC</span> <span class="o">/</span> <span class="p">,</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">IVC1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">IOPST</span><span class="p">),</span> <span class="p">(</span><span class="n">IVC2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">ICF</span><span class="p">)</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">TNEQ</span><span class="p">,</span> <span class="n">TN</span><span class="p">)</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">RVC2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">DNOISE</span><span class="p">),</span> <span class="p">(</span><span class="n">DVC1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">TG</span><span class="p">),</span> <span class="p">(</span><span class="n">DVC2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">HC</span><span class="p">),</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="p">(</span><span class="n">EVC</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">EEPS2</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!                      Declarations for error message processing.</span>
+      <span class="kt">integer </span><span class="n">MEDDIG</span><span class="p">,</span> <span class="n">NEDDIG</span><span class="p">,</span> <span class="n">METDIG</span><span class="p">,</span> <span class="n">METABS</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span>            <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">METABL</span><span class="p">,</span> <span class="n">MEIVEC</span><span class="p">,</span> <span class="n">MEFVEC</span><span class="p">,</span> <span class="n">MEFMAT</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEDDIG</span> <span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">NEDDIG</span> <span class="o">=-</span><span class="n">MEDDIG</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METDIG</span> <span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METABS</span> <span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">METABL</span> <span class="o">=</span><span class="mi">55</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEIVEC</span> <span class="o">=</span><span class="mi">57</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEFVEC</span> <span class="o">=</span><span class="mi">61</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEFMAT</span> <span class="o">=</span><span class="mi">62</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">MACT0</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">MACT1</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MACT2</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">MACT3</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">MACT4</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>         <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MACT5</span><span class="p">(</span><span class="mi">11</span><span class="p">),</span> <span class="n">MACT6</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">MACT7</span><span class="p">(</span><span class="mi">14</span><span class="p">),</span> <span class="n">MACTFV</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">KPI</span><span class="p">,</span> <span class="n">KPE</span>
+<span class="c">!                      wddtrr        wwddtrr</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">KPI</span> <span class="o">=</span> <span class="mi">400301</span><span class="p">,</span> <span class="n">KPE</span> <span class="o">=</span> <span class="mi">1305501</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">! ********* Error message text ***************</span>
+<span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
+<span class="c">!AA $NKORD:    $B</span>
+<span class="c">!AB Int. Ord.: $B</span>
+<span class="c">!   $</span>
+<span class="c">!AC D.E. Ord.: $B</span>
+<span class="c">!   $</span>
+<span class="c">!AD Meth.Type: $B</span>
+<span class="c">!   $</span>
+<span class="c">!AE Tolerance Groups: $B</span>
+<span class="c">!AF Tolerances: $B</span>
+<span class="c">!   $</span>
+<span class="c">!AG $NDifferences$B</span>
+<span class="c">!AH Eq. $#</span>
+<span class="c">!AI Ord. $#</span>
+<span class="c">!   $</span>
+<span class="c">!AJ $NTN=$F$E</span>
+<span class="c">!   $</span>
+<span class="c">!AK $NIOPST=$I$TKORDI=$I$TKQMAXD=$I$TKQMAXI=$I$TLDT=$I$T$C</span>
+<span class="c">!   MAXDIF=$I$TMAXINT=$I$TNKDKO=$I$TNTE=$I$TNYNY=$I$TNDTF=$I$C</span>
+<span class="c">!   $TNUMDT=$I$E</span>
+<span class="c">!   $</span>
+<span class="c">!AL $NICF=$I$TICS=$I$TIGFLG=$I$TIGTYPE(1)=$I$TIGTYPE(2)=$I$T$C</span>
+<span class="c">!   IGSTOP(1)=$I$TIGSTOP(2)=$I$TILGREP=$I$TINGS=$I$TIOP3=$I$T$C</span>
+<span class="c">!   IOP4=$I$TIOP5=$I$TIOP6=$I$TIOP7=$I$TIOP8=$I$TIOP9=$I$T$C</span>
+<span class="c">!   IOP10=$I$TIOP11=$I$TIOP12=$I$TIOP13=$I$TIOP14=$I$TIOP15=$I$T$C</span>
+<span class="c">!   IOP16=$I$TIOP17=$I$TIOP18=$I$TIOP19=$I$TIOP20=$I$TIOP21=$I$T$C</span>
+<span class="c">!   IOP22=$I$TIOP21S=$I$TITOLEP=$I$TIY=$I$TKEMAX=$I$TKIS=$I$T$C</span>
+<span class="c">!   KMARK=$I$TKORD1I=$I$TKORD2I=$I$TKPRED=$I$TKQDCON=$I$T$C</span>
+<span class="c">!   KQICON=$I$TKQMAXS=$I$TKQMXDS=$I$TKQMXIL=$I$TKQMXIP=$I$T$C</span>
+<span class="c">!   KQMXIS=$I$TKSC=$I$TKSOUT=$I$TKSSTRT=$I$TKSTEP=$I$TLEX=$I$T$C</span>
+<span class="c">!   LINC=$I$TLINCD=$I$TLINCQ=$I$TLSC=$I$TMAXKQD=$I$TMAXKQI=$I$T$C</span>
+<span class="c">!   METHOD=$I$TNE=$I$TNEPTOL=$I$TNG=$I$TNGTOT=$I$TNOISEQ=$I$T$C</span>
+<span class="c">!   NOUTKO=$I$TNTOLF=$I$TNY=$I$E</span>
+<span class="c">!AM $NDNOISE=$F$TEAVE=$F$TEIMAX=$F$TEIMIN=$F$TEMAX=$F$T$C</span>
+<span class="c">!   EREP=$F$TROBND=$F$E</span>
+<span class="c">!   $</span>
+<span class="c">!AN $NTG(1)=$F$TTG(2)=$F$TTGSTOP(1)=$F$TTGSTOP(2)=$F$C</span>
+<span class="c">!   $TTMARK=$F$TTMARKX=$F$TTOUT=$F$E</span>
+<span class="c">!   $</span>
+<span class="c">!AO HC=$F$THDEC=$F$THINC=$F$THINCC=$F$THMAX=$F$T$C</span>
+<span class="c">!   HMAXP9=$F$THMIN=$F$T$N$E</span>
+<span class="c">!   $</span>
+<span class="c">!AP K$HXI(K)$HBETA(K)$HALPHA(K)$HG(K,1)$HRBQ(K)$HSIGMA(K)$H</span>
+<span class="c">!   GS(K)$HV(K)$HG(K,2..MAXINT)$E</span>
+<span class="c">!   $</span>
+<span class="c">!AQ $NEEPS2=$F$TEEPT75=$F$TEOVEP2=$F$TOVTM75=$F$TOVD10=$F$T$C</span>
+<span class="c">!   EEPS10=$F$TEEPS16=$F$TEROV10=$F$E</span>
+      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span><span class="p">,</span><span class="n">LTXTAC</span><span class="p">,</span><span class="n">LTXTAD</span><span class="p">,</span><span class="n">LTXTAE</span><span class="p">,</span><span class="n">LTXTAF</span><span class="p">,</span><span class="n">LTXTAG</span><span class="p">,</span><span class="n">LTXTAH</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span> <span class="n">LTXTAI</span><span class="p">,</span><span class="n">LTXTAJ</span><span class="p">,</span><span class="n">LTXTAK</span><span class="p">,</span><span class="n">LTXTAL</span><span class="p">,</span><span class="n">LTXTAM</span><span class="p">,</span><span class="n">LTXTAN</span><span class="p">,</span><span class="n">LTXTAO</span><span class="p">,</span><span class="n">LTXTAP</span><span class="p">,</span><span class="n">LTXTAQ</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span> <span class="mi">14</span><span class="p">,</span><span class="n">LTXTAC</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAD</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAE</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span> <span class="n">LTXTAF</span><span class="o">=</span> <span class="mi">21</span><span class="p">,</span><span class="n">LTXTAG</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAH</span><span class="o">=</span> <span class="mi">16</span><span class="p">,</span><span class="n">LTXTAI</span><span class="o">=</span> <span class="mi">22</span><span class="p">,</span><span class="n">LTXTAJ</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span>          <span class="p">&amp;</span>
+     <span class="p">&amp;</span> <span class="n">LTXTAK</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAL</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAM</span><span class="o">=</span><span class="mi">655</span><span class="p">,</span><span class="n">LTXTAN</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAO</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span>          <span class="p">&amp;</span>
+     <span class="p">&amp;</span> <span class="n">LTXTAP</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAQ</span><span class="o">=</span>  <span class="mi">1</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAB</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAD</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">34</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">28</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAF</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAG</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAH</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">242</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAI</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">80</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAJ</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">68</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAK</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">84</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAL</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">88</span><span class="p">)</span>
+      <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;$NKORD:    $BInt. Ord.: $B&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAB</span><span class="o">/</span><span class="s1">&#39;D.E. Ord.: $B&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAC</span><span class="o">/</span><span class="s1">&#39;Meth.Type: $B&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAD</span><span class="o">/</span><span class="s1">&#39;Tolerance Groups: $BTolerances: $B&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAE</span><span class="o">/</span><span class="s1">&#39;$NDifferences$BEq. $#Ord. $#&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAF</span><span class="o">/</span><span class="s1">&#39;$NTN=$F$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAG</span><span class="o">/</span><span class="s1">&#39;$NIOPST=$I$TKORDI=$I$TKQMAXD=$I$TKQMAXI=$I$TLDT=$I$TM&amp;</span>
+<span class="s1">     &amp;AXDIF=$I$TMAXINT=$I$TNKDKO=$I$TNTE=$I$TNYNY=$I$TNDTF=$I$TNUMDT=$I$&amp;</span>
+<span class="s1">     &amp;E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAH</span><span class="o">/</span><span class="s1">&#39;$NICF=$I$TICS=$I$TIGFLG=$I$TIGTYPE(1)=$I$TIGTYPE(2)=$&amp;</span>
+<span class="s1">     &amp;I$TIGSTOP(1)=$I$TIGSTOP(2)=$I$TILGREP=$I$TINGS=$I$TIOP3=$I$TIOP4=$&amp;</span>
+<span class="s1">     &amp;I$TIOP5=$I$TIOP6=$I$TIOP7=$I$TIOP8=$I$TIOP9=$I$TIOP10=$I$TIOP11=$I&amp;</span>
+<span class="s1">     &amp;$TIOP12=$I$TIOP13=$I$TIOP14=$I$TIOP15=$I$TIOP16=$I$TIOP17&#39;</span><span class="p">,</span><span class="s1">&#39;=$I$TI&amp;</span>
+<span class="s1">     &amp;OP18=$I$TIOP19=$I$TIOP20=$I$TIOP21=$I$TIOP22=$I$TIOP21S=$I$TITOLEP&amp;</span>
+<span class="s1">     &amp;=$I$TIY=$I$TKEMAX=$I$TKIS=$I$TKMARK=$I$TKORD1I=$I$TKORD2I=$I$TKPRE&amp;</span>
+<span class="s1">     &amp;D=$I$TKQDCON=$I$TKQICON=$I$TKQMAXS=$I$TKQMXDS=$I$TKQMXIL=$I$TKQMXI&amp;</span>
+<span class="s1">     &amp;P=$I$TKQMXIS=$I$TKSC=$I$TKSOUT=$I$TKSS&#39;</span><span class="p">,</span><span class="s1">&#39;TRT=$I$TKSTEP=$I$TLEX=$I$&amp;</span>
+<span class="s1">     &amp;TLINC=$I$TLINCD=$I$TLINCQ=$I$TLSC=$I$TMAXKQD=$I$TMAXKQI=$I$TMETHOD&amp;</span>
+<span class="s1">     &amp;=$I$TNE=$I$TNEPTOL=$I$TNG=$I$TNGTOT=$I$TNOISEQ=$I$TNOUTKO=$I$TNTOL&amp;</span>
+<span class="s1">     &amp;F=$I$TNY=$I$E$NDNOISE=$F$TEAVE=$F$TEIMAX=$F$TEIMIN=$F$TEMAX=$F$TER&amp;</span>
+<span class="s1">     &amp;EP=$F$TROBND=$F$E  &#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAI</span><span class="o">/</span><span class="s1">&#39;$NTG(1)=$F$TTG(2)=$F$TTGSTOP(1)=$F$TTGSTOP(2)=$F$TTMA&amp;</span>
+<span class="s1">     &amp;RK=$F$TTMARKX=$F$TTOUT=$F$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAJ</span><span class="o">/</span><span class="s1">&#39;HC=$F$THDEC=$F$THINC=$F$THINCC=$F$THMAX=$F$THMAXP9=$F&amp;</span>
+<span class="s1">     &amp;$THMIN=$F$T$N$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAK</span><span class="o">/</span><span class="s1">&#39;K$HXI(K)$HBETA(K)$HALPHA(K)$HG(K,1)$HRBQ(K)$HSIGMA(K)&amp;</span>
+<span class="s1">     &amp;$HGS(K)$HV(K)$HG(K,2..MAXINT)$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MTXTAL</span><span class="o">/</span><span class="s1">&#39;$NEEPS2=$F$TEEPT75=$F$TEOVEP2=$F$TOVTM75=$F$TOVD10=$F&amp;</span>
+<span class="s1">     &amp;$TEEPS10=$F$TEEPS16=$F$TEROV10=$F$E&#39;</span><span class="o">/</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">MACT0</span> <span class="o">/</span> <span class="n">METABS</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">MACT1</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                       1       2  3       4       5  6      7</span>
+      <span class="k">data </span><span class="n">MACT2</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEIVEC</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEIVEC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                       1       2  3       4       5  6      7</span>
+      <span class="k">data </span><span class="n">MACT3</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEIVEC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEFVEC</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                       1       2  3  4  5       6       7</span>
+      <span class="k">data </span><span class="n">MACT4</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEFMAT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">LTXTAI</span><span class="p">,</span> <span class="n">LTXTAH</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                       1   2       3       4   5       6  7       8</span>
+      <span class="k">data </span><span class="n">MACT5</span> <span class="o">/</span> <span class="n">METABS</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">METABS</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="n">METDIG</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>             <span class="n">METABS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                       9 10     11</span>
+      <span class="k">data </span><span class="n">MACT6</span> <span class="o">/</span> <span class="n">NEDDIG</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!                         2 3 4   5 6 7 8 9  10  11  12 13 14</span>
+      <span class="k">data </span><span class="n">MACT7</span> <span class="o">/</span> <span class="n">METABL</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">KPI</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">KPE</span><span class="p">,</span><span class="n">KPE</span><span class="p">,</span><span class="n">KPE</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="o">/</span>
+<span class="c">!                        1       2  3      4</span>
+      <span class="k">data </span><span class="n">MACTFV</span> <span class="o">/</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEFVEC</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!</span>
+      <span class="k">data </span><span class="n">TEXT1</span> <span class="o">/</span> <span class="s1">&#39;$NTSPECS:$B&#39;</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">TEXT2</span> <span class="o">/</span> <span class="s1">&#39;Y:$B&#39;</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">TEXT3</span> <span class="o">/</span> <span class="s1">&#39;YN:$B&#39;</span> <span class="o">/</span>
+      <span class="k">data </span><span class="n">TEXT4</span> <span class="o">/</span> <span class="s1">&#39;F:$B&#39;</span> <span class="o">/</span>
+<span class="c">!</span>
+<span class="c">! ********</span>
+<span class="c">! START OF CODE -- PRINT TEXT AND SET INDEX FOR F</span>
+<span class="c">! ********</span>
+<span class="c">!    Getting variables that are not yet assigned some values.</span>
+<span class="c">!++  Code for ~STIFF is active</span>
+      <span class="n">KQDCON</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">KQMXDS</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">MAXKQD</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c">!++  End</span>
+      <span class="n">GS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.D0</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IOP6</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">TG</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+        <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">IOP7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+        <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">IOP6</span> <span class="o">+</span> <span class="n">IOP7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">INGS</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">NG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">IOP10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">NOUTKO</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">J</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">call </span><span class="n">MESSFT</span><span class="p">(</span><span class="n">MACT0</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="n">N1</span> <span class="o">=</span> <span class="n">LPRINT</span> <span class="o">/</span> <span class="mi">10</span>
+      <span class="n">N2</span> <span class="o">=</span> <span class="n">LPRINT</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">N1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">N1</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
+<span class="c">! ********</span>
+<span class="c">! PRINT ALL EXTERNAL VARIABLES EXCEPT FOR THE DIFFERENCES</span>
+<span class="c">! ********</span>
+      <span class="n">MACTFV</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">IOP5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACTFV</span><span class="p">,</span> <span class="n">TEXT1</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TSPECS</span><span class="p">)</span>
+      <span class="n">MACTFV</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">NY</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACTFV</span><span class="p">,</span> <span class="n">TEXT2</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACTFV</span><span class="p">,</span> <span class="n">TEXT3</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">Y</span><span class="p">(</span><span class="n">NYNY</span><span class="p">))</span>
+      <span class="n">MACTFV</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">NTE</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACTFV</span><span class="p">,</span> <span class="n">TEXT4</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+      <span class="n">MACT2</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">NTE</span>
+      <span class="k">call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT2</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">NKDKO</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT2</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">MTXTAB</span><span class="p">,</span> <span class="n">KORD</span><span class="p">(</span><span class="n">NKDKO</span><span class="p">))</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IOPST</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT2</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">MTXTAC</span><span class="p">,</span> <span class="n">KORD</span><span class="p">(</span><span class="n">IOPST</span><span class="p">))</span>
+<span class="c">! WRITE TOL</span>
+      <span class="n">K</span> <span class="o">=</span> <span class="n">IOP16</span>
+   <span class="mi">70</span> <span class="k">if</span> <span class="p">(</span><span class="n">KORD</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">KORD</span><span class="p">(</span><span class="n">K</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">NTE</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+      <span class="n">MACT3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="n">IOP16</span>
+      <span class="n">MACT3</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">MACT3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT3</span><span class="p">,</span> <span class="n">MTXTAD</span><span class="p">,</span> <span class="n">KORD</span><span class="p">(</span><span class="n">IOP16</span><span class="p">),</span> <span class="n">F</span><span class="p">(</span><span class="n">NTOLF</span><span class="p">))</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">N1</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
+<span class="c">! ********</span>
+<span class="c">! WRITE THE DIFFERENCE TABLES</span>
+<span class="c">! ********</span>
+      <span class="n">K</span> <span class="o">=</span> <span class="n">NUMDT</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">N1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="n">K</span> <span class="o">=</span> <span class="n">KQMAXS</span>
+      <span class="n">MACT4</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">NUMDT</span>
+      <span class="n">MACT4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">K</span>
+      <span class="n">MACT4</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">NTE</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT4</span><span class="p">,</span> <span class="n">MTXTAE</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="n">NDTF</span><span class="p">))</span>
+<span class="c">!</span>
+   <span class="mi">80</span> <span class="k">if</span> <span class="p">(</span><span class="n">N2</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span>
+<span class="c">! ********</span>
+<span class="c">! WRITE SCALARS IN COMMON</span>
+<span class="c">! ********</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAF</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TNEQ</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">! ===== COMMON 1  -- INTEGER</span>
+<span class="c">!</span>
+      <span class="k">call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAG</span><span class="p">,</span> <span class="n">IVC1</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">N2</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">      call </span><span class="n">MESS</span><span class="p">(</span><span class="n">MACT6</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">)</span>
+      <span class="n">MACT5</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="n">MACT6</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">14</span>
+<span class="c">!</span>
+<span class="c">! ===== COMMON 2  -- INTEGER AND FLOATING POINT</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT5</span><span class="p">,</span> <span class="n">MTXTAH</span><span class="p">,</span> <span class="n">IVC2</span><span class="p">,</span> <span class="n">RVC2</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAI</span><span class="p">,</span> <span class="n">IVC2</span><span class="p">,</span> <span class="n">DVC1</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAJ</span><span class="p">,</span> <span class="n">IVC2</span><span class="p">,</span> <span class="n">DVC2</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">N2</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="k">return</span>
+<span class="c">!         wddtrr              wddtrr</span>
+      <span class="n">J</span> <span class="o">=</span> <span class="mi">101000</span> <span class="o">*</span> <span class="n">MACT6</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">800501</span>
+      <span class="n">MACT7</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">MACT7</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KQMAXS</span>
+      <span class="n">MACT7</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="mi">8</span>
+      <span class="k">do </span><span class="mi">90</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span>
+         <span class="n">MACT7</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">J</span>
+   <span class="mi">90</span> <span class="k">continue</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">N2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">MACT7</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">+</span> <span class="n">MAXINT</span>
+         <span class="n">MACT7</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="o">=</span> <span class="n">J</span>
+         <span class="n">L</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">MAXINT</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+         <span class="n">MACT7</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">=</span> <span class="n">J</span> <span class="o">+</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">2</span>
+      <span class="k">end if</span>
+<span class="k">      do </span><span class="mi">100</span> <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MACT7</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">XI</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">BETA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">ALPHA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">G</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">SIGMA</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="n">FDAT</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">=</span> <span class="n">GS</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">N2</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">=</span> <span class="n">V</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+            <span class="k">do </span><span class="mi">95</span> <span class="n">J</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">L</span>
+               <span class="n">FDAT</span><span class="p">(</span><span class="mi">7</span><span class="o">+</span><span class="n">J</span><span class="p">)</span> <span class="o">=</span> <span class="n">G</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">J</span><span class="p">)</span>
+   <span class="mi">95</span>       <span class="k">continue</span>
+<span class="k">         end if</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+         <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT7</span><span class="p">,</span> <span class="n">MTXTAK</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
+  <span class="mi">100</span> <span class="k">continue</span>
+<span class="c">!++  Code for STIFF is inactive</span>
+<span class="c">!     if (MAXDIF &lt;= 0) return</span>
+<span class="c">!        Need to define MACT8 and set values</span>
+<span class="c">!c--D Next line special: P=&gt;S, X=&gt;D</span>
+<span class="c">!     call DMESS(MACT8, &#39;D$B&#39;, IDAT, D)</span>
+<span class="c">!c--D Next line special: P=&gt;S, X=&gt;D</span>
+<span class="c">!     call DMESS(MACT8, &#39;DS$B&#39;, IDAT, DS)</span>
+<span class="c">!++  End</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAL</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">EVC</span><span class="p">)</span>
+      <span class="k">return</span>
+<span class="k">    end subroutine </span><span class="n">divadb</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

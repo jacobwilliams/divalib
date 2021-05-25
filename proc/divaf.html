@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,14 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/drdivx.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/drdivx.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/drdivx.f.html'>drdivx.f</a></li>
+     <li><a href='../sourcefile/drdivx.f90.html'>drdivx.f90</a></li>
     
   
      <li class="active">DIVAF</li>
@@ -222,7 +226,7 @@ subroutine DIVAF(T, Y, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-t~2"></span>double precision</td>
+  <td><span class="anchor" id="variable-t"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -237,7 +241,7 @@ subroutine DIVAF(T, Y, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~8"></span>double precision</td>
+  <td><span class="anchor" id="variable-y"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -252,7 +256,7 @@ subroutine DIVAF(T, Y, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-f~9"></span>double precision</td>
+  <td><span class="anchor" id="variable-f"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -267,7 +271,7 @@ subroutine DIVAF(T, Y, F, KORD)
   
 <tr>
   
-  <td><span class="anchor" id="variable-kord~9"></span>integer</td>
+  <td><span class="anchor" id="variable-kord"></span>integer</td>
   <td></td>
   <td></td>
   
@@ -344,16 +348,16 @@ subroutine DIVAF(T, Y, F, KORD)
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>      <span class="k">subroutine </span><span class="n">DIVAF</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
-<span class="n">c</span>
-<span class="n">c</span> <span class="n">Sample</span> <span class="n">derivative</span> <span class="k">subroutine </span><span class="n">for</span> <span class="k">use </span><span class="n">with</span> <span class="n">DIVA</span>
-<span class="n">c</span> <span class="n">This</span> <span class="n">evaluates</span> <span class="n">derivatives</span> <span class="n">for</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">two</span> <span class="n">body</span> <span class="n">problem</span><span class="p">.</span>
-<span class="n">c</span>
+<span class="c">!</span>
+<span class="c">! Sample derivative subroutine for use with DIVA</span>
+<span class="c">! This evaluates derivatives for a simple two body problem.</span>
+<span class="c">!</span>
       <span class="kt">integer          </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">F</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">TP</span>
-<span class="n">c</span>
-<span class="n">c</span> <span class="n">Evaluate</span> <span class="n">the</span> <span class="n">derivatives</span>
-<span class="n">c</span>
+<span class="c">!</span>
+<span class="c">! Evaluate the derivatives</span>
+<span class="c">!</span>
       <span class="n">TP</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
       <span class="n">TP</span> <span class="o">=</span> <span class="mf">1.D0</span> <span class="o">/</span> <span class="p">(</span><span class="n">TP</span> <span class="o">*</span> <span class="nb">SQRT</span><span class="p">(</span><span class="n">TP</span><span class="p">))</span>
       <span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">TP</span>

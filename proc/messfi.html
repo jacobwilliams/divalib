@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">MESSFI</li>
@@ -194,6 +200,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/messfi.html#src">MESSFI</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -201,7 +215,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine MESSFI()
+public subroutine MESSFI()
     
     
    
@@ -210,6 +224,11 @@ subroutine MESSFI()
   
 
 
+    
+    <p>Get the format for the integer IMAG.</p>
+<p><strong><em>*</em></strong><strong><em>*</em></strong> Variable only used here <strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong>***</p>
+<p>I, K, KD are used in determining number of characters needed to
+          represent IMAG.</p>
     
 
     <h3>Arguments</h3>
@@ -245,293 +264,293 @@ subroutine MESSFI()
 <polygon fill="none" stroke="black" points="516,-232 462,-232 462,-208 516,-208 516,-232"/>
 <text text-anchor="middle" x="489" y="-217.6" font-family="Helvetica,sans-Serif" font-size="10.50">MESSFI</text>
 </g>
-<!-- proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_node2" class="node">
-<title>proc~dmess</title>
-<g id="a_proc~~messfi~~CalledByGraph_node2"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="243.5,-192 189.5,-192 189.5,-168 243.5,-168 243.5,-192"/>
-<text text-anchor="middle" x="216.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
-</a>
-</g>
-</g>
-<!-- proc~dmess&#45;&gt;proc~messfi -->
-<g id="proc~~messfi~~CalledByGraph_edge1" class="edge">
-<title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M243.8,-180.42C283.63,-181.49 361.46,-185.33 426,-199 434.63,-200.83 443.73,-203.48 452.21,-206.28"/>
-<polygon fill="#000000" stroke="#000000" points="451.24,-209.65 461.83,-209.61 453.53,-203.03 451.24,-209.65"/>
-</g>
 <!-- proc~messfd -->
-<g id="proc~~messfi~~CalledByGraph_node3" class="node">
+<g id="proc~~messfi~~CalledByGraph_node2" class="node">
 <title>proc~messfd</title>
-<g id="a_proc~~messfi~~CalledByGraph_node3"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
+<g id="a_proc~~messfi~~CalledByGraph_node2"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
 <polygon fill="#d9534f" stroke="#d9534f" points="426,-232 370,-232 370,-208 426,-208 426,-232"/>
 <text text-anchor="middle" x="398" y="-217.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
 </a>
 </g>
 </g>
 <!-- proc~messfd&#45;&gt;proc~messfi -->
-<g id="proc~~messfi~~CalledByGraph_edge2" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge1" class="edge">
 <title>proc~messfd&#45;&gt;proc~messfi</title>
 <path fill="none" stroke="#000000" d="M426.19,-220C434.25,-220 443.22,-220 451.77,-220"/>
 <polygon fill="#000000" stroke="#000000" points="451.89,-223.5 461.89,-220 451.89,-216.5 451.89,-223.5"/>
 </g>
 <!-- proc~mess -->
-<g id="proc~~messfi~~CalledByGraph_node4" class="node">
+<g id="proc~~messfi~~CalledByGraph_node3" class="node">
 <title>proc~mess</title>
-<g id="a_proc~~messfi~~CalledByGraph_node4"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
+<g id="a_proc~~messfi~~CalledByGraph_node3"><a xlink:href=".././proc/mess.html" xlink:title="MESS">
 <polygon fill="#d9534f" stroke="#d9534f" points="334,-272 280,-272 280,-248 334,-248 334,-272"/>
 <text text-anchor="middle" x="307" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESS</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messfi -->
-<g id="proc~~messfi~~CalledByGraph_edge3" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge2" class="edge">
 <title>proc~mess&#45;&gt;proc~messfi</title>
 <path fill="none" stroke="#000000" d="M334.03,-257.08C358.11,-254.07 394.78,-248.74 426,-241 434.56,-238.88 443.63,-236.11 452.12,-233.29"/>
 <polygon fill="#000000" stroke="#000000" points="453.42,-236.54 461.74,-229.98 451.14,-229.92 453.42,-236.54"/>
 </g>
 <!-- proc~mess&#45;&gt;proc~messfd -->
-<g id="proc~~messfi~~CalledByGraph_edge12" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge4" class="edge">
 <title>proc~mess&#45;&gt;proc~messfd</title>
 <path fill="none" stroke="#000000" d="M334.22,-248.22C342.51,-244.49 351.81,-240.31 360.67,-236.33"/>
 <polygon fill="#000000" stroke="#000000" points="362.35,-239.41 370.04,-232.12 359.48,-233.02 362.35,-239.41"/>
 </g>
-<!-- program~drdivx -->
+<!-- proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_node4" class="node">
+<title>proc~dmess</title>
+<g id="a_proc~~messfi~~CalledByGraph_node4"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
+<polygon fill="#d9534f" stroke="#d9534f" points="243.5,-190 189.5,-190 189.5,-166 243.5,-166 243.5,-190"/>
+<text text-anchor="middle" x="216.5" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
+</a>
+</g>
+</g>
+<!-- proc~dmess&#45;&gt;proc~messfi -->
+<g id="proc~~messfi~~CalledByGraph_edge3" class="edge">
+<title>proc~dmess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M243.8,-178.75C283.64,-180.3 361.47,-185.01 426,-199 434.62,-200.87 443.72,-203.54 452.2,-206.34"/>
+<polygon fill="#000000" stroke="#000000" points="451.23,-209.71 461.82,-209.67 453.51,-203.09 451.23,-209.71"/>
+</g>
+<!-- proc~divadb -->
 <g id="proc~~messfi~~CalledByGraph_node5" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~messfi~~CalledByGraph_node5"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
+<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~mess -->
+<g id="proc~~messfi~~CalledByGraph_edge5" class="edge">
+<title>proc~divadb&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M153.26,-298.43C177.14,-294.92 213.22,-288.93 244,-281 252.54,-278.8 261.61,-276 270.09,-273.17"/>
+<polygon fill="#000000" stroke="#000000" points="271.39,-276.43 279.71,-269.87 269.12,-269.81 271.39,-276.43"/>
+</g>
+<!-- proc~divadb&#45;&gt;proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_edge10" class="edge">
+<title>proc~divadb&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M143.73,-289.92C146.99,-287.18 150.25,-284.15 153,-281 175.21,-255.6 194.24,-221.32 205.29,-199.43"/>
+<polygon fill="#000000" stroke="#000000" points="208.49,-200.84 209.78,-190.32 202.22,-197.74 208.49,-200.84"/>
+</g>
+<!-- proc~messft -->
+<g id="proc~~messfi~~CalledByGraph_node11" class="node">
+<title>proc~messft</title>
+<g id="a_proc~~messfi~~CalledByGraph_node11"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
+<polygon fill="#d9534f" stroke="#d9534f" points="244,-352 189,-352 189,-328 244,-328 244,-352"/>
+<text text-anchor="middle" x="216.5" y="-337.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~messft -->
+<g id="proc~~messfi~~CalledByGraph_edge20" class="edge">
+<title>proc~divadb&#45;&gt;proc~messft</title>
+<path fill="none" stroke="#000000" d="M153.07,-313.2C161.39,-316.76 170.73,-320.78 179.62,-324.59"/>
+<polygon fill="#000000" stroke="#000000" points="178.43,-327.89 189,-328.62 181.19,-321.46 178.43,-327.89"/>
+</g>
+<!-- proc~divain -->
+<g id="proc~~messfi~~CalledByGraph_node6" class="node">
+<title>proc~divain</title>
+<g id="a_proc~~messfi~~CalledByGraph_node6"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-230 99,-230 99,-206 153,-206 153,-230"/>
+<text text-anchor="middle" x="126" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_edge9" class="edge">
+<title>proc~divain&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M153.07,-206.22C161.55,-202.38 171.1,-198.07 180.14,-193.98"/>
+<polygon fill="#000000" stroke="#000000" points="181.64,-197.15 189.31,-189.84 178.75,-190.77 181.64,-197.15"/>
+</g>
+<!-- proc~divaop -->
+<g id="proc~~messfi~~CalledByGraph_node7" class="node">
+<title>proc~divaop</title>
+<g id="a_proc~~messfi~~CalledByGraph_node7"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
+<polygon fill="#d9534f" stroke="#d9534f" points="243.5,-272 189.5,-272 189.5,-248 243.5,-248 243.5,-272"/>
+<text text-anchor="middle" x="216.5" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
+</a>
+</g>
+</g>
+<!-- proc~divaop&#45;&gt;proc~mess -->
+<g id="proc~~messfi~~CalledByGraph_edge7" class="edge">
+<title>proc~divaop&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M243.57,-260C251.78,-260 261,-260 269.78,-260"/>
+<polygon fill="#000000" stroke="#000000" points="269.81,-263.5 279.81,-260 269.81,-256.5 269.81,-263.5"/>
+</g>
+<!-- program~drdivx -->
+<g id="proc~~messfi~~CalledByGraph_node8" class="node">
 <title>program~drdivx</title>
-<g id="a_proc~~messfi~~CalledByGraph_node5"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-252 4,-252 4,-228 59,-228 59,-252"/>
-<text text-anchor="middle" x="31.5" y="-237.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
+<g id="a_proc~~messfi~~CalledByGraph_node8"><a xlink:href=".././program/drdivx.html" xlink:title="DRDIVX">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59,-272 4,-272 4,-248 59,-248 59,-272"/>
+<text text-anchor="middle" x="31.5" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVX</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge4" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge11" class="edge">
 <title>program~drdivx&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M59.33,-231.41C83.77,-223.57 120.84,-211.61 153,-201 161.69,-198.13 171.04,-195.01 179.8,-192.07"/>
-<polygon fill="#000000" stroke="#000000" points="181.01,-195.36 189.37,-188.85 178.78,-188.72 181.01,-195.36"/>
+<path fill="none" stroke="#000000" d="M51.79,-247.85C55.64,-245.11 59.56,-242.1 63,-239 81.28,-222.56 77.57,-209.04 99,-197 123.43,-183.27 155.01,-178.79 179.12,-177.59"/>
+<polygon fill="#000000" stroke="#000000" points="179.41,-181.08 189.29,-177.26 179.18,-174.09 179.41,-181.08"/>
+</g>
+<!-- program~drdivx&#45;&gt;proc~divadb -->
+<g id="proc~~messfi~~CalledByGraph_edge17" class="edge">
+<title>program~drdivx&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M59.25,-272.15C68.72,-276.44 79.51,-281.35 89.58,-285.92"/>
+<polygon fill="#000000" stroke="#000000" points="88.39,-289.22 98.94,-290.17 91.28,-282.85 88.39,-289.22"/>
 </g>
 <!-- proc~diva -->
-<g id="proc~~messfi~~CalledByGraph_node7" class="node">
+<g id="proc~~messfi~~CalledByGraph_node12" class="node">
 <title>proc~diva</title>
-<g id="a_proc~~messfi~~CalledByGraph_node7"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-314 99,-314 99,-290 153,-290 153,-314"/>
-<text text-anchor="middle" x="126" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+<g id="a_proc~~messfi~~CalledByGraph_node12"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
+<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
 </a>
 </g>
 </g>
 <!-- program~drdivx&#45;&gt;proc~diva -->
-<g id="proc~~messfi~~CalledByGraph_edge18" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge21" class="edge">
 <title>program~drdivx&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M50.78,-252.25C64.42,-261.39 83.27,-274.03 98.55,-284.27"/>
-<polygon fill="#000000" stroke="#000000" points="96.82,-287.33 107.08,-289.99 100.72,-281.51 96.82,-287.33"/>
-</g>
-<!-- proc~divadb -->
-<g id="proc~~messfi~~CalledByGraph_node12" class="node">
-<title>proc~divadb</title>
-<g id="a_proc~~messfi~~CalledByGraph_node12"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-272 99,-272 99,-248 153,-248 153,-272"/>
-<text text-anchor="middle" x="126" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
-</a>
-</g>
-</g>
-<!-- program~drdivx&#45;&gt;proc~divadb -->
-<g id="proc~~messfi~~CalledByGraph_edge24" class="edge">
-<title>program~drdivx&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M59.25,-245.78C68.52,-247.79 79.07,-250.07 88.96,-252.21"/>
-<polygon fill="#000000" stroke="#000000" points="88.43,-255.67 98.94,-254.37 89.91,-248.83 88.43,-255.67"/>
-</g>
-<!-- proc~dzero -->
-<g id="proc~~messfi~~CalledByGraph_node6" class="node">
-<title>proc~dzero</title>
-<g id="a_proc~~messfi~~CalledByGraph_node6"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-192 99,-192 99,-168 153,-168 153,-192"/>
-<text text-anchor="middle" x="126" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
-</a>
-</g>
-</g>
-<!-- proc~dzero&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge5" class="edge">
-<title>proc~dzero&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M153.07,-180C161.28,-180 170.5,-180 179.28,-180"/>
-<polygon fill="#000000" stroke="#000000" points="179.31,-183.5 189.31,-180 179.31,-176.5 179.31,-183.5"/>
-</g>
-<!-- proc~diva&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge6" class="edge">
-<title>proc~diva&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.7,-289.9C146.97,-287.17 150.24,-284.13 153,-281 175,-256.06 194.09,-222.45 205.2,-201"/>
-<polygon fill="#000000" stroke="#000000" points="208.33,-202.57 209.73,-192.07 202.08,-199.41 208.33,-202.57"/>
-</g>
-<!-- proc~diva&#45;&gt;proc~mess -->
-<g id="proc~~messfi~~CalledByGraph_edge15" class="edge">
-<title>proc~diva&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M153.26,-298.43C177.14,-294.92 213.22,-288.93 244,-281 252.54,-278.8 261.61,-276 270.09,-273.17"/>
-<polygon fill="#000000" stroke="#000000" points="271.39,-276.43 279.71,-269.87 269.12,-269.81 271.39,-276.43"/>
-</g>
-<!-- proc~divaop -->
-<g id="proc~~messfi~~CalledByGraph_node8" class="node">
-<title>proc~divaop</title>
-<g id="a_proc~~messfi~~CalledByGraph_node8"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
-<polygon fill="#d9534f" stroke="#d9534f" points="243.5,-352 189.5,-352 189.5,-328 243.5,-328 243.5,-352"/>
-<text text-anchor="middle" x="216.5" y="-337.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
-</a>
-</g>
-</g>
-<!-- proc~diva&#45;&gt;proc~divaop -->
-<g id="proc~~messfi~~CalledByGraph_edge20" class="edge">
-<title>proc~diva&#45;&gt;proc~divaop</title>
-<path fill="none" stroke="#000000" d="M153.07,-313.2C161.46,-316.8 170.9,-320.85 179.86,-324.7"/>
-<polygon fill="#000000" stroke="#000000" points="178.74,-328.02 189.31,-328.75 181.5,-321.59 178.74,-328.02"/>
-</g>
-<!-- proc~divaop&#45;&gt;proc~mess -->
-<g id="proc~~messfi~~CalledByGraph_edge16" class="edge">
-<title>proc~divaop&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M230.94,-327.85C245.32,-314.85 268.31,-294.07 285.06,-278.92"/>
-<polygon fill="#000000" stroke="#000000" points="287.65,-281.3 292.72,-272 282.96,-276.11 287.65,-281.3"/>
-</g>
-<!-- proc~divag -->
-<g id="proc~~messfi~~CalledByGraph_node9" class="node">
-<title>proc~divag</title>
-<g id="a_proc~~messfi~~CalledByGraph_node9"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
-<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
-</a>
-</g>
-</g>
-<!-- proc~divag&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge7" class="edge">
-<title>proc~divag&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M143.75,-66.06C147.01,-68.8 150.26,-71.84 153,-75 175.53,-101 194.6,-136.19 205.55,-158.5"/>
-<polygon fill="#000000" stroke="#000000" points="202.51,-160.26 209.99,-167.76 208.82,-157.23 202.51,-160.26"/>
-</g>
-<!-- proc~messft -->
-<g id="proc~~messfi~~CalledByGraph_node10" class="node">
-<title>proc~messft</title>
-<g id="a_proc~~messfi~~CalledByGraph_node10"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
-<polygon fill="#d9534f" stroke="#d9534f" points="244,-272 189,-272 189,-248 244,-248 244,-272"/>
-<text text-anchor="middle" x="216.5" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
-</a>
-</g>
-</g>
-<!-- proc~messft&#45;&gt;proc~mess -->
-<g id="proc~~messfi~~CalledByGraph_edge13" class="edge">
-<title>proc~messft&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M244.05,-260C252.09,-260 261.06,-260 269.62,-260"/>
-<polygon fill="#000000" stroke="#000000" points="269.77,-263.5 279.77,-260 269.77,-256.5 269.77,-263.5"/>
+<path fill="none" stroke="#000000" d="M59.25,-260C68.42,-260 78.84,-260 88.64,-260"/>
+<polygon fill="#000000" stroke="#000000" points="88.94,-263.5 98.94,-260 88.94,-256.5 88.94,-263.5"/>
 </g>
 <!-- proc~divaa -->
-<g id="proc~~messfi~~CalledByGraph_node11" class="node">
+<g id="proc~~messfi~~CalledByGraph_node9" class="node">
 <title>proc~divaa</title>
-<g id="a_proc~~messfi~~CalledByGraph_node11"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<g id="a_proc~~messfi~~CalledByGraph_node9"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-150 99,-150 99,-126 153,-126 153,-150"/>
 <text text-anchor="middle" x="126" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
 </a>
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge8" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge12" class="edge">
 <title>proc~divaa&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M152.6,-150.15C161.4,-154.33 171.42,-159.08 180.82,-163.54"/>
-<polygon fill="#000000" stroke="#000000" points="179.42,-166.75 189.96,-167.88 182.43,-160.43 179.42,-166.75"/>
+<path fill="none" stroke="#000000" d="M153.07,-149.78C161.55,-153.62 171.1,-157.93 180.14,-162.02"/>
+<polygon fill="#000000" stroke="#000000" points="178.75,-165.23 189.31,-166.16 181.64,-158.85 178.75,-165.23"/>
 </g>
-<!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge9" class="edge">
-<title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M140.44,-247.85C154.82,-234.85 177.81,-214.07 194.56,-198.92"/>
-<polygon fill="#000000" stroke="#000000" points="197.15,-201.3 202.22,-192 192.46,-196.11 197.15,-201.3"/>
+<!-- proc~dzero -->
+<g id="proc~~messfi~~CalledByGraph_node10" class="node">
+<title>proc~dzero</title>
+<g id="a_proc~~messfi~~CalledByGraph_node10"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
+<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
+</a>
 </g>
-<!-- proc~divadb&#45;&gt;proc~mess -->
-<g id="proc~~messfi~~CalledByGraph_edge14" class="edge">
-<title>proc~divadb&#45;&gt;proc~mess</title>
+</g>
+<!-- proc~dzero&#45;&gt;proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_edge13" class="edge">
+<title>proc~dzero&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M142.6,-108.2C146.07,-111.03 149.7,-114.07 153,-117 168.06,-130.38 184.33,-146.31 196.49,-158.53"/>
+<polygon fill="#000000" stroke="#000000" points="194.32,-161.31 203.84,-165.96 199.3,-156.39 194.32,-161.31"/>
+</g>
+<!-- proc~messft&#45;&gt;proc~mess -->
+<g id="proc~~messfi~~CalledByGraph_edge8" class="edge">
+<title>proc~messft&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M230.94,-327.85C245.32,-314.85 268.31,-294.07 285.06,-278.92"/>
+<polygon fill="#000000" stroke="#000000" points="287.65,-281.3 292.72,-272 282.96,-276.11 287.65,-281.3"/>
+</g>
+<!-- proc~diva&#45;&gt;proc~mess -->
+<g id="proc~~messfi~~CalledByGraph_edge6" class="edge">
+<title>proc~diva&#45;&gt;proc~mess</title>
 <path fill="none" stroke="#000000" d="M153.06,-249.06C163.96,-245.04 176.89,-241 189,-239 213.12,-235.03 219.88,-235.03 244,-239 252.7,-240.43 261.83,-242.93 270.32,-245.71"/>
 <polygon fill="#000000" stroke="#000000" points="269.34,-249.07 279.94,-249.06 271.64,-242.46 269.34,-249.07"/>
 </g>
-<!-- proc~divadb&#45;&gt;proc~messft -->
-<g id="proc~~messfi~~CalledByGraph_edge22" class="edge">
-<title>proc~divadb&#45;&gt;proc~messft</title>
-<path fill="none" stroke="#000000" d="M153.07,-260C161.12,-260 170.14,-260 178.76,-260"/>
-<polygon fill="#000000" stroke="#000000" points="179,-263.5 189,-260 179,-256.5 179,-263.5"/>
+<!-- proc~diva&#45;&gt;proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_edge14" class="edge">
+<title>proc~diva&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M142.6,-247.8C146.07,-244.97 149.7,-241.93 153,-239 168.06,-225.62 184.33,-209.69 196.49,-197.47"/>
+<polygon fill="#000000" stroke="#000000" points="199.3,-199.61 203.84,-190.04 194.32,-194.69 199.3,-199.61"/>
+</g>
+<!-- proc~diva&#45;&gt;proc~divaop -->
+<g id="proc~~messfi~~CalledByGraph_edge19" class="edge">
+<title>proc~diva&#45;&gt;proc~divaop</title>
+<path fill="none" stroke="#000000" d="M153.07,-260C161.28,-260 170.5,-260 179.28,-260"/>
+<polygon fill="#000000" stroke="#000000" points="179.31,-263.5 189.31,-260 179.31,-256.5 179.31,-263.5"/>
 </g>
 <!-- proc~divacr -->
 <g id="proc~~messfi~~CalledByGraph_node13" class="node">
 <title>proc~divacr</title>
 <g id="a_proc~~messfi~~CalledByGraph_node13"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
-<polygon fill="#d9534f" stroke="#d9534f" points="153,-108 99,-108 99,-84 153,-84 153,-108"/>
-<text text-anchor="middle" x="126" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-66 99,-66 99,-42 153,-42 153,-66"/>
+<text text-anchor="middle" x="126" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
 </a>
 </g>
 </g>
 <!-- proc~divacr&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge10" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge15" class="edge">
 <title>proc~divacr&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M142.63,-108.16C146.11,-110.99 149.73,-114.04 153,-117 168.53,-131.02 185.17,-147.9 197.38,-160.65"/>
-<polygon fill="#000000" stroke="#000000" points="194.93,-163.16 204.35,-168 200.01,-158.34 194.93,-163.16"/>
+<path fill="none" stroke="#000000" d="M143.73,-66.08C146.99,-68.82 150.25,-71.85 153,-75 175.21,-100.4 194.24,-134.68 205.29,-156.57"/>
+<polygon fill="#000000" stroke="#000000" points="202.22,-158.26 209.78,-165.68 208.49,-155.16 202.22,-158.26"/>
 </g>
-<!-- proc~divain -->
+<!-- proc~divag -->
 <g id="proc~~messfi~~CalledByGraph_node14" class="node">
-<title>proc~divain</title>
-<g id="a_proc~~messfi~~CalledByGraph_node14"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<title>proc~divag</title>
+<g id="a_proc~~messfi~~CalledByGraph_node14"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
 <polygon fill="#d9534f" stroke="#d9534f" points="153,-24 99,-24 99,0 153,0 153,-24"/>
-<text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+<text text-anchor="middle" x="126" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
 </a>
 </g>
 </g>
-<!-- proc~divain&#45;&gt;proc~dmess -->
-<g id="proc~~messfi~~CalledByGraph_edge11" class="edge">
-<title>proc~divain&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M144.36,-24.01C147.5,-26.72 150.55,-29.76 153,-33 182.62,-72.23 201.18,-127.6 209.8,-157.96"/>
-<polygon fill="#000000" stroke="#000000" points="206.52,-159.21 212.53,-167.93 213.27,-157.36 206.52,-159.21"/>
+<!-- proc~divag&#45;&gt;proc~dmess -->
+<g id="proc~~messfi~~CalledByGraph_edge16" class="edge">
+<title>proc~divag&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M144.34,-24.02C147.49,-26.73 150.54,-29.76 153,-33 182.22,-71.51 200.84,-125.77 209.6,-155.8"/>
+<polygon fill="#000000" stroke="#000000" points="206.31,-157.02 212.38,-165.7 213.05,-155.13 206.31,-157.02"/>
 </g>
-<!-- program~drdivdb -->
+<!-- program~drdiva -->
 <g id="proc~~messfi~~CalledByGraph_node15" class="node">
-<title>program~drdivdb</title>
-<g id="a_proc~~messfi~~CalledByGraph_node15"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-294 0,-294 0,-270 63,-270 63,-294"/>
-<text text-anchor="middle" x="31.5" y="-279.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
+<title>program~drdiva</title>
+<g id="a_proc~~messfi~~CalledByGraph_node15"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-230 4.5,-230 4.5,-206 58.5,-206 58.5,-230"/>
+<text text-anchor="middle" x="31.5" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
 </a>
 </g>
 </g>
-<!-- program~drdivdb&#45;&gt;proc~diva -->
-<g id="proc~~messfi~~CalledByGraph_edge17" class="edge">
-<title>program~drdivdb&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M63.04,-288.6C71.37,-290.4 80.46,-292.37 89.05,-294.23"/>
-<polygon fill="#000000" stroke="#000000" points="88.31,-297.65 98.83,-296.34 89.79,-290.81 88.31,-297.65"/>
-</g>
-<!-- program~drdivdb&#45;&gt;proc~divadb -->
-<g id="proc~~messfi~~CalledByGraph_edge23" class="edge">
-<title>program~drdivdb&#45;&gt;proc~divadb</title>
-<path fill="none" stroke="#000000" d="M63.04,-274.74C71.37,-272.76 80.46,-270.59 89.05,-268.55"/>
-<polygon fill="#000000" stroke="#000000" points="89.91,-271.94 98.83,-266.22 88.29,-265.13 89.91,-271.94"/>
+<!-- program~drdiva&#45;&gt;proc~diva -->
+<g id="proc~~messfi~~CalledByGraph_edge22" class="edge">
+<title>program~drdiva&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M58.76,-229.92C68.41,-234.31 79.5,-239.34 89.81,-244.02"/>
+<polygon fill="#000000" stroke="#000000" points="88.44,-247.24 99,-248.19 91.34,-240.87 88.44,-247.24"/>
 </g>
 <!-- proc~divao -->
 <g id="proc~~messfi~~CalledByGraph_node16" class="node">
 <title>proc~divao</title>
 <g id="a_proc~~messfi~~CalledByGraph_node16"><a xlink:href=".././proc/divao.html" xlink:title="DIVAO">
-<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-66 4.5,-66 4.5,-42 58.5,-42 58.5,-66"/>
-<text text-anchor="middle" x="31.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="58.5,-24 4.5,-24 4.5,0 58.5,0 58.5,-24"/>
+<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAO</text>
 </a>
 </g>
 </g>
 <!-- proc~divao&#45;&gt;proc~divag -->
-<g id="proc~~messfi~~CalledByGraph_edge21" class="edge">
+<g id="proc~~messfi~~CalledByGraph_edge24" class="edge">
 <title>proc~divao&#45;&gt;proc~divag</title>
-<path fill="none" stroke="#000000" d="M58.76,-54C68.11,-54 78.82,-54 88.86,-54"/>
-<polygon fill="#000000" stroke="#000000" points="89,-57.5 99,-54 89,-50.5 89,-57.5"/>
+<path fill="none" stroke="#000000" d="M58.76,-12C68.11,-12 78.82,-12 88.86,-12"/>
+<polygon fill="#000000" stroke="#000000" points="89,-15.5 99,-12 89,-8.5 89,-15.5"/>
 </g>
-<!-- program~drdiva -->
+<!-- program~drdivdb -->
 <g id="proc~~messfi~~CalledByGraph_node17" class="node">
-<title>program~drdiva</title>
-<g id="a_proc~~messfi~~CalledByGraph_node17"><a xlink:href=".././program/drdiva.html" xlink:title="DRDIVA">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="58.5,-336 4.5,-336 4.5,-312 58.5,-312 58.5,-336"/>
-<text text-anchor="middle" x="31.5" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVA</text>
+<title>program~drdivdb</title>
+<g id="a_proc~~messfi~~CalledByGraph_node17"><a xlink:href=".././program/drdivdb.html" xlink:title="DRDIVDB">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="63,-314 0,-314 0,-290 63,-290 63,-314"/>
+<text text-anchor="middle" x="31.5" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DRDIVDB</text>
 </a>
 </g>
 </g>
-<!-- program~drdiva&#45;&gt;proc~diva -->
-<g id="proc~~messfi~~CalledByGraph_edge19" class="edge">
-<title>program~drdiva&#45;&gt;proc~diva</title>
-<path fill="none" stroke="#000000" d="M58.76,-317.75C68.21,-315.51 79.05,-312.93 89.18,-310.52"/>
-<polygon fill="#000000" stroke="#000000" points="90.08,-313.9 99,-308.18 88.46,-307.09 90.08,-313.9"/>
+<!-- program~drdivdb&#45;&gt;proc~divadb -->
+<g id="proc~~messfi~~CalledByGraph_edge18" class="edge">
+<title>program~drdivdb&#45;&gt;proc~divadb</title>
+<path fill="none" stroke="#000000" d="M63.04,-302C71.27,-302 80.26,-302 88.77,-302"/>
+<polygon fill="#000000" stroke="#000000" points="88.83,-305.5 98.83,-302 88.83,-298.5 88.83,-305.5"/>
+</g>
+<!-- program~drdivdb&#45;&gt;proc~diva -->
+<g id="proc~~messfi~~CalledByGraph_edge23" class="edge">
+<title>program~drdivdb&#45;&gt;proc~diva</title>
+<path fill="none" stroke="#000000" d="M59.25,-289.85C68.72,-285.56 79.51,-280.65 89.58,-276.08"/>
+<polygon fill="#000000" stroke="#000000" points="91.28,-279.15 98.94,-271.83 88.39,-272.78 91.28,-279.15"/>
 </g>
 </g>
 </svg>
@@ -638,6 +657,14 @@ subroutine MESSFI()
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/messfi.html#src">MESSFI</a>
+  </div>
+</div>
 
 
 
@@ -1558,6 +1585,72 @@ subroutine MESSFI()
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">MESSFI</span><span class="p">()</span>
+
+      <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">KD</span>
+<span class="c">!</span>
+<span class="c">! For comments on other variables, see the listing for MESS.</span>
+      <span class="kt">integer   </span><span class="n">LENBUF</span><span class="p">,</span> <span class="n">MEVBAS</span><span class="p">,</span> <span class="n">MEVLAS</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LENBUF</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEVBAS</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEVLAS</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+      <span class="kt">logical          </span><span class="n">XARG</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARGOK</span>
+      <span class="kt">integer          </span><span class="n">ERRCNT</span><span class="p">,</span> <span class="n">EUNIT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span> <span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">:</span><span class="n">MEVLAS</span><span class="p">),</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span> <span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NDIM</span><span class="p">,</span> <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">TABSPA</span>
+<span class="c">!</span>
+      <span class="kt">character </span><span class="n">BUF</span><span class="o">*</span><span class="p">(</span><span class="n">LENBUF</span><span class="p">),</span> <span class="n">DOLS</span><span class="o">*</span><span class="mi">72</span><span class="p">,</span> <span class="n">FMTC</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTF</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> <span class="n">FMTG</span><span class="o">*</span><span class="mi">15</span><span class="p">,</span>        <span class="p">&amp;</span>
+     <span class="p">&amp;</span>  <span class="n">FMTI</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTJ</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTR</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTT</span><span class="o">*</span><span class="mi">15</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EUNIT</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">MDAT</span><span class="p">,</span> <span class="n">TABSPA</span><span class="p">,</span> <span class="n">ERRCNT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span> <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span> <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXWID</span><span class="p">,</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span> <span class="n">NDIM</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARG</span><span class="p">,</span> <span class="n">XARGOK</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSC</span> <span class="o">/</span> <span class="n">BUF</span><span class="p">,</span> <span class="n">DOLS</span><span class="p">,</span> <span class="n">FMTF</span><span class="p">,</span> <span class="n">FMTG</span><span class="p">,</span> <span class="n">FMTI</span><span class="p">,</span> <span class="n">FMTJ</span><span class="p">,</span> <span class="n">FMTT</span><span class="p">,</span> <span class="n">FMTIM</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">),</span> <span class="n">SUNIT</span><span class="p">)</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">),</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="k">save</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span><span class="p">,</span> <span class="o">/</span><span class="n">CMESSC</span><span class="o">/</span>
+<span class="c">!</span>
+      <span class="n">KD</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">KDI</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="c">!              KDI &lt; 0 to flag need for extra space -- avoids overflows</span>
+         <span class="n">KDI</span> <span class="o">=</span> <span class="o">-</span><span class="n">KDI</span>
+         <span class="n">KD</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="k">end if</span>
+<span class="k">      </span><span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">IMAG</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="nb">IMAG</span> <span class="o">=</span> <span class="o">-</span><span class="nb">IMAG</span>
+<span class="nb">         </span><span class="n">KD</span> <span class="o">=</span> <span class="n">KD</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">end if</span>
+<span class="k">      </span><span class="n">I</span> <span class="o">=</span> <span class="nb">IMAG</span> <span class="o">/</span> <span class="mi">10</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">   </span><span class="mi">10</span>    <span class="n">K</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">K</span>
+         <span class="n">KD</span> <span class="o">=</span> <span class="n">KD</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">&gt;=</span> <span class="n">K</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">KD</span> <span class="o">/=</span> <span class="n">KDI</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">KDI</span> <span class="o">=</span> <span class="n">KD</span>
+<span class="c">!++ CODE for ~.C. is active</span>
+         <span class="n">FMTI</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="n">KDI</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+         <span class="n">FMTI</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="nb">mod</span><span class="p">(</span><span class="n">KDI</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c">!++ CODE for .C. is inactive</span>
+<span class="c">!%%      messcc.kciwid = cmessi.kdi;</span>
+<span class="c">!++ END</span>
+      <span class="k">end if</span>
+<span class="k">      return</span>
+<span class="k">    end subroutine </span><span class="n">messfi</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>

@@ -61,6 +61,8 @@
         
         
         
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
@@ -76,6 +78,8 @@
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
 
 
 
@@ -127,14 +131,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f.html'>diva_module.f</a></li>
+     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+    
+     <li><a href='../module/diva_module.html'>diva_module</a></li>
     
   
      <li class="active">DIVAG</li>
@@ -196,6 +202,14 @@
 
 
 
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divag.html#src">DIVAG</a>
+  </div>
+</div>
+
+
 
 </div>
 
@@ -203,7 +217,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
+public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
     
     
    
@@ -212,6 +226,31 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   
 
 
+    
+    <ul>
+<li>2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.</li>
+<li>1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.</li>
+<li>1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction</li>
+<li>1994-11-11 DIVAG  Krogh  Declared all vars.</li>
+<li>1994-10-20 DIVAG  Krogh  Changes to use M77CON</li>
+<li>1994-09-12 DIVAG  Krogh  Added CHGTYP code.</li>
+<li>1994-08-17 DIVAG  Krogh  Modified internal comment.</li>
+<li>1994-03-07 DIVAG  Krogh  Allow larger order in single precision.</li>
+<li>1993-04-27 DIVAG  Krogh  Additions for Conversion to C.</li>
+<li>1992-10-12 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction</li>
+<li>1992-09-17 DIVAG  Krogh  Slight change in check for sign change.</li>
+<li>1992-04-08 DIVAG  Krogh  Unused labels 140,150,230, and 250 removed.</li>
+<li>1992-03-10 DIVAG  Krogh  Fixed value for KDIM in single p. version.</li>
+<li>1990-01-29 DIVAG  Krogh  Added arg to call to DERMN.</li>
+<li>1988-03-04 DIVAG  Krogh  Initial code.</li>
+</ul>
+<p>--D replaces "?": ?IVAG,?IVABU,?IVAEV,?IVAIN,?IVAMC,?IVASC,?MESS,?ZERO</p>
+<div class="codehilite"><pre><span></span><code> -XXXG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
+</code></pre></div>
+
+<p>SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
+  FUNCTIONS  <strong><em>* GSTOPS </em></strong>* FOR DIFFERENTIAL EQUATION
+  INTEGRATOR -ODE (OR -IVA).</p>
     
 
     <h3>Arguments</h3>
@@ -232,7 +271,7 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-tspecs~4"></span>double precision</td>
+  <td><span class="anchor" id="variable-tspecs~7"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -247,7 +286,7 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~7"></span>double precision</td>
+  <td><span class="anchor" id="variable-y~13"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -262,7 +301,7 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-f~8"></span>double precision</td>
+  <td><span class="anchor" id="variable-f~14"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -277,35 +316,12 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-kord~8"></span>integer</td>
+  <td><span class="anchor" id="variable-kord~14"></span>integer</td>
   <td></td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td><blockquote>
-<p>2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.
-1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.
-1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1994-11-11 DIVAG  Krogh  Declared all vars.
-1994-10-20 DIVAG  Krogh  Changes to use M77CON
-1994-09-12 DIVAG  Krogh  Added CHGTYP code.
-1994-08-17 DIVAG  Krogh  Modified internal comment.
-1994-03-07 DIVAG  Krogh  Allow larger order in single precision.
-1993-04-27 DIVAG  Krogh  Additions for Conversion to C.
-1992-10-12 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1992-09-17 DIVAG  Krogh  Slight change in check for sign change.
-1992-04-08 DIVAG  Krogh  Unused labels 140,150,230, and 250 removed.
-1992-03-10 DIVAG  Krogh  Fixed value for KDIM in single p. version.
-1990-01-29 DIVAG  Krogh  Added arg to call to DERMN.
-1988-03-04 DIVAG  Krogh  Initial code.</p>
-</blockquote>
-<p>--D replaces "?": ?IVAG,?IVABU,?IVAEV,?IVAIN,?IVAMC,?IVASC,?MESS,?ZERO</p>
-<div class="codehilite"><pre><span></span><code> -XXXG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
-</code></pre></div>
-
-<p>SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
-  FUNCTIONS  <strong><em>* GSTOPS </em></strong>* FOR DIFFERENTIAL EQUATION
-  INTEGRATOR -ODE (OR -IVA).</p></td>
+  <td><strong>KORD</strong>(*)</td><td></td>
   
 </tr>
 
@@ -320,30 +336,7 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>IFLAG</strong></td><td><blockquote>
-<p>2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.
-1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.
-1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1994-11-11 DIVAG  Krogh  Declared all vars.
-1994-10-20 DIVAG  Krogh  Changes to use M77CON
-1994-09-12 DIVAG  Krogh  Added CHGTYP code.
-1994-08-17 DIVAG  Krogh  Modified internal comment.
-1994-03-07 DIVAG  Krogh  Allow larger order in single precision.
-1993-04-27 DIVAG  Krogh  Additions for Conversion to C.
-1992-10-12 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1992-09-17 DIVAG  Krogh  Slight change in check for sign change.
-1992-04-08 DIVAG  Krogh  Unused labels 140,150,230, and 250 removed.
-1992-03-10 DIVAG  Krogh  Fixed value for KDIM in single p. version.
-1990-01-29 DIVAG  Krogh  Added arg to call to DERMN.
-1988-03-04 DIVAG  Krogh  Initial code.</p>
-</blockquote>
-<p>--D replaces "?": ?IVAG,?IVABU,?IVAEV,?IVAIN,?IVAMC,?IVASC,?MESS,?ZERO</p>
-<div class="codehilite"><pre><span></span><code> -XXXG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
-</code></pre></div>
-
-<p>SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
-  FUNCTIONS  <strong><em>* GSTOPS </em></strong>* FOR DIFFERENTIAL EQUATION
-  INTEGRATOR -ODE (OR -IVA).</p></td>
+  <td><strong>IFLAG</strong></td><td></td>
   
 </tr>
 
@@ -358,30 +351,7 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>NSTOP</strong></td><td><blockquote>
-<p>2001-09-07 DIVAG  Krogh  Changes to allow user tol on G-Stops.
-1995-06-20 DIVAG  Krogh  Fixed problem introduced with last change.
-1995-05-09 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1994-11-11 DIVAG  Krogh  Declared all vars.
-1994-10-20 DIVAG  Krogh  Changes to use M77CON
-1994-09-12 DIVAG  Krogh  Added CHGTYP code.
-1994-08-17 DIVAG  Krogh  Modified internal comment.
-1994-03-07 DIVAG  Krogh  Allow larger order in single precision.
-1993-04-27 DIVAG  Krogh  Additions for Conversion to C.
-1992-10-12 DIVAG  Krogh  Fixed G-Stop/discontinuity code interaction
-1992-09-17 DIVAG  Krogh  Slight change in check for sign change.
-1992-04-08 DIVAG  Krogh  Unused labels 140,150,230, and 250 removed.
-1992-03-10 DIVAG  Krogh  Fixed value for KDIM in single p. version.
-1990-01-29 DIVAG  Krogh  Added arg to call to DERMN.
-1988-03-04 DIVAG  Krogh  Initial code.</p>
-</blockquote>
-<p>--D replaces "?": ?IVAG,?IVABU,?IVAEV,?IVAIN,?IVAMC,?IVASC,?MESS,?ZERO</p>
-<div class="codehilite"><pre><span></span><code> -XXXG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
-</code></pre></div>
-
-<p>SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
-  FUNCTIONS  <strong><em>* GSTOPS </em></strong>* FOR DIFFERENTIAL EQUATION
-  INTEGRATOR -ODE (OR -IVA).</p></td>
+  <td><strong>NSTOP</strong></td><td></td>
   
 </tr>
 
@@ -435,76 +405,61 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: proc~~divag~~CallsGraph Pages: 1 -->
-<svg id="procdivagCallsGraph" width="244pt" height="95pt"
- viewBox="0.00 0.00 244.00 95.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~divag~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 91)">
+<svg id="procdivagCallsGraph" width="242pt" height="74pt"
+ viewBox="0.00 0.00 242.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~divag~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
 <title>proc~~divag~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-91 240,-91 240,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 238,-70 238,4 -4,4"/>
 <!-- proc~divag -->
 <g id="proc~~divag~~CallsGraph_node1" class="node">
 <title>proc~divag</title>
-<polygon fill="none" stroke="black" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
-<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVAG</text>
+<polygon fill="none" stroke="black" points="54,-45 0,-45 0,-21 54,-21 54,-45"/>
+<text text-anchor="middle" x="27" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">DIVAG</text>
 </g>
 <!-- proc~divabu -->
 <g id="proc~~divag~~CallsGraph_node2" class="node">
 <title>proc~divabu</title>
 <g id="a_proc~~divag~~CallsGraph_node2"><a xlink:href=".././proc/divabu.html" xlink:title="DIVABU">
-<polygon fill="#d9534f" stroke="#d9534f" points="144,-87 90,-87 90,-63 144,-63 144,-87"/>
-<text text-anchor="middle" x="117" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVABU</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="144,-66 90,-66 90,-42 144,-42 144,-66"/>
+<text text-anchor="middle" x="117" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVABU</text>
 </a>
 </g>
 </g>
 <!-- proc~divag&#45;&gt;proc~divabu -->
 <g id="proc~~divag~~CallsGraph_edge1" class="edge">
 <title>proc~divag&#45;&gt;proc~divabu</title>
-<path fill="none" stroke="#000000" d="M54.4,-60.3C62.48,-62.23 71.51,-64.38 80.1,-66.43"/>
-<polygon fill="#000000" stroke="#000000" points="79.38,-69.86 89.92,-68.78 81,-63.05 79.38,-69.86"/>
+<path fill="none" stroke="#000000" d="M54.4,-39.3C62.48,-41.23 71.51,-43.38 80.1,-45.43"/>
+<polygon fill="#000000" stroke="#000000" points="79.38,-48.86 89.92,-47.78 81,-42.05 79.38,-48.86"/>
 </g>
 <!-- proc~dmess -->
 <g id="proc~~divag~~CallsGraph_node3" class="node">
 <title>proc~dmess</title>
 <g id="a_proc~~divag~~CallsGraph_node3"><a xlink:href=".././proc/dmess.html" xlink:title="DMESS">
-<polygon fill="#d9534f" stroke="#d9534f" points="144,-45 90,-45 90,-21 144,-21 144,-45"/>
-<text text-anchor="middle" x="117" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="144,-24 90,-24 90,0 144,0 144,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DMESS</text>
 </a>
 </g>
 </g>
 <!-- proc~divag&#45;&gt;proc~dmess -->
 <g id="proc~~divag~~CallsGraph_edge2" class="edge">
 <title>proc~divag&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M54.4,-47.7C62.48,-45.77 71.51,-43.62 80.1,-41.57"/>
-<polygon fill="#000000" stroke="#000000" points="81,-44.95 89.92,-39.22 79.38,-38.14 81,-44.95"/>
-</g>
-<!-- proc~d1mach -->
-<g id="proc~~divag~~CallsGraph_node4" class="node">
-<title>proc~d1mach</title>
-<g id="a_proc~~divag~~CallsGraph_node4"><a xlink:href=".././proc/d1mach.html" xlink:title="d1mach">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="236,-66 180,-66 180,-42 236,-42 236,-66"/>
-<text text-anchor="middle" x="208" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">d1mach</text>
-</a>
-</g>
-</g>
-<!-- proc~dmess&#45;&gt;proc~d1mach -->
-<g id="proc~~divag~~CallsGraph_edge3" class="edge">
-<title>proc~dmess&#45;&gt;proc~d1mach</title>
-<path fill="none" stroke="#000000" d="M144.22,-39.19C152.26,-41.08 161.25,-43.21 169.87,-45.24"/>
-<polygon fill="#000000" stroke="#000000" points="169.19,-48.68 179.73,-47.57 170.8,-41.86 169.19,-48.68"/>
+<path fill="none" stroke="#000000" d="M54.4,-26.7C62.48,-24.77 71.51,-22.62 80.1,-20.57"/>
+<polygon fill="#000000" stroke="#000000" points="81,-23.95 89.92,-18.22 79.38,-17.14 81,-23.95"/>
 </g>
 <!-- proc~messfi -->
-<g id="proc~~divag~~CallsGraph_node5" class="node">
+<g id="proc~~divag~~CallsGraph_node4" class="node">
 <title>proc~messfi</title>
-<g id="a_proc~~divag~~CallsGraph_node5"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="235,-24 181,-24 181,0 235,0 235,-24"/>
-<text text-anchor="middle" x="208" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+<g id="a_proc~~divag~~CallsGraph_node4"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 180,-24 180,0 234,0 234,-24"/>
+<text text-anchor="middle" x="207" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
 </a>
 </g>
 </g>
 <!-- proc~dmess&#45;&gt;proc~messfi -->
-<g id="proc~~divag~~CallsGraph_edge4" class="edge">
+<g id="proc~~divag~~CallsGraph_edge3" class="edge">
 <title>proc~dmess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M144.22,-26.81C152.64,-24.83 162.12,-22.59 171.11,-20.47"/>
-<polygon fill="#000000" stroke="#000000" points="172.04,-23.85 180.97,-18.14 170.43,-17.03 172.04,-23.85"/>
+<path fill="none" stroke="#000000" d="M144.4,-12C152.39,-12 161.31,-12 169.82,-12"/>
+<polygon fill="#000000" stroke="#000000" points="169.92,-15.5 179.92,-12 169.92,-8.5 169.92,-15.5"/>
 </g>
 </g>
 </svg>
@@ -715,6 +670,14 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/divag.html#src">DIVAG</a>
+  </div>
+</div>
 
 
 
@@ -2477,6 +2440,307 @@ subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 
     
     
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAG</span><span class="p">(</span><span class="n">TSPECS</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">IFLAG</span><span class="p">,</span> <span class="n">NSTOP</span><span class="p">,</span> <span class="n">GNEW</span><span class="p">,</span> <span class="n">GT</span><span class="p">)</span>
+
+      <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">IFLAG</span><span class="p">,</span> <span class="n">NSTOP</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TSPECS</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">TOLD</span><span class="p">,</span> <span class="n">TSAVE</span>
+      <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GNEW</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GOLD</span>
+      <span class="k">save </span><span class="n">GOLD</span><span class="p">,</span> <span class="n">TOLD</span><span class="p">,</span> <span class="n">TSAVE</span>
+<span class="c">!</span>
+<span class="c">!++SP Default KDIM = 16</span>
+<span class="c">!++  Default KDIM = 20</span>
+<span class="c">!++  Default MAXORD = 2, MAXSTF = 1</span>
+      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
+<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TN</span>
+      <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
+      <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
+      <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
+      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="c">!</span>
+      <span class="kt">double precision </span><span class="n">DS</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">),</span> <span class="n">GS</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">SIGMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">RBQ</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">DNOISE</span>
+      <span class="kt">double precision </span><span class="n">EAVE</span><span class="p">,</span> <span class="n">EIMAX</span><span class="p">,</span> <span class="n">EIMIN</span><span class="p">,</span> <span class="n">EMAX</span><span class="p">,</span> <span class="n">EREP</span><span class="p">,</span> <span class="n">ROBND</span><span class="p">,</span> <span class="n">SNOISE</span>
+<span class="c">!</span>
+<span class="c">!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.</span>
+      <span class="kt">double precision </span><span class="n">EEPS10</span><span class="p">,</span> <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span><span class="p">,</span> <span class="n">EEPS2</span>
+      <span class="kt">double precision </span><span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+      <span class="kt">integer </span><span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span> <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+      <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span><span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span><span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span><span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span><span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span><span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span>       <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+      <span class="k">common</span> <span class="o">/</span><span class="n">DIVAMC</span><span class="o">/</span> <span class="n">TG</span><span class="p">,</span><span class="n">TGSTOP</span><span class="p">,</span><span class="n">TMARK</span><span class="p">,</span><span class="n">TMARKX</span><span class="p">,</span><span class="n">TOUT</span><span class="p">,</span><span class="n">TOLG</span><span class="p">,</span><span class="n">HC</span><span class="p">,</span><span class="n">HDEC</span><span class="p">,</span><span class="n">HINC</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">HINCC</span><span class="p">,</span><span class="n">HMAX</span><span class="p">,</span><span class="n">HMAXP9</span><span class="p">,</span><span class="n">HMIN</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">,</span><span class="n">BETA</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">DS</span><span class="p">,</span><span class="n">GS</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">RBQ</span><span class="p">,</span><span class="n">DNOISE</span><span class="p">,&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">EAVE</span><span class="p">,</span><span class="n">EIMAX</span><span class="p">,</span><span class="n">EIMIN</span><span class="p">,</span><span class="n">EMAX</span><span class="p">,</span><span class="n">EREP</span><span class="p">,</span><span class="n">ROBND</span><span class="p">,</span><span class="n">SNOISE</span><span class="p">,</span><span class="n">FDAT</span><span class="p">,</span><span class="n">ICF</span><span class="p">,</span><span class="n">ICS</span><span class="p">,</span><span class="n">IGFLG</span><span class="p">,</span>    <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IGTYPE</span><span class="p">,</span><span class="n">IGSTOP</span><span class="p">,</span><span class="n">ILGREP</span><span class="p">,</span><span class="n">INGS</span><span class="p">,</span><span class="n">IOP3</span><span class="p">,</span><span class="n">IOP4</span><span class="p">,</span><span class="n">IOP5</span><span class="p">,</span><span class="n">IOP6</span><span class="p">,</span><span class="n">IOP7</span><span class="p">,</span><span class="n">IOP8</span><span class="p">,</span><span class="n">IOP9</span><span class="p">,</span>  <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP10</span><span class="p">,</span><span class="n">IOP11</span><span class="p">,</span><span class="n">IOP12</span><span class="p">,</span><span class="n">IOP13</span><span class="p">,</span><span class="n">IOP14</span><span class="p">,</span><span class="n">IOP15</span><span class="p">,</span><span class="n">IOP16</span><span class="p">,</span><span class="n">IOP17</span><span class="p">,</span><span class="n">IOP18</span><span class="p">,</span><span class="n">IOP19</span><span class="p">,</span>   <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">IOP20</span><span class="p">,</span><span class="n">IOP21</span><span class="p">,</span><span class="n">IOP22</span><span class="p">,</span><span class="n">IOP21S</span><span class="p">,</span><span class="n">ITOLEP</span><span class="p">,</span><span class="n">IY</span><span class="p">,</span><span class="n">KEMAX</span><span class="p">,</span><span class="n">KIS</span><span class="p">,</span><span class="n">KMARK</span><span class="p">,</span><span class="n">KORD1I</span><span class="p">,</span>     <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KORD2I</span><span class="p">,</span><span class="n">KPRED</span><span class="p">,</span><span class="n">KQDCON</span><span class="p">,</span><span class="n">KQICON</span><span class="p">,</span><span class="n">KQMAXS</span><span class="p">,</span><span class="n">KQMXDS</span><span class="p">,</span><span class="n">KQMXIL</span><span class="p">,</span><span class="n">KQMXIP</span><span class="p">,</span><span class="n">KQMXIS</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span><span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span> <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span><span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span>
+      <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAMC</span> <span class="o">/</span> <span class="p">,</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">IG</span><span class="p">,</span> <span class="n">IGFLGS</span><span class="p">,</span> <span class="n">IZFLAG</span><span class="p">,</span> <span class="n">KEXIT</span><span class="p">,</span> <span class="n">NGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">HH</span>
+      <span class="k">equivalence</span> <span class="p">(</span><span class="n">G</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">HH</span><span class="p">),</span> <span class="p">(</span><span class="n">NGSTOP</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">IOP6</span><span class="p">),</span> <span class="p">(</span><span class="n">KEXIT</span><span class="p">,</span> <span class="n">IOP17</span><span class="p">),</span>      <span class="p">&amp;</span>
+     <span class="p">&amp;</span>   <span class="p">(</span><span class="n">IZFLAG</span><span class="p">,</span> <span class="n">IY</span><span class="p">),</span> <span class="p">(</span><span class="n">IGFLGS</span><span class="p">,</span> <span class="n">ITOLEP</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">!                      Declarations for error message processing.</span>
+<span class="c">!</span>
+      <span class="kt">integer </span><span class="n">MEMDA1</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">MEEMES</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEMDA1</span> <span class="o">=</span><span class="mi">27</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span><span class="p">)</span>
+      <span class="kt">integer </span><span class="n">MACT</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="c">! ********* Error message text ***************</span>
+<span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
+<span class="c">!AA DIVAG$B</span>
+<span class="c">!AB Call with bad values of KORD.  KORD(1)=$I, KORD(2)=$I, when $C</span>
+<span class="c">!   TSPECS(1)=$F and KSTEP=$M.$E</span>
+      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span>
+      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span> <span class="mi">8</span><span class="p">)</span>
+      <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">95</span><span class="p">)</span>
+      <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;DIVAG$BCall with bad values of KORD.  KORD(1)=$I, KOR&amp;</span>
+<span class="s1">     &amp;D(2)=$I, when TSPECS(1)=$F and KSTEP=$M.$E&#39;</span><span class="o">/</span>
+      <span class="k">data </span><span class="n">MACT</span> <span class="o">/</span> <span class="n">MEMDA1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MEEMES</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">MERET</span> <span class="o">/</span>
+<span class="c">!</span>
+<span class="c">! ****************** START OF EXECUTABLE CODE **************</span>
+<span class="c">!</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">IG</span> <span class="o">=</span> <span class="n">KORD</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">IG</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">IG</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">500</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">70</span>
+   <span class="mi">10</span> <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">60</span>
+<span class="c">!</span>
+<span class="c">! ******************** INITIAL POINT ***********************</span>
+<span class="c">!</span>
+   <span class="mi">20</span> <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">5</span>
+         <span class="k">return</span>
+<span class="k">      end if</span>
+<span class="k">      </span><span class="n">IGTYPE</span><span class="p">(</span><span class="n">IG</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">NGSTOP</span><span class="p">(</span><span class="n">IG</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">IG</span> <span class="o">+</span> <span class="n">IGFLG</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="n">IG</span> <span class="o">-</span> <span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
+   <span class="mi">30</span> <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">5</span>
+   <span class="mi">40</span> <span class="n">NG</span> <span class="o">=</span> <span class="n">NGSTOP</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span>
+      <span class="k">do </span><span class="mi">50</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NG</span>
+   <span class="mi">50</span>    <span class="n">GT</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">=</span> <span class="n">GNEW</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">480</span>
+<span class="c">!</span>
+<span class="c">!     **** USER HAS BEEN TOLD THAT A GSTOP WAS FOUND</span>
+<span class="c">!          TEST IF CALLED FROM OUTPUT WHEN CALL SHOULD</span>
+<span class="c">!          BE FROM DERIVS</span>
+   <span class="mi">60</span> <span class="k">if</span> <span class="p">((</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">IG</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">420</span>
+<span class="c">!     **** PROTECT AGAINST NOISEY G NEAR THE ZERO</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span> <span class="o">=</span> <span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span>
+<span class="c">!</span>
+<span class="c">! ****** TEST FOR CHANGE IN THE SIGN OF A G ****************</span>
+<span class="c">!</span>
+   <span class="mi">70</span> <span class="n">NG</span> <span class="o">=</span> <span class="n">NGSTOP</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span>
+      <span class="n">INGS</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="mi">80</span> <span class="n">INGS</span> <span class="o">=</span> <span class="n">INGS</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">INGS</span> <span class="o">&gt;</span> <span class="n">NG</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">480</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">110</span>
+   <span class="mi">90</span> <span class="k">if</span> <span class="p">(</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">130</span>
+  <span class="mi">100</span> <span class="k">if</span> <span class="p">(</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">130</span>
+  <span class="mi">110</span> <span class="k">if</span> <span class="p">(</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">130</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span>
+  <span class="mi">120</span> <span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span> <span class="o">=</span> <span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
+<span class="c">!</span>
+<span class="c">! ********* A SIGN CHANGE HAS BEEN FOUND *******************</span>
+<span class="c">!</span>
+  <span class="mi">130</span> <span class="n">NSTOP</span> <span class="o">=</span> <span class="n">INGS</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IG</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">NSTOP</span> <span class="o">=</span> <span class="o">-</span><span class="n">INGS</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">/=</span> <span class="mi">5</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">200</span>
+<span class="c">!     **** USUAL CASE -- TEST IF OUTPUT POINT PRECEDES THE</span>
+<span class="c">!          SIGN CHANGE, OR IF PREDICTING, CORRECTING, OR</span>
+<span class="c">!          NOT THROUGH THE FIRST STEP.</span>
+<span class="c">!     **** TEST IF AN INTERPOLATED G WAS WHAT CHANGED SIGN</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IG</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">180</span>
+<span class="c">!     **** BACK UP DIFFERENCES AND OTHER STUFF TO BEGINNING</span>
+<span class="c">!          OF THE STEP</span>
+      <span class="k">call </span><span class="n">DIVABU</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
+<span class="c">!     **** TEST IF CORRECTING</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">KORD1I</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">170</span>
+<span class="c">!     **** TEST IF THROUGH THE FIRST STEP</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">180</span>
+<span class="c">!     **** IF FIRST DERIVATIVE EVALUATION OF THE FIRST</span>
+<span class="c">!          STEP, FIND THE GSTOP, AND USE IT TO GET A NEW</span>
+<span class="c">!          INITIAL STEPSIZE</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">200</span>
+<span class="c">!     **** SET NEW STEPSIZE AFTER SIGN CHANGE WHEN STARTING</span>
+  <span class="mi">160</span> <span class="n">HH</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">TN</span>
+<span class="c">!     **** SET KEXIT TO TRY NEW STEPSIZE</span>
+  <span class="mi">170</span> <span class="n">KEXIT</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TN</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">460</span>
+<span class="c">!     **** SET KEXIT FOR USUAL CASE</span>
+  <span class="mi">180</span> <span class="n">KEXIT</span> <span class="o">=</span> <span class="n">IG</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="c">!     **** TEST IF SIGN CHANGE IN G PRECEDES NEXT OUTPUT PT.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">HH</span> <span class="o">*</span> <span class="p">(</span><span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">TMARK</span><span class="p">))</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">190</span>
+<span class="c">!     **** SET UP TO EVALUATE G AT OUTPUT POINT</span>
+  <span class="mi">190</span> <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">4</span>
+      <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TMARK</span>
+      <span class="n">NSTOP</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">240</span>
+<span class="c">!</span>
+<span class="c">! ***************** FIND THE ZERO OF G *********************</span>
+<span class="c">!</span>
+<span class="c">!     **** INITIALIZE ZERO FINDER</span>
+  <span class="mi">200</span> <span class="n">TOLD</span> <span class="o">=</span> <span class="n">TG</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span>
+      <span class="n">GOLD</span> <span class="o">=</span> <span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span>
+      <span class="n">TSAVE</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">IGFLGS</span> <span class="o">=</span> <span class="n">IGFLG</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">IZFLAG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">220</span>
+<span class="c">!     **** TEST IF ZERO ALREADY FOUND</span>
+  <span class="mi">210</span> <span class="k">if</span> <span class="p">(</span><span class="n">IZFLAG</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">310</span>
+  <span class="mi">220</span> <span class="k">continue</span>
+<span class="k">      call </span><span class="n">DZERO</span><span class="p">(</span><span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">),</span> <span class="n">TOLD</span><span class="p">,</span> <span class="n">GOLD</span><span class="p">,</span> <span class="n">IZFLAG</span><span class="p">,</span> <span class="n">TOLG</span><span class="p">)</span>
+<span class="c">!     **** TEST FOR CONVERGENCE</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IZFLAG</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">260</span>
+<span class="c">!     **** INTERPOLATE NEW Y, AND GO COMPUTE G AGAIN</span>
+  <span class="mi">240</span> <span class="k">call </span><span class="n">DIVAIN</span><span class="p">(</span><span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">4</span>
+      <span class="n">KORD2I</span> <span class="o">=</span> <span class="n">IG</span> <span class="o">-</span> <span class="mi">3</span>
+      <span class="k">return</span>
+<span class="c">!     **** CONVERGENCE -- CHOOSE TOLD TO GIVE A CHANGE</span>
+<span class="c">!          IN SIGN</span>
+  <span class="mi">260</span> <span class="k">if</span> <span class="p">(</span><span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.D0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">290</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">TOLD</span><span class="p">)</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">280</span>
+  <span class="mi">270</span> <span class="k">if</span> <span class="p">(</span><span class="n">HH</span><span class="p">)</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span>
+  <span class="mi">280</span> <span class="k">if</span> <span class="p">(</span><span class="n">HH</span><span class="p">)</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">290</span>
+  <span class="mi">290</span> <span class="n">TOLD</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c">!     **** CHECK IF SIGN CHANGE DUE TO NOISE</span>
+  <span class="mi">300</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TOLD</span> <span class="o">+</span> <span class="n">XI</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">240</span>
+  <span class="mi">310</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TOLD</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">GNEW</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">330</span>
+  <span class="mi">320</span> <span class="k">if</span> <span class="p">(</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">340</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">360</span>
+  <span class="mi">330</span> <span class="k">if</span> <span class="p">(</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">))</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">340</span>
+<span class="c">!     **** ZERO WAS EVIDENTLY DUE TO NOISE</span>
+  <span class="mi">340</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TSAVE</span>
+      <span class="n">IZFLAG</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">370</span>
+  <span class="mi">350</span> <span class="n">IGFLG</span> <span class="o">=</span> <span class="n">IGFLGS</span>
+<span class="c">!     SET KORD2I TO INITIAL VALUE TO AVOID LOOP</span>
+      <span class="n">KORD2I</span> <span class="o">=</span> <span class="n">IG</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
+<span class="c">!     **** SAVE INFORMATION ABOUT THE STOP</span>
+  <span class="mi">360</span> <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">3</span>
+      <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span> <span class="o">=</span> <span class="n">IZFLAG</span> <span class="o">+</span> <span class="mi">3</span>
+      <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span> <span class="o">=</span> <span class="n">NSTOP</span>
+  <span class="mi">370</span> <span class="n">NSTOP</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">240</span>
+<span class="c">!</span>
+<span class="c">! ************** AFTER SEARCH FOR A SIGN CHANGE ************</span>
+<span class="c">!</span>
+<span class="c">!     **** NO SIGN CHANGE AT A T OUTPUT POINT</span>
+<span class="c">!     TEST IF CALLED FROM OUTPUT</span>
+  <span class="mi">380</span> <span class="k">if</span> <span class="p">(</span><span class="n">IG</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">390</span>
+<span class="c">!     SET UP FOR CALL TO OUTPUT</span>
+      <span class="n">KORD1I</span> <span class="o">=</span> <span class="mi">7</span>
+      <span class="n">KORD2I</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">3</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">480</span>
+<span class="c">!     **** ADJUST KEXIT AND SET UP TO GIVE OUTPUT</span>
+  <span class="mi">390</span> <span class="n">KEXIT</span> <span class="o">=</span> <span class="n">KEXIT</span> <span class="o">+</span> <span class="mi">2</span>
+      <span class="n">KORD1I</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">KMARK</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+      <span class="n">KORD</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KMARK</span>
+      <span class="n">KORD</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">KORD1I</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">5</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">470</span>
+<span class="c">!     **** TEST IF USER HAS BEEN TOLD OF GSTOP</span>
+  <span class="mi">400</span> <span class="k">if</span> <span class="p">(</span><span class="n">IGFLG</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">450</span>
+<span class="c">!     **** A GSTOP HAS BEEN FOUND</span>
+<span class="c">!     TEST IF STARTING</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">LSC</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span>
+      <span class="n">NSTOP</span> <span class="o">=</span> <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span>
+      <span class="n">INGS</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">NSTOP</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">INGS</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">410</span>
+      <span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="n">GT</span><span class="p">(</span><span class="n">INGS</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IG</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">430</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c">!     If interpolated GSTOP was found set to check again in case of</span>
+<span class="c">!     multiple stops at exactly the same point.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">440</span>
+<span class="c">!     **** TELL USER OF AN EXTRAPOLATED GSTOP</span>
+  <span class="mi">410</span> <span class="n">IFLAG</span> <span class="o">=</span> <span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="n">NSTOP</span> <span class="o">=</span> <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="n">INGS</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">NSTOP</span><span class="p">)</span>
+<span class="c">!     **** SET SO DERIVS IS CALLED WITH KORD(1) = KPRED</span>
+  <span class="mi">420</span> <span class="n">KORD1I</span> <span class="o">=</span> <span class="n">KPRED</span>
+      <span class="n">KORD2I</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+      <span class="k">return</span>
+<span class="c">!     **** AN EXTRAPOLATED GSTOP WAS FOUND, SET UP TO CHECK</span>
+<span class="c">!          INTERPOLATED STOPS (IF ANY)</span>
+  <span class="mi">430</span> <span class="n">NG</span> <span class="o">=</span> <span class="n">NGSTOP</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">INGS</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">3</span>
+      <span class="n">NSTOP</span> <span class="o">=</span> <span class="n">IGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c">!     **** SET SO OUTPUT IS CALLED WITH KORD(1) = 7</span>
+  <span class="mi">440</span> <span class="n">KORD1I</span> <span class="o">=</span> <span class="mi">7</span>
+      <span class="n">KORD2I</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">490</span>
+<span class="c">!     **** CHECK THAT AN EXTRAPOLATED G-STOP IS NOT MISSED</span>
+  <span class="mi">450</span> <span class="k">if</span> <span class="p">((</span><span class="n">IG</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">460</span>
+<span class="c">!     SET TO CHECK FOR INTERPOLATED G-S.</span>
+      <span class="n">TG</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">IGTYPE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="n">INGS</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">3</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">240</span>
+<span class="c">!     **** SET SO INTEGRATOR GOES TO PLACE DIRECTED BY KEXIT</span>
+  <span class="mi">460</span> <span class="n">NSTOP</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">IGFLG</span> <span class="o">=</span> <span class="mi">5</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="mi">470</span> <span class="n">KORD2I</span> <span class="o">=</span> <span class="o">-</span><span class="mi">7</span>
+<span class="c">!     **** STORE INFO. ON LAST G COMPUTED</span>
+  <span class="mi">480</span> <span class="n">IGTYPE</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="mi">490</span> <span class="n">TG</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">IG</span><span class="p">)</span> <span class="o">=</span> <span class="n">TSPECS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">return</span>
+<span class="c">!</span>
+<span class="c">! ********************** ERROR PROCESSING ******************</span>
+<span class="c">!</span>
+  <span class="mi">500</span> <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">KSTEP</span>
+<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
+      <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TSPECS</span><span class="p">)</span>
+      <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">8</span>
+      <span class="n">KEXIT</span> <span class="o">=</span> <span class="mi">6</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">470</span>
+    <span class="k">end subroutine </span><span class="n">divag</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>
