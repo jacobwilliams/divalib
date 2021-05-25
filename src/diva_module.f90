@@ -2476,14 +2476,15 @@
 
 !*************************************************************************
 !>
-!  * 1987-12-07 DIVABU Krogh   Initial code.
-!
 ! THIS SUBROUTINE RESTORES THE DIFFERENCE TABLE TO ITS STATE
 ! AT THE BEGINNING OF THE CURRENT STEP.  IF THE INTEGRATION ORDER
 ! WAS INCREASED, IT IS REDUCED. THE COMMON ARRAY XI IS ALSO
 ! RESTORED TO ITS STATE AT THE BEGINNING OF THE STEP. IF THE
 ! STEPSIZE IS NOT BEING CHANGED, THE ARRAY V USED TO COMPUTE
 ! INTEGRATION COEFFICIENTS IS RESTORED.
+!
+!### History
+!  * 1987-12-07 DIVABU Krogh   Initial code.
 
     subroutine DIVABU(F, KORD)
 
@@ -2605,9 +2606,8 @@
 
 !*************************************************************************
 !>
-!  * 1987-12-07 DIVACO Krogh   Initial code.
-!
 ! THIS SUBROUTINE RETURNS THE FOLLOWING DATA FROM COMMON
+!
 ! ID(1) = KEMAX  =  INDEX OF EQUATION WITH LARGEST ERROR ESTIMATE
 ! ID(2) = KSTEP  =  CURRENT STEP NUMBER
 ! ID(3) = NUMDT  =  NUMBER OF DIFFERENCES USED FOR EACH EQUATION
@@ -2616,6 +2616,9 @@
 ! RD(1) = EMAX   =  MAX. RATIO OF ESTIMATED ERROR TO REQUESTED ERROR
 ! RD(2) =           RESERVED FOR FUTURE USE
 ! RD(3) =           RESERVED FOR FUTURE USE
+!
+!### History
+!  * 1987-12-07 DIVACO Krogh   Initial code.
 
     subroutine DIVACO(ID, RD)
 
@@ -2674,9 +2677,6 @@
 
 !*************************************************************************
 !>
-!  * 1988-08-25 DIVACR Krogh   Fix bug in relative error test.
-!  * 1988-01-15 DIVACR Krogh   Initial code.
-!
 ! THIS SUBROUTINE
 !   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
 !   2. ESTIMATES ERRORS
@@ -2693,6 +2693,10 @@
 !    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
 !         (IF EQUATIONS HAVE DIFFERENT ORDERS).
 !    KQ = VECTOR OF INTEGRATION ORDERS.
+!
+!### History
+!  * 1988-08-25 DIVACR Krogh   Fix bug in relative error test.
+!  * 1988-01-15 DIVACR Krogh   Initial code.
 
     subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 
@@ -3346,10 +3350,11 @@
 
 !*************************************************************************
 !>
-!  * 1988-05-20 DIVAHC Krogh   Initial code.
-!
 ! SUBROUTINE TO COMPUTE COEFFICIENTS REQUIRED FOR INTEGRATING
 ! ORDINARY DIFFERENTIAL EQUATIONS
+!
+!### History
+!  * 1988-05-20 DIVAHC Krogh   Initial code.
 
     subroutine DIVAHC
 
@@ -3660,9 +3665,10 @@
 
 !*************************************************************************
 !>
-!  * 1988-01-14 DIVAIN Krogh   Initial code.
-!
 !  SUBROUTINE TO DO INTERPOLATION FOR VARIABLE ORDER INTEG. ROUTINE
+!
+!### History
+!  * 1988-01-14 DIVAIN Krogh   Initial code.
 
     subroutine DIVAIN(T, Y, F, KORD)
 
@@ -3979,9 +3985,10 @@
 
 !*************************************************************************
 !>
-!  * 1987-12-07 DIVAOP Krogh   Initial code.
-!
 !  SUBROUTINE TO SET UP OPTIONS FOR DIFFERENTIAL EQUATION PACKAGE -IVA
+!
+!### History
+!  * 1987-12-07 DIVAOP Krogh   Initial code.
 
     subroutine DIVAOP(IOPT, FOPT)
       double precision FOPT(*)
@@ -4247,10 +4254,10 @@
 !*************************************************************************
 !>
 ! THIS SUBROUTINE
-!   1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
-!      DONE ALREADY).
-!   2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
-!      THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.
+!  1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
+!     DONE ALREADY).
+!  2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
+!     THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.
 !
 !   Y = VECTOR OF PREDICTED VALUES COMPUTED BY THIS SUBROUTINE.
 !   YN= VECTOR OF VALUES OF Y COMPUTED ON THE LAST STEP.
@@ -6167,6 +6174,7 @@
 !*************************************************************************
 !>
 ! Processes Messages -- Actions are controlled by MACT().
+!
 ! This routine is intended for use primarily by other library routines.
 ! Users of library routines may want to use values of MACT from MERET-
 ! MESUNI, and may have an interest in using it to print messages
@@ -8339,7 +8347,6 @@
 
 !*************************************************************************
 !>
-! OPTCHK -- Fred T. Krogh, Jet Propulsion Lab., Pasadena, CA.
 ! This subroutine is intended for the use of other library routines.
 ! It is used to check the storage used by options for some array.
 !

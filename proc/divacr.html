@@ -227,11 +227,7 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 
 
     
-    <ul>
-<li>1988-08-25 DIVACR Krogh   Fix bug in relative error test.</li>
-<li>1988-01-15 DIVACR Krogh   Initial code.</li>
-</ul>
-<p>THIS SUBROUTINE
+    <p>THIS SUBROUTINE
    1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
    2. ESTIMATES ERRORS
    3. SELECTS INTEGRATION ORDERS
@@ -248,6 +244,11 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
     KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
          (IF EQUATIONS HAVE DIFFERENT ORDERS).
     KQ = VECTOR OF INTEGRATION ORDERS.</p>
+<h3>History</h3>
+<ul>
+<li>1988-08-25 DIVACR Krogh   Fix bug in relative error test.</li>
+<li>1988-01-15 DIVACR Krogh   Initial code.</li>
+</ul>
     
 
     <h3>Arguments</h3>
