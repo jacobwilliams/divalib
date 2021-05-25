@@ -64,7 +64,7 @@
 !>> 1992-10-13 DIVA  Krogh  Fixed G-Stop/discontinuity code interaction.
 !>> 1992-09-21 DIVA  Krogh  Fixed bug in discontinuity code.
 !>> 1992-09-09 DIVA  Krogh  Fixed bug - Var. Eqs. with discontinuities.
-!>> 1992-08-07 DIVA  Krogh  Storage map printed only if option 10 .ne. 0
+!>> 1992-08-07 DIVA  Krogh  Storage map printed only if option 10 /= 0
 !>> 1992-07-16 DIVA  Krogh  Restored correct discontinuity code.
 !>> 1992-06-16 DIVA  Krogh  Eliminate reuse of storage for option 12.
 !>> 1992-04-08 DIVA  Krogh  Removed unused labels, 1020, 2120.
@@ -236,7 +236,7 @@
 !   increase if the estimate of ((error with the step size increased) /
 !   (error requested)) is less than EIMIN.
 ! EIMINO (*IVAA) Set to C8M3 and never changed.  When step size is being
-!   reduced if EIMIN .le. EIMINO then the reduction factor is set to
+!   reduced if EIMIN <= EIMINO then the reduction factor is set to
 !   CP875.  This variable could be a parameter.
 ! EMAX   (*IVAMC) Largest value computed for (error estimate) / (error
 !   requested).
@@ -255,7 +255,7 @@
 !   common block *IVAEV.
 ! EXR    (*IVAA) Set to CP1 and never changed.  If it is estimated the
 !   the (error estimate) / (error requested) on the next step will be
-!   .ge. EXR then the step size is reduced.  Could be a parameter.
+!   >= EXR then the step size is reduced.  Could be a parameter.
 ! F      (formal) Array used to store derivative values, the difference
 !   tables, error tolerance requests, and values used by some other
 !   options. (in *IVA,A,BU,CR,DA,DB,G,IN,PR)
@@ -640,7 +640,7 @@
 !   factors to their nominal values.
 ! KSTEP  (*IVAMC) Number of steps taken since the start of integration.
 ! L      Used for temporary storage.  In *IVAIN, L is the initial value
-!   of LDT, except L=1 if LDT=-1, and MAXINT .ge. 0.  (Used in *IVAA,BU
+!   of LDT, except L=1 if LDT=-1, and MAXINT >= 0.  (Used in *IVAA,BU
 !   CR,DA,DB,IN,PR.)
 ! LAHAG  (*IVADB) Used to get proper offset into an diagnostic message.
 ! LAIAG  (*IVADB) Used to get proper offset into an diagnostic message.
@@ -686,14 +686,14 @@
 !   = -1  Step is being repeated.
 !   =  0  Step size is not to be increased on this step.
 !   = k>0 Step size can be increased by HINCC**k.
-! LINCD  (*IVAMC) Value of smallest k for which HINCC**k .ge. 2.
+! LINCD  (*IVAMC) Value of smallest k for which HINCC**k >= 2.
 !   (=-2 if user is specifying all step size changes.)
-! LINCQ  (*IVAMC) Value of smallest k for which HINCC**k .ge. 4.
+! LINCQ  (*IVAMC) Value of smallest k for which HINCC**k >= 4.
 ! LIOPT  (*IVAOP) Value of the last index in IOPT on the last call.
 !   Used so *IVA can print IOPT in error messages.
 ! LL     (*IVACR) Temporary variable used when equations are grouped
 !   for integration order control.
-! LNOTM1 (*IVAIN) Logical variable = L .ne. -1.  If LNOTM1 is true,
+! LNOTM1 (*IVAIN) Logical variable = L /= -1.  If LNOTM1 is true,
 !   storage in Y() is different in some way lost to antiquity.  Such
 !   a case can only arise in the case of stiff equations.
 ! LOCF1  (*IVADB) Gives packed data needed for output of tables by the
@@ -865,7 +865,7 @@
 ! SNOISE (*IVAMC) Value used in comparison with RBQ() on equation with
 !   largest value for (error estimate) / (error requested).
 ! T      (formal) in *IVAIN. T(1) contains the point to be interpolated
-!   to, and T(2) is used in a check that |HI| .le. |T(2)|.  When used by
+!   to, and T(2) is used in a check that |HI| <= |T(2)|.  When used by
 !   other routines in this package, TSPECS is passed in for T.
 ! TB      (*IVADE) Base time for current interpolation.
 ! TC      (*IVADE) Original value of TN when getting past Y's for a
@@ -1045,7 +1045,7 @@
 !AK equation group for diagnostic print.$E
 !AL equation group for integration order control.$E
 !AM equation group for error control.$E
-!AN Option 5 argument must be .le. 0 or .gt. 4.$E
+!AN Option 5 argument must be <= 0 or > 4.$E
 !   $
 !AO KORD values for this option starting at KORD($M) are:$E
       integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE,LTXTAF,LTXTAG,LTXTAH,  &
@@ -1065,7 +1065,7 @@
      &nting.$Eequation gro','up for variational equations.$Eorder for a$&
      & differential equation.$Eequation group for diagnostic print.$Eequ&
      &ation group for integration order control.$Eequation group for err&
-     &or control.$EOption 5 argument must be .le. 0 or .gt. 4.$E'/
+     &or control.$EOption 5 argument must be <= 0 or > 4.$E'/
       data MTXTAB/'KORD values for this option starting at KORD($M) are:&
      &$E'/
 
@@ -1087,7 +1087,7 @@
 ! ************** START OF EXECUTABLE CODE ******************
 !
 !     **** TEST IF CONTINUING AN INTEGRATION
-      if (KORD(1) .ne. 0) go to 330
+      if (KORD(1) /= 0) go to 330
 !     **** INITIALIZE VARIOUS SCALARS
       KSTEP = 0
       KQMXIS = 0
@@ -1097,29 +1097,29 @@
       NE = NTE
       TOLG = 0.D0
 !     **** SET UP OPTIONS
-      if (IOPT(1) .ne. 0) call DIVAOP(IOPT, F)
+      if (IOPT(1) /= 0) call DIVAOP(IOPT, F)
       call DIVAOP(IOPIVA, F)
-      if (IOPT(1) .eq. 0) IOPIVA(2) = 1
+      if (IOPT(1) == 0) IOPIVA(2) = 1
 !
-      if ((NE .le. 0) .or. (NE .gt. 1000000)) then
+      if ((NE <= 0) .or. (NE > 1000000)) then
          IDAT(1) = NE
          KGO = 8
          go to 650
       end if
 !                         Set up diagnostic print on storage allocation.
       INTCHK(0) = 245
-      if (IOP10 .ne. 0) INTCHK(0) = 247
+      if (IOP10 /= 0) INTCHK(0) = 247
 !
 !     **** CHECK TSPECS STORAGE ALLOCATION
       INTCHK(2) = IDIMT
       INTCHK(3) = 4
       NXTCHK = 4
-      if (IOP5 .ne. 0) then
+      if (IOP5 /= 0) then
          INTCHK(4) = 5
          INTCHK(5) = 5
-         if (IOP5 .gt. 0) then
+         if (IOP5 > 0) then
             INTCHK(6) = IOP5 - 4
-            if (IOP5 .lt. 5) then
+            if (IOP5 < 5) then
                KGO = 12
                go to 600
             end if
@@ -1128,14 +1128,14 @@
             JL = 4
             do 15 IHI = IHI, IDIMK-3, 3
                J = abs(KORD(IHI))
-               if (J .eq. 0) go to 20
-               if (abs(KORD(IHI + 2)) .gt. 1) then
+               if (J == 0) go to 20
+               if (abs(KORD(IHI + 2)) > 1) then
                   IDAT(2) = -1
                   IDAT(3) = 1
                   KGO = 6
                   go to 600
                end if
-               if ((J .le. JL) .or. (J .gt. KORD(IHI+1))) then
+               if ((J <= JL) .or. (J > KORD(IHI+1))) then
                   KGO = 7
                   IDAT(2) = JL + 1
                   IDAT(3) = KORD(IHI+1)
@@ -1143,19 +1143,19 @@
                end if
                JL = KORD(IHI+1)
    15       continue
-            if (KORD(IHI) .ne. 0) IHI = IHI + 3
+            if (KORD(IHI) /= 0) IHI = IHI + 3
    20       INTCHK(6) = JL - 4
          end if
          NXTCHK = 7
       end if
    25 call OPTCHK(INTCHK, IOPT, 'DIVA / TSPECS$E')
-      if (NXTCHK .lt. 0) KORD2I = -4
+      if (NXTCHK < 0) KORD2I = -4
 !
 !     **** CHECK KORD STORAGE ALLOCATION
       INTCHK(2) = IDIMK
       INTCHK(3) = NE + 3
       NXTCHK = 4
-      if (IOP5 .lt. 0) then
+      if (IOP5 < 0) then
          INTCHK(4) = 5
          INTCHK(5) = -IOP5
          INTCHK(6) = IHI + IOP5
@@ -1163,7 +1163,7 @@
       end if
 !
 !++  Code for VAREQ is active
-      if (IOP18 .ne. 0) then
+      if (IOP18 /= 0) then
          NE = abs(KORD(IOP18))
          INTCHK(NXTCHK) = 18
          ILOW = IOP18
@@ -1173,7 +1173,7 @@
       end if
 !++  End
    30 continue
-      if (NKDKO .ne. 0) then
+      if (NKDKO /= 0) then
 !                        **** STORAGE ALLOCATED FOR ODE ORDERS
          INTCHK(NXTCHK) = 17
          INTCHK(NXTCHK+1) = NKDKO
@@ -1181,7 +1181,7 @@
          NXTCHK = NXTCHK + 3
       end if
 !++  Code for STIFF is inactive
-!      IF (IOPST .ne. 0) then
+!      IF (IOPST /= 0) then
 !         INTCHK(NXTCHK) = 17
 !         INTCHK(NXTCHK+1) = IOPST
 !         INTCHK(NXTCHK+2) = NTE
@@ -1195,10 +1195,10 @@
       MAXDIF = 0
       NY = 0
       do 80 K = 1, NTE
-         if (NKDKO .ne. 0) KORDI = KORD(NKDKO + K - 1)
+         if (NKDKO /= 0) KORDI = KORD(NKDKO + K - 1)
          NY = NY + abs(KORDI)
 !++  Code for STIFF is inactive
-!      IF (IOPST .EQ. 0) GO TO 60
+!      IF (IOPST == 0) GO TO 60
 !c.    **** CHECK FOR POTENTIAL STIFF EQUATION
 !      JS = abs(KORD(IOPST+K-1)) - 1
 !      IF ( JS ) 52,60,54
@@ -1207,11 +1207,11 @@
 !      GO TO 56
 !c.    **** EQUATION USES IMPLICIT METHOD
 !   54 KQQ = -1
-!      IF (JS .GT. abs(KORDI)) then
+!      IF (JS > abs(KORDI)) then
 !        Set up an error message.
 !      end if
 !      MAXINT = max(MAXINT, abs(KORDI) - JS)
-!   56 IF (KORDI .GE. 0) GO TO 70
+!   56 IF (KORDI >= 0) GO TO 70
 !      KORDI = -1 - KORDI
 !      JS = JS - 1
 !      MAXDIF = max(MAXDIF, JS, 1)
@@ -1220,12 +1220,12 @@
 !     **** EQUATION IS TO USE AN EXPLICIT METHOD
    60    KQQ = 1
          MAXINT = max(MAXINT, KORDI)
-   70    if ((KORDI .gt. MAXORD) .or. (KORDI .le. 0)) then
+   70    if ((KORDI > MAXORD) .or. (KORDI <= 0)) then
 !                    Set up error message.  KORDI is out of range.
             IDAT(1) = 17
             IDAT(2) = 1
             IDAT(3) = MAXORD
-            if (NKDKO .ne. 0) then
+            if (NKDKO /= 0) then
                KGO = 5
                ILOW = NKDKO
                IHI = NKDKO + K - 1
@@ -1241,7 +1241,7 @@
 !     **** SET FLAGS WHICH DEPEND ON METHOD USED
 !++  Code for STIFF is inactive
 !      METHOD = 1
-!      IF (MAXINT .GT. 0) IF (MAXDIF) 85,90,85
+!      IF (MAXINT > 0) IF (MAXDIF) 85,90,85
 !      METHOD = -1
 !   85 CONTINUE
 !      KPRED = 5
@@ -1254,8 +1254,8 @@
 ! ******* CHECK KORD FOR DIAGNOSTIC OUTPUT CONTROL *********
 !
 !++  Code for OUTPUT is active
-      if (IOP10 .gt. 0) then
-         if (NOUTKO .ne. 0) then
+      if (IOP10 > 0) then
+         if (NOUTKO /= 0) then
             INTCHK(NXTCHK) = 10
             ILOW = NOUTKO
 !.    **** Check option for valid input
@@ -1269,7 +1269,7 @@
 ! ********** CHECK KORD FOR INTEGRATION ORDER CONTROL ******
 !
 !++  Code for INTEGO is active
-      if (IOP19 .ne. 0) then
+      if (IOP19 /= 0) then
 !.           **** Check option for valid input
          INTCHK(NXTCHK) = 19
          ILOW = IOP19
@@ -1286,14 +1286,14 @@
       ILOW = IOP16
       JLIM = -5
       KGO = 4
-      if (IOP16 .ne. 0) go to 430
+      if (IOP16 /= 0) go to 430
 !.                      **** IN CURRENT CODE, IOP16=0 IS AN ERROR
       KGO = 10
       go to 650
   150 continue
 !     **** CHECK KORD STORAGE ALLOCATION
       call OPTCHK(INTCHK, IOPT, 'DIVA / KORD$E')
-      if (NXTCHK .lt. 0) KORD2I = -4
+      if (NXTCHK < 0) KORD2I = -4
 !
 !     ******** DONE CHECKING KORD STORAGE ALLOCATION *******
 !
@@ -1303,26 +1303,26 @@
       NXTCHK = 4
       NYNY = NY + 1
       call OPTCHK(INTCHK, IOPT, 'DIVA / Y$E')
-      if (NXTCHK .lt. 0) KORD2I = -4
+      if (NXTCHK < 0) KORD2I = -4
 !
 !     **** CHECK  F  STORAGE ALLOCATION
       INTCHK(2) = IDIMF
       INTCHK(3) = NTE
       NXTCHK = 4
-      if (IOP16 .ne. 0) then
+      if (IOP16 /= 0) then
 !                                Error tolerance info.
          INTCHK(4) = 16
          INTCHK(5) = NTOLF
          INTCHK(6) = IHI - IOP16 + 1
          NXTCHK = 7
       end if
-      if (IOP12 .gt. 0) then
+      if (IOP12 > 0) then
          INTCHK(NXTCHK) = 12
          INTCHK(NXTCHK+1) = IOP12
          INTCHK(NXTCHK+2) = 4
          NXTCHK = NXTCHK + 3
       end if
-      if (IOP21 .gt. 0) then
+      if (IOP21 > 0) then
          INTCHK(NXTCHK) = 21
          INTCHK(NXTCHK+1) = IOP21
          INTCHK(NXTCHK+2) = 1
@@ -1330,7 +1330,7 @@
       end if
 !
 !++  Code for ERRSTO is inactive
-!      IF (IOP20 .ne. 0) then
+!      IF (IOP20 /= 0) then
 !c.                                Space for saving error estimates
 !         INTCHK(NXTCHK) = 20
 !         INTCHK(NXTCHK) = IOP20
@@ -1338,7 +1338,7 @@
 !         NXTCHK = NXTCHK + 3
 !      end if
 !++  Code for STIFF is inactive
-!      if (IOP21 .gt. 0) then
+!      if (IOP21 > 0) then
 !c.                               Info. for stiff equations
 !         INTCHK(NXTCHK) = 21
 !         INTCHK(NXTCHK+1) = IOP21
@@ -1354,11 +1354,11 @@
       NXTCHK = NXTCHK + 3
       INTCHK(NXTCHK) = -5 * NTE
       call OPTCHK(INTCHK, IOPT, 'DIVA / F$E')
-      if (NXTCHK .lt. 0) then
+      if (NXTCHK < 0) then
          KORD2I = -4
-      else if (KORD2I .ne. -4) then
+      else if (KORD2I /= -4) then
          do 290 K = NXTCHK+1, INTCHK(NXTCHK)
-            if (INTCHK(INTCHK(K)) .eq. 0) then
+            if (INTCHK(INTCHK(K)) == 0) then
                NDTF = INTCHK(INTCHK(K)+1)
                NUMDT = min(KDIM, (INTCHK(INTCHK(K)+2)-NDTF+1) / NTE)
                MAXKQI = NUMDT - 1
@@ -1368,14 +1368,14 @@
             end if
   290    continue
       end if
-      if (IOP9 + abs(IOP10) + IOP11 .ne. 0) then
+      if (IOP9 + abs(IOP10) + IOP11 /= 0) then
 ! Insure user doesn't get in trouble with F not iniitalized.
          do 300 K = NDTF, NDTF + NTE*NUMDT - 1
             F(K) = 0.D0
   300    continue
       end if
   320 continue
-      if ((KORD2I .eq. -4) .or. (IOP10 .ne. 0)) then
+      if ((KORD2I == -4) .or. (IOP10 /= 0)) then
          MACT1(3) = IOPIVA(2)
          call MESS(MACT1, TEXT1, IOPT)
          KORD1I = 24
@@ -1385,7 +1385,7 @@
       TMARKX = TSPECS(4) + TSPECS(2)
 !
 !     **** DONE WITH INITIALIZATION AND CHECKING INPUTS
-      if (IOP13 + IOP14 + IOP15 .ne. 0) return
+      if (IOP13 + IOP14 + IOP15 /= 0) return
   330 call DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
       return
 !
@@ -1399,15 +1399,15 @@
   460    continue
 !++  Code for VAREQ is active
          if (J - NTE) 470, 565, 620
-  470    if (J .eq. 0) go to 560
-         if (J .le. JL) go to 620
+  470    if (J == 0) go to 560
+         if (J <= JL) go to 620
 !++  End
 !     **** Check on diagnostic output option
   480    continue
 !++  Code for OUTPUT is active
 !.    **** CHECK IF DONE
-         if (J .ge. NTE) go to 565
-         if (J .le. JL) go to 620
+         if (J >= NTE) go to 565
+         if (J <= JL) go to 620
          go to 550
 !++  End
   490    continue
@@ -1415,8 +1415,8 @@
 !     **** error tolerance equation grouping (KGO=4).
          if (J - NTE) 500, 565, 620
   500    if (J) 510, 530, 540
-  510    if ((JL .le. 0) .and. (IHI .ne. ILOW)) go to 620
-         if (J .lt. JLIM) then
+  510    if ((JL <= 0) .and. (IHI /= ILOW)) go to 620
+         if (J < JLIM) then
 !                         Output an error message.
             IDAT(2) = JLIM
             IDAT(3) = 0
@@ -1424,14 +1424,14 @@
          end if
   520    JL = -JL
          go to 560
-  530    if (KGO .eq. 3) go to 520
+  530    if (KGO == 3) go to 520
          KFERR = NTOLF + IHI - ILOW
-         if (F(KFERR) .eq. CM1) go to 510
+         if (F(KFERR) == CM1) go to 510
 !                         Set up error message, TOL must be -1.
             IDAT(1) = KFERR
             KGO = 11
             go to 650
-  540    if (abs(JL) .ge. abs(J)) go to 620
+  540    if (abs(JL) >= abs(J)) go to 620
   550    JL = J
   560    continue
   565 NXTCHK = NXTCHK + 3
@@ -1456,16 +1456,16 @@
 !
   650 KORD2I = -4
       MACT(4) = LTXTAF
-      if (KGO .ge. 8) MACT(4) = -1
+      if (KGO >= 8) MACT(4) = -1
       MACT(6) = MLOC(KGO)
 !--D Next line special: P=>S, X=>D
       CALL DMESS(MACT, MTXTAA, IDAT, FDAT)
-      if (KGO .lt. 8) then
+      if (KGO < 8) then
          MACT(10) = ILOW
          MACT(13) = ILOW
          MACT(15) = -min(IHI+2, IDIMK)
          CALL MESS(MACT(9), MTXTAB, KORD)
-         if (KGO .le. 4) go to 565
+         if (KGO <= 4) go to 565
       end if
 !              5   6   7    8    9   10   11  12
       go to (100, 25, 25, 320, 100, 150, 660, 25), KGO - 4
@@ -1639,8 +1639,8 @@
 ! ************** START OF EXECUTABLE CODE ******************************
 !
   660 if (KORD2I) 670, 1380, 1840
-  670 if (KORD2I .eq. -1) go to 2140
-      if (KORD2I .eq. -5) go to 720
+  670 if (KORD2I == -1) go to 2140
+      if (KORD2I == -5) go to 720
       if (KORD2I+8) 1840, 710, 1840
 !     **** SPECIAL OUTPUT CASE (EXTRAPOLATION OR GSTOP)
   680 go to (1220, 1190, 830, 690, 690, 2190), KEXIT
@@ -1650,21 +1650,21 @@
 !     **** USER HAS REQUESTED A RESTART
   700 KORD2I = -5
       IGFLG = 0
-      if ((KORD(2) .ge. 2) .and. (LSC .lt. 3)) KORD2I = -8
-      if ((KORD1I .le. 3) .or. (KORD1I .eq. 5)) go to 1890
-      if (KORD2I .eq. -5) go to 720
+      if ((KORD(2) >= 2) .and. (LSC < 3)) KORD2I = -8
+      if ((KORD1I <= 3) .or. (KORD1I == 5)) go to 1890
+      if (KORD2I == -5) go to 720
 !                Set up for a discontinuity
   710 XP = TSPECS(1)
-      if (KORD(2) .eq. 3) then
+      if (KORD(2) == 3) then
 !                Adjust for discontinuity in Y
          J = 0
          do 712 I = 1, NTE
-            if (NKDKO .ne. 0) KORDI = KORD(NKDKO + I -1)
+            if (NKDKO /= 0) KORDI = KORD(NKDKO + I -1)
             K = 1
             J = J + KORDI
             XP1 = Y(J)
   711       Y(NYNY + J - K) = Y(NYNY + J - K) + XP1
-            if (K .lt. KORDI) then
+            if (K < KORDI) then
                XP1 = Y(J-K) + (TN - XP) * XP1 / dble(K)
                K = K + 1
                go to 711
@@ -1675,9 +1675,9 @@
       end if
       DISADJ = HH
       XP1 = (XP - TN) / XI(1)
-      if (XP1 .lt. CP25) then
+      if (XP1 < CP25) then
          K = 1
-         if (XP1 .lt. CMP75) K = 2
+         if (XP1 < CMP75) K = 2
          TSPECS(1) = TN - XI(K)
          TSPECS(2) = 2.D0*(TN - TSPECS(1))
          call DIVAIN(TSPECS(1), Y, F, KORD)
@@ -1687,7 +1687,7 @@
 !          Move difference tables back one step
          TN = TSPECS(1)
   714    call DIVABU(F, KORD)
-         if (K .eq. 2) then
+         if (K == 2) then
             KSC = max(KSC - 1, 1)
             do 715 K = max(1, KSC), IOP11-1
                BETA(K+1) = BETA(K) * (XI(K) / (XI(K+1) - XI(1)))
@@ -1735,14 +1735,14 @@
 !   RETURN AFTER COMPUTING INITIAL (OR NOISE TEST) DERIVATIVES
   750 continue
 !++  Code for VAREQ is active
-      if (IOP18 .eq. 0) go to 790
+      if (IOP18 == 0) go to 790
 !.    **** SPECIAL LOGIC TO COMPUTE VARIATIONAL DERIVATIVES
-  760 if (KORD1I .eq. 3) go to 770
+  760 if (KORD1I == 3) go to 770
       KORD1I = 3
       KORD(3) = 0
-  770 if (ICF .eq. NTE) go to 790
-      if (KORD2I .eq. -6) then
-         if (ICS .eq. 1) go to 790
+  770 if (ICF == NTE) go to 790
+      if (KORD2I == -6) then
+         if (ICS == 1) go to 790
       end if
       ICS = ICF + 1
   780 KORD(3) = KORD(3) + 1
@@ -1753,7 +1753,7 @@
   790 ICS = 1
       ICF = NE
 !++  Code for VAREQ is active
-      if (KORD2I .eq. 0) if (EREP) 2220, 2220, 1430
+      if (KORD2I == 0) if (EREP) 2220, 2220, 1430
 !++  End
       if (LINC + 5) 1490, 810, 1490
 ! END OF SPECIAL CODE FOR INITIALIZATION AT THE START
@@ -1769,20 +1769,20 @@
 ! TEST FOR VARIOUS TYPES OF OUTPUT
 ! ********
 !     TEST FOR END OF STEP OUTPUT (OR IF DUMP OUTPUT TO BE TESTED FOR)
-      if (IOP6 .eq. 0) go to 840
+      if (IOP6 == 0) go to 840
 !   SET UP FOR END OF STEP OUTPUT
       KORD1I = 6
       go to 1810
-!     SET UP AFTER OTHER COMPUTATIONS HAVE BEEN MADE (TSPECS(1).NE.TN)
+!     SET UP AFTER OTHER COMPUTATIONS HAVE BEEN MADE (TSPECS(1)/=TN)
   830 KORD1I = 6
       go to 860
 !     TEST FOR AN OUTPUT POINT
   840 if (HH * (TMARK - TN)) 1760, 1760, 850
 !     TEST FOR TOO MANY STEPS OUTPUT
   850 continue
-      if (KSOUT .gt. KSTEP) go to 890
+      if (KSOUT > KSTEP) go to 890
       KORD1I = 4
-  860 if (TSPECS(1) .eq. TN) go to 1810
+  860 if (TSPECS(1) == TN) go to 1810
 !     GO INTERPOLATE VALUES AT END OF LAST STEP
   870 TSPECS(1) = TN
       go to 1780
@@ -1791,17 +1791,17 @@
       KSOUT = KSTEP + IOP4
   890 continue
 !++  Code for DUMP is active
-      if (IOP9 .eq. 0) go to 920
+      if (IOP9 == 0) go to 920
 !++  Code for DUMP & STIFF is inactive
 !      KQMXDS=KQMAXD
 !++  Code for DUMP is active
       KQMXIS = KQMAXI
       KIS = KIS + 1
-      if (KIS .ne. 0) go to 920
+      if (KIS /= 0) go to 920
 !.   TIME TO DUMP THE SOLUTION
   900 KORD1I = 9
 !.    SET TO UPDATE THE DIFFERENCE TABLE
-      if (LDT .eq. 1) go to 1810
+      if (LDT == 1) go to 1810
 ! Note that doing this update can lead to very small differences in the
 ! results because of round off differences.
       LDT = -2
@@ -1813,7 +1813,7 @@
       KIS = 2
 !.    TEST IF SOLUTION DUMP DUE TO RESTART, END, OR
 !.    DROP IN INTEG. ORDER
-      if (LINC .lt. 0) if (LINC + 6) 1860, 1750, 1180
+      if (LINC < 0) if (LINC + 6) 1860, 1750, 1180
 !++  End
 ! END OF TESTING FOR VARIOUS TYPES OF OUTPUT
 !   TEST IF STEPSIZE MAY BE INCREASED OR IF TESTS SHOULD BE MADE
@@ -1828,15 +1828,15 @@
 ! ERROR ESTIMATES INDICATE STEPSIZE CAN BE INCREASED
 ! ********
   940 HC = HINCC
-      if (LINC .gt. 1) HC = HC ** LINC
+      if (LINC > 1) HC = HC ** LINC
       HH = HC * HH
 !     TEST IF NEW STEPSIZE IS TOO BIG
-      if (abs(HH) .gt. HMAX) if (HMAX) 970, 970, 960
+      if (abs(HH) > HMAX) if (HMAX) 970, 970, 960
   950 EAVE = EIMAX
       ROBND = CP3 + HINCC
       go to 1110
 !     NEW STEPSIZE IS TOO BIG
-  960 if (abs(XI(1)) .ge. HMAXP9) go to 970
+  960 if (abs(XI(1)) >= HMAXP9) go to 970
       HH = sign(HMAX, HH)
       go to 950
 !     RESTORE THE OLD STEPSIZE
@@ -1848,26 +1848,26 @@
 ! TEST IF ESTIMATED ERRORS INDICATE STEPSIZE SHOULD BE DECREASED
 ! ********
   980 ROBND = C1P3
-      if (EIMAX .le. EAVE) go to 990
+      if (EIMAX <= EAVE) go to 990
       EAVE = EAVE + CP4 * (EIMAX - EAVE)
       if ((EIMAX * EMAX) - C1M3) 1000, 1010, 1010
   990 EAVE = EIMAX
-      if ((EIMAX * EMAX) .ge. EIMIN) go to 1010
+      if ((EIMAX * EMAX) >= EIMIN) go to 1010
  1000 ROBND = CP3 + (SIGMA(KQMAXS)/SIGMA(KQMAXS-1))
       go to 1180
 !     TEST IF STEPSIZE SHOULD BE REDUCED
- 1010 if (EMAX * EIMAX .lt. EXR * EAVE) go to 1180
+ 1010 if (EMAX * EIMAX < EXR * EAVE) go to 1180
 ! ********
 ! ERROR ESTIMATES INDICATE STEPSIZE SHOULD BE REDUCED
 ! ********
       HC = HDEC
-      if (EIMIN .le. EIMINO) go to 1030
+      if (EIMIN <= EIMINO) go to 1030
       EIMIN = EIMINO
       HC = CP875
  1030 HH = HC * XI(1)
       if (LSC - 1) 1040, 1080, 1090
- 1040 if (abs(HH) .ge. HMIN) go to 1090
-      if (abs(CP875*XI(1)) .le. HMIN) if (LINC) 1050, 970, 970
+ 1040 if (abs(HH) >= HMIN) go to 1090
+      if (abs(CP875*XI(1)) <= HMIN) if (LINC) 1050, 970, 970
       HH = sign(HMIN, HH)
       go to 1090
 !     STEPSIZE IS TOO SMALL TO BE REDUCED
@@ -1883,7 +1883,7 @@
 !     SET LSC TO END STARTING PHASE
  1080 LSC = 2
 !     CHECK IF REPEATING A STEP
- 1090 if (LINC .ne. -1) go to 1110
+ 1090 if (LINC /= -1) go to 1110
 !   WHEN REPEATING A STEP, BACK UP THE DIFFERENCES AND STEPSIZE INFO.
  1100 call DIVABU(F, KORD)
 !   TEST IF NOISE TEST (LINC = -7) OR IF H IS NOT
@@ -1896,38 +1896,38 @@
 ! MODIFY STEPSIZE TO REDUCE ROUNDOFF ERROR IN ACCUMULATING INDEP. VAR.
       TP = C2 * abs(TN) + C4096 * abs(HH)
       TP = (TP + abs(HH)) - TP
-      if (TP .ne. C0) HH = sign(TP, HH)
+      if (TP /= C0) HH = sign(TP, HH)
 !     TEST IF NEW STEPSIZE SELECTED ACTUALLY GIVES A CHANGE
-      if (HH .eq. TSPECS(2)) go to 1140
+      if (HH == TSPECS(2)) go to 1140
  1115 TSPECS(2) = HH
-      if (IOP8 .eq. 0) go to 1140
+      if (IOP8 == 0) go to 1140
 !     SETUP TO TELL USER ABOUT STEPSIZE CHANGE (OR TO CHANGE STEPSIZE)
  1120 KORD1I = 8
       go to 860
 !     RETURN AFTER TELLING USER ABOUT STEPSIZE CHANGE
  1130 HH = TSPECS(2)
- 1140 if (HH .ne. XI(1)) KQICON = -1
+ 1140 if (HH /= XI(1)) KQICON = -1
  1150 HC = min(EOVEP2, abs(HH)) / EEPS2
 ! ********
 ! PREPARE FOR BEGINNING A NEW STEP
 ! ********
-      if (LINC .gt. 0) then
+      if (LINC > 0) then
          LINC = min(LINC, LINCQ) + LINCQ
          go to 1190
       end if
  1180 LINC = LINCD
- 1190 if (HC .gt. abs(TN)) go to 1200
+ 1190 if (HC > abs(TN)) go to 1200
 !     **** GIVE SINGULARITY DIAGNOSTIC
       KORD1I = 5
       go to 2240
  1200 TSPECS(1) = TN + HH
-      if (LEX .eq. 0) go to 1250
-      if (HH * (TSPECS(1) - TMARKX) .lt. C0) go to 1250
+      if (LEX == 0) go to 1250
+      if (HH * (TSPECS(1) - TMARKX) < C0) go to 1250
       TSPECS(1) = TMARKX
       HH = TMARKX - TN
       LINC = 64
-      if (LEX .gt. 0) go to 1240
-      if ((LSC .lt. 4) .and. (HH / XI(1) .lt. CP3)) go to 1230
+      if (LEX > 0) go to 1240
+      if ((LSC < 4) .and. (HH / XI(1) < CP3)) go to 1230
  1220 HH = CP875 * HH
       go to 1110
 !     **** GIVE OUTPUT AT CURRENT TMARK (WITH EXTRAPOLATION)
@@ -1938,13 +1938,13 @@
 !   TEST IF SUBROUTINE FOR COMPUTING INTEGRATION COEFF. SHOULD BE CALLED
  1250 continue
 !++  Code for STIFF is inactive
-!      IF ((KQMAXI .LT.KQICON) .OR. (KQMAXD.LT.KQDCON)) GO TO 1320
+!      IF ((KQMAXI <KQICON) .OR. (KQMAXD<KQDCON)) GO TO 1320
 !++  Code for ~STIFF is active
-      if (KQMAXI .lt. KQICON) go to 1320
+      if (KQMAXI < KQICON) go to 1320
 !++  End
 !   GO COMPUTE COEFFICIENTS REQUIRED FOR THE INTEGRATION
 !     TEST IF STARTING
-      if (LSC .lt. 7) go to 1310
+      if (LSC < 7) go to 1310
  1260 KQMAXI = 2
 !++  Code for STIFF is inactive
 !      IF (METHOD) 1262,1270,1264
@@ -1961,17 +1961,17 @@
       J = NDTF
       do 1300 I = 1, NTE
 !++  Code for STIFF is inactive
-!         if (KORD(I + 3) .le. 0) go to 1290
+!         if (KORD(I + 3) <= 0) go to 1290
 !++  End
          KORD(I + 3) = 1
 !     INITIALIZE THE DIFFERENCE TABLE
-         if (LDT .eq. -4) F(J) = F(I)
+         if (LDT == -4) F(J) = F(I)
          F(J + 1) = C0
          F(J + 2) = C0
  1290    continue
          J = J + NUMDT
  1300    continue
-      if (LSC .eq. 5) go to 1340
+      if (LSC == 5) go to 1340
       LSC = 7
       LDT = 1
       go to 1330
@@ -1981,10 +1981,10 @@
       call DIVAHC
 !     **** ADJUST EAVE
       TPS1 = BETA(K)
-      if (TPS1 .gt. C1) TPS1 = CP5 * TPS1 + CP5
+      if (TPS1 > C1) TPS1 = CP5 * TPS1 + CP5
       EAVE = EAVE * TPS1 * (SIGMA(K) / SIGMAS)
 !     TEST BELOW USED TO GET SAME RESULTS WITH/WITHOUT EXTRA EQUATIONS
-      if (K .gt. KQICON) LSC = max(LSC, -3)
+      if (K > KQICON) LSC = max(LSC, -3)
 ! END OF SPECIAL LOGIC FOR CASE WHEN INTEG. COEFF. ROUTINE IS CALLED
  1320 continue
 ! ********
@@ -2004,12 +2004,12 @@
  1350 KORD2I = 0
  1360 KORD(1) = KORD1I
       KORD(2) = 0
-      if (IOP13 .ne. 0) return
+      if (IOP13 /= 0) return
       call DIVAF(TSPECS(1), Y, F, KORD(1))
 !     TEST FOR SPECIAL USER RETURN
- 1380 if (KORD(1) .lt. 0) go to 2130
+ 1380 if (KORD(1) < 0) go to 2130
 !     TEST FOR SPECIAL CASE
-      if (KORD2I .ne. 0) go to 660
+      if (KORD2I /= 0) go to 660
 ! ********
 ! TRANSFER CONTROL TO PROPER PLACE AFTER COMPUTING DERIVATIVES
 ! ********
@@ -2040,14 +2040,14 @@
 !      CALL DIVACE
 !++  End
 !     TEST IF ESTIMATED ERROR IS TOO BIG (OR IF DIAGNOSTIC CALLED FOR)
-      if (EMAX .gt. EREP) if (EREP) 2210, 2210, 1670
+      if (EMAX > EREP) if (EREP) 2210, 2210, 1670
  1420 continue
 !++  Code for VAREQ is active
-      if (IOP18 .ne. 0) go to 760
+      if (IOP18 /= 0) go to 760
 !++  End
  1430 KORD1I = 2
 !     TEST IF NOISE APPEARS TO LIMIT PRECISION
-      if (EMAX .lt. C0) go to 1470
+      if (EMAX < C0) go to 1470
 !++  Code for ~STIFF is active
       if (LSC) 1450, 1360, 1610
 !++  Code for STIFF is inactive
@@ -2061,14 +2061,14 @@
 ! NOISE APPEARS TO BE LIMITING PRECISION
 ! ********
  1470 continue
-      if (LSC .le. 0) LSC = max(LSC - 1, -KQMAXS)
-      if (LSC .eq. -1) go to 1460
-      if (abs(EMAX) .lt. EXR) go to 1590
+      if (LSC <= 0) LSC = max(LSC - 1, -KQMAXS)
+      if (LSC == -1) go to 1460
+      if (abs(EMAX) < EXR) go to 1590
       LINC = -7
       TPS2 = (C1 + BETA(NOISEQ - 1)) ** NOISEQ
-      if (SNOISE .lt. EEPS10 * TPS2) go to 1550
+      if (SNOISE < EEPS10 * TPS2) go to 1550
       TP = sign(EEPT75 * abs(TN) + OVTM75, HH)
-      if (abs(TP) .gt. abs(HH)) go to 1550
+      if (abs(TP) > abs(HH)) go to 1550
       TSPECS(1) = TN + TP
       KORD1I = 0
 !     **** GO TO BACK UP THE DIFFERENCES AND GET F(TSPECS(1))
@@ -2086,7 +2086,7 @@
  1510 TP2 = TP3
  1520 TP3 = F(KEMAX)
       TPS1 = abs((TP3 - TP1) - (TP1 - TP2))
-      if ((C16 * TPS1 * TPS2) .ge. DNOISE) if (LINC + 9) 1550, 870, 1550
+      if ((C16 * TPS1 * TPS2) >= DNOISE) if (LINC + 9) 1550, 870, 1550
  1530 continue
       TPS2 = CP25 * SNOISE / RBQ(NOISEQ)
       do 1540 K = 2, NUMDT
@@ -2096,7 +2096,7 @@
       LINC = 0
 
 !FTK Next two lines added 2009-10-15
-      if (abs(EMAX) .lt. EREP) go to 1460
+      if (abs(EMAX) < EREP) go to 1460
 !FTK  LINC = -1  And then on 2015-03-14 commented out this line
 
       HH = CP875 * HH
@@ -2106,10 +2106,10 @@
       go to 2240
 !     **** AFTER GIVING NOISE DIAGNOSTIC
  1560 KORD1I = 2
-      if (KORD(2) .ge. 0) then
+      if (KORD(2) >= 0) then
         TPS1 = EEPS10
 !FTK Next line added 2009-10-15
-        if (TPS1 .lt. .49D0 * RBQ(2)) go to 1530
+        if (TPS1 < .49D0 * RBQ(2)) go to 1530
       end if
 !     **** SET NEW VALUE FOR OFFENDING TOL
       F(NTOLF + ITOLEP - 1) = FDAT(7)
@@ -2117,8 +2117,8 @@
  1570 LINC = 0
  1580 if (LSC) 1460, 1460, 1610
 !     **** CHANGE HINCC AND ADJUST SIGMA( )
- 1590 if (LSC .ne. -4) go to 1580
-      if (HINCC .eq. C1P125) go to 1580
+ 1590 if (LSC /= -4) go to 1580
+      if (HINCC == C1P125) go to 1580
       TPS1 = C1P125 / HINCC
       TPS2 = 1.0D0
       do 1600 K = 2, IOP11
@@ -2134,14 +2134,14 @@
 ! ********
 ! SPECIAL LOGIC FOR STARTING THE INTEGRATION
 ! ********
- 1610 if (LSC .eq. 1) go to 800
+ 1610 if (LSC == 1) go to 800
       LSC = LSC - 1
       if (LSC - 2) 1620, 1640, 1650
- 1620 if (EIMAX .le. (CP0625*EAVE*(SIGMA(KQMAXS)/SIGMAS)*(BETA(KQMAXS+  &
+ 1620 if (EIMAX <= (CP0625*EAVE*(SIGMA(KQMAXS)/SIGMAS)*(BETA(KQMAXS+  &
      &   1))**2)) go to 800
  1630 KSSTRT = KSTEP + 2
 !   TEST IF STEPSIZE IS TOO SMALL BEFORE ENDING STARTING PHASE
-      if (abs(HH) .ge. HMIN) go to 1450
+      if (abs(HH) >= HMIN) go to 1450
 !     GIVE DIAGNOSTIC FOR STEPSIZE TOO SMALL AT END OF START
       KORD1I = 7
       go to 2240
@@ -2149,9 +2149,9 @@
  1640 LSC = 1
       go to 800
 !     TEST IF FIRST TIME THROUGH THE FIRST STEP
- 1650 if (LSC .eq. 6) go to 1340
+ 1650 if (LSC == 6) go to 1340
 !     END STARTING PHASE IF CONVERGENCE OF CORRECTOR ITERATES TOO SLOW
-      if (LDT .eq. -5) go to 1660
+      if (LDT == -5) go to 1660
       LSC = min(LSC, 4)
       go to 800
  1660 LDT = 0
@@ -2162,20 +2162,20 @@
 ! ********
  1670 if (BETA(2) - C1) 1690, 1730, 1680
  1680 HC = C1 / BETA(2)
-      if (BETA(2) .ge. C1P125) go to 1740
- 1690 if (BETA(2) .gt. CP1) go to 1730
+      if (BETA(2) >= C1P125) go to 1740
+ 1690 if (BETA(2) > CP1) go to 1730
 !   REQUIRED STEPSIZE REDUCTION IS TOO RAPID -- GIVE A DIAGNOSTIC
       KORD1I = 4
       go to 2240
 !
 !     TEST KORD(2) AFTER ABOVE DIAGNOSTIC OR A DISCONTINUITY DIAGNOSTIC
  1700 continue
-      if (KORD(2) .eq. 0) go to 1730
+      if (KORD(2) == 0) go to 1730
 !  TEST IF SOLUTION MUST BE DUMPED BEFORE A RESTART
  1710 LINC = -1
 !++  Code for DUMP is active
-      if (IOP9 .eq. 0) go to 1750
-      if (KIS .eq. 2) go to 1750
+      if (IOP9 == 0) go to 1750
+      if (KIS == 2) go to 1750
       LINC = -6
 !.    GO DUMP SOLUTION BEFORE REPEATING THE STEP
  1720 KQMAXI = KQMXIS
@@ -2188,23 +2188,23 @@
 !   SET UP TO REPEAT THE STEP
  1730 HC = CP5
  1740 LINC = -1
-      if (LSC .le. 3) go to 1030
+      if (LSC <= 3) go to 1030
 !   RESTART THE INTEGRATION IF ERROR IS TOO BIG ON FIRST OR SECOND STEP
 ! LOOP TO SELECT A NEW INITIAL STEPSIZE
  1750 LSC = 7
  1755 HH = HH * CP5
       EMAX = EMAX * CP25
-      if (EMAX .ge. CP3) go to 1755
+      if (EMAX >= CP3) go to 1755
       go to 1090
 !   END OF SELECTING A NEW INITIAL STEPSIZE
 ! END OF LOGIC FOR CASE WHEN ESTIMATED ERROR IS TOO BIG
 ! ********
 ! INTEGRATION HAS REACHED AN OUTPUT POINT
 ! ********
- 1760 if (KMARK .eq. 0) go to 1920
+ 1760 if (KMARK == 0) go to 1920
       KORD1I = min(KMARK, 5)
       KORD(3) = KMARK
-      if (TSPECS(1) .eq. TMARK) go to 1790
+      if (TSPECS(1) == TMARK) go to 1790
  1770 TSPECS(1) = TMARK
  1780 call DIVAIN(TSPECS(1), Y, F, KORD)
  1790 continue
@@ -2217,7 +2217,7 @@
       KEXIT = 4
 !.  TEST IF GSTOP-S ARE PRESENT
 !++  Code for EXTRAP &  GSTOP is active
-      if (NGTOT .eq. 0) go to 1820
+      if (NGTOT == 0) go to 1820
       IGFLG = 4
       KEXIT = 2
       KORD1I = 7
@@ -2229,29 +2229,29 @@
  1810 KORD2I = 1
  1820 KORD(1) = KORD1I
       KORD(2) = 1
-      if (IOP14 .ne. 0) return
+      if (IOP14 /= 0) return
       call DIVAO(TSPECS(1), Y, F, KORD(1))
 !     TEST FOR SPECIAL USER RETURN OR FOR A RESTART
 !++  Code for ~DUMP is inactive
 ! 1840 IF (KORD(1)) 2130,700,1880
 !++  Code for DUMP is active
- 1840 if (KORD(1) .gt. 0) go to 1880
- 1850 if (IOP9 .eq. 0) go to 1870
+ 1840 if (KORD(1) > 0) go to 1880
+ 1850 if (IOP9 == 0) go to 1870
 !.    **** GO DUMP THE SOLUTION
       LINC = -7
       ITOLEP = KORD(1)
       IDAT(1) = KORD(2)
       NEPTOL = KORD1I
-      if (LSC .ne. 8) go to 900
+      if (LSC /= 8) go to 900
  1860 LINC = min(0, LINCD)
       KORD1I = NEPTOL
       KORD(1) = ITOLEP
       KORD(2) = IDAT(1)
  1870 if (KORD(1)) 2130, 700, 2100
 !++  End
- 1880 if (KORD2I .lt. 0) go to (2140, 1810, 1350, 2110, 720, 750, 680,  &
+ 1880 if (KORD2I < 0) go to (2140, 1810, 1350, 2110, 720, 750, 680,  &
      &   710), -KORD2I
-      if (KORD2I .eq. 0) go to 1380
+      if (KORD2I == 0) go to 1380
 ! ********
 ! TRANSFER CONTROL TO PROPER PLACE AFTER OUTPUT
 ! ********
@@ -2277,7 +2277,7 @@
  1970 J1 = 5
       J2 = IOP5
       L = 0
-      if (J2 .ge. J1) go to 1990
+      if (J2 >= J1) go to 1990
  1980 J1 = 4
       J2 = 4
       L = IOP3
@@ -2285,36 +2285,36 @@
 !     **** LOOP TO SET NEW TMARK (AND TMARKX)
  1990 do 2060 J = J1, J2
 !        **** TEST IF EXTRAPOLATION NOT POSSIBLE
-         if (L .eq. 0) go to 2010
+         if (L == 0) go to 2010
          LX = 2
          if (LEX) 2020, 2030, 2020
  2000    LEX = L
  2010    LX = 1
  2020    if (HH * (TSPECS(J) - TMARKA(LX))) 2030, 2060, 2060
- 2030    if (J .eq. 4) go to 2050
+ 2030    if (J == 4) go to 2050
          if (HH * (TSPECS(J) - XP)) 2060, 2040, 2050
- 2040    if ((K .ge. J) .or. (K .eq. 3)) go to 2060
+ 2040    if ((K >= J) .or. (K == 3)) go to 2060
  2050    TMARKA(LX) = TSPECS(J)
-         if (LX .eq. 2) go to 2000
+         if (LX == 2) go to 2000
          KMARK = J
  2060    continue
-      if (IOP5 .lt. 0) go to 1950
-      if (J1 .ne. 4) go to 1980
-      if (KMARK .eq. 4) KMARK = 3
+      if (IOP5 < 0) go to 1950
+      if (J1 /= 4) go to 1980
+      if (KMARK == 4) KMARK = 3
 !     **** TEST IF NEW TMARK IS ACCEPTABLE
       if (HH * (XP - TMARK)) 2070, 2080, 2090
  2070 if (KORD2I - 1) 670, 840, 670
- 2080 if (K .ne. KMARK) go to 2070
+ 2080 if (K /= KMARK) go to 2070
 !++  Code for DUMP is active
-      if (KORD1I .eq. 3) go to 1850
+      if (KORD1I == 3) go to 1850
 !++  Code for ~DUMP is inactive
-!      IF (KORD1I .EQ. 3) GO TO 2100
+!      IF (KORD1I == 3) GO TO 2100
 !++  End
- 2090 if (KORD1I .eq. 13) go to 2190
+ 2090 if (KORD1I == 13) go to 2190
 ! SETUP TO INDICATE ERROR IN SPECIFICATION OF OUTPUT POINTS
       KORD1I = 2
       IDAT(2) = KMARK
-      if (KMARK .le. 3) IDAT(2) = KMARK + 1
+      if (KMARK <= 3) IDAT(2) = KMARK + 1
       FDAT(3) = TSPECS(IDAT(2))
       go to 2240
 !     SET KORD1I=1 TO INDICATE THAT END OF INTEGRATION HAS BEEN REACHED
@@ -2334,8 +2334,8 @@
       go to 1930
  2160 if (KORD1I - 4) 1700, 2200, 2170
  2170 if (KORD1I - 13) 2180, 1930, 2190
- 2180 if (abs(HH) .ge. HMIN) if (KORD1I - 11) 1030, 1450, 1030
-      if (KORD(2) .eq. 0) if (KORD1I - 11) 1070, 800, 1070
+ 2180 if (abs(HH) >= HMIN) if (KORD1I - 11) 1030, 1450, 1030
+      if (KORD(2) == 0) if (KORD1I - 11) 1070, 800, 1070
 !   ERROR MESSAGES HAVE BEEN IGNORED -- COMPUTATION CAN NOT CONTINUE
  2190 KORD1I = 1
       go to 2240
@@ -2346,17 +2346,17 @@
 ! ********
 ! PROBLEM ENCOUNTERED WHEN CORRECTING
 ! ********
- 2210 if (LDIS .eq. 0) go to 2230
+ 2210 if (LDIS == 0) go to 2230
 !           Extra checks when had a user specified discontinuity.
 !++  Code for VAREQ is active
-      if (IOP18 .ne. 0) go to 760
+      if (IOP18 /= 0) go to 760
 !++  End
  2220 KORD1I = 2
       LDIS = LDIS + 1
       TP = DISADJ / HH
-      if (KIS .ge. 1000) then
-         if (LDIS .eq. 2) then
-            if (KQMAXS .le. 3) then
+      if (KIS >= 1000) then
+         if (LDIS == 2) then
+            if (KQMAXS <= 3) then
                LDIS = 0
                EREP = abs(EREP)
                TSPECS(2) = HH*min(min(TP, TP**2),                       &
@@ -2364,31 +2364,31 @@
                go to 720
             end if
             LINC = -5
-            if (IOP9 .eq. 0) KIS = 1001
+            if (IOP9 == 0) KIS = 1001
             go to 800
          end if
-         if (IOP9 .eq. 0) KIS = KIS + 1
-         if (KQMAXS .le. LDIS + 2) KIS = LDIS + 1
+         if (IOP9 == 0) KIS = KIS + 1
+         if (KQMAXS <= LDIS + 2) KIS = LDIS + 1
          LINC = min(LINC, LDIS-2)
       end if
-      if (LDIS .gt. 2*KQMAXS) then
+      if (LDIS > 2*KQMAXS) then
          EREP = abs(EREP)
          LDIS = 0
-         if (EMAX .gt. EREP) go to 1670
+         if (EMAX > EREP) go to 1670
          go to 1430
       end if
-      if (TP .ge. HINCC**(LINC+2)) then
-         if ((LDIS .ne. 3) .and. (TP .gt. dble(KQMAXS))) LSC = 1
+      if (TP >= HINCC**(LINC+2)) then
+         if ((LDIS /= 3) .and. (TP > dble(KQMAXS))) LSC = 1
          EIMIN = CP5
          EAVE = EAVE * TP**8
       end if
-      if (LSC .eq. 2) go to 1630
-      if (EMAX .gt. EXR) go to 1730
+      if (LSC == 2) go to 1630
+      if (EMAX > EXR) go to 1730
       go to 1430
 !
  2230 EREP = abs(EREP)
 !++  Code for DUMP is active
-      if (LINC .lt. -3) go to 1720
+      if (LINC < -3) go to 1720
 !++  End
 !     BAD TOL
       KORD1I = 3
@@ -2400,12 +2400,12 @@
       IDAT(1) = KSTEP
       ITOLEP = max(NEPTOL, -NEPTOL - 1)
       J = 3
-      if (KORD1I .ge. 7) then
+      if (KORD1I >= 7) then
          J = 4
          FDAT(3) = HMIN
       end if
-      if (KORD1I .le. 3) then
-         if (KORD1I .lt. 3) then
+      if (KORD1I <= 3) then
+         if (KORD1I < 3) then
             K = 8
          else
             MACT(9) = LTXTAL
@@ -2422,14 +2422,14 @@
          IDAT(4) = ITOLEP + NTOLF - 1
          FDAT(J+1) = F(IDAT(4))
          K = 14
-         if (KORD1I .eq. 6) then
+         if (KORD1I == 6) then
             K = 17
             IDAT(5) = IDAT(4)
             FDAT(7) = 32.D0 * abs(EMAX) * FDAT(J+1)
             FDAT(J+2) = FDAT(7)
          end if
          MACT(12) = LTXTAL
-         if (NEPTOL .lt. 0) then
+         if (NEPTOL < 0) then
             MACT(12) = LTXTAM
             IDAT(6) = IDAT(4)
             IDAT(5) = IDAT(4) + 1
@@ -2524,9 +2524,9 @@
 !++  Code for STIFF is inactive
 !         IF (KQQ) 2302,2400,2310
 !c.           EQUATION IS STIFF
-! 2302    IF (LINC.GE.0) GO TO 2310
+! 2302    IF (LINC>=0) GO TO 2310
 !         IF (F(L+1+I)) 2306,2308,2304
-!c.     ORDER WAS INCREASED, AND THUS MUST BE DECREASED (KQQ.LT.0)
+!c.     ORDER WAS INCREASED, AND THUS MUST BE DECREASED (KQQ<0)
 ! 2304    KQQ=KQQ+1
 !         KORD(I+3) = KQQ
 !         GO TO 2308
@@ -2536,8 +2536,8 @@
 !         GO TO 2350
 !++  End
 !     EQUATION IS NOT STIFF
- 2310    if (KQQ .gt. 2) then
-            if (F(L + KQQ) .eq. C0) then
+ 2310    if (KQQ > 2) then
+            if (F(L + KQQ) == C0) then
 !                 ORDER WAS INCREASED, AND THUS MUST BE DECREASED
                KQQ = KQQ - 1
                KORD(I + 3) = KQQ
@@ -2545,12 +2545,12 @@
          end if
          J = min(KQQ, KSC)
          KQMAXI = max(KQMAXI, KQQ)
-         if (KQQ .ne. 1) F(L + KQQ + 1) = 0.D0
+         if (KQQ /= 1) F(L + KQQ + 1) = 0.D0
 !           BACK UP FOR BACKWARD DIFFERENCES
          do 2360 K = 1, J
             F(L + K) = F(L + K) - F(L + K + 1)
  2360    continue
-         if (KQQ .gt. KSC) then
+         if (KQQ > KSC) then
 !           BACK UP FOR MODIFIED DIVIDED DIFFERENCES
             do 2390 K = J+1, KQQ
                F(L + K) = (F(L+K) - F(L+K+1)) / BETA(K)
@@ -2567,11 +2567,11 @@
       if (I - IOP11 - 1) 2420, 2440, 2450
  2420 TPD = XI(1)
 !                Check below needed when starting?
-      if (TPD .eq. XI(2)) go to 2450
+      if (TPD == XI(2)) go to 2450
       do 2430 K = I, IOP11
  2430    XI(K - 1) = XI(K) - TPD
  2440 XI(IOP11) = C2 * XI(IOP11 - 1)
-      if (IOP11 .ne. 2) XI(IOP11) = XI(IOP11) - XI(IOP11 - 2)
+      if (IOP11 /= 2) XI(IOP11) = XI(IOP11) - XI(IOP11 - 2)
  2450 KQICON = -1
       ICF = NE
       ICS = 1
@@ -2818,9 +2818,9 @@
 ! START OF CODE
 ! ********
       L = NDTF - 1
-      if (ICS .ne. 1) L = L + (ICS - 1) * NUMDT
+      if (ICS /= 1) L = L + (ICS - 1) * NUMDT
       do 3340 I = ICS, ICF
-         if (NKDKO .ne. 0) KORDI = KORD(NKDKO + I - 1)
+         if (NKDKO /= 0) KORDI = KORD(NKDKO + I - 1)
          IY = IY + abs(KORDI)
          KQL = KORD(I + 3)
          KQN = abs(KQL)
@@ -2828,12 +2828,12 @@
 ! ********
 ! OBTAIN ERROR TOLERANCE SPECIFIED BY THE USER
 ! ********
-         if (I .le. ILGREP) if (KQL) 2600, 3310, 2610
+         if (I <= ILGREP) if (KQL) 2600, 3310, 2610
          ITOLEP = abs(ITOLEP) + 1
          EPS = TOL(ITOLEP)
          ILGREP = LGROUP(ITOLEP)
 !   TEST IF SIMPLE ABSOLUTE ERROR TEST IS BEING USED
-         if (ILGREP .gt. 0) go to 2580
+         if (ILGREP > 0) go to 2580
          JLGREP = ILGREP
 !     GET OLD RELATIVE ERROR FACTOR
          TPS6 = TOL(ITOLEP + 1)
@@ -2856,18 +2856,18 @@
             TPS1 = TPS1 + abs(F(J))
  2550       continue
          TPS1 = abs(HH) * TPS1 / dble(ILGREP - I + 1)
-         if (LSC .le. 2) go to 2560
+         if (LSC <= 2) go to 2560
 !     ON FIRST 3 STEPS INCREASE TPS6 WHEN COMPUTING REL. ERROR FACTOR
          TPS6 = max(C4 * TPS1, TPS6)
 !     ON 1-ST TIME THROUGH THE FIRST STEP, REL. ERR. FAC. IS NOT STORED
-         if (LSC .eq. 7) go to 2570
+         if (LSC == 7) go to 2570
  2560    continue
          TPS6 = max(TPS1, TPS6)
 !   STORE NEW RELATIVE ERROR FACTOR
          TOL(-ITOLEP) = TPS6 * REF(-JLGREP - 1)
 !   COMPUTE ABSOLUTE ERROR TOLERANCE
  2570    EPS = EPS * TPS6
- 2580    if (EPS .le. C0) go to 2520
+ 2580    if (EPS <= C0) go to 2520
  2590    if (KQL) 2600, 3330, 2610
 ! END OF OBTAINING ERROR TOLERANCE
 ! ********
@@ -2883,15 +2883,15 @@
 !      TPS3=F(L+KQD+1)
 !      TPS2=F(L+KQD)
 !      TPS1=F(L+KQD-1)
-!      IF (KQD.EQ.2) TPS1=Y(IY-1)
+!      IF (KQD==2) TPS1=Y(IY-1)
 !      E=ABS(TPS3)+ABS(TPS4)
 !      EI=E+ABS(TPS2)
 !      RND=EI
-!      IF (KORDI.GE.0) GO TO 2604
+!      IF (KORDI>=0) GO TO 2604
 !c.    EQUATION IS IMPLICIT
 !      JSI=JSI-1
-!      IF (JSI.NE.0) GO TO 2604
-!      IF (KORDI.EQ.-1) GO TO 2602
+!      IF (JSI/=0) GO TO 2604
+!      IF (KORDI==-1) GO TO 2602
 !      ERCOEF=GS(KQN+1)
 !      GO TO 2606
 ! 2602 ERCOEF=.5D0*DS(KQD,1)
@@ -2900,7 +2900,7 @@
 !c.    END OF SPECIAL CODE FOR IMPLICIT EQUATIONS
 ! 2604 ERCOEF = DS(KQD,JSI)
 ! 2606 ERCOEF = ABS(ERCOEF) / EPS
-!      IF (LSC.LE.2)  GO TO 2710
+!      IF (LSC<=2)  GO TO 2710
 !      IF (LSC-5) 2650,2710,2710
 !c.  END OF CODE FOR STIFF EQUATIONS
 !++  End
@@ -2915,9 +2915,9 @@
          RND = E
          EI = E + abs(TPS2)
          ERCOEF = abs(GS(KQN + 1)) / EPS
-         if (KQL .ge. 4) go to 2710
+         if (KQL >= 4) go to 2710
 !   TEST IF STARTING OR IF INTEGRATION ORDER IS ONE
-         if (LSC .le. 2) if (KQL - 2) 2660, 2710, 2710
+         if (LSC <= 2) if (KQL - 2) 2660, 2710, 2710
 ! ********
 ! LOGIC ASSOCIATED WITH STARTING THE INTEGRATION
 ! ********
@@ -2929,14 +2929,14 @@
          F(L + 4) = C0
          S = C0
 !   TEST IF FIRST TIME THROUGH THE FIRST STEP
-         if (LSC .eq. 7) go to 2690
+         if (LSC == 7) go to 2690
 !   COMPUTE S=ESTIMATE OF H * EIGENVALUE OF JACOBIAN = 2*(F(A)-F(B))/
 !   (F(B)-F(C)) WHERE F(A)=CURRENT F(I), AND F(B) AND F(C) PRECEDING
 !   VALUES OR ESTIMATES OF F(I)
          TPP = F(I) - F(L + 5)
          TPS4 = TPP
          E = C2 * abs(TPS4)
-         if (S .ne. C0) S = (TPS4 + TPS4) / S
+         if (S /= C0) S = (TPS4 + TPS4) / S
          if (S + CP125) 2630, 2700, 2700
 !     SET LDT=-5  TO INDICATE POSSIBLE PROBLEMS DUE TO INSTABILITY
  2630    LDT = -5
@@ -2952,12 +2952,12 @@
 ! INTEGRATION ORDER =1 IS TREATED AS A SPECIAL CASE
 ! ********
  2660    TPP = TPP + F(L + 2)
-         if (BETA(2) .ge. C1P4) EI = EI * C1000
+         if (BETA(2) >= C1P4) EI = EI * C1000
 !   ESTIMATE NEW VALUE FOR S
          S = F(L + 4)
-         if (S .eq. C0) go to 2680
+         if (S == C0) go to 2680
          S = max(CM8, C2 * BETA(2) * (TPS1 - TPS2 - F(L + 5)) / S)
-         if (S .ge. CMP5) go to 2670
+         if (S >= CMP5) go to 2670
 !   MODIFY TPP (TO GET BETTER STABILITY CHARACTERISTICS)
          TPP = TPP * max(CP25, (CM2 - C2 * S) / (S * S))
  2670    TPS4 = TPS4 * abs(S)
@@ -2972,43 +2972,43 @@
 ! ********
  2710    E = E * ERCOEF
          RNOISE = C0
-         if (EPS .lt. C0) go to 2810
+         if (EPS < C0) go to 2810
          TPS5 = abs(F(L + 2)) + abs(F(I))
-         if (TPS5 .eq. C0) go to 2760
+         if (TPS5 == C0) go to 2760
  2720    RNOISE = RND / TPS5
-         if (RNOISE .gt. RBQ(KQD)) if (RNOISE - C1) 2760, 2750, 2750
+         if (RNOISE > RBQ(KQD)) if (RNOISE - C1) 2760, 2750, 2750
 !   NOISE IS APPARENTLY SLOWING CONVERGENCE OF THE DIFFERENCES
 !     REDUCE EI
          EI = RND
          TPS5 = abs(EEPS2 * Y(IY - 1)) / EPS
-         if (TPS5 .lt. abs(E)) if (LSC) 2730, 2730, 2760
+         if (TPS5 < abs(E)) if (LSC) 2730, 2730, 2760
          E = TPS5
          RNOISE = C0
  2730    E = -abs(E)
-         if (EIMIN .gt. CP1) EI = (C10 * EIMIN) * EI
+         if (EIMIN > CP1) EI = (C10 * EIMIN) * EI
 !     COMPUTE REDUCTION TO BE MADE IN EI
-         if (RNOISE .gt. (C20 * RBQ(KQD))) go to 2760
+         if (RNOISE > (C20 * RBQ(KQD))) go to 2760
          K = -6 - LSC
- 2740    if (K .le. 0) go to 2760
+ 2740    if (K <= 0) go to 2760
 !     REDUCE EI WHEN NOISE APPARENTLY LIMITS PRECISION
          K = K - 1
          EI = CP5 * EI
-         if (EI .gt. EIMIN) go to 2740
+         if (EI > EIMIN) go to 2740
          go to 2760
  2750    TPS4 = 1.1D0 * RND
          TPS3 = RND
  2760    continue
 !   TEST FOR STIFFNESS GOES HERE WHEN IMPLEMENTED
 ! *       INGREDIENTS OF TEST MAY INCLUDE --
-! *       RNOISE, WHETHER (ABS(TPS4).GT.ABS(TPS3)),
+! *       RNOISE, WHETHER (ABS(TPS4)>ABS(TPS3)),
 ! *       WHETHER EMAX IS INCREASING, RESULT OF TEST ON
 ! *       PREVIOUS STEPS, ETC.
 !
 ! ********
 ! COMPUTE ERROR ESTIMATES AND INFORMATION FOR SELECTING THE STEPSIZE
 ! ********
-         if (E .ge. abs(EMAX)) go to 2770
-         if (-E .le. abs(EMAX)) go to 2780
+         if (E >= abs(EMAX)) go to 2770
+         if (-E <= abs(EMAX)) go to 2780
          SNOISE = RNOISE
          DNOISE = RND
          NOISEQ = KQD
@@ -3019,38 +3019,38 @@
 !   DETERMINE HOW MUCH STEPSIZE CAN BE INCREASED
  2780    EI = EI * ERCOEF * SIGMA(KQD)
          EIMAX = max(EIMAX, EI)
-         if (LINC .le. 0) go to 2810
+         if (LINC <= 0) go to 2810
          K = 0
- 2790    if (EI .ge. min(EIMIN, EIBND(KQN))) go to 2800
+ 2790    if (EI >= min(EIMIN, EIBND(KQN))) go to 2800
          K = K + 1
-         if (K .eq. LINC) go to 2810
+         if (K == LINC) go to 2810
          EI = EI * SIGMA(KQD)
          go to 2790
  2800    LINC = K
 ! END OF COMPUTING ERROR ESTIMATES
  2810    continue
 !++  Code for ERRSTO is inactive
-!      IF (IOP20 .EQ. 0) GO TO 780
+!      IF (IOP20 == 0) GO TO 780
 !c.********
 !c.STORE ERROR ESTIMATE (OPTIONAL)
 !c.********
 !      F(IOP20+I-1)=TPS3*GS(KQN+1)
 !c.END OF STORING ERROR ESTIMATE
 !++  Code for INTEGO | ERRSTO is active
-         if (IOP19 .eq. 0) go to 3090
+         if (IOP19 == 0) go to 3090
 !.********
 !.EQUATIONS ARE GROUPED TO USE SAME INTEGRATION METHOD (OPTIONAL)
 !.********
 !++  Code for INTEGO is active
-         if (I .gt. 1) if (I - ILGROR) 2900, 2900, 2830
+         if (I > 1) if (I - ILGROR) 2900, 2900, 2830
          ITOLOR = IOP19
  2830    JLGROR = KORD(ITOLOR)
          ITOLOR = ITOLOR + 1
-         if (JLGROR .gt. 0) go to 2870
+         if (JLGROR > 0) go to 2870
          ILGROR = KORD(ITOLOR)
          ITOLOR = ITOLOR + 1
          if (JLGROR + 1) 2840, 2850, 2890
- 2840    if (JLGROR .lt. -2) if (KQD + JLGROR) 2850, 2880, 2880
+ 2840    if (JLGROR < -2) if (KQD + JLGROR) 2850, 2880, 2880
 !.INITIALIZE FOR ACCUMULATING VARIABLES USED IN ORDER SELECTION
  2850    IORD = I
          KQLORD = KQL
@@ -3069,7 +3069,7 @@
  2910    do 2920 K = 1, 4
  2920       TEMPAO(K) = TEMPAO(K) + abs(TEMPA(K))
 !.    TEST IF THIS IS LAST EQUATION IN THE GROUP
- 2930    if (I .ne. ILGROR) if (KQL) 3310, 3290, 3290
+ 2930    if (I /= ILGROR) if (KQL) 3310, 3290, 3290
 !.SET UP TO GO SELECT INTEGRATION ORDER
          KQL = 0
          do 2940 K = 1, 4
@@ -3082,11 +3082,11 @@
          KQL = KQLORD
          if (KQN - abs(KQL)) 2960, 2980, 3020
 !.  TEST IF ORDER CAN BE DECREASED
- 2960    if (JLGROR .ge. -2) if (KQL) 3010, 3040, 3040
+ 2960    if (JLGROR >= -2) if (KQL) 3010, 3040, 3040
 !.    INTEGRATION ORDER WAS SELECTED OUTSIDE PERMITTED RANGE
  2970    KQN = abs(KQL)
 !.    INTEGRATION ORDER IS NOT GOING TO BE CHANGED
- 2980    if ((KQL .ne. 1) .or. (LSC .gt. 0)) if (KQL) 3030, 3040, 3040
+ 2980    if ((KQL /= 1) .or. (LSC > 0)) if (KQL) 3030, 3040, 3040
 !.    SET  4-TH ENTRY IN DIFFERENCE TABLES SO THAT STANDARD ADAMS
 !.    METHOD IS USED WHEN KQL=1
  2990    do 3000 K = IORD, I
@@ -3095,15 +3095,15 @@
 !.  ORDER FOR STIFF EQUATION WAS REDUCED
  3010    continue
 !++  Code for INTEGO & STIFF is inactive
-!      IF (KQN.LT.JSI) GO TO 990
+!      IF (KQN<JSI) GO TO 990
 !      TPP=-C1
 !      GO TO 1090
 !c.  TEST IF ORDER CAN BE INCREASED
 !++  Code for INTEGO is active
- 3020    if (JLGROR .eq. -2) go to 2970
+ 3020    if (JLGROR == -2) go to 2970
 !++  Code for INTEGO & STIFF is inactive
-!      IF (KQL.GE.0) GO TO 1140
-!      IF ((JSI.NE.0).AND.(KQN.GT.(MAXKQD+JSI))) GO TO 990
+!      IF (KQL>=0) GO TO 1140
+!      IF ((JSI/=0).AND.(KQN>(MAXKQD+JSI))) GO TO 990
 !      TPP=C1
 !c.  STORE RESULTS FOR STIFF EQUATIONS
 !++  Code for INTEGO is active
@@ -3129,23 +3129,23 @@
 !.********
 !.SELECT INTEGRATION ORDER
 !.********
- 3090    if (LSC .le. 0) go to 3120
+ 3090    if (LSC <= 0) go to 3120
 !. SPECIAL ORDER SELECTION WHEN STARTING
          if (LSC - 3) 3110, 3210, 3100
- 3100    if (LSC .eq. 5) if (S + .125D0) 3160, 3130, 3130
+ 3100    if (LSC == 5) if (S + .125D0) 3160, 3130, 3130
          if (LSC - 6) 3130, 3130, 3210
- 3110    if (C40 * min(abs(TPS4), abs(TPS3)) .gt. abs(TPS2)) then
-            if (EPS .ne. -C1) LSC = 2
+ 3110    if (C40 * min(abs(TPS4), abs(TPS3)) > abs(TPS2)) then
+            if (EPS /= -C1) LSC = 2
          end if
-         if (abs(TPS4) .lt. abs(TPS3)) if (C4 * abs(TPS4) - abs(TPS2))  &
+         if (abs(TPS4) < abs(TPS3)) if (C4 * abs(TPS4) - abs(TPS2))  &
      &      3130, 3130, 3210
 !.  CHECK IF ORDER CAN BE INCREASED OR SHOULD BE DECREASED
  3120    TPS5 = ROBND * abs(TPS4)
          TPS6 = ROBND * (TPS5 + abs(TPS3))
          TPS7 = abs(TPS1) + abs(TPS2)
-         if (TPS5 .ge. abs(TPS3)) go to 3140
-         if (TPS6 .ge. TPS7) go to 3210
- 3130    if (KQN .ge. MAXKQI) go to 3210
+         if (TPS5 >= abs(TPS3)) go to 3140
+         if (TPS6 >= TPS7) go to 3210
+ 3130    if (KQN >= MAXKQI) go to 3210
 !.    INCREASE THE INTEGRATION ORDER
          KQN = KQN + 1
 !++  Code for INTEGO | STIFF is active
@@ -3154,9 +3154,9 @@
 !      GO TO 3250
 !++  End
 !.  CHECK IF ORDER SHOULD BE DECREASED
- 3140    if (TPS6 .lt. TPS7) go to 3210
-         if (TPS5 .lt. abs(TPS3 - TPS4)) go to 3210
-         if ((TPS3.eq.TPS4) .and. (LSC.le.0)) go to 3210
+ 3140    if (TPS6 < TPS7) go to 3210
+         if (TPS5 < abs(TPS3 - TPS4)) go to 3210
+         if ((TPS3==TPS4) .and. (LSC<=0)) go to 3210
          if (KQN - 2) 3210, 3160, 3180
  3160    KQN = 1
 !++  Code for INTEGO | STIFF is active
@@ -3189,14 +3189,14 @@
 !++  Code for INTEGO | STIFF is active
  3220    continue
 !++  Code for STIFF is inactive
-!      IF (KQN.LT.JSI) GO TO 3236
+!      IF (KQN<JSI) GO TO 3236
 !      F(L+1)=-C1
 !      GO TO 3233
 !c.    ORDER WAS INCREASED
 !++  Code for INTEGO |  STIFF  is active
  3230    continue
 !++  Code for STIFF is inactive
-!      IF ((JSI.NE.0).AND.(KQN.GT.(MAXKQD+JSI))) GO TO 3236
+!      IF ((JSI/=0).AND.(KQN>(MAXKQD+JSI))) GO TO 3236
 !      F(L+1)=C1
 ! 3233 KORD(I+3) = -KQN
 !      GO TO 3245
@@ -3207,44 +3207,44 @@
  3240    continue
 !++  Code for STIFF is inactive
 !      F(L+1)=C0
-! 3245 IF (JSI.NE.0) KQMAXD=max(KQN,KQMAXD)
-!      IF (JS.LT.abs(KORDI)) KQMAXI=max(KQN,KQMAXI)
+! 3245 IF (JSI/=0) KQMAXD=max(KQN,KQMAXD)
+!      IF (JS<abs(KORDI)) KQMAXI=max(KQN,KQMAXI)
 !      GO TO 3290
 !++  End
 ! EQUATION IS NOT STIFF
 !     ORDER INCREASED
  3250    F(L + KQN + 1) = -F(L + KQD + 1)
-         if (LSC .gt. 0) F(L + KQN + 1) = F(L + 1) - F(I)
+         if (LSC > 0) F(L + KQN + 1) = F(L + 1) - F(I)
 !     ORDER CHANGED
  3260    KORD(I + 3) = KQN
  3270    KQMAXI = max(KQN, KQMAXI)
-         if (EPS .gt. C0) KQMAXS = max(KQN, KQMAXS)
+         if (EPS > C0) KQMAXS = max(KQN, KQMAXS)
          F(L + KQD + 1) = C0
  3290    continue
-         if (KQN .gt. KIS) go to 3310
+         if (KQN > KIS) go to 3310
 !.********
 !.DETERMINE IF TIME TO STORE SOLUTION (OPTIONAL)
 !.********
-         if (KIS .ge. 1000) then
+         if (KIS >= 1000) then
             TP2 = max(1.5D0, dble(KQN) * C2 ** (1001 - KIS)) * abs(TPS4)
- 3295       if (TP2 .gt. abs(F(L+KQN))) then
-               if (KQN .le. KQL) then
+ 3295       if (TP2 > abs(F(L+KQN))) then
+               if (KQN <= KQL) then
                   KQN = KQN - 1
-                  if (KQN .gt. 1) go to 3295
+                  if (KQN > 1) go to 3295
                   KQN = 1
                end if
             end if
             KORD(I+3) = KQN
-            if (I .eq. 1) LKQMAX = 0
+            if (I == 1) LKQMAX = 0
             LKQMAX = max(KQN, LKQMAX)
             KQMAXI = LKQMAX
-            if (KIS .eq. 1000) then
-               if (I .eq. KEMAX) EMAX = dble(8 + KQN**2) * abs(EMAX)
+            if (KIS == 1000) then
+               if (I == KEMAX) EMAX = dble(8 + KQN**2) * abs(EMAX)
                go to 3325
             end if
 !++  Code for DUMP is active
-         else if ((E .ne. C0) .and. (EPS .gt. C0)) then
-            if (IOP9 .gt. 0) if((abs(E)*dble(KIS-KQN+2)**(KQN+1))-1.D-2)&
+         else if ((E /= C0) .and. (EPS > C0)) then
+            if (IOP9 > 0) if((abs(E)*dble(KIS-KQN+2)**(KQN+1))-1.D-2)&
      &         3310, 3310, 3300
  3300       KIS = -1
 !++  End
@@ -3264,8 +3264,8 @@
 ! END OF CORRECTING
  3325 continue
 !++  Code for OUTPUT is active
-      if (IOP10 .gt. 0) then
-         if (I .eq. 1) then
+      if (IOP10 > 0) then
+         if (I == 1) then
             IDAT(1) = KSTEP
             IDAT(2) = LSC
             IDAT(3) = KSC
@@ -3281,12 +3281,12 @@
             call DMESS(MACT1, MTXTAA, IDAT, FDAT)
             KOUTKO = NOUTKO
          end if
-         if (KOUTKO .ne. 0) then
-            if (KORD(KOUTKO) .gt. 0) then
-               if (I .lt. KORD(KOUTKO)) go to 3328
+         if (KOUTKO /= 0) then
+            if (KORD(KOUTKO) > 0) then
+               if (I < KORD(KOUTKO)) go to 3328
                KOUTKO = KOUTKO + 1
             else
-               if (I .ge. abs(KORD(KOUTKO))) KOUTKO = KOUTKO + 1
+               if (I >= abs(KORD(KOUTKO))) KOUTKO = KOUTKO + 1
             end if
          end if
          IDAT(1) = I
@@ -3302,11 +3302,11 @@
          FDAT(8) = TPS4
          FDAT(9) = RNOISE
          FDAT(10) = 0.D0
-         if (KQL .eq. 1) FDAT(10) = S
+         if (KQL == 1) FDAT(10) = S
          FDAT(11) = BETA(KQD)
 !--D Next line special: P=>S, X=>D
          call DMESS(MACT2, MTXTAB, IDAT, FDAT)
- 3328    if (I .eq. NTE) IOP10 = IOP10 - 1
+ 3328    if (I == NTE) IOP10 = IOP10 - 1
       end if
 !++  End
  3330    L = L + NUMDT
@@ -3425,7 +3425,7 @@
       IOP11 = MIN(KQMAXI + 1, KDIM)
 !++  End
 !     TEST IF STEPSIZE WAS CHANGED
-      if (KQICON .ge. 0) go to 3510
+      if (KQICON >= 0) go to 3510
 ! ********
 ! STEPSIZE JUST CHANGED
 ! ********
@@ -3434,7 +3434,7 @@
       TP1 = HH
       GG(1) = TP1 * TP1
       G(1, 2) = GG(1) * CP5
-      if (MAXINT .le. 2) go to 3450
+      if (MAXINT <= 2) go to 3450
       do 3440 K = 3, MAXINT
          GG(K - 1) = G(1, K - 1) * TP1
          G(1, K) = GG(K - 1) / dble(K)
@@ -3446,12 +3446,12 @@
 !++  End
       KQMXIP = 1
       KSC = 1
-      if (LSC .lt. 7) go to 3490
+      if (LSC < 7) go to 3490
 !     SPECIAL SET-UP OF CONSTANTS ON THE VERY FIRST STEP
       HINCC = C1P125
       LINCD = 6
       LINCQ = 12
-      if (HINC .gt. C0) go to 3460
+      if (HINC > C0) go to 3460
       LINCD = -2
       LINC = -2
       ROBND = C1
@@ -3483,20 +3483,20 @@
       XI(1) = TP1
       BETA(2) = TP1 / TP2
       K = 2
-      if (HINCC .eq. HINC) go to 3540
-      if ((LSC .ne. 0) .or. ((KSTEP-KSSTRT-KQMAXS) .lt. 10)) go to 3540
+      if (HINCC == HINC) go to 3540
+      if ((LSC /= 0) .or. ((KSTEP-KSSTRT-KQMAXS) < 10)) go to 3540
       HINCC = C1
       LINCD = 0
  3500 LINCD = LINCD + 1
       HINCC = HINCC * HINC
-      if (HINCC .lt. 2.D0) go to 3500
+      if (HINCC < 2.D0) go to 3500
       LINC = (LINC * (LINCD + LINCD)) / LINCQ
       LINCQ = LINCD + LINCD
       HINCC = HINC
       go to 3540
 ! END OF LOGIC FOR CASE WHEN STEPSIZE JUST CHANGED
 !     TEST IF MAXIMUM INTEGRATION ORDER DID NOT INCREASE
- 3510 if (KQMAXI .gt. KQMXIL) then
+ 3510 if (KQMAXI > KQMXIL) then
 ! ********
 ! INTEGRATION ORDER WAS INCREASED -- GET NEW V'S
 ! ********
@@ -3504,8 +3504,8 @@
          KQMXIP = KQMXIL + MAXINT
          K = KQMXIP
          V(K) = B(K)
-         if (KQICON .eq. 1) go to 3530
-!     if (KQICON .eq. K) KQICON = KQICON - 1 --- Removed 1999-08-19
+         if (KQICON == 1) go to 3530
+!     if (KQICON == K) KQICON = KQICON - 1 --- Removed 1999-08-19
          do 3520 N = 2, KQICON
             K = K - 1
  3520       V(K) = V(K) - ALPHA(N) * V(K + 1)
@@ -3513,7 +3513,7 @@
       else
          IOP11 = max(IOP11, KQMXIL+1)
       end if
- 3530 if (IOP11 .le. KSC) go to 3560
+ 3530 if (IOP11 <= KSC) go to 3560
 ! ********
 ! COMPUTE PARAMETERS WHICH ARE STILL CHANGING AS A RESULT OF
 ! A CHANGE IN THE STEPSIZE
@@ -3536,10 +3536,10 @@
          TEMP = max(TEMP, dble(N) * (ALPHA(N) * HINCC))
          SIGMA(N) = SIGMA(N - 1) * TEMP
  3550    continue
-      if (IOP11 .ne. KDIM) XI(IOP11 + 1) = TP2 + HH
+      if (IOP11 /= KDIM) XI(IOP11 + 1) = TP2 + HH
 ! END OF CODE FOR COMPUTING PARAMETERS WHICH ARE STILL CHANGING
 !
- 3560 if (KQICON .ge. KQMXIP) go to 3690
+ 3560 if (KQICON >= KQMXIP) go to 3690
 ! ********
 ! COMPUTE INTEGRATION COEFFICIENTS WHICH ARE STILL CHANGING
 ! ********
@@ -3548,14 +3548,14 @@
       J = KQMXIP - KQICON
       N = KQICON + 1
       KQICON = N
-      if (N .ne. 1) go to 3580
+      if (N /= 1) go to 3580
 ! INITIALIZE V AND W
       do 3570 K = 1, J
          V(K) = B(K)
  3570    W(K) = V(K)
       go to 3600
 ! UPDATE V AND INITIALIZE W
- 3580 if (N .eq. KDIM) go to 3690
+ 3580 if (N == KDIM) go to 3690
       do 3590 K = 1, J
          V(K) = V(K) - ALPHA(N) * V(K + 1)
  3590    W(K) = V(K)
@@ -3571,10 +3571,10 @@
  3660 G(N + 1, 1) = HH * W(1)
       GS(N + 1) = G(N + 1, 1) - G(N, 1)
 !++  Code for MAXORD >= 2 is active
-      if (MAXINT .ge. 2) then
+      if (MAXINT >= 2) then
          G(N + 1, 2) = GG(1) * W(2)
 !++  Code for MAXORD >= 3 is inactive
-!        if (MAXINT .gt. 2) then
+!        if (MAXINT > 2) then
 !           DO 3665 K=3,MAXINT
 !3665          G(N+1,K)=GG(K-1)*W(K)
 !        end if
@@ -3582,12 +3582,12 @@
       end if
 !++  End
       N = N + 1
-      if (N .le. KQMXIL) go to 3640
+      if (N <= KQMXIL) go to 3640
 ! END OF COMPUTING INTEGRATION COEFFICIENTS
 !
  3690 continue
 !++  Code for STIFF is inactive
-!      IF (KQDCON.GT.KQMAXD) GO TO 4662
+!      IF (KQDCON>KQMAXD) GO TO 4662
 !c.********
 !c.COMPUTE DIFFERENTIATION COEFFICIENTS WHICH ARE STILL CHANGING
 !c.********
@@ -3695,7 +3695,7 @@
       L = LDT
       if (L) 3710, 3730, 3780
  3710 if (L + 2) 4170, 3730, 3720
- 3720 if (MAXINT .ge. 0) L = 1
+ 3720 if (MAXINT >= 0) L = 1
       go to 3840
 ! ********
 ! UPDATE DIFFERENCE TABLE TO START OF NEXT STEP
@@ -3703,7 +3703,7 @@
  3730 K = NDTF
       do 3770 I = 1, NTE
          KQQ = KORD(I + 3)
-         if (KQQ .le. 0) go to 3760
+         if (KQQ <= 0) go to 3760
 ! EQUATION IS NOT STIFF
          TP1 = F(I) - F(K)
 ! LOOP TO DO UPDATING
@@ -3714,7 +3714,7 @@
          K = K + NUMDT
  3770    continue
       LDT = 1
-      if (L .ne. 0) return
+      if (L /= 0) return
 ! END OF UPDATING DIFFERENCE TABLE
 ! ********
 ! INITIALIZE FOR COMPUTATION OF COEFFICIENTS
@@ -3723,12 +3723,12 @@
       HI = T(1) - TN
       GAMMA(1) = HI / XI(1)
       if (GAMMA(1)) 3790, 3800, 3810
- 3790 if (GAMMA(1) .ge. -C1) go to 3820
+ 3790 if (GAMMA(1) >= -C1) go to 3820
       INTERP = 1
       if (abs(HI) - abs(T(2))) 3820, 3820, 4180
  3800 INTERP = 2 - KQMAXI
       go to 3820
- 3810 if (GAMMA(1) .gt. C2) if (LDT - 2) 4180, 3820, 3820
+ 3810 if (GAMMA(1) > C2) if (LDT - 2) 4180, 3820, 3820
  3820 KQMXI = KQMAXI + INTERP - 1
 !++  Code for STIFF is inactive
 !      KQMXS=max(KQMXI,KQMAXD)
@@ -3737,9 +3737,9 @@
 !++  End
       do 3830 N = 2, KQMXS
  3830    GAMMA(N) = (HI + XI(N-1)) / XI(N)
- 3840 LNOTM1 = L .ne. -1
+ 3840 LNOTM1 = L /= -1
       INTEG = MAXINT
-      if (INTEG .le. 0) if (INTEG + MAXDIF) 4160, 3950, 3950
+      if (INTEG <= 0) if (INTEG + MAXDIF) 4160, 3950, 3950
 ! ********
 ! COMPUTE INTEGRATION COEFFICIENTS
 ! ********
@@ -3761,7 +3761,7 @@
       I = INTEG
  3880 J = INTEG
       INTEG = J - 1
-      if (INTEG .le. MAXINT) go to 3900
+      if (INTEG <= MAXINT) go to 3900
       do 3890 N = J, I
  3890    C(N) = ETA(N - INTEG) * C(N) + C(N - 1)
       go to 3880
@@ -3792,7 +3792,7 @@
  3970 INTEG = 0
       ICI = 1
  3980 INTEG = INTEG - 1
-      if (INTEG .eq. MAXINT) ICI = 0
+      if (INTEG == MAXINT) ICI = 0
 ! ********
 ! COMPUTE DIFFERENTIATION COEFFICIENTS
 ! ********
@@ -3805,20 +3805,20 @@
 !     C(N) NOW CORRESPONDS TO THE DIFFERENTIAL COEFFICIENT
 !          D(N-INTEG,-INTEG)
  4010 INTEGZ = INTEG
-      if (ICI .ne. 0) go to 3980
+      if (ICI /= 0) go to 3980
 ! END OF COMPUTING DIFFERENTIATION COEFFICIENTS
 ! ********
 ! BEGINNING OF LOOP TO DO
-!         INTEGRATION       (INTEG.GT.0)
-!         INTERPOLATION     (INTEG.EQ.0)
-!         DIFFERENTIATION   (INTEG.LT.0)
+!         INTEGRATION       (INTEG>0)
+!         INTERPOLATION     (INTEG==0)
+!         DIFFERENTIATION   (INTEG<0)
 ! TO THE POINT INDICATED BY T.
 ! ********
 !     SET UP INITIAL INDICES
- 4020 if (NYNY .lt. 0) then
+ 4020 if (NYNY < 0) then
          IY = -NYNY
          IYNI = NYNY + ICI + 1
-         if (LDT .eq. 2) then
+         if (LDT == 2) then
             CSUM(ICI+1) = C(ICI+1)
             do 4025 J = ICI+2, INTEG+KQMXI
             CSUM(J) = CSUM(J-1) + C(J)
@@ -3830,7 +3830,7 @@
       end if
       IDT = NDTF - INTEGZ
       do 4140 I = 1, NTE
-         if (NKDKO .ne. 0) KORDI = KORD(NKDKO + I - 1)
+         if (NKDKO /= 0) KORDI = KORD(NKDKO + I - 1)
          IY = IY + abs(KORDI)
          KQQ = KORD(I + 3)
 !         GET INDEX OF HIGHEST ORDER DIFFERENCE TO BE USED
@@ -3843,17 +3843,17 @@
 !      JS=abs(KORD(NJSKO+I-1))-1
 !      IYI=IYI-JS
 !      IF(LNOTM1) IF (IYI) 4034,4032,4130
-!      IF (KORDI.LT.0) IYI=IYI+1
+!      IF (KORDI<0) IYI=IYI+1
 !      IYI=IYI+MAXINT-abs(KORDI)
 !      IF (IYI) 4034,4130,4130
 !c.      IF EQUATION IS IMPLICIT DO NOT COMPUTE AN F
-! 4032 IF (KORDI.LT.0) GO TO 4130
+! 4032 IF (KORDI<0) GO TO 4130
 !c.      TEST IF INTEG TOO BIG FOR THIS EQUATION
-! 4034 IF (abs(KORDI).LT.-IYI) GO TO 4130
+! 4034 IF (abs(KORDI)<-IYI) GO TO 4130
 !      IYI=IYI+IY
 !      IYN=IYI+IYNI
 !c. COMPUTE INNER PRODUCT FOR STIFF EQUATIONS
-!      IF (INTEGZ.EQ.0) GO TO ???
+!      IF (INTEGZ==0) GO TO ???
 !c.    DIFFERENTIATING
 !      TP1 = C0
 !      DO 4036 J = K+INTEGZ, 1, -1
@@ -3866,7 +3866,7 @@
 !      DO 4037 J = ICI + K, ICI + 2, -1
 !         TP1 = TP1 + C(J) * F(IDT+J-ICI-1)
 ! 4037 CONTINUE
-!      IF (INTEG.EQ.0) GO TO 4120
+!      IF (INTEG==0) GO TO 4120
 !      TP1=TP1 + C(ICI+1)*Y(IYN+1)
 !++  End
          go to 4100
@@ -3875,15 +3875,15 @@
 ! EQUATION IS NOT STIFF
  4040    if (LNOTM1) if (IYI) 4050, 4060, 4130
          IYI = IYI + MAXINT - KORDI
-         if (IYI .ge. 0) go to 4130
+         if (IYI >= 0) go to 4130
 !       TEST IF INTEG TOO BIG FOR THIS EQUATION
- 4050    if (KORDI .lt. -IYI) go to 4130
+ 4050    if (KORDI < -IYI) go to 4130
  4060    IYI = IYI + IY
          IYN = IYI + IYNI
 !  COMPUTE INNER PRODUCT FOR EQUATION WHICH IS NOT STIFF
          XP1 = C0
-         if (LDT .eq. 2) then
-            if (KQQ .ne. KQMAXI) XP1 = CSUM(K+INTEGZ+ICI) *             &
+         if (LDT == 2) then
+            if (KQQ /= KQMAXI) XP1 = CSUM(K+INTEGZ+ICI) *             &
      &         F(IDT+INTEGZ+NUMDT-1)
          end if
          do 4070 J = K + INTEGZ + ICI, ICI + 1, -1
@@ -3899,12 +3899,12 @@
          go to 4130
 ! PICK UP EXTRA STUFF TO ADD TO INNER PRODUCT WHEN INTEGRATING
  4100    K = ICI
-         if (K .eq. 0) go to 4120
+         if (K == 0) go to 4120
  4110    continue
          XP1 = C(K) * (XP1 + Y(IYN))
          IYN = IYN - 1
          K = K - 1
-         if (K .ne. 0) go to 4110
+         if (K /= 0) go to 4110
 ! STORE FINAL RESULT IN Y WHEN INTEGRATING (OR STIFF INTERPOLATION)
  4120    Y(IYI) = XP1 + Y(IYN)
  4130    continue
@@ -3912,7 +3912,7 @@
  4140    continue
 !
       INTEG = INTEG - 1
-      if (INTEG .ge. -MAXDIF) if (INTEG) 3990, 3950, 3920
+      if (INTEG >= -MAXDIF) if (INTEG) 3990, 3950, 3920
  4160 return
 ! ********
 ! ERROR PROCESSING
@@ -3930,14 +3930,14 @@
       FDAT(4) = XI(1)
       FDAT(5) = TN - T(2)
       FDAT(6) = TN + C2 * XI(1)
-      if (XI(1) .lt. 0) then
+      if (XI(1) < 0) then
          FDAT(5) = FDAT(6)
          FDAT(6) = TN - T(2)
       end if
  4190 FDAT(1) = T(1)
 !--D Next line special: P=>S, X=>D
       call DMESS(MACT, MTXTAA, IDAT, FDAT)
-      if (MACT(2) .lt. 50) go to 3820
+      if (MACT(2) < 50) go to 3820
       return
       END
 !   End of DIVAIN
@@ -4057,9 +4057,9 @@
  4200 I = IOPT(K)
       IA = abs(I)
 ! 1 and 6 lines below need 21 changed if more options are added.
-      if (IA .le. 21) if (I) 4220, 4520, 4280
-      if (IA .ne. 1111) go to 4490
-      if (I .lt. 0) then
+      if (IA <= 21) if (I) 4220, 4520, 4280
+      if (IA /= 1111) go to 4490
+      if (I < 0) then
         MULTJ = -1
         K = K + 1
         go to 4200
@@ -4078,10 +4078,10 @@
 !
 !     **** SET A NOMINAL VALUE
  4220 IOPTS(IA) = 0
-      if (IA .eq. 12) go to 4420
+      if (IA == 12) go to 4420
       if (IA - 2) 4400, 4240, 4230
- 4230 if (IA .eq. 4) IOPTS(4) = 500000
-      if (IA .eq. 21) TOLG = 0.D0
+ 4230 if (IA == 4) IOPTS(4) = 500000
+      if (IA == 21) TOLG = 0.D0
       go to 4390
 !
 !     **** SET ALL OPTIONS TO THEIR NOMINAL VALUES
@@ -4096,7 +4096,7 @@
       IOPTS(17) = 1
       TOLG = 0.D0
  4260 NGTOT = IOPTS(7) + max(IOPTS(6), 0)
-      if (IOPTS(12) .eq. 0) go to 4420
+      if (IOPTS(12) == 0) go to 4420
  4270 return
 !
 !     **** SET SPECIFIED OPTION
@@ -4106,15 +4106,15 @@
  4290 IOPTS(IA) = 1
       if (IA - 2) 4400, 4400, 4390
 !     **** TAKE CARE OF SECOND EXTRA PARAMETER
- 4300 if (IA .ne. 10) go to 4310
+ 4300 if (IA /= 10) go to 4310
       NOUTKO = IOPT(K + 2)
       if (NOUTKO) 4500, 4350, 4350
- 4310 if (IA .ne. 16) go to 4320
+ 4310 if (IA /= 16) go to 4320
       NTOLF = IOPT(K + 2)
       if (NTOLF) 4500, 4500, 4350
- 4320 if (J .eq. 3) then
-        if (KMARK .ne. 3) then
-           if (XI(1)*(FOPT(IOPT(K+2)) - TMARK) .ge. C0) go to 4400
+ 4320 if (J == 3) then
+        if (KMARK /= 3) then
+           if (XI(1)*(FOPT(IOPT(K+2)) - TMARK) >= C0) go to 4400
         end if
       end if
       TMARK = FOPT(IOPT(K+2))
@@ -4122,21 +4122,21 @@
       go to 4400
 !     **** TAKE CARE OF FIRST EXTRA PARAMETER
  4330 continue
-      if (IA .eq. 12) go to 4410
-      if (IA .eq. 4) KSOUT = J
-      if (IA .eq. 21) TOLG = FOPT(J)
+      if (IA == 12) go to 4410
+      if (IA == 4) KSOUT = J
+      if (IA == 21) TOLG = FOPT(J)
  4350 IOPTS(IA) = J * MULTJ
-      if (abs(IA - 7) .gt. 1) go to 4360
+      if (abs(IA - 7) > 1) go to 4360
 !     **** SET SPECIAL PARAMETERS FOR GSTOP-S
       IGFLG = 0
       NGTOT = IOPTS(7) + max(IOPTS(6), 0)
 !     **** TEST FOR ERROR
-      if (J .gt. 500) go to 4500
- 4360 if (J .gt. 0) go to 4390
-      if ((IA .eq. 5) .or. (IA .eq. 17)) go to 4390
+      if (J > 500) go to 4500
+ 4360 if (J > 0) go to 4390
+      if ((IA == 5) .or. (IA == 17)) go to 4390
       if (J + 1) 4500, 4370, 4380
- 4370 if (IA .eq. 7) go to 4500
- 4380 if ((IA .eq. 4) .or. (IA .eq. 11) .or. (IA .ge. 16)) go to 4500
+ 4370 if (IA == 7) go to 4500
+ 4380 if ((IA == 4) .or. (IA == 11) .or. (IA >= 16)) go to 4500
 !     **** STORE SAVED VALUE IN COMMON
  4390 IOPTC(IA) = IOPTS(IA)
 !
@@ -4147,7 +4147,7 @@
 ! ******* SET UP INFORMATION FOR CHANGING STEPSIZE *********
 !
 !     **** TEST IF VALUES ARE ALREADY SET
- 4410 if (IOPTS(12) .ne. 0) go to 4430
+ 4410 if (IOPTS(12) /= 0) go to 4430
 !     **** SET NOMINAL VALUES FOR VARIABLES ONLY SET ONCE
  4420 EREP = CP3
 !     **** SET NOMINAL VALUES FOR STEPSIZE CONTROL AND ENV. CONSTANTS
@@ -4165,7 +4165,7 @@
       HDEC = CP5
       HMIN = EROV10
       HMAX = OVD10
-      if (I .ne. 12) go to 4470
+      if (I /= 12) go to 4470
  4430 IOPTS(12) = J * MULTJ
       if (J) 4450, 4470, 4460
 !     **** SET UP TO GIVE USER COMPLETE STEPSIZE CONTROL
@@ -4181,11 +4181,11 @@
 !## End of recent code
       go to 4480
 !     **** SET USER VALUES FOR STEPSIZE CONTROL
- 4460 if (FOPT(J) .ne. C0) HINC = max(C1P125, min(FOPT(J),C4))
-      if (FOPT(J + 1) .ne. C0) HDEC = min(CP875, max(FOPT(J + 1), CP25))
-      if (FOPT(J + 2) .ne. C0) HMIN = FOPT(J + 2)
-      if (FOPT(J + 3) .ne. C0) HMAX = FOPT(J + 3)
-      if ((HMIN .gt. HMAX) .or. (HMAX .le. 0.D0)) then
+ 4460 if (FOPT(J) /= C0) HINC = max(C1P125, min(FOPT(J),C4))
+      if (FOPT(J + 1) /= C0) HDEC = min(CP875, max(FOPT(J + 1), CP25))
+      if (FOPT(J + 2) /= C0) HMIN = FOPT(J + 2)
+      if (FOPT(J + 3) /= C0) HMAX = FOPT(J + 3)
+      if ((HMIN > HMAX) .or. (HMAX <= 0.D0)) then
          call DMESS(MACT1, MTXTAA, IOPT, FOPT(J+2))
          KORD2I = -4
       end if
@@ -4296,7 +4296,7 @@
       L = NDTF - 1
       do 4680 I = 1, NTE
          INTEG = KORDI
-         if (NKDKO .ne. 0) INTEG = KORD(NKDKO + I - 1)
+         if (NKDKO /= 0) INTEG = KORD(NKDKO + I - 1)
          KQQ = KORD(I + 3)
          K = max(abs(KQQ), 2)
          if (KQQ) 4530, 4520, 4540
@@ -4321,7 +4321,7 @@
 ! EQUATION IS NOT STIFF
 ! ********
  4540    N = KQQ
-         if (LDT .ne. 0) if (K - KSC) 4570, 4570, 4550
+         if (LDT /= 0) if (K - KSC) 4570, 4570, 4550
 !     DIFFERENCE TABLE HAS NOT BEEN UPDATED
          TP1 = F(I) - F(L + 1)
          if (K - KSC) 4610, 4610, 4590
@@ -4334,7 +4334,7 @@
          F(L + K) = TEMP(K)
 ! LOOP FOR MODIFIED DIVIDED DIFFERENCES
  4560    K = K - 1
-         if (K .le. KSC) go to 4580
+         if (K <= KSC) go to 4580
          TEMP(K) = F(L + K) * BETA(K)
          F(L + K) = TEMP(K) + F(L + K + 1)
          go to 4560
@@ -4346,7 +4346,7 @@
  4580    TEMP(K) = F(L + K)
          F(L + K) = TEMP(K) + F(L + K + 1)
          K = K - 1
-         if (K .ne. 0) go to 4580
+         if (K /= 0) go to 4580
          go to 4630
 ! ********
 ! UPDATE DIFFERENCE TABLE AND GET PREDICTED DIFFERENCES
@@ -4356,7 +4356,7 @@
          TEMP(K) = (F(L + K) + TP1) * BETA(K)
          F(L + K) = TEMP(K)
  4600    K = K - 1
-         if (K .le. KSC) go to 4620
+         if (K <= KSC) go to 4620
          TEMP(K) = (F(L + K) + TP1) * BETA(K)
          F(L + K) = TEMP(K) + F(L + K + 1)
          go to 4600
@@ -4369,14 +4369,14 @@
  4620    TEMP(K) = F(L + K) + TP1
          F(L + K) = TEMP(K) + F(L + K + 1)
          K = K - 1
-         if (K .ne. 0) go to 4620
+         if (K /= 0) go to 4620
 ! ********
 ! COMPUTE Y-S OBTAINED USING INTEGRATION
 ! ********
 !     TEST IF NEXT Y TO BE OBTAINED BY INTERPOLATION
  4630    continue
 !++  Code for STIFF is inactive
-!      IF (INTEG.EQ.0) GO TO 4662
+!      IF (INTEG==0) GO TO 4662
 !++  End
          IY = IY + 1
 !     FORM INNER PRODUCT
@@ -4411,15 +4411,15 @@
 !      IY=IY+1
 !c.    COMPUTE Y USING INTERPOLATION
 !      Y(IY)=YN(IY) + F(L+2)
-!      IF (KQQ.EQ.1) Y(IY)=YN(IY)
+!      IF (KQQ==1) Y(IY)=YN(IY)
 ! 4663 INTEG=INTEG+1
-!      IF (INTEG.EQ.JS) IF (IMPLIC) 4680,4680,4664
+!      IF (INTEG==JS) IF (IMPLIC) 4680,4680,4664
 !c.    COMPUTE INTEG-TH DERIVATIVE
 !      XP = C0
 ! 4664 DO 4666 J = KQQ+1, INTEG+1, -1
 !         XP = XP + D(J, INTEG) * TEMP(J)
 ! 4666 CONTINUE
-!      IF (INTEG.EQ.JS) GO TO 4667
+!      IF (INTEG==JS) GO TO 4667
 !      IY=IY+1
 !      Y(IY)=XP
 !      GO TO 4663
@@ -4688,29 +4688,29 @@
       MAXKQD = 0
 !++  End
       GS(1) = 1.D0
-      if (IOP6 .eq. 0) then
+      if (IOP6 == 0) then
         IGTYPE(1) = 0
         IGSTOP(1) = 0
         TG(1) = 0.D0
         TGSTOP(1) = 0.D0
       end if
-      if (IOP7 .eq. 0) then
+      if (IOP7 == 0) then
         IGTYPE(2) = 0
         IGSTOP(2) = 0
         TG(2) = 0.D0
         TGSTOP(2) = 0.D0
       end if
-      if (IOP6 + IOP7 .eq. 0) then
+      if (IOP6 + IOP7 == 0) then
         INGS = 0
         NG = 0
       end if
-      if (IOP10 .eq. 0) NOUTKO = 0
+      if (IOP10 == 0) NOUTKO = 0
       J = 0
       call MESSFT(MACT0, TEXT)
 !
       N1 = LPRINT / 10
       N2 = LPRINT - 10 * N1
-      if (N1 .le. 1) go to 80
+      if (N1 <= 1) go to 80
 ! ********
 ! PRINT ALL EXTERNAL VARIABLES EXCEPT FOR THE DIFFERENCES
 ! ********
@@ -4727,30 +4727,30 @@
       call DMESS(MACTFV, TEXT4, KORD, F)
       MACT2(6) = NTE
       call MESS(MACT2, MTXTAA, KORD)
-      if (NKDKO .gt. 0) call MESS(MACT2(4), MTXTAB, KORD(NKDKO))
-      if (IOPST .gt. 0) call MESS(MACT2(4), MTXTAC, KORD(IOPST))
+      if (NKDKO > 0) call MESS(MACT2(4), MTXTAB, KORD(NKDKO))
+      if (IOPST > 0) call MESS(MACT2(4), MTXTAC, KORD(IOPST))
 ! WRITE TOL
       K = IOP16
-   70 if (KORD(K) .lt. 0) K = K + 1
+   70 if (KORD(K) < 0) K = K + 1
       K = K + 1
-      if (KORD(K - 1) .lt. NTE) go to 70
+      if (KORD(K - 1) < NTE) go to 70
       MACT3(3) = K - IOP16
       MACT3(6) = MACT3(3)
 !--D Next line special: P=>S, X=>D
       call DMESS(MACT3, MTXTAD, KORD(IOP16), F(NTOLF))
-      if (N1 .eq. 2) go to 80
+      if (N1 == 2) go to 80
 ! ********
 ! WRITE THE DIFFERENCE TABLES
 ! ********
       K = NUMDT
-      if (N1 .eq. 3) K = KQMAXS
+      if (N1 == 3) K = KQMAXS
       MACT4(3) = NUMDT
       MACT4(4) = -K
       MACT4(5) = NTE
 !--D Next line special: P=>S, X=>D
       call DMESS(MACT4, MTXTAE, KORD, F(NDTF))
 !
-   80 if (N2 .le. 1) return
+   80 if (N2 <= 1) return
 ! ********
 ! WRITE SCALARS IN COMMON
 ! ********
@@ -4760,7 +4760,7 @@
 ! ===== COMMON 1  -- INTEGER
 !
       call MESS(MACT1, MTXTAG, IVC1)
-      if (N2 .eq. 2) return
+      if (N2 == 2) return
       call MESS(MACT6, MTXTAA, IDAT)
       MACT5(10) = MACT6(2) + 14
 !
@@ -4772,7 +4772,7 @@
       call DMESS(MACT1, MTXTAI, IVC2, DVC1)
 !--D Next line special: P=>S, X=>D
       call DMESS(MACT1, MTXTAJ, IVC2, DVC2)
-      if (N2 .eq. 3) return
+      if (N2 == 3) return
 !         wddtrr              wddtrr
       J = 101000 * MACT6(2) + 800501
       MACT7(2) = 1
@@ -4781,7 +4781,7 @@
       do 90 K = 6, 9
          MACT7(K) = J
    90 continue
-      if (N2 .gt. 0) then
+      if (N2 > 0) then
          MACT7(4) = 8 + MAXINT
          MACT7(13) = J
          L = min(MAXINT, 4)
@@ -4795,7 +4795,7 @@
          FDAT(5) = RBQ(K)
          FDAT(6) = SIGMA(K)
          FDAT(7) = GS(K)
-         if (N2 .ge. 4) then
+         if (N2 >= 4) then
             FDAT(8) = V(K)
             do 95 J = 2, L
                FDAT(7+J) = G(K, J)
@@ -4805,7 +4805,7 @@
          call DMESS(MACT7, MTXTAK, IDAT, FDAT)
   100 continue
 !++  Code for STIFF is inactive
-!     if (MAXDIF .le. 0) return
+!     if (MAXDIF <= 0) return
 !        Need to define MACT8 and set values
 !c--D Next line special: P=>S, X=>D
 !     call DMESS(MACT8, 'D$B', IDAT, D)
@@ -4930,18 +4930,18 @@
 !
       IFLAG = 1
       IG = KORD(2)
-      if ((IG .ne. 0) .and. (IG .ne. 1)) go to 500
+      if ((IG /= 0) .and. (IG /= 1)) go to 500
       if (IGFLG - 3) 10, 80, 70
    10 if (IGFLG - 1) 20, 210, 60
 !
 ! ******************** INITIAL POINT ***********************
 !
-   20 if (IGFLG .eq. -3) then
+   20 if (IGFLG == -3) then
          IGFLG = 5
          return
       end if
       IGTYPE(IG + 1) = 0
-      if ((NGSTOP(IG + 1) .le. 0) .or. (IG + IGFLG .eq. -1)) go to 30
+      if ((NGSTOP(IG + 1) <= 0) .or. (IG + IGFLG == -1)) go to 30
       IGFLG = IG - 2
       go to 40
    30 IGFLG = 5
@@ -4953,16 +4953,16 @@
 !     **** USER HAS BEEN TOLD THAT A GSTOP WAS FOUND
 !          TEST IF CALLED FROM OUTPUT WHEN CALL SHOULD
 !          BE FROM DERIVS
-   60 if ((IGTYPE(1) .eq. 0) .and. (IG .ne. 0)) go to 420
+   60 if ((IGTYPE(1) == 0) .and. (IG /= 0)) go to 420
 !     **** PROTECT AGAINST NOISEY G NEAR THE ZERO
-      if (GNEW(INGS) .eq. 0.D0) GNEW(INGS) = GT(INGS)
+      if (GNEW(INGS) == 0.D0) GNEW(INGS) = GT(INGS)
 !
 ! ****** TEST FOR CHANGE IN THE SIGN OF A G ****************
 !
    70 NG = NGSTOP(2 - IG)
       INGS = 0
    80 INGS = INGS + 1
-      if (INGS .gt. NG) if (IGFLG - 4) 400, 380, 480
+      if (INGS > NG) if (IGFLG - 4) 400, 380, 480
       if (GNEW(INGS)) 90, 100, 110
    90 if (GT(INGS)) 120, 120, 130
   100 if (GT(INGS)) 130, 80, 130
@@ -4973,24 +4973,24 @@
 ! ********* A SIGN CHANGE HAS BEEN FOUND *******************
 !
   130 NSTOP = INGS
-      if (IG .eq. 0) NSTOP = -INGS
-      if (IGFLG .ne. 5) go to 200
+      if (IG == 0) NSTOP = -INGS
+      if (IGFLG /= 5) go to 200
 !     **** USUAL CASE -- TEST IF OUTPUT POINT PRECEDES THE
 !          SIGN CHANGE, OR IF PREDICTING, CORRECTING, OR
 !          NOT THROUGH THE FIRST STEP.
 !     **** TEST IF AN INTERPOLATED G WAS WHAT CHANGED SIGN
-      if (IG .ne. 0) go to 180
+      if (IG /= 0) go to 180
 !     **** BACK UP DIFFERENCES AND OTHER STUFF TO BEGINNING
 !          OF THE STEP
       call DIVABU(F, KORD)
 !     **** TEST IF CORRECTING
-      if (KORD1I .eq. 2) go to 170
+      if (KORD1I == 2) go to 170
 !     **** TEST IF THROUGH THE FIRST STEP
-      if (LSC .lt. 4) go to 180
+      if (LSC < 4) go to 180
 !     **** IF FIRST DERIVATIVE EVALUATION OF THE FIRST
 !          STEP, FIND THE GSTOP, AND USE IT TO GET A NEW
 !          INITIAL STEPSIZE
-      if (LSC .eq. 7) go to 200
+      if (LSC == 7) go to 200
 !     **** SET NEW STEPSIZE AFTER SIGN CHANGE WHEN STARTING
   160 HH = TSPECS(1) - TN
 !     **** SET KEXIT TO TRY NEW STEPSIZE
@@ -5022,7 +5022,7 @@
   220 continue
       call DZERO(TSPECS(1), GNEW(INGS), TOLD, GOLD, IZFLAG, TOLG)
 !     **** TEST FOR CONVERGENCE
-      if (IZFLAG .ne. 1) go to 260
+      if (IZFLAG /= 1) go to 260
 !     **** INTERPOLATE NEW Y, AND GO COMPUTE G AGAIN
   240 call DIVAIN(TSPECS(1), Y, F, KORD)
       IFLAG = 4
@@ -5030,7 +5030,7 @@
       return
 !     **** CONVERGENCE -- CHOOSE TOLD TO GIVE A CHANGE
 !          IN SIGN
-  260 if (GNEW(INGS) .eq. 0.D0) go to 290
+  260 if (GNEW(INGS) == 0.D0) go to 290
       if (TSPECS(1) - TOLD) 270, 300, 280
   270 if (HH) 290, 300, 300
   280 if (HH) 300, 300, 290
@@ -5062,7 +5062,7 @@
 !
 !     **** NO SIGN CHANGE AT A T OUTPUT POINT
 !     TEST IF CALLED FROM OUTPUT
-  380 if (IG .ne. 0) go to 390
+  380 if (IG /= 0) go to 390
 !     SET UP FOR CALL TO OUTPUT
       KORD1I = 7
       KORD2I = -2
@@ -5077,20 +5077,20 @@
       IFLAG = 2
       go to 470
 !     **** TEST IF USER HAS BEEN TOLD OF GSTOP
-  400 if (IGFLG .eq. 2) go to 450
+  400 if (IGFLG == 2) go to 450
 !     **** A GSTOP HAS BEEN FOUND
 !     TEST IF STARTING
-      if (LSC .eq. 7) go to 160
+      if (LSC == 7) go to 160
       IFLAG = IGTYPE(2 - IG)
       NSTOP = IGSTOP(2 - IG)
       INGS = abs(NSTOP)
-      if (INGS .eq. 0) go to 410
+      if (INGS == 0) go to 410
       GT(INGS) = -GT(INGS)
-      if (IG .eq. 0) go to 430
+      if (IG == 0) go to 430
       IGFLG = 2
 !     If interpolated GSTOP was found set to check again in case of
 !     multiple stops at exactly the same point.
-      if (IGTYPE(1) .ne. 0) go to 440
+      if (IGTYPE(1) /= 0) go to 440
 !     **** TELL USER OF AN EXTRAPOLATED GSTOP
   410 IFLAG = IGTYPE(2)
       NSTOP = IGSTOP(2)
@@ -5110,7 +5110,7 @@
       KORD2I = -2
       go to 490
 !     **** CHECK THAT AN EXTRAPOLATED G-STOP IS NOT MISSED
-  450 if ((IG .eq. 0) .or. (IGTYPE(2) .eq. 0)) go to 460
+  450 if ((IG == 0) .or. (IGTYPE(2) == 0)) go to 460
 !     SET TO CHECK FOR INTERPOLATED G-S.
       TG(1) = TSPECS(1)
       IGTYPE(1) = 0
@@ -5296,7 +5296,7 @@
 ! ************************* Start of Executable Code *******************
 !
       XARGOK = .true.
-      if (LDFDEF .eq. 0) then
+      if (LDFDEF == 0) then
          LDFDEF = 1 - int(log10(d1mach(3)))
       end if
       KDFDEF = LDFDEF
@@ -5311,7 +5311,7 @@
    20 J = LBUF + 1
       FOUT = FDAT(NFDAT)
       NFDAT = NFDAT + 1
-      if (KSPEC .ge. 8) then
+      if (KSPEC >= 8) then
          LBUF = LBUF + IWG
 !%% messcc.lend = cmessi.lbuf;
 !%% cmessc.buf[messcc.lend] = ' ';
@@ -5323,14 +5323,14 @@
          write (BUF(J:LBUF), FMTG) FOUT
          go to 10
       end if
-      if (FOUT .le. 0.D0) then
-        if (FOUT .eq. 0.D0) then
+      if (FOUT <= 0.D0) then
+        if (FOUT == 0.D0) then
           FDAT(NFDAT-1) = 0.D0
           FOUT = 0.D0
         else
           NEG = 1
         end if
-      else if (FOUT .gt. 0.D0) then
+      else if (FOUT > 0.D0) then
         NEG = 0
       else
 !               Must be a Nan
@@ -5346,37 +5346,37 @@
       IWF = 2
 !                                      Get the format.
    40 continue
-      if (KDF .eq. 0) KDF = KDFDEF
+      if (KDF == 0) KDF = KDFDEF
       KEXE = 0
-      if (FBIG .ne. 0.D0) then
-        if (FSMA .eq. 0.D0) FSMA = 1.D0
+      if (FBIG /= 0.D0) then
+        if (FSMA == 0.D0) FSMA = 1.D0
         FBIG = FBIG * (1.D0 + .5D0 * .1D0**abs(KDF))
         IWF = IWF + NEG
-        if (KDF .lt. 0) then
+        if (KDF < 0) then
           KSMA = 0
         else
           KSMA = -log10(FSMA)
-          if (FSMA .lt. 1.D0) KSMA = KSMA + 1
+          if (FSMA < 1.D0) KSMA = KSMA + 1
         end if
         KBIG = log10(FBIG)
-        if (FBIG .lt. 1.D0) then
+        if (FBIG < 1.D0) then
           KBIG = KBIG - 1
-          if (FBIG .gt. 1.D0 - .1D0**abs(KDF-1)) KBIG = 0
+          if (FBIG > 1.D0 - .1D0**abs(KDF-1)) KBIG = 0
         end if
 !         This is to get ininities out (at least with g77)
-        if ((KBIG .lt. -1000) .or. (KBIG .gt. 1000)) KBIG = 8
-        if ((KSMA .lt. -1000) .or. (KSMA .gt. 1000)) KSMA = 8
-        if (max(KBIG, 0) + max(KSMA,0) .ge. 4) then
+        if ((KBIG < -1000) .or. (KBIG > 1000)) KBIG = 8
+        if ((KSMA < -1000) .or. (KSMA > 1000)) KSMA = 8
+        if (max(KBIG, 0) + max(KSMA,0) >= 4) then
 !               Want to use an "E" format
           KEXE = 3 + max(0, int(log10(dble(max(KBIG,abs(KSMA))+1.D-5))))
-          if (KDF .lt. 0) then
+          if (KDF < 0) then
             ID = -KDF
           else
             ID = KDF - 1
           end if
           IWF = IWF + ID + KEXE
 !++ CODE for ~.C. is active
-          if (LENTRY .eq. 10) IWF = IWF - 1
+          if (LENTRY == 10) IWF = IWF - 1
           write (FMTF, '(''(1P,99(E'',I2,''.'',I2,''E'',I1,'':1X))'')') &
      &      IWF, ID, KEXE - 2
 !++ CODE for .C. is inactive
@@ -5391,7 +5391,7 @@
         KBIG = -1
       end if
 !               Want to use an "F" format
-      if (KDF .lt. 0) then
+      if (KDF < 0) then
         ID = -KDF
       else
         ID = KDF + KSMA - 1
@@ -5404,9 +5404,9 @@
 !%%    strcpy(cmessc.fmtf, "%*.*f ");
 !      lfprec = id
 !++ END
-   60 if (LENTRY .ne. 4) then
+   60 if (LENTRY /= 4) then
         IWF = IWF + 1
-        if (LENTRY .ne. 10) go to 10
+        if (LENTRY /= 10) go to 10
 !               Take care of setup for sparse vector
         IMAG = 0
         do 70 J = LOCBEG, LASTI
@@ -5416,7 +5416,7 @@
 !  Format forms:     12345678901234567890   123456789012345678  1234567
 !                    (1P,99(Edd.ddEd:1X))   (0P,99(Fxx.xx:1X))  (99Idd)
 !++ CODE for ~.C. is active
-        if (FMTF(8:8) .eq. 'F') then
+        if (FMTF(8:8) == 'F') then
           FMTSP=                                                        &
      &      '(99(' // FMTI(4:6) // ''') '',0P,' // FMTF(8:18)
         else
@@ -5448,9 +5448,9 @@
       go to 10
 !                                     Get format for a vector or matrix
   100 ICOL = 1
-      if (FDAT(LOCBEG) .lt. 0.D0) then
+      if (FDAT(LOCBEG) < 0.D0) then
         NEG = 1
-      else if (FDAT(LOCBEG) .ge. 0.D0) then
+      else if (FDAT(LOCBEG) >= 0.D0) then
         NEG = 0
       else
 !               Must be a Nan
@@ -5463,25 +5463,25 @@
       FBIG = abs(FDAT(LOCBEG))
       FSMA = FBIG
   110 do 120 J = LOCBEG, LASTI, INC
-        if (FDAT(J) .le. 0.D0) then
-          if (FDAT(J) .eq. 0.D0) then
+        if (FDAT(J) <= 0.D0) then
+          if (FDAT(J) == 0.D0) then
             FDAT(J) = 0.D0
           else
             NEG = 1
           end if
         end if
         FBIG = max(FBIG, abs(FDAT(J)))
-        if (FSMA .eq. 0.D0) then
+        if (FSMA == 0.D0) then
           FSMA = abs(FDAT(J))
-        else if (FDAT(J) .ne. 0.D0) then
+        else if (FDAT(J) /= 0.D0) then
           FSMA = min(FSMA, abs(FDAT(J)))
         end if
   120 continue
-      if (NCOL .ne. 0) then
+      if (NCOL /= 0) then
          ICOL = ICOL + 1
          LOCBEG = LOCBEG + NDIM
          LASTI = LASTI + NDIM
-         if (ICOL .le. NCOL) go to 110
+         if (ICOL <= NCOL) go to 110
       end if
       IWF = 2
       go to 40
@@ -5623,7 +5623,7 @@
 !        When MODE=1 (or 5) the user is to compute F(X1) given X1
 !  X2  = second value of independent variable
 !  F2  = F(X2) on the initial entry.  When MODE = 2-4, F2=F(X2) and
-!        F1*F2 .le. 0.
+!        F1*F2 <= 0.
 !  MODE  is a parameter used for communication between this
 !        subroutine and the user. (The user should set MODE
 !        only to initialize it to 0 before the first call)
@@ -5636,17 +5636,17 @@
 !          between X1 and X2 -- No zero can be found
 !      =5  F1*F2 was greater than zero on the first call, and an attempt
 !          to bound the zero on both sides have failed.
-!      =6  fatal error -- $ZERO was called after mode was set .ge.2.
+!      =6  fatal error -- $ZERO was called after mode was set >=2.
 !          If $ZERO is called again, the program will be stopped.
 !          (Unless MODE is set to 0)
 !      <0  If MODE is set <0 and $ZERO is called, no action is taken
 !          except that print is turned on for -MODE calls to $ZERO.
 !          This print gives all values of X and F used in the iteration.
 !  TOL    is the error tolerance
-!     TOL.GT.0  Iterate until values of X1 and X2 are known
-!              for which abs(X1-X2) .le. tol and F1*F2 .le. 0.
-!     TOL.LT.0  Iterate until a value of X1 is found for which
-!              abs(F1) .le. abs(TOL).
+!     TOL>0  Iterate until values of X1 and X2 are known
+!              for which abs(X1-X2) <= tol and F1*F2 <= 0.
+!     TOL<0  Iterate until a value of X1 is found for which
+!              abs(F1) <= abs(TOL).
 !     TOL  = 0  Iterate until the zero is determined as
 !              precisely as possible.  MODE = 3 is impossible
 !              in this case.
@@ -5658,7 +5658,7 @@
 !
 ! Usage is as follows (of course, variations are possible.)
 !         Somehow one has available X1, F1, X2, and F2 such
-!         that F1 = F(X1), F2 = F(X2) and F1*F2 .le. 0.
+!         that F1 = F(X1), F2 = F(X2) and F1*F2 <= 0.
 !         In addition, one should assign a value to TOL.
 !     MODE = 0
 !***  In the statement below, $ is replaced by an 'S' for single
@@ -5714,7 +5714,7 @@
 ! FO     F(XO)
 ! I      Comments for LCHNG define how I is set.
 ! IDAT   Temporary storage for integer values for messages.
-! J      This is 1 if FF .le. 0., and is 2 if FF > 0.
+! J      This is 1 if FF <= 0., and is 2 if FF > 0.
 ! KNKP   KNKP(J) (see J above) is decreased by 3 when there are signs of
 !   decent convergence.  It is counted up when convergence is slow.
 ! KS     =-1  initially,
@@ -5859,11 +5859,11 @@
 !
 ! INITIALIZE
 !
-      if (MODE .lt. 0) then
+      if (MODE < 0) then
          NP = -1 - MODE
          return
       end if
-      if (NP .gt. 0) then
+      if (NP > 0) then
          NP = NP - 1
          FDAT(1) = X1
          FDAT(2) = F1
@@ -5871,15 +5871,15 @@
          IDAT(1) = KTYP
          IDAT(2) = KS
          call DMESS(MACT1, MTXTAB, IDAT, FDAT)
-         if (MODE .ne. 0) if (LMODE - 1) 70, 80, 450
+         if (MODE /= 0) if (LMODE - 1) 70, 80, 450
          FDAT(1) = X2
          FDAT(2) = F2
          call DMESS(MACT1, MTXTAC, IDAT, FDAT)
-      else if (MODE .ne. 0) then
+      else if (MODE /= 0) then
          if (LMODE - 1) 70, 80, 450
       end if
 !
-      if (RND .eq. C0) then
+      if (RND == C0) then
          RND = D1MACH(4)
          SMALL = CP5 / (RND * D1MACH(2))
       end if
@@ -5904,9 +5904,9 @@
    70 FF = F1
       XX = X1
       TP = FF / FL
-      if (TP .lt. C0) go to 30
+      if (TP < C0) go to 30
       LMODE = LMODE - 1
-      if (LMODE .lt. LINIT) then
+      if (LMODE < LINIT) then
          MACT(3) = 5
          FDAT(1) = XX
          FDAT(2) = XL
@@ -5914,13 +5914,13 @@
          FDAT(4) = FL
          go to 250
       end if
-      if (TP .gt. C1) then
+      if (TP > C1) then
          FF = FL
          XX = XL
          FL = F1
          XL = X1
       end if
-      if (abs(FF) .ge. C8 * abs(FL-FF)) then
+      if (abs(FF) >= C8 * abs(FL-FF)) then
          TP = C8
       else
          TP = max(-CP25*dble(LMODE), FF / (FL - FF))
@@ -5928,7 +5928,7 @@
       FL = FF
       XO = XL
       XL = XX
-      if (XX .eq. XO) XO = C1P031 * XX + sign(CP001, XX)
+      if (XX == XO) XO = C1P031 * XX + sign(CP001, XX)
       XX = XX + TP * (XX - XO)
       X1 = XX
       MODE = 1
@@ -5951,27 +5951,27 @@
       go to 120
   110 KS = KS + 1
   120 J = 1
-      if (FF .gt. C0) J = 2
+      if (FF > C0) J = 2
       if (TP - C1) 150, 140, 130
   130 I = 4
-      if (TP .gt. C4) I = 5
+      if (TP > C4) I = 5
       go to 160
   140 I = 3
       go to 160
   150 I = 2
-      if (TP .lt. CP01) I = 1
-      if (TP .lt. CP99) go to 170
+      if (TP < CP01) I = 1
+      if (TP < CP99) go to 170
   160 KNKP(J) = KNKP(J) + 1
       go to 180
   170 KNKP(J) = 0
   180 XXMXO = XX - XO
       LNLP(J) = LCHG(5*LNLP(J) + I)
-      if (LNLP(J) .ge. 4) then
-         if (LNLP(3 - J) .ge. 4) go to 210
+      if (LNLP(J) >= 4) then
+         if (LNLP(3 - J) >= 4) go to 210
       end if
 ! XXMXO GIVES THE LENGTH OF THE INTERVAL INSIDE WHICH
 ! THE ZERO IS KNOWN TO LIE.
-      if (C2 * abs(XXMXO) .lt. abs(XXMXOL)) then
+      if (C2 * abs(XXMXO) < abs(XXMXOL)) then
          KNKP(J) = max(0, KNKP(1) - 3)
       end if
       XXMXOL = XXMXO
@@ -5980,16 +5980,16 @@
 ! TEST FOR CONVERGENCE
       if (TOL) 190, 200, 200
   190 continue
-      if (abs(FF) .le. abs(TOL)) go to 220
+      if (abs(FF) <= abs(TOL)) go to 220
   200 continue
       TOLX = max(TOL, XRND)
-      if (abs(XXMXO) .gt. TOLX) go to 310
+      if (abs(XXMXO) > TOLX) go to 310
 !
 ! CONVERGENCE -- PREPARE FOR FINAL EXIT
-  210 if ((abs(XXMXO) .gt. TOL) .and. (TOL .ne. C0)) then
+  210 if ((abs(XXMXO) > TOL) .and. (TOL /= C0)) then
          MACT(3) = 3
          FDAT(3) = TOL
-         if (XXMXO .gt. 0) then
+         if (XXMXO > 0) then
             FDAT(2) = XX
             FDAT(1) = XO
          else
@@ -5999,7 +5999,7 @@
       end if
 ! SET FINAL VALUES FOR X1,F1,X2,AND F2
   220 continue
-      if (abs(FF) .le. abs(FO)) go to 240
+      if (abs(FF) <= abs(FO)) go to 240
       F1 = FO
       X1 = XO
   230 FO = FF
@@ -6007,8 +6007,8 @@
   240 X2 = XO
       F2 = FO
 ! TEST FOR DISCONTINUITY
-      if ((KNKP(1) .gt. 5) .or. (KNKP(2) .gt. 5)) then
-        if (abs(F1 - F2) .gt. RND * max(X1, 1.D0)) then
+      if ((KNKP(1) > 5) .or. (KNKP(2) > 5)) then
+        if (abs(F1 - F2) > RND * max(X1, 1.D0)) then
           MACT(3) = 4
           FDAT(1) = XX
         end if
@@ -6021,13 +6021,13 @@
 ! PREPARE TO DIVIDE THE INTERVAL
   260 TP = C1
       if (KS) 370, 280, 270
-  270 if (KTYP .eq. 0) go to 290
+  270 if (KTYP == 0) go to 290
   280 DIV = C2
   290 continue
       DIV = max(DIV, FFDFO)
 ! KTYP=0 IF AND ONLY IF THE INTERVAL WAS DIVIDED (USING DIV)
 ! ON THE LAST ITERATION
-      if (KTYP .eq. 0) DIV = DIV * (C1P25 / (C1P25 - TP))
+      if (KTYP == 0) DIV = DIV * (C1P25 / (C1P25 - TP))
 ! DIVIDE THE INTERVAL AS SPECIFIED BY DIV
   300 TP1 = -XXMXO * (DIV/(DIV+C1))
       KTYP = 0
@@ -6038,16 +6038,16 @@
       FFMFL = FF - FL
       FFDFO = abs(FF / FO)
       TOLX = CP5 * TOLX
-      if (TP .ge. C1) go to 260
+      if (TP >= C1) go to 260
 ! DIVIDE THE INTERVAL IF F HAS HAD THE SAME SIGN FOR
 ! FOUR OR MORE TIMES IN SUCCESSION
       if (KS - 4) 320, 340, 290
   320 continue
-      if (FLMFB .eq. C0) go to 340
+      if (FLMFB == C0) go to 340
 ! BEGINNING OF CODE TO DETERMINE IF INVERSE QUADRATIC
 ! INTERPOLATION IS TO BE USED.
       FFMFB = FFMFL + FLMFB
-      if (FFMFB .eq. C0) go to 330
+      if (FFMFB == C0) go to 330
       QFM = C1 - (FFMFL / FLMFB) * (XLMXB / XXMXL)
       QXM = C1 - (XXMXL / XLMXB) * (FLMFB / FFMFL)
       DXDFFF = C1 + (FFMFL / FFMFB) * QFM
@@ -6056,18 +6056,18 @@
       DFDXXX = C1 + (XXMXL / TP1) * QXM
       DFDXXO = DFDXXX + C2 * ((XO - XX) / TP1) * QXM
       TP1 = DXDFFF * DFDXXX
-      if ((TP1 .le. CP25) .or. (TP1 .ge. C4)) go to 330
+      if ((TP1 <= CP25) .or. (TP1 >= C4)) go to 330
       TP1 = DXDFFO * DFDXXO
-      if ((TP1 .gt. CP25) .and. (TP1 .lt. C4)) go to 380
+      if ((TP1 > CP25) .and. (TP1 < C4)) go to 380
 !
 ! DERIVATIVES DO NOT MATCH WELL ENOUGH
   330 continue
-      if (KS .eq. 0) if (FFDFO - C1) 350, 370, 360
+      if (KS == 0) if (FFDFO - C1) 350, 370, 360
   340 continue
-      if ((KTYP .eq. 0) .and. (TP .ge. CP75)) go to 290
+      if ((KTYP == 0) .and. (TP >= CP75)) go to 290
       continue
       TP = C1 - TP
-      if (TP .le. FFDFO) go to 280
+      if (TP <= FFDFO) go to 280
       FFDFO = FFDFO / TP
       DIV = CP125
       go to 290
@@ -6106,11 +6106,11 @@
       call DMESS(MACT, MTXTAA, IDAT, FDAT)
       go to 420
 !
-! A CALL TO THE SUBROUTINE HAS BEEN MADE WITH MODE.NE.1
+! A CALL TO THE SUBROUTINE HAS BEEN MADE WITH MODE/=1
   450 IDAT(1) = MODE
       MACT(3) = 6
       MODE = 6
-      if (LMODE .ne. 6) go to 430
+      if (LMODE /= 6) go to 430
       MACT(2) = 99
       go to 440
       END
@@ -6213,7 +6213,7 @@
 ! without affecting codes using an earlier version.  Where bounds are
 ! indicated for an argument, if the argument is outside the bounds it is
 ! treated as if it had the value for the bound violated.)
-! MESUNI=10  (0 .le. K10 .le. 99) Set the unit to use for a scratch
+! MESUNI=10  (0 <= K10 <= 99) Set the unit to use for a scratch
 !            file.  The default unit for a scratch file is 30.  If a
 !            scratch file is needed, (only needed here if a table
 !            exceeds the line length), and unit 30 can not be opened as
@@ -6224,12 +6224,12 @@
 !            any other library routines.  If K10 is 0, a scratch unit is
 !            assumed not to be available, and tables with long lines
 !            will be printed with each line on multiple lines.
-! MEHEAD=11  (0 .le. K11 .le. 1) Defines the print that surrounds an
+! MEHEAD=11  (0 <= K11 <= 1) Defines the print that surrounds an
 !            error message.  K11=0 gives nothing, and 1 gives the first
 !            4 characters in TEXT repeated 18 times.  If this is not
 !            used, one gets 72 $'s.  (To get a blank line use 1 with
 !            TEXT = '    '.)
-! MEDDIG=12  (-50 .le. K12 .le. 50) Set default digits to print for
+! MEDDIG=12  (-50 <= K12 <= 50) Set default digits to print for
 !            floating point.  If K12 > 0 then K12 significant digits
 !            will be printed, if K12 < 0, then -K12 digits will be
 !            printed after the decimal point, and if K12 = 0, the
@@ -6237,21 +6237,21 @@
 !            Setting or getting this value will only work properly if
 !            the action is taken by calling SMESS or DMESS as
 !            appropriate.
-! MEMLIN=13  (39 .le. K13 .le. 500) Set message line length to K13.
+! MEMLIN=13  (39 <= K13 <= 500) Set message line length to K13.
 !            (Default is 128.)
-! MEELIN=14  (39 .le. K14 .le. 500) Set error message line length to
+! MEELIN=14  (39 <= K14 <= 500) Set error message line length to
 !            K14. (Default is 79)
-! MEMUNI=15  (-99 .le. K15 .le. 99) Messages go to unit K15.  If K15 = 0
+! MEMUNI=15  (-99 <= K15 <= 99) Messages go to unit K15.  If K15 = 0
 !            (default), 'print' is used.  If K15 < 0, messages go to
 !            both 'print' and to unit abs(K15).  If a write can not be
 !            done to unit abs(K15), this unit will be opened with file
 !            name MESS_Fxx.tmp, where xx is the value of abs(K15).
-! MEEUNI=16  (-99 .le. K16 .le. 99) As for MEMUNI, except for Error
+! MEEUNI=16  (-99 <= K16 <= 99) As for MEMUNI, except for Error
 !            Messages.
-! MESCRN=17  (0 .le. K17 .le. 100000000) Set number of lines to print to
+! MESCRN=17  (0 <= K17 <= 100000000) Set number of lines to print to
 !            standard output before pausing for "go" from user.  Default
 !            is 0, which never stops.
-! MEDIAG=18  (0 .le. K18 .le. 1000000000) Set the diagnostic level
+! MEDIAG=18  (0 <= K18 <= 1000000000) Set the diagnostic level
 !            desired.  This routine makes no use of K18.  It merely
 !            serves as a place to set it and to answer inquiries on its
 !            value.  It is intended to be set by users of library
@@ -6287,16 +6287,16 @@
 !            all output after a certain limit is reached.  By
 !            convention, if this is 0 there is no upper bound on the
 !            count.
-! MEMAXE=19  (0 .le. K19 .le. 1000000000) Set the maximum error value.
+! MEMAXE=19  (0 <= K19 <= 1000000000) Set the maximum error value.
 !            When retrieving this value, it is the maximum value seen
 !            for 10000*s + 1000*p + i, where s, p, and i are the stop
 !            and print levels, and the index on the last error message
 !            processed, respectively.  See MEEMES below.
-! MESTOP=20  (0 .le. K20 .le. 8) Set the stop level for error messages.
+! MESTOP=20  (0 <= K20 <= 8) Set the stop level for error messages.
 !            If an error message has a stop index > min(K20, 8), the
 !            program is stopped after processing the message.  The
 !            default value is K20=3.
-! MEPRNT=21  (0 .le. K21 .le. 8) Set the print level for error messages.
+! MEPRNT=21  (0 <= K21 <= 8) Set the print level for error messages.
 !            If an error message has a print index > K21, or the message
 !            is going to stop when finished, information in an error
 !            message is processed, else all the actions including
@@ -6307,19 +6307,19 @@
 ! variable set by Ki.  In the case of MESUNI, if the scratch unit has
 ! not been opened, it will be opened before returning the unit number.
 !
-! METDIG=22  (-50 .le. K22 .le. 50) As for MEDDIG, except the value here
+! METDIG=22  (-50 <= K22 <= 50) As for MEDDIG, except the value here
 !            is temporary, lasting until the return, or next use of this
 !            action.  If 0, the internal value for K12 is used instead.
-! MENTXT=23  (1 .le. K23 .le. 10000000) Set value of NTEXT to K23.
-! MEIDAT=24  (1 .le. K24 .le. 1000000000) Set value of NIDAT to K24.
-! MEFDAT=25  (1 .le. K25 .le. 1000000000) Set value of NFDAT to K25.
-! MEMDAT=26  (1 .le. K26 .le. 5) Set value of NMDAT to K26.
+! MENTXT=23  (1 <= K23 <= 10000000) Set value of NTEXT to K23.
+! MEIDAT=24  (1 <= K24 <= 1000000000) Set value of NIDAT to K24.
+! MEFDAT=25  (1 <= K25 <= 1000000000) Set value of NFDAT to K25.
+! MEMDAT=26  (1 <= K26 <= 5) Set value of NMDAT to K26.
 ! MEMDA1=27  (K27) set MDAT(1) to K27.  See description of NMDAT above.
 ! MEMDA2=28  (K28) set MDAT(2) to K28.
 ! MEMDA3=29  (K29) set MDAT(3) to K29.
 ! MEMDA4=30  (K30) set MDAT(4) to K30.
 ! MEMDA5=31  (K31) set MDAT(5) to K31.
-! METABS=32  (1 .le. K32 .le. 100) set spacing for tabs to K32.
+! METABS=32  (1 <= K32 <= 100) set spacing for tabs to K32.
 ! MECONT=50  Exit, but no print of current print buffer.  The error or
 !            diagnostic message is to be continued immediately.
 ! MERET=51   All done with diagnostic or error message, complete
@@ -6330,7 +6330,7 @@
 !            TEXT(NTEXT), and if M52 < 0, no message text is
 !            printed as part of this action.  Library routines should
 !            set K52 = 10*s + p, where s is the stop level desired, and
-!            p the print level, and should have 10 > p .ge. s .ge. 0.
+!            p the print level, and should have 10 > p >= s >= 0.
 !            We offer the following guidelines as a yardstick for
 !            setting the value of s.
 !   = 9  User has ignored warning that program was going to be stopped.
@@ -6427,7 +6427,7 @@
 !            in N55 defines the printing action for the k-th column
 !            of the table.  Let such an integer have a value defined by
 !            rr + 100 * (t + 10 * (dd + 100 * ww)), i.e. wwddtrr, where
-!            0 .le. rr,dd,ww < 100, and 0 .le. t < 10.
+!            0 <= rr,dd,ww < 100, and 0 <= t < 10.
 !      rr    The number of items to print.
 !      t     The type of output.
 !            1  Print text starting at TEXT(NTEXT), rr = 01.
@@ -6610,7 +6610,7 @@
 ! LNERR  Parameter giving the default value for LENERR, only in XMESS.
 ! LNMSG  Parameter giving the default value for LINMSG, only in XMESS.
 ! LOCBEG Index of first item in vector and matrix output.
-! LPRINT For error messages with a print level .le. LPRINT nothing is
+! LPRINT For error messages with a print level <= LPRINT nothing is
 !   printed (unless the message would result in a stop).
 ! LSTOP  As for LPRINT, except with the stop level, and stopping.
 ! LSTRT  Starting character position in BUF for storing next characters.
@@ -6830,14 +6830,14 @@
 ! Skip all actions -- Inside non-printing error message.
    20 I = 1
    30 K = MACT(I)
-      if (K .le. MERET) then
-         if (K .eq. MERET) go to 120
-         if (K .eq. MECONT) return
-         if (K .le. -MEGBAS) go to 180
+      if (K <= MERET) then
+         if (K == MERET) go to 120
+         if (K == MECONT) return
+         if (K <= -MEGBAS) go to 180
          I = I + 2
       else
-         if (K .gt. MEIMAT) then
-            if (K .gt. MEMAXI) go to 180
+         if (K > MEIMAT) then
+            if (K > MEMAXI) go to 180
             K = MEIVEC + mod(K - MEIVEC, 2)
          end if
          I = I + INCM(K)
@@ -6850,31 +6850,31 @@
   100 I = I + INCM(M)
 !                             Pick up the next action request
   120 M = MACT(I)
-      if (M .gt. MEGBAS) go to 140
+      if (M > MEGBAS) go to 140
       I = I + 2
-      if (abs(M) .gt. MEVLAS) go to 180
-      if (M .gt. 0) then
+      if (abs(M) > MEVLAS) go to 180
+      if (M > 0) then
          IVAR(M) = MACT(I-1)
-         if (IVAR(M) .lt. MBNDLO(M)) then
+         if (IVAR(M) < MBNDLO(M)) then
             IVAR(M) = MBNDLO(M)
-         else if (IVAR(M) .gt. MBNDHI(M)) then
+         else if (IVAR(M) > MBNDHI(M)) then
             IVAR(M) = MBNDHI(M)
          end if
 !            MEHEAD, MEDDIG, MEMLIN, MEELIN, MEMUNI, MEEUNI
          go to (122,    124,    126,    126,    128,    128), M - MESUNI
-         if (M .ne. MENTXT) go to 120
+         if (M /= MENTXT) go to 120
          ITEXT = (NTEXT-1) / LENTXT
          NTEXT = NTEXT - LENTXT*ITEXT
          ITEXT = ITEXT + 1
          go to 120
-  122    if (LHEAD .ne. 0) then
+  122    if (LHEAD /= 0) then
          end if
          go to 120
   124    KDF = KDFDEF
          go to 120
   126    LENLIN = LINMSG
          go to 120
-  128    if (IVAR(M) .ne. 0) then
+  128    if (IVAR(M) /= 0) then
 !%%          k = labs(cmessi.ounit);
 !%%          c_fname[m-15][6] = k / 10 + '0';
 !%%          c_fname[m-15][7] = k % 10 + '0';
@@ -6887,18 +6887,18 @@
          OUNIT = MUNIT
          go to 120
       end if
-      if (M .eq. -MESUNI) then
+      if (M == -MESUNI) then
 !%%      if (cmessi.sunit == -1L) {
 !%%          scratch_file = tmpfile();
 !%%          cmessi.sunit = 1L;}
-         if (SUNIT .le. 0) SUNIT = MESSGS()
+         if (SUNIT <= 0) SUNIT = MESSGS()
       end if
 !
       MACT(I-1) = IVAR(-M)
       go to 120
 !  ME ..    CONT  RET EMES ETXT  FSPV TABL
   140 go to (170, 200, 310, 400, 1200, 910, 180), M-MEGBAS
-      if (M .le. MEGVCI) go to 1000
+      if (M <= MEGVCI) go to 1000
       go to 180
 !
 ! Action MECONT -- Continue message on next entry
@@ -6920,8 +6920,8 @@
   200 LENTRY = 1
       J = INERR
       INERR = 0
-      if (J .ge. 2) INERR = -2
-      if (J .gt. 0) go to 330
+      if (J >= 2) INERR = -2
+      if (J > 0) go to 330
 !                       Finish print before exit.
       call MESSPR
       return
@@ -6937,8 +6937,8 @@
       MAXERR = max(MAXERR, 1000*K + IMAG)
       KS = K / 10
       KP = K - 10 * KS
-      if (KS .le. min(LSTOP, 8)) then
-         if (KP .le. LPRINT) then
+      if (KS <= min(LSTOP, 8)) then
+         if (KP <= LPRINT) then
             INERR = -1
             go to 20
          end if
@@ -6953,11 +6953,11 @@
       LBUF = 1
   330 call MESSPR
 !                        Put out line of $'s
-      if (LHEAD .ne. 0) then
+      if (LHEAD /= 0) then
          LBUF = min(len(DOLS), LENLIN)
 !++ CODE for ~.C. is active
          BUF(1:LBUF) = DOLS(1:LBUF)
-         if (INERR.lt.0) BUF(5:37)=' Fatal error -- Program stopped. '
+         if (INERR<0) BUF(5:37)=' Fatal error -- Program stopped. '
 !++ CODE for .C. is inactive
 !%%      memcpy(cmessc.buf, cmessc.dols, cmessi.lbuf);
 !%%      if (inerr < 0L)
@@ -6965,9 +6965,9 @@
 !++ END
          call MESSPR
       end if
-      if (INERR .le. 0) then
+      if (INERR <= 0) then
 !                                 Just finished an error message
-         if (INERR .ne. 0) stop
+         if (INERR /= 0) stop
          OUNIT = MUNIT
          LENLIN = LINMSG
          return
@@ -6977,7 +6977,7 @@
       go to 410
 !                     Got the program name in BUF.
   370 LBUF = min(LBUF, 40)
-      if (KS .eq. 0) then
+      if (KS == 0) then
          ERMSG1(17:17) = char(KP + ICHAR0)
 !%%       memcpy(&cmessc.buf[cmessi.lbuf], ermsg1, strlen(ermsg1));
          BUF(LBUF+1:LBUF+len(ERMSG1)) = ERMSG1
@@ -6996,8 +6996,8 @@
 !%%           (int)messcc.kciwid, cmessi.imag);
       write (BUF(LSTRT:LBUF), FMTI) IMAG
 !          Finish up the start error message action.
-      if (MACT(I+3) .lt. 0) go to 40
-      if (MACT(I+3) .ne. 0) then
+      if (MACT(I+3) < 0) go to 40
+      if (MACT(I+3) /= 0) then
          ITEXT = (MACT(I+3)-1) / LENTXT
          NTEXT = MACT(I+3) - LENTXT*ITEXT
          ITEXT = ITEXT + 1
@@ -7005,7 +7005,7 @@
       KSPEC = 13
       go to 480
 !                  Take care of any left over print from error header
-  390 if (LBUF .ne. 0) call MESSPR
+  390 if (LBUF /= 0) call MESSPR
 !
 ! Action METEXT -- Print string from TEXT
   400 LENTRY = 4
@@ -7027,34 +7027,34 @@
 !%%       else
 !%%             k = ctmp - TEXT(cmessi.itext-1L,cmessi.ntext-1) + 1;
       K = index(TEXT(ITEXT)(NTEXT:K2), SC)
-      if (K .eq. 0) then
+      if (K == 0) then
 ! Want to take all that we can.
          LBUF = LSTRT + K2 - NTEXT
 !%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-1L,
 !%%         cmessi.ntext-1), k2 - cmessi.ntext + 1L);
          BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:K2)
-         if (K2 .eq. LENTXT) then
+         if (K2 == LENTXT) then
            ITEXT = ITEXT + 1
            NTEXT = 1
-           if (LBUF .le. LENLIN) go to 410
+           if (LBUF <= LENLIN) go to 410
          else
            NTEXT = K2 + 1
          end if
          KSPEC = 12
-         if (ITEXT - ITEXTR .lt. 4000) go to 480
+         if (ITEXT - ITEXTR < 4000) go to 480
          KSPEC = 2
          go to 430
       end if
       LBUF = LBUF + K - 1
 !%%   if (k >= 2) memcpy(&cmessc.buf[cmessi.lstrt-1],
 !%%     TEXT(cmessi.itext-1L, cmessi.ntext-1), k - 1L);
-      if (K .ge. 2) BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:NTEXT+K-2)
+      if (K >= 2) BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:NTEXT+K-2)
 !        Jump to location below if get $ after computing an NSKIP.
   415 continue
       NTEXT = NTEXT + K + 1
-      if (NTEXT .gt. LENTXT) then
+      if (NTEXT > LENTXT) then
          ITEXT = ITEXT + 1
-         if (NTEXT .eq. LENTXT + 1) then
+         if (NTEXT == LENTXT + 1) then
             C = TEXT(ITEXT-1)(LENTXT:LENTXT)
             NTEXT = 1
          else
@@ -7064,41 +7064,41 @@
       else
          C = TEXT(ITEXT)(NTEXT-1:NTEXT-1)
       end if
-      if (C .eq. ' ') then
+      if (C == ' ') then
 !                Special code to take care of " " following "$".
          NTEXT = NTEXT - 1
-         if (NTEXT .eq. 0) then
+         if (NTEXT == 0) then
             ITEXT = ITEXT - 1
             NTEXT = LENTXT
          end if
          go to 410
       end if
-      if (NTEXTR .eq. 0) then
-         if (LENTRY .eq. 3) go to 370
+      if (NTEXTR == 0) then
+         if (LENTRY == 3) go to 370
          go to 1510
       end if
       KSPEC = index('BERNIMFJG(T', C)
-  430 if (LBUF .gt. LENLIN) go to 480
+  430 if (LBUF > LENLIN) go to 480
 !              1   2   3   4   5   6   7   8   9  10  11  12, 13
 !              B   E   R   N   I   M   F   J   G   (   T done end err
       go to (455,480,450,460,700,680,900,700,900,600,690,410,390), KSPEC
 !               No match  -- Check for setting NSKIP
-      if (((C .ge. '0') .and. (C .le. '9')) .or. (C .eq. '-')) then
+      if (((C >= '0') .and. (C <= '9')) .or. (C == '-')) then
          NSKIP = 0
          K1 = 1
-         if (C .ne. '-') go to 436
+         if (C /= '-') go to 436
          K1 = -1
   433    C = TEXT(ITEXT)(NTEXT:NTEXT)
          NTEXT = NTEXT + 1
-         if (NTEXT .ge. LENTXT) then
+         if (NTEXT >= LENTXT) then
             ITEXT = ITEXT + 1
             NTEXT = 1
          end if
-  436    if ((C .ge. '0') .and. (C .le. '9')) then
+  436    if ((C >= '0') .and. (C <= '9')) then
             NSKIP = 10 * NSKIP + K1 * (ICHAR(C) - ICHAR0)
             go to 433
          end if
-         if (C .eq. '$') then
+         if (C == '$') then
             K = 0
             go to 415
          end if
@@ -7116,15 +7116,15 @@
       go to 100
 !           At this point want to output all in BUF
   460 do 470 LBUF = LBUF, 1, -1
-         if (BUF(LBUF:LBUF) .ne. ' ') go to 480
+         if (BUF(LBUF:LBUF) /= ' ') go to 480
   470 continue
   480 LBUF2 = LBUF
-      if (LBUF2 .eq. 0) then
+      if (LBUF2 == 0) then
          LBUF = 1
          BUF(1:1) = ' '
-      else if (LBUF .gt. LENLIN) then
+      else if (LBUF > LENLIN) then
          do 485 K = LENLIN+1, LENLIN/3, -1
-            if (BUF(K:K) .eq. ' ') then
+            if (BUF(K:K) == ' ') then
                LBUF = K - 1
                go to 490
             end if
@@ -7133,20 +7133,20 @@
       end if
   490 LBUF1 = LBUF
       call MESSPR
-      if (LBUF1 .ge. LBUF2) then
+      if (LBUF1 >= LBUF2) then
 !                       The entire buffer has been printed.
-         if (KSPEC .le. 2) go to 455
-         if (KSPEC .ne. 4) go to 430
+         if (KSPEC <= 2) go to 455
+         if (KSPEC /= 4) go to 430
          go to 410
       end if
 !                       Remove trailing blanks
       do 510 LBUF1 = LBUF1+1, LBUF2
-         if (BUF(LBUF1:LBUF1) .ne. ' ') go to 520
+         if (BUF(LBUF1:LBUF1) /= ' ') go to 520
   510 continue
 !                       Shift the contents of the buffer.
   520 LBUF = LBUF2-LBUF1+1
       LSTRT = 1
-  530 if (LBUF .ge. LBUF1) then
+  530 if (LBUF >= LBUF1) then
 !                              Take care of overlap.
          K = 2*LBUF1 - LSTRT
 !%%memcpy(&cmessc.buf[cmessi.lstrt-1],&cmessc.buf[lbuf1-1],k-lbuf1);
@@ -7157,7 +7157,7 @@
       end if
 !%% if (cmessi.lbuf>=cmessi.lstrt) memcpy(&cmessc.buf[cmessi.lstrt-1],
 !%%       &cmessc.buf[lbuf1-1L], lbuf2-lbuf1+1);
-      if (LBUF .ge. LSTRT) BUF(LSTRT:LBUF) = BUF(LBUF1:LBUF2)
+      if (LBUF >= LSTRT) BUF(LSTRT:LBUF) = BUF(LBUF1:LBUF2)
       go to 430
 !
 ! Get information on user format
@@ -7189,7 +7189,7 @@
       FMTT = ' '
   606 continue
          NTEXT = NTEXT + 1
-         if (NTEXT .gt. LENTXT) then
+         if (NTEXT > LENTXT) then
             ITEXT = ITEXT + 1
             NTEXT = 1
          end if
@@ -7198,16 +7198,16 @@
 !++ END
          JJ = ichar(TEXT(ITEXT)(NTEXT:NTEXT)) - ICHAR0
          if (GETW) then
-            if ((JJ .ge. 0) .and. (JJ .le. 9)) then
+            if ((JJ >= 0) .and. (JJ <= 9)) then
                IMAG = 10*IMAG + JJ
             else
-               if (TEXT(ITEXT)(NTEXT:NTEXT) .eq. ')')  go to 610
-               if (TEXT(ITEXT)(NTEXT:NTEXT) .ne. '.')  go to 180
+               if (TEXT(ITEXT)(NTEXT:NTEXT) == ')')  go to 610
+               if (TEXT(ITEXT)(NTEXT:NTEXT) /= '.')  go to 180
                GETW = .false.
             end if
          else
-            if (TEXT(ITEXT)(NTEXT:NTEXT) .eq. ')') go to 610
-            if ((JJ .lt. 0) .or. (JJ .gt. 9)) go to 180
+            if (TEXT(ITEXT)(NTEXT:NTEXT) == ')') go to 610
+            if ((JJ < 0) .or. (JJ > 9)) go to 180
 !++ CODE for .C. is inactive
 !%%         messcc.lgprec = 10*messcc.lgprec + jj;
 !++ END
@@ -7215,12 +7215,12 @@
       go to 606
 !
   610 NTEXT = NTEXT + 1
-      if (NTEXT .gt. LENTXT) then
+      if (NTEXT > LENTXT) then
          ITEXT = ITEXT + 1
          NTEXT = 1
       end if
 !++ CODE for ~.C. is active
-      if (KSPEC .eq. 8) then
+      if (KSPEC == 8) then
          KDJ = IMAG
          FMTJ(5:7) = FMTT
       else
@@ -7233,14 +7233,14 @@
 !%%   else
 !%%       cmessi.iwg = cmessi.imag;
 !++ END
-      if (TEXT(ITEXT)(NTEXT:NTEXT) .eq. SC) go to 410
-      if (KSPEC .eq. 8) go to 700
+      if (TEXT(ITEXT)(NTEXT:NTEXT) == SC) go to 410
+      if (KSPEC == 8) go to 700
       if (XARGOK) return
       go to 440
 !
 !                         Print from MDAT
   680 IOUT = MDAT(NMDAT)
-      if (NMDAT .ge. 6) then
+      if (NMDAT >= 6) then
          MDAT(NMDAT) = MDAT(NMDAT) + 1
       else
          NMDAT = NMDAT + 1
@@ -7260,7 +7260,7 @@
       NIDAT = NIDAT + 1
   720 LSTRT = LBUF + 1
       IMAG = IOUT
-      if (KSPEC .ge. 8) then
+      if (KSPEC >= 8) then
          LBUF = LBUF + KDJ
 !%%   sprintf(&cmessc.buf[cmessi.lstrt-1],"%*ld",(int)cmessi.kdj, iout);
       write (BUF(LSTRT:LBUF), FMTJ) IOUT
@@ -7273,7 +7273,7 @@
 !%% sprintf(&cmessc.buf[cmessi.lstrt-1],"%*ld",(int)messcc.kciwid,iout);
       write (BUF(LSTRT:LBUF), FMTI) IOUT
 !                         Entry here to check line after numeric output.
-  850 if (LBUF .le. LENLIN) go to 410
+  850 if (LBUF <= LENLIN) go to 410
       KSPEC = 12
       go to 480
 !
@@ -7282,13 +7282,13 @@
       go to 180
 !
 ! Action METABL -- Start a table
-  910 GOTFMT = MACT(I+1) .ne. 1
+  910 GOTFMT = MACT(I+1) /= 1
       if (.not. GOTFMT) then
          IROW = 0
          KOLWID = 0
       end if
       LENTRY = 9
-      if (LBUF .ne. 0) call MESSPR
+      if (LBUF /= 0) call MESSPR
   920 continue
 !%%   memset(cmessc.buf,' ',LENBUF);
       BUF = ' '
@@ -7316,7 +7316,7 @@
          FMTI(5:5) = char(LENOUT / 10 + ichar0)
          FMTI(6:6) = char(mod(LENOUT, 10) + ichar0)
 !++ END
-         if (KK .eq. 3) then
+         if (KK == 3) then
 !%%         sprintf(&cmessc.buf[cmessi.lstrt-1], "%*ld",
 !%%            (int)cmessi.lenout, mact[i]);
             write (BUF(LSTRT:LBUF), FMTI) MACT(I+1)
@@ -7376,19 +7376,19 @@
 !                                 Print the heading
          KT = 1
          call MESSMH(TEXT)
-         if (KT .lt. 0) go to 180
+         if (KT < 0) go to 180
       end if
-  960 if ((LBUF .le. MDAT(NROW)) .and. (NCOL .gt. 0)) go to 940
-      if (NROW .eq. 1) then
+  960 if ((LBUF <= MDAT(NROW)) .and. (NCOL > 0)) go to 940
+      if (NROW == 1) then
          JJ = LBUF
          LBUF = MDAT(1)
          call MESSPR
          LBUF = JJ
       else
-         if (IROW .eq. 0) then
-            if (NROW .eq. 2) then
+         if (IROW == 0) then
+            if (NROW == 2) then
 !++ CODE for ~.C. is active
-               if (SUNIT .le. 0) SUNIT = MESSGS()
+               if (SUNIT <= 0) SUNIT = MESSGS()
                rewind(SUNIT)
 !++ CODE for .C. is inactive
 !%%        if (cmessi.sunit == -1) {
@@ -7402,17 +7402,17 @@
 !%%          scratch_file);
          write(SUNIT) BUF(5:MDAT(NROW))
       end if
-      if (LBUF .gt. MDAT(NROW)) then
+      if (LBUF > MDAT(NROW)) then
 !%%  memcpy(&cmessc.buf[4], &cmessc.buf[cmessi.mdat[cmessi.nrow-1]],
 !%%     cmessi.lbuf - cmessi.mdat[cmessi.nrow-1]);
          BUF(5:LBUF - MDAT(NROW) + 4) = BUF(MDAT(NROW)+1:LBUF)
          LBUF = LBUF - MDAT(NROW) + 4
          NROW = NROW + 1
          if (.not. GOTFMT) then
-            if (NROW .gt. 5) go to 180
+            if (NROW > 5) go to 180
             MDAT(NROW) = LBUF
          end if
-         if (NCOL .eq. 0) go to 960
+         if (NCOL == 0) go to 960
          go to 940
       end if
       LBUF = 0
@@ -7422,21 +7422,21 @@
          go to 920
       end if
       MACT(I+1) = MACT(I+1) + 1
-      if (MACT(I+1) .le. MACT(I+2)) go to 999
+      if (MACT(I+1) <= MACT(I+2)) go to 999
       MACT(I+1) = 1
-      if (NROW .eq. 1) go to 999
+      if (NROW == 1) go to 999
 !%%    fputc(EOF, scratch_file);
       endfile SUNIT
       KK = 1
   994 KK = KK + 1
-      if (KK .gt. NROW) go to 999
+      if (KK > NROW) go to 999
 !%%   rewind(scratch_file);
       rewind(SUNIT)
       IROW = -1
       K = KK
   995 LBUF = 5
       IROW = IROW + 1
-      if (IROW .ne. 0) then
+      if (IROW /= 0) then
 !%%      sprintf(cmessc.buf, "%4ld",  irow%10000);
          write(BUF(1:4), '(I4)') mod(IROW, 10000)
       else
@@ -7444,7 +7444,7 @@
          BUF(1:4) = ' '
       end if
       do 996 J = 2, K
-         if (J .eq. K) LBUF = MDAT(KK)
+         if (J == K) LBUF = MDAT(KK)
 !%%       if (fread(&cmessc.buf[4], cmessi.lbuf-4, 1,
 !%%         scratch_file) == 0) goto L_994;
          read(SUNIT, END = 994) BUF(5:LBUF)
@@ -7458,31 +7458,31 @@
 !                          Get started with vector or matrix output
  1000 INC = 1
       LOCBEG = NIDAT
-      if (M .gt. MEGMAT) then
+      if (M > MEGMAT) then
 ! Have a user set increment between entries of a vector.
         M = MEIVEC + 2 * (M - MEIVCI)
         I = I + 1
         INC = MACT(I)
       end if
-      XARG = M .gt. MEJMAT
+      XARG = M > MEJMAT
       if (XARG) then
          M = M - 4
          LOCBEG = NFDAT
          if (.not. XARGOK) go to 40
       end if
-      GOTFMT = M .gt. MEIMAT
+      GOTFMT = M > MEIMAT
       if (GOTFMT) M = M - 2
       LOCBEG = LOCBEG + NSKIP
       NSKIP = 0
       MPT = LOCBEG
-      if (M .eq. MEIMAT) go to 1300
+      if (M == MEIMAT) go to 1300
 !                           Take care of setup for vector output
       KNT = 0
       LASKNT = MACT(I+1)
-      if (LASKNT .le. 0) then
+      if (LASKNT <= 0) then
          LASKNT = -LASKNT
          KNT = LOCBEG - 1
-         if (LASKNT .le. KNT) go to 40
+         if (LASKNT <= KNT) go to 40
       end if
       IMAG = LASKNT
       LASTI = LOCBEG + INC * (LASKNT - 1 - KNT)
@@ -7509,14 +7509,14 @@
       NIDAT = LASTI + 1
 !                                          Common code continues here
  1080 NLINE = (LENLIN - LINSTR + 1) / LENOUT
-      if (LBUF .eq. 0) go to 1090
+      if (LBUF == 0) go to 1090
       K = max(LINSTR, LBUF+1)
-      if (((K-LINSTR)/LENOUT + (LENLIN-K+1)/LENOUT) .lt. NLINE) K = K + &
+      if (((K-LINSTR)/LENOUT + (LENLIN-K+1)/LENOUT) < NLINE) K = K + &
      &   LENOUT - mod(K-LINSTR, LENOUT)
       KLINE = (LENLIN - K + 1) / LENOUT
-      if (KLINE .lt. min(LASKNT-KNT, NLINE/2)) go to 1085
+      if (KLINE < min(LASKNT-KNT, NLINE/2)) go to 1085
       LINSTR = K - LENOUT * ((K - LINSTR) / LENOUT)
-      if (KLINE .ge. LASKNT-KNT)  then
+      if (KLINE >= LASKNT-KNT)  then
          KLINE = LASKNT - KNT
          K = LBUF + 1
       end if
@@ -7558,7 +7558,7 @@
       MPT = MPT + KLINE * INC
 !
 !                                     Entry here after vector output.
- 1130 if (MPT .le. LASTI) go to 1085
+ 1130 if (MPT <= LASTI) go to 1085
       go to 40
 !                                          Get other format
  1150 LENTRY = 5
@@ -7589,7 +7589,7 @@
 
  1220 call MESSPR
       KLINE = min(LASKNT - MPT + 1, NLINE)
-      if (KLINE .le. 0) go to 40
+      if (KLINE <= 0) go to 40
       LBUF = LENOUT * KLINE
       return
 
@@ -7597,22 +7597,22 @@
 !                           Take care of setup for matrix output
  1300 continue
       NDIM = MACT(I+1)
-      if (NDIM .le. 0) then
-         if (NDIM .eq. 0) go to 40
+      if (NDIM <= 0) then
+         if (NDIM == 0) go to 40
          INC = -NDIM
          NDIM = 1
       end if
       ICOL = 1
       IROW1 = 1
       NROW = MACT(I+2)
-      if (NROW .le. 0) then
-         if (NROW .eq. 0) go to 40
+      if (NROW <= 0) then
+         if (NROW == 0) go to 40
          IROW1 = -NROW / 100000
          NROW = -NROW - 99999 * IROW1 - 1
       end if
       NCOL = MACT(I+3)
-      if (NCOL .le. 0) then
-         if (NCOL .eq. 0) go to 40
+      if (NCOL <= 0) then
+         if (NCOL == 0) go to 40
          ICOL = -NCOL / 100000
          NCOL = -NCOL - 99999 * IROW1 - 1
       end if
@@ -7625,14 +7625,14 @@
       IMAG = NROCO(IRC)
       KLINE = IMAG
  1330 NTEXT = MTEXT(IRC)
-      if (NTEXT .ge. 0) then
-         if (NTEXT .eq. 0) then
+      if (NTEXT >= 0) then
+         if (NTEXT == 0) then
             LTEXT = 5
          else
 !                        Go get row/column widths
             KT = 2
             call MESSMH(TEXT)
-            if (KT .lt. 0) then
+            if (KT < 0) then
                MTEXT(IRC) = 0
                go to 1330
             end if
@@ -7646,7 +7646,7 @@
          FMTIM(IRC) = FMTI
       end if
       IRC = IRC + 1
-      if (IRC .eq. 2) go to 1320
+      if (IRC == 2) go to 1320
 !                 Widths for Row and column titles have been computed.
       KSHIFT = 1
       LASTI = LOCBEG + INC * (NROW - IROW1)
@@ -7663,7 +7663,7 @@
       end if
       call MESSFD(IDAT)
 !
-      If (KDI .ge. KOLWID) then
+      If (KDI >= KOLWID) then
          LENOUT = KDI
       else
          KSHIFT = (KOLWID - KDI + 2) /2
@@ -7679,25 +7679,25 @@
       NIDAT = NIDAT + NDIM*NCOL
 !                              Continue with commmon code
  1390 NLINE = (LENLIN - LINSTR) / LENOUT
-      if (LBUF .le. LINSTR) go to 1420
+      if (LBUF <= LINSTR) go to 1420
  1400 call MESSPR
  1420 IROW = IROW1
       KLINE = min(NLINE, NCOL-ICOL+1)
 !                       Output column labels (if any)
-      if (MTEXTC .lt. 0) go to 1480
+      if (MTEXTC < 0) go to 1480
       NTEXT = MTEXTC
       IMAG = ICOL
       KT = 3
       call MESSMH(TEXT)
-      if (KT .lt. 0) go to 180
+      if (KT < 0) go to 180
 !                       Return from output of column labels.
       MTEXTC = NTEXT
  1480 ICOL = ICOL + KLINE
  1490 call MESSPR
 !
 !                      Output row labels (if any)
-      if (MTEXTR .lt. 0) go to 1520
-      if (MTEXTR .eq. 0) then
+      if (MTEXTR < 0) go to 1520
+      if (MTEXTR == 0) then
 !%%       memcpy(&cmessc.buf[cmessi.lbuf],"Row ", 4);
          BUF(LBUF+1:LBUF+4) = 'Row '
          LBUF = LBUF + 4
@@ -7712,7 +7712,7 @@
       NTEXTR = 0
       go to 410
 !                     Return from getting text for row label
- 1510 if (C .ne. '#') then
+ 1510 if (C /= '#') then
          MTEXTR = NTEXT + LENTXT * (ITEXT-1)
 !%%    for (kc=cmessi.lbuf; kc < *linstr; kc++) cmessc.buf[kc] = ' ';
          BUF(LBUF+1:LINSTR) = ' '
@@ -7737,8 +7737,8 @@
  1530 MPT = MPT + INC
       IROW = IROW + 1
 !
-      if (IROW .le. NROW) go to 1490
-      if (ICOL .gt. NCOL) then
+      if (IROW <= NROW) go to 1490
+      if (ICOL > NCOL) then
          NTEXT = NTXTSV
          ITEXT = ITXTSV
          go to 40
@@ -7753,7 +7753,7 @@
  1610 LENTRY = 6
       return
 !                                Entry after got format for matrix print
- 1620 If (IWF .ge. KOLWID) then
+ 1620 If (IWF >= KOLWID) then
          LENOUT = IWF
       else
          KSHIFT = (KOLWID - IWF + 2) /2
@@ -7820,14 +7820,14 @@
          IMAX = max(IMAX, IDAT(J))
          IMIN = MIN(IMIN, IDAT(J))
    20 continue
-      if (NCOL .ne. 0) then
+      if (NCOL /= 0) then
          K = K + 1
          LOCBEG = LOCBEG + NDIM
          LASTI = LASTI + NDIM
-         if (K .le. NCOL) go to 10
+         if (K <= NCOL) go to 10
       end if
       IMAG = IMAX
-      if ((IMAG/10) + IMIN .lt. 0) IMAG = IMIN
+      if ((IMAG/10) + IMIN < 0) IMAG = IMIN
       KDI = -KDI
       call MESSFI
       return
@@ -7872,23 +7872,23 @@
       save /CMESSI/, /CMESSC/
 !
       KD = 1
-      if (KDI .lt. 0) then
+      if (KDI < 0) then
 !              KDI < 0 to flag need for extra space -- avoids overflows
          KDI = -KDI
          KD = 2
       end if
       K = 1
-      if (IMAG .lt. 0) then
+      if (IMAG < 0) then
          IMAG = -IMAG
          KD = KD + 1
       end if
       I = IMAG / 10
-      if (I .ne. 0) then
+      if (I /= 0) then
    10    K = 10 * K
          KD = KD + 1
-         if (I .ge. K) go to 10
+         if (I >= K) go to 10
       end if
-      if (KD .ne. KDI) then
+      if (KD /= KDI) then
          KDI = KD
 !++ CODE for ~.C. is active
          FMTI(5:5) = char(ICHAR0 + KDI / 10)
@@ -7907,10 +7907,10 @@
 !
       MESSGS = 31
    10 MESSGS = MESSGS - 1
-      if (MESSGS .eq. 0) stop 'Could not assign scratch unit in MESS.'
+      if (MESSGS == 0) stop 'Could not assign scratch unit in MESS.'
       open (MESSGS, STATUS='SCRATCH', ACCESS='SEQUENTIAL',              &
      &    FORM='UNFORMATTED', IOSTAT=J)
-      if (J .ne. 0) go to 10
+      if (J /= 0) go to 10
       return
       END
 !++ END
@@ -7972,13 +7972,13 @@
       save LFLGDB
       data LFLGDB / 2 /
 !
-      if (NTEXT .ne. 0) then
+      if (NTEXT /= 0) then
          ITEXT = (NTEXT-1) / LENTXT
          NTEXT = NTEXT - ITEXT * LENTXT
          ITEXT = ITEXT + 1
       end if
       do 300 J = 1, max(1,KLINE)
-         if (NTEXT .eq. 0) then
+         if (NTEXT == 0) then
             K = KOLWID
             go to 210
          end if
@@ -7992,22 +7992,22 @@
 !%%       else
 !%%             l = ctmp - TEXT(cmessi.itext-1L,cmessi.ntext-1) + 1;
          L = index(TEXT(ITEXT)(NTEXT:LENTXT), SC)
-         if (L .eq. 0) then
+         if (L == 0) then
             LTEXT = LTEXT + LENTXT - NTEXT + 1
-            if (LTEXT .lt. 80) then
+            if (LTEXT < 80) then
                ITEXT = ITEXT + 1
                NTEXT = 1
                go to 110
             end if
             LTEXT = 0
-            if (KT .eq. 3) go to 310
+            if (KT == 3) go to 310
             go to 160
          end if
          NTEXT = NTEXT + L + 1
          LTEXT = L + LTEXT - 1
-         if (NTEXT .gt. LENTXT) then
+         if (NTEXT > LENTXT) then
             ITEXT = ITEXT + 1
-            if (NTEXT .eq. LENTXT + 1) then
+            if (NTEXT == LENTXT + 1) then
                C = TEXT(ITEXT-1)(LENTXT:LENTXT)
                NTEXT = 1
             else
@@ -8017,10 +8017,10 @@
          else
             C = TEXT(ITEXT)(NTEXT-1:NTEXT-1)
          end if
-         if (C .eq. 'H') go to (180, 190, 200), KT
-         if (C .eq. 'E') go to (180, 310, 200), KT
-         if (C .eq. '#') go to (140, 310, 200), KT
-         if (C .eq. ' ') then
+         if (C == 'H') go to (180, 190, 200), KT
+         if (C == 'E') go to (180, 310, 200), KT
+         if (C == '#') go to (140, 310, 200), KT
+         if (C == ' ') then
 !  Special code to set for removing the "$" preceding a blank.
             LSTRDB = LSTRT
             LFLGDB = 3
@@ -8028,21 +8028,21 @@
             LTEXT = LTEXT + 1
             go to 110
          end if
-         if (KT .ne. 1) go to 160
+         if (KT /= 1) go to 160
   140    LTEXT = LTEXT + 2
          go to 110
   160    KT = -KT
          go to 310
 !
   180    KOLWID = KOLWID + LENOUT
-         if (LTEXT .eq. 0) go to 300
+         if (LTEXT == 0) go to 300
          KB = KOLWID-LTEXT
-         if (KB .lt. 0) stop                                            &
+         if (KB < 0) stop                                            &
      &   'Stopped in MESS -- Column width too small in a heading.'
          if (XARG)  KB = 1 + KB/2
          LSTRT = LBUF + KB + 1
          LBUF = LBUF + KOLWID
-         if (LBUF .le. LENLIN) MDAT(NROW) = LBUF
+         if (LBUF <= LENLIN) MDAT(NROW) = LBUF
          KOLWID = 0
          go to 220
 !
@@ -8052,9 +8052,9 @@
 !
 !                                  Output matrix column
   200    K = KOLWID
-         if (C .ne. '#') K = LTEXT
+         if (C /= '#') K = LTEXT
   210    KB = LENOUT - KOLWID
-         if (J .eq. 1) then
+         if (J == 1) then
 !                        Special setup for the first column.
             if (XARG) KB = (KB + 1) / 2
             KB = KB + KSHIFT + LINSTR - LBUF
@@ -8066,16 +8066,16 @@
   220    continue
 !%%      if (kb > 0) for (kc=cmessi.lstrt-kb-1; kc<cmessi.lstrt-1; kc++)
 !%%         cmessc.buf[kc] = ' ';
-         if (KB .gt. 0) BUF(LSTRT-KB:LSTRT-1) = ' '
+         if (KB > 0) BUF(LSTRT-KB:LSTRT-1) = ' '
 !                                  Move characters
-         if (NTEXT .eq. 0) then
+         if (NTEXT == 0) then
 !%%       memcpy(&cmessc.buf[cmessi.lstrt-1],"Col ", 4);
             BUF(LSTRT:LSTRT+3) = 'Col '
             C = '#'
             LSTRT = LSTRT+4
          else
             K = NTEXT - LTEXT - LFLGDB
-            if (K .le. 0) then
+            if (K <= 0) then
                KK = max(0, 3-NTEXT)
 !%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-2L,
 !%%         cmessi.lentxt+k-1), -k-kk+1L);
@@ -8083,14 +8083,14 @@
                LSTRT = LSTRT-K-KK+1
                K = 1
             end if
-            if (NTEXT .gt. 3) then
+            if (NTEXT > 3) then
 !%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-1L,
 !%%         k-1), cmessi.ntext-k-2L);
                BUF(LSTRT:LSTRT+NTEXT-K-3) = TEXT(ITEXT)(K:NTEXT-3)
                LSTRT = LSTRT + NTEXT - K - 2
             end if
          end if
-         if (LFLGDB .eq. 3) then
+         if (LFLGDB == 3) then
 !  Special code to remove the "$" preceding a blank.  Only works for 1.
             do 250 L = LSTRDB + LTXTDB + max(0, KB), LSTRT
                BUF(L:L) = BUF(L+1:L+1)
@@ -8098,19 +8098,19 @@
             LFLGDB = 2
             LSTRT = LSTRT - 1
          end if
-         if (C .eq. '#') then
+         if (C == '#') then
 !                                  Output column index
 !%%         sprintf(&cmessc.buf[cmessi.lstrt-1], "%*ld ",
 !%%           (int)(cmessi.lbuf-cmessi.lstrt), cmessi.imag+j-1);
             write (BUF(LSTRT:LBUF), FMTC) IMAG + J - 1
-            if (NTEXT .ne. 0) NTEXT = K
+            if (NTEXT /= 0) NTEXT = K
             go to 300
          end if
 !                                  Set trailing blanks
 !%%      if (cmessi.lstrt <= cmessi.lbuf)
 !%%           for (kc=cmessi.lstrt-1; kc < cmessi.lbuf; kc++)
 !%%              cmessc.buf[kc] = ' ';
-         if (LSTRT .le. LBUF) BUF(LSTRT:LBUF) = ' '
+         if (LSTRT <= LBUF) BUF(LSTRT:LBUF) = ' '
   300 continue
   310 return
       END
@@ -8154,16 +8154,16 @@
       save /CMESSI/, /CMESSC/
       data NSCRN / 0 /
 !
-      if (LBUF .ne. 0) then
-   10   if (BUF(LBUF:LBUF) .eq. ' ') then
-          if (LBUF .gt. 1) then
+      if (LBUF /= 0) then
+   10   if (BUF(LBUF:LBUF) == ' ') then
+          if (LBUF > 1) then
             LBUF = LBUF - 1
             go to 10
           end if
         end if
-        if (OUNIT .le. 0) then
-          if (KSCRN .gt. 0) then
-            if (NSCRN .ge. KSCRN) then
+        if (OUNIT <= 0) then
+          if (KSCRN > 0) then
+            if (NSCRN >= KSCRN) then
 !%%               printf( " Type 'Enter' to continue\n" );
               print '('' Type "Enter" to continue'')'
 !%%               scanf( "%*[^\n]%*c" );
@@ -8174,7 +8174,7 @@
           end if
 !%%      printf( "%.*s\n", (int)cmessi.lbuf, cmessc.buf);
           print '(1X, A)', BUF(1:LBUF)
-          if (OUNIT .eq. 0) go to 20
+          if (OUNIT == 0) go to 20
         end if
 !++ CODE for ~.C. is active
         K = abs(OUNIT)
@@ -8239,7 +8239,7 @@
 !
       do 10 J = 1, 100, 2
          K = abs(MACT(J))
-         if ((K .gt. MEPRNT) .or. (K .lt. MESUNI)) go to 20
+         if ((K > MEPRNT) .or. (K < MESUNI)) go to 20
    10 continue
    20 K = MACT(J)
       MACT(J) = MECONT
@@ -8248,11 +8248,11 @@
 !%%      k = strlen(ftext);
       K = len(FTEXT)
       NTEXT = 1
-      if (K .ne. 0) then
-         if (FTEXT(1:1) .eq. '0') then
+      if (K /= 0) then
+         if (FTEXT(1:1) == '0') then
             NTEXT = 2
             K = K - 1
-            if (LBUF .eq. 0) then
+            if (LBUF == 0) then
                BUF(1:1) = ' '
                LBUF = 1
             end if
@@ -8263,7 +8263,7 @@
          BUF(1:K) = FTEXT(NTEXT:NTEXT+K-1)
       end if
       ICHAR0 = ICHAR('0')
-      if (MACT(J) .ne. MECONT) call mess(MACT(J), TEXT, IDAT)
+      if (MACT(J) /= MECONT) call mess(MACT(J), TEXT, IDAT)
       return
       END
       subroutine OPTCHK(INTCHK, IOPT, ETEXT)
@@ -8317,11 +8317,11 @@
 !        INTCHK(K+1) IOPT(INTCHK(k+1)) Diagnostic on successful alloc.?
 !            0           ----          No
 !            <0          ----          Yes
-!            >0          .ne. -1       Yes
-!            >0          .eq. -1       No, and IOPT(INTCHK(k+1)) is set
+!            >0          /= -1       Yes
+!            >0          == -1       No, and IOPT(INTCHK(k+1)) is set
 !                                      to starting loc. of space found.
 !        When this program finds the space for an option, values of
-!        INTCHK(j) for j .ge. LAST will be used.  INTCHK(k+1) is set
+!        INTCHK(j) for j >= LAST will be used.  INTCHK(k+1) is set
 !        temporarily to -(space required) and INTCHK(k-1) is reduced by
 !        2000000 to flag the fact that the location index must be saved
 !        after INTCHK(LAST).  INTCHK(LAST) is assumed to contain 1 if
@@ -8337,7 +8337,7 @@
 !    k   Starting location used or suggested for the option.
 !    k+1 Last location used or suggested for the option.
 !
-!        In addition if values of INTCHK(j) for j .ge. LAST are used,
+!        In addition if values of INTCHK(j) for j >= LAST are used,
 !        INTCHK(j), for j = LAST+1, LAST+2, ..., will be set so that
 !        INTCHK(j) is equal to (one of the k's above) - 1 for an option
 !        that has had a starting location assigned, and INTCHK(LAST) is
@@ -8445,7 +8445,7 @@
       MACT(3) = INTCHK(0) / 10
       MACT(16)=MERET
       I = INTCHK(0) - 10*MACT(3)
-      if (I .gt. 3) then
+      if (I > 3) then
          I = I - 4
          MACT(16) = MECONT
       end if
@@ -8461,12 +8461,12 @@
          MV = INTCHK(I)
          do 50 L = I+3, LAST, 3
 !                                    Find mimimum from here down.
-            if (INTCHK(L) .lt. MV) then
+            if (INTCHK(L) < MV) then
                MI = L
                MV = INTCHK(L)
             end if
    50    continue
-         if (MI .ne. I) then
+         if (MI /= I) then
 !                                   Interchange to get low at top.
             do 70 L = -1, 1
                N = INTCHK(I+L)
@@ -8474,13 +8474,13 @@
                INTCHK(MI+L) = N
    70       continue
          end if
-         if (MV .lt. 0) then
+         if (MV < 0) then
 !                Save loc. of last entry that needs space to be found.
             LNEG = I
-         else if (LNEG .eq. 0) then
+         else if (LNEG == 0) then
 !        Entry I and previous entries are in their correct sorted order.
-            if (INTCHK(I+1) .lt. 0) then
-               if (INTCHK(I-1) .lt. -1000000) then
+            if (INTCHK(I+1) < 0) then
+               if (INTCHK(I-1) < -1000000) then
                   INTCHK(I-1) = INTCHK(I-1) + 2000000
                   INTCHK(I+1) = -INTCHK(I+1)
 !                            Save INTCHK index defining allocated space.
@@ -8494,33 +8494,33 @@
             end if
 !                Save final location used by the option.
             INTCHK(I+1) = INTCHK(I) + INTCHK(I+1) - 1
-            if (INTCHK(I) .le. INTCHK(I-2)) then
+            if (INTCHK(I) <= INTCHK(I-2)) then
 !                                           Error -- options overlap.
                INTCHK(I-1) = -abs(INTCHK(I-1))
                MACT(2) = ERRBAD
             end if
          end if
   100 continue
-      if (LNEG .ne. 0) then
+      if (LNEG /= 0) then
 !     Find spaces that need to be allocated, starting with the smallest.
          ISTRT = LNEG
          I = LNEG
   120    LWANT = INTCHK(LNEG)
          LOPT = INTCHK(LNEG+1)
-         if (I .eq. LNEG) then
+         if (I == LNEG) then
 !                         Make fake entry to get started.
             INTCHK(LNEG) = 1
             INTCHK(LNEG+1) = INTCHK(3)
          end if
          do 140 ISTRT = ISTRT, LAST-3, 3
-            if(INTCHK(I)+abs(INTCHK(I+1))-LWANT .lt. INTCHK(ISTRT+3))   &
+            if(INTCHK(I)+abs(INTCHK(I+1))-LWANT < INTCHK(ISTRT+3))   &
      &         go to 150
             I = ISTRT + 3
   140    continue
   150    INTCHK(LNEG) = INTCHK(I) + abs(INTCHK(I+1))
-         if (LOPT .ne. 0) then
-            if (LOPT .gt. 0) then
-               if (IOPT(LOPT) .eq. -1) then
+         if (LOPT /= 0) then
+            if (LOPT > 0) then
+               if (IOPT(LOPT) == -1) then
                   IOPT(LOPT) = INTCHK(LNEG)
                   go to 160
                end if
@@ -8531,17 +8531,17 @@
          end if
   160    INTCHK(LNEG+1) = LWANT
          INTCHK(LNEG-1) = INTCHK(LNEG-1) - 2000000
-         if (LNEG .lt. 8) go to 20
+         if (LNEG < 8) go to 20
          I = LNEG
          LNEG = LNEG - 3
          go to 120
       end if
-      if (INTCHK(LAST-1) .gt. INTCHK(2)) then
-         if (INTCHK(2) .lt. 0) go to 180
-         if (LAST .ne. KEX) then
-            if (INTCHK(KEX) .eq. LAST - 3) then
-               if (INTCHK(LAST) .le. 0) then
-                  if (INTCHK(LAST-2)-INTCHK(LAST)-1 .le. INTCHK(2)) then
+      if (INTCHK(LAST-1) > INTCHK(2)) then
+         if (INTCHK(2) < 0) go to 180
+         if (LAST /= KEX) then
+            if (INTCHK(KEX) == LAST - 3) then
+               if (INTCHK(LAST) <= 0) then
+                  if (INTCHK(LAST-2)-INTCHK(LAST)-1 <= INTCHK(2)) then
                      INTCHK(LAST-1) = INTCHK(2)
                      go to 180
                   end if
@@ -8551,21 +8551,21 @@
          INTCHK(LAST-3) = -abs(INTCHK(LAST-3))
          MACT(2) = ERRBAD
       end if
-  180 if (LAST .ne. KEX) INTCHK(LAST) = KEX
-      if (MACT(2) .gt. 0) then
-  190    if (LAST .ne. KEX) then
+  180 if (LAST /= KEX) INTCHK(LAST) = KEX
+      if (MACT(2) > 0) then
+  190    if (LAST /= KEX) then
             do 200 I = LAST+1, abs(KEX)
                INTCHK(INTCHK(I)+1) = -INTCHK(INTCHK(I)+1)
   200       continue
-            if (KEX .lt. 0) go to 210
+            if (KEX < 0) go to 210
             KEX = -KEX
          end if
          MACT(13) = (LAST - 4) / 3
 !%%       strcpy(&mtxtaa[1][LTXTEE-1], etext);
          MTXTAA(2)(LTXTEE:LTXEND)=ETEXT(1:)
          call MESS(MACT, MTXTAA, INTCHK(1))
-         if (MACT(2) .gt. 10) INTCHK(1) = -LAST
-         if (LAST .ne. KEX) go to 190
+         if (MACT(2) > 10) INTCHK(1) = -LAST
+         if (LAST /= KEX) go to 190
       end if
   210 INTCHK(2) = INTCHK(LAST-1)
       return

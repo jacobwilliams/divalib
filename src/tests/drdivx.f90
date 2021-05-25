@@ -77,7 +77,7 @@
       KORD(1) = 0
   100 continue
          call DIVA(TSPECS,Y,F,KORD,NEQ,DIVAF,DIVAO,4,IYDIM,IFDIM,6,IOPT)
-         if (KORD(1) .NE. 1) go to 100
+         if (KORD(1) /= 1) go to 100
          call DIVADB(45, TSPECS, Y, F, KORD, '0Sample of DIVA Debug')
          call DIVACO(ID, RD)
          print 1000, ID(1), ID(2), ID(3), RD(1)
@@ -121,14 +121,14 @@
 ! Do the output
 !
       IFLAG = 0
-      if (KORD(1) .EQ. 1) then
+      if (KORD(1) == 1) then
         write (*, 1000)
       end if
-      if (KORD(1) .EQ. 6) then
+      if (KORD(1) == 6) then
   100     G6(1) = Y(3)
           call DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, G6, GT6)
-          if ((IFLAG .EQ. 1) .OR. (IFLAG .EQ. 3)) return
-          if (IFLAG .EQ. 4) go to 100
+          if ((IFLAG == 1) .OR. (IFLAG == 3)) return
+          if (IFLAG == 4) go to 100
       end if
       write (*,1001) TSPECS(1),Y(1),Y(2),F(1),IFLAG,Y(3),Y(4),F(2)
       return

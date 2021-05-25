@@ -62,7 +62,7 @@
       KORD(1) = 0
   100 continue
          call DIVA(TSPECS,Y,F,KORD,NEQ,DIVAF,DIVAO,4,IYDIM,IFDIM,6,IOPT)
-         if (KORD(1) .NE. 1) go to 100
+         if (KORD(1) /= 1) go to 100
 !++ Code for SHORT_LINE is inactive
 !      MACT(1) = MEDDIG
 !      MACT(2) = 7
@@ -107,7 +107,7 @@
 !
 ! Do the output
 !
-      if (KORD .EQ. 1) then
+      if (KORD == 1) then
         write (*, 1000)
       end if
       write (*, 1001) TSPECS(1), Y(1), Y(2), F(1), Y(3), Y(4), F(2)
