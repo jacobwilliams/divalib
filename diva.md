@@ -14,3 +14,6 @@ display: public
          protected
 source: true
 graph: true
+exclude_dir: ./src/tests
+
+{!README.md!}
