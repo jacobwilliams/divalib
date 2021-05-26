@@ -954,9 +954,12 @@
 !
 ! *********************** Type Declarations ****************************
 !
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -977,6 +980,7 @@
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
       integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
      &   NTE, NYNY, NDTF, NUMDT
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
@@ -1004,23 +1008,24 @@
       integer IHI, JL, J, ILOW, K, KQQ, JLIM, KFERR
 !
       equivalence (INTCHK(1), NXTCHK)
-      double precision CM1
-      parameter (CM1 = (-1.D0))
+
+      double precision, parameter :: CM1 = -1.D0
+
       integer IOPIVA(2)
       save IOPIVA
 !
 !                      Declarations for error message processing.
 !
       character TEXT1(1)*10
-      integer  MENTXT,MEIDAT,MEMDA1,MECONT,MERET,MEEMES,METEXT,MEIVEC
-      parameter (MENTXT =23)
-      parameter (MEIDAT =24)
-      parameter (MEMDA1 =27)
-      parameter (MECONT =50)
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
-      parameter (METEXT =53)
-      parameter (MEIVEC =57)
+
+      integer, parameter :: MENTXT = 23
+      integer, parameter :: MEIDAT = 24
+      integer, parameter :: MEMDA1 = 27
+      integer, parameter :: MECONT = 50
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+      integer, parameter :: METEXT = 53
+      integer, parameter :: MEIVEC = 57
 !
       integer MACT(16), MLOC(12), MACT1(4)
 !
@@ -1044,11 +1049,23 @@
 !AN Option 5 argument must be <= 0 or > 4.$E
 !   $
 !AO KORD values for this option starting at KORD($M) are:$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE,LTXTAF,LTXTAG,LTXTAH,  &
-     & LTXTAI,LTXTAJ,LTXTAK,LTXTAL,LTXTAM,LTXTAN,LTXTAO
-      parameter (LTXTAA=  1,LTXTAB=  7,LTXTAC= 71,LTXTAD=183,LTXTAE=226,&
-     & LTXTAF=290,LTXTAG=400,LTXTAH=427,LTXTAI=455,LTXTAJ=498,          &
-     & LTXTAK=535,LTXTAL=573,LTXTAM=620,LTXTAN=655,LTXTAO=  1)
+
+     integer, parameter :: LTXTAA =   1
+     integer, parameter :: LTXTAB =   7
+     integer, parameter :: LTXTAC =  71
+     integer, parameter :: LTXTAD = 183
+     integer, parameter :: LTXTAE = 226
+     integer, parameter :: LTXTAF = 290
+     integer, parameter :: LTXTAG = 400
+     integer, parameter :: LTXTAH = 427
+     integer, parameter :: LTXTAI = 455
+     integer, parameter :: LTXTAJ = 498
+     integer, parameter :: LTXTAK = 535
+     integer, parameter :: LTXTAL = 573
+     integer, parameter :: LTXTAM = 620
+     integer, parameter :: LTXTAN = 655
+     integer, parameter :: LTXTAO =   1
+
       character MTXTAA(3) * (233)
       character MTXTAB(1) * (55)
       data MTXTAA/'DIVA$BThe interval [1, 10**6], bounds the allowed val&
@@ -1485,10 +1502,12 @@
       double precision TSPECS(*), Y(*)
       double precision F(*)
       external DIVAF, DIVAO
-!
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -1509,6 +1528,7 @@
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
       integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
      &   NTE, NYNY, NDTF, NUMDT
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
@@ -1532,30 +1552,30 @@
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
 !
-      double precision CMP75, C0, C1M5, C1M3, C2P5M3, C8M3, CP0625, CP1
-      double precision CP25, CP3, CP4, CP5, CP875, C1, C1P125, C1P3, C2
-      double precision C6, C10, C16, C4096
-      parameter (CMP75 = -.75D0)
-      parameter (C0 = 0.D0)
-      parameter (C1M5 = 1.D-5)
-      parameter (C1M3 = 1.D-3)
-      parameter (C2P5M3 = 2.5D-3)
-      parameter (C8M3 = 8.D-3)
-      parameter (CP0625 = .0625D0)
-      parameter (CP1 = .1D0)
-      parameter (CP25 = .25D0)
-      parameter (CP3 = .3D0)
-      parameter (CP4 = .4D0)
-      parameter (CP5 = .5D0)
-      parameter (CP875 = .875D0)
-      parameter (C1 = 1.D0)
-      parameter (C1P125 = 1.125D0)
-      parameter (C1P3 = 1.3D0)
-      parameter (C2 = 2.D0)
-      parameter (C6 = 6.D0)
-      parameter (C10 = 10.D0)
-      parameter (C16 = 16.D0)
-      parameter (C4096 = 4096.D0)
+    !   double precision CMP75, C0, C1M5, C1M3, C2P5M3, C8M3, CP0625, CP1
+    !   double precision CP25, CP3, CP4, CP5, CP875, C1, C1P125, C1P3, C2
+    !   double precision C6, C10, C16, C4096
+      double precision, parameter :: CMP75 = -.75D0
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: C1M5 = 1.D-5
+      double precision, parameter :: C1M3 = 1.D-3
+      double precision, parameter :: C2P5M3 = 2.5D-3
+      double precision, parameter :: C8M3 = 8.D-3
+      double precision, parameter :: CP0625 = .0625D0
+      double precision, parameter :: CP1 = .1D0
+      double precision, parameter :: CP25 = .25D0
+      double precision, parameter :: CP3 = .3D0
+      double precision, parameter :: CP4 = .4D0
+      double precision, parameter :: CP5 = .5D0
+      double precision, parameter :: CP875 = .875D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C1P125 = 1.125D0
+      double precision, parameter :: C1P3 = 1.3D0
+      double precision, parameter :: C2 = 2.D0
+      double precision, parameter :: C6 = 6.D0
+      double precision, parameter :: C10 = 10.D0
+      double precision, parameter :: C16 = 16.D0
+      double precision, parameter :: C4096 = 4096.D0
 !
       integer LDIS, KEXIT, I, J, K, J1, J2, L, LX
       double precision TP, TP1, TP2, TP3, HH, DISADJ
@@ -1568,11 +1588,12 @@
 !
 !                      Declarations for error message processing.
 !
-      integer MACT(17), MLOC(8), MENTXT, MERET, MEEMES, METEXT
-      parameter (MENTXT =23)
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
-      parameter (METEXT =53)
+      integer MACT(17), MLOC(8)
+
+      integer, parameter :: MENTXT = 23
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+      integer, parameter :: METEXT = 53
 !
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
@@ -1590,26 +1611,35 @@
 !AL Tolerance $I is F($I) = $F.$B
 !AM Tolerance $I is F($I) * F($I) = $F * $F = $F.$B
 !AN   Replacing F($I) with $F.$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE,LTXTAF,LTXTAG,LTXTAH,  &
-     & LTXTAI,LTXTAJ,LTXTAK,LTXTAL,LTXTAM,LTXTAN
-      parameter (LTXTAA=  1,LTXTAB=  8,LTXTAC= 40,LTXTAD= 80,LTXTAE=129,&
-     & LTXTAF=189,LTXTAG=237,LTXTAH=272,LTXTAI=302,LTXTAJ=342,          &
-     & LTXTAK=390,LTXTAL=455,LTXTAM=484,LTXTAN=531)
-      character MTXTAA(3) * (186)
-!
-      integer LOCM, MLOCAC, MLOCAD, MLOCAE, MLOCAF, MLOCAG, MLOCAH,     &
-     &   MLOCAI, MLOCAJ
 
-      parameter (LOCM = 32 * 256)
-!                     KORD1I   Severity   Loc. message
-      parameter (MLOCAC = 23 + 32 * (99 + 256 * LTXTAC))
-      parameter (MLOCAD = 13 + 32 * (38 + 256 * LTXTAD))
-      parameter (MLOCAE = 22 + 32 * (38 + 256 * LTXTAE))
-      parameter (MLOCAF =  3 + 32 * (14 + 256 * LTXTAF))
-      parameter (MLOCAG = 21 + 32 * (38 + 256 * LTXTAG))
-      parameter (MLOCAH =  2 + 32 * (25 + 256 * LTXTAH))
-      parameter (MLOCAI = 11 + 32 * (38 + 256 * LTXTAI))
-      parameter (MLOCAJ = 12 + 32 * (38 + 256 * LTXTAJ))
+     integer, parameter :: LTXTAA =   1
+     integer, parameter :: LTXTAB =   8
+     integer, parameter :: LTXTAC =  40
+     integer, parameter :: LTXTAD =  80
+     integer, parameter :: LTXTAE = 129
+     integer, parameter :: LTXTAF = 189
+     integer, parameter :: LTXTAG = 237
+     integer, parameter :: LTXTAH = 272
+     integer, parameter :: LTXTAI = 302
+     integer, parameter :: LTXTAJ = 342
+     integer, parameter :: LTXTAK = 390
+     integer, parameter :: LTXTAL = 455
+     integer, parameter :: LTXTAM = 484
+     integer, parameter :: LTXTAN = 531
+
+     character MTXTAA(3) * (186)
+!
+
+    integer, parameter :: LOCM = 32 * 256
+!                               KORD1I   Severity   Loc. message
+    integer, parameter :: MLOCAC = 23 + 32 * (99 + 256 * LTXTAC)
+    integer, parameter :: MLOCAD = 13 + 32 * (38 + 256 * LTXTAD)
+    integer, parameter :: MLOCAE = 22 + 32 * (38 + 256 * LTXTAE)
+    integer, parameter :: MLOCAF =  3 + 32 * (14 + 256 * LTXTAF)
+    integer, parameter :: MLOCAG = 21 + 32 * (38 + 256 * LTXTAG)
+    integer, parameter :: MLOCAH =  2 + 32 * (25 + 256 * LTXTAH)
+    integer, parameter :: MLOCAI = 11 + 32 * (38 + 256 * LTXTAI)
+    integer, parameter :: MLOCAJ = 12 + 32 * (38 + 256 * LTXTAJ)
 !
       data MTXTAA/'DIVAA$BAt: TN=$F, KSTEP=$I, with H=$F$EA previously r&
      &eported error was fatal.$EPrint points not properly ordered: TSPEC&
@@ -2465,9 +2495,11 @@
       integer KORD(*)
       double precision F(*)
 !
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -2506,9 +2538,11 @@
       save / DIVAMC / , / DIVASC /
 !
       integer I, L, KQQ, J, K
-      double precision TPD, C0, C2
-      parameter (C0 = 0.D0)
-      parameter (C2 = 2.D0)
+      double precision TPD
+
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: C2 = 2.D0
+
 ! ********* START OF EXECUTABLE CODE **********
 !
 ! ********
@@ -2578,16 +2612,16 @@
 
 !*************************************************************************
 !>
-! THIS SUBROUTINE RETURNS THE FOLLOWING DATA FROM COMMON
+!  THIS SUBROUTINE RETURNS THE FOLLOWING DATA FROM COMMON
 !
-! ID(1) = KEMAX  =  INDEX OF EQUATION WITH LARGEST ERROR ESTIMATE
-! ID(2) = KSTEP  =  CURRENT STEP NUMBER
-! ID(3) = NUMDT  =  NUMBER OF DIFFERENCES USED FOR EACH EQUATION
-! ID(4) =           RESERVED FOR FUTURE USE
-! ID(5) =           RESERVED FOR FUTURE USE
-! RD(1) = EMAX   =  MAX. RATIO OF ESTIMATED ERROR TO REQUESTED ERROR
-! RD(2) =           RESERVED FOR FUTURE USE
-! RD(3) =           RESERVED FOR FUTURE USE
+!  * ID(1) = KEMAX  =  INDEX OF EQUATION WITH LARGEST ERROR ESTIMATE
+!  * ID(2) = KSTEP  =  CURRENT STEP NUMBER
+!  * ID(3) = NUMDT  =  NUMBER OF DIFFERENCES USED FOR EACH EQUATION
+!  * ID(4) =           RESERVED FOR FUTURE USE
+!  * ID(5) =           RESERVED FOR FUTURE USE
+!  * RD(1) = EMAX   =  MAX. RATIO OF ESTIMATED ERROR TO REQUESTED ERROR
+!  * RD(2) =           RESERVED FOR FUTURE USE
+!  * RD(3) =           RESERVED FOR FUTURE USE
 !
 !### History
 !  * 1987-12-07 DIVACO Krogh   Initial code.
@@ -2596,10 +2630,12 @@
 
       integer ID(5)
       double precision RD(3)
-!
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -2641,7 +2677,7 @@
       ID(2) = KSTEP
       ID(3) = NUMDT
       RD(1) = EMAX
-      return
+
     end subroutine DIVACO
 !*************************************************************************
 
@@ -2673,10 +2709,12 @@
       integer LGROUP(*), KORD(*)
       double precision Y(*)
       double precision TOL(*), F(*)
-!
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -2713,6 +2751,7 @@
      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
+
 !.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
       double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
       double precision OVTM75, OVD10
@@ -2756,11 +2795,12 @@
      &   (TPS4, TEMPA(4))
       equivalence (G(1, 1), HH)
       integer MACT1(2), MACT2(12)
-!             Parameters for Interface to MESS and DMESS
-      integer MERET, METEXT, METABL
-      parameter (MERET  =51)
-      parameter (METEXT =53)
-      parameter (METABL =55)
+
+      ! Parameters for Interface to MESS and DMESS
+      integer, parameter :: MERET  =51
+      integer, parameter :: METEXT =53
+      integer, parameter :: METABL =55
+
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
 !AA KSTEP=$(I6) T=$(E15.8) H=$(E12.5) LSC=$(I3) $C
@@ -2769,8 +2809,9 @@
 !   $
 !AB I$HKQ$HLI$HE$HEI$HEPS$HF$H$H$H$H
 !   HIGH ORDER PREDICTED DIFFERENCES$HRNOISE$HSTIFF$HBETA$E
-      integer LTXTAA,LTXTAB
-      parameter (LTXTAA=  1,LTXTAB=  1)
+      integer, parameter :: LTXTAA = 1
+      integer, parameter :: LTXTAB = 1
+
       character MTXTAA(1) * (104)
       character MTXTAB(1) * (88)
       data MTXTAA/'KSTEP=$(I6) T=$(E15.8) H=$(E12.5) LSC=$(I3) EIMIN=$(E&
@@ -3321,9 +3362,11 @@
 
     subroutine DIVAHC
 
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -3360,24 +3403,27 @@
      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
+
 !.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
       double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
       double precision OVTM75, OVD10
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
 !                 K - 1 + 1 / K  is equivalent to max(1, K-1)
       double precision GG(MAXORD - 1 + 1/MAXORD), B(KDIM+MAXORD),       &
      &   W(KDIM+MAXORD)
       integer  K, N, J
-      double precision C0, CP1, CRBQI, CP5, CP5625, C1, C1P125
-      parameter (C0 = 0.D0)
-      parameter (CP1 = .1D0)
-      parameter (CRBQI = .421875D0)
-      parameter (CP5 = .5D0)
-      parameter (CP5625 = .5625D0)
-      parameter (C1 = 1.D0)
-      parameter (C1P125 = 1.125D0)
+
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: CP1 = .1D0
+      double precision, parameter :: CRBQI = .421875D0
+      double precision, parameter :: CP5 = .5D0
+      double precision, parameter :: CP5625 = .5625D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C1P125 = 1.125D0
+
 !++  Code for STIFF is inactive
 !      INTEGER          GODIF
 !++  End
@@ -3636,9 +3682,11 @@
       integer KORD(*)
       double precision T(*), Y(*)
       double precision F(*)
-      integer KDIM, MAXORD
-!++ Substitute for KDIM, MAXORD below
-      parameter (KDIM = 20, MAXORD = 2)
+
+      !++ Substitute for KDIM, MAXORD below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -3647,12 +3695,14 @@
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
      &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
       save / DIVASC /
+
       integer I, ICI, IDT, INTERP, INTEG, INTEGZ, IY, IYI, IYN, IYNI, J,&
      &    K, KQMXI, KQMXS, KQQ, L, N
-      double precision C0, C1, C2
-      parameter (C0 = 0.D0)
-      parameter (C1 = 1.D0)
-      parameter (C2 = 2.D0)
+
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C2 = 2.D0
+
       double precision C(KDIM+MAXORD-1), ETA(KDIM)
       double precision GAMMA(KDIM)
       double precision TP1, HI
@@ -3663,20 +3713,26 @@
 !              Stuff for processing error messages
       integer IDAT(1)
       double precision FDAT(6)
-      integer MENTXT, MERET, MEEMES, METEXT
-      parameter (MENTXT =23)
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
-      parameter (METEXT =53)
+
+      integer, parameter :: MENTXT =23
+      integer, parameter :: MERET  =51
+      integer, parameter :: MEEMES =52
+      integer, parameter :: METEXT =53
+
       integer MACT(8)
+
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
 !AA DIVAIN$B
 !AB Interpolating at T(1)=$F with $B
 !AC TN=$F, T(2)=$F and H=$F.  T(1) must be in [$F, $F].$E
 !AD internal variable LDT = $I.  Interpolation not allowed now.$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD
-      parameter (LTXTAA=  1,LTXTAB=  9,LTXTAC= 41,LTXTAD= 94)
+
+      integer, parameter :: LTXTAA =  1
+      integer, parameter :: LTXTAB =  9
+      integer, parameter :: LTXTAC = 41
+      integer, parameter :: LTXTAD = 94
+
       character MTXTAA(1) * (154)
       data MTXTAA/'DIVAIN$BInterpolating at T(1)=$F with $BTN=$F, T(2)=$&
      &F and H=$F.  T(1) must be in [$F, $F].$Einternal variable LDT = $I&
@@ -3950,10 +4006,12 @@
     subroutine DIVAOP(IOPT, FOPT)
       double precision FOPT(*)
       integer IOPT(*)
-!
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -3990,6 +4048,7 @@
      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
+
 !.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
       double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
       double precision OVTM75, OVD10
@@ -3998,35 +4057,33 @@
       save / DIVAEV /
 !
       integer IOPTS(23), INCOP(22), IOPTC(23), I, IA, J, K, LIOPT, MULTJ
-      double precision CMP75, C0, CP25, CP3, CP5, CP625, CP75, CP875,   &
-     &   CP9, C1, C1P125, C2, C4, C10, C16
-      parameter (CMP75 = (-.75D0))
-      parameter (C0 = 0.D0)
-      parameter (CP25 = .25D0)
-      parameter (CP3 = .3D0)
-      parameter (CP5 = .5D0)
-      parameter (CP625 = .625D0)
-      parameter (CP75 = .75D0)
-      parameter (CP875 = .875D0)
-      parameter (CP9 = .9D0)
-      parameter (C1 = 1.D0)
-      parameter (C1P125 = 1.125D0)
-      parameter (C2 = 2.D0)
-      parameter (C4 = 4.D0)
-      parameter (C10 = 10.D0)
-      parameter (C16 = 16.D0)
-      !external D1MACH
-      !double precision D1MACH
+
+      double precision, parameter :: CMP75 = -.75D0
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: CP25 = .25D0
+      double precision, parameter :: CP3 = .3D0
+      double precision, parameter :: CP5 = .5D0
+      double precision, parameter :: CP625 = .625D0
+      double precision, parameter :: CP75 = .75D0
+      double precision, parameter :: CP875 = .875D0
+      double precision, parameter :: CP9 = .9D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C1P125 = 1.125D0
+      double precision, parameter :: C2 = 2.D0
+      double precision, parameter :: C4 = 4.D0
+      double precision, parameter :: C10 = 10.D0
+      double precision, parameter :: C16 = 16.D0
+
       equivalence (IOPTC(3), IOP3)
       save IOPTS, LIOPT
 !
 !                      Declarations for error message processing.
 !
-      integer MECONT, MERET, MEEMES, MEIVEC
-      parameter (MECONT =50)
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
-      parameter (MEIVEC =57)
+      integer, parameter :: MECONT = 50
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+      integer, parameter :: MEIVEC = 57
+
       integer MACT(7), MACT1(5)
 !
 ! ********* Error message text ***************
@@ -4034,8 +4091,11 @@
 !AA DIVAOP$B
 !AB Error in IOPT() specifications: IOPT =$E
 !AC HMIN = $F is > HMAX = $F.$E
-      integer LTXTAA,LTXTAB,LTXTAC
-      parameter (LTXTAA= 1,LTXTAB= 9,LTXTAC=49)
+
+      integer, parameter :: LTXTAA =  1
+      integer, parameter :: LTXTAB =  9
+      integer, parameter :: LTXTAC = 49
+
       character MTXTAA(1) * (76)
       data MTXTAA/'DIVAOP$BError in IOPT() specifications: IOPT =$EHMIN$&
      & = $F is > HMAX = $F.$E'/
@@ -4230,10 +4290,12 @@
       integer KORD(*)
       double precision Y(*), YN(*)
       double precision F(*)
-!
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -4254,6 +4316,7 @@
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
       integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
      &   NTE, NYNY, NDTF, NUMDT
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
@@ -4276,8 +4339,8 @@
      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
-      double precision C0
-      parameter (C0 = 0.D0)
+
+      double precision, parameter :: C0 = 0.D0
 !
       integer I, INTEG, INTEGS, J, K, KQQ, L, N
       double precision TEMP(KDIM)
@@ -4486,9 +4549,12 @@
 !++  Default KDIM = 20
 !++  Default MAXORD = 2, MAXSTF = 1
 !++  Default STIFF=.F.
-      integer KDIM, MAXORD, MAXSTF
+
 !++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -4509,6 +4575,7 @@
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
       integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
      &   NTE, NYNY, NDTF, NUMDT
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
@@ -4531,29 +4598,29 @@
      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
       save / DIVAMC / , / DIVASC /
+
       equivalence (IVC1(1), IOPST), (IVC2(1), ICF)
       equivalence (TNEQ, TN)
       equivalence (RVC2(1), DNOISE), (DVC1(1), TG), (DVC2(1), HC),      &
      &   (EVC(1), EEPS2)
 !
 !                      Declarations for error message processing.
-      integer MEDDIG, NEDDIG, METDIG, METABS, MERET, METEXT,            &
-     &   METABL, MEIVEC, MEFVEC, MEFMAT
-      parameter (MEDDIG =12)
-      parameter (NEDDIG =-MEDDIG)
-      parameter (METDIG =22)
-      parameter (METABS =32)
-      parameter (MERET  =51)
-      parameter (METEXT =53)
-      parameter (METABL =55)
-      parameter (MEIVEC =57)
-      parameter (MEFVEC =61)
-      parameter (MEFMAT =62)
+      integer, parameter :: MEDDIG = 12
+      integer, parameter :: NEDDIG = -MEDDIG
+      integer, parameter :: METDIG = 22
+      integer, parameter :: METABS = 32
+      integer, parameter :: MERET  = 51
+      integer, parameter :: METEXT = 53
+      integer, parameter :: METABL = 55
+      integer, parameter :: MEIVEC = 57
+      integer, parameter :: MEFVEC = 61
+      integer, parameter :: MEFMAT = 62
+
       integer MACT0(3), MACT1(2), MACT2(7), MACT3(7), MACT4(8),         &
      &   MACT5(11), MACT6(3), MACT7(14), MACTFV(4)
-      integer KPI, KPE
-!                      wddtrr        wwddtrr
-      parameter (KPI = 400301, KPE = 1305501)
+
+      integer, parameter :: KPI = 400301  !! wddtrr
+      integer, parameter :: KPE = 1305501 !! wwddtrr
 !
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
@@ -4603,12 +4670,25 @@
 !   $
 !AQ $NEEPS2=$F$TEEPT75=$F$TEOVEP2=$F$TOVTM75=$F$TOVD10=$F$T$C
 !   EEPS10=$F$TEEPS16=$F$TEROV10=$F$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE,LTXTAF,LTXTAG,LTXTAH,  &
-     & LTXTAI,LTXTAJ,LTXTAK,LTXTAL,LTXTAM,LTXTAN,LTXTAO,LTXTAP,LTXTAQ
-      parameter (LTXTAA=  1,LTXTAB= 14,LTXTAC=  1,LTXTAD=  1,LTXTAE=  1,&
-     & LTXTAF= 21,LTXTAG=  1,LTXTAH= 16,LTXTAI= 22,LTXTAJ=  1,          &
-     & LTXTAK=  1,LTXTAL=  1,LTXTAM=655,LTXTAN=  1,LTXTAO=  1,          &
-     & LTXTAP=  1,LTXTAQ=  1)
+
+     integer, parameter :: LTXTAA =   1
+     integer, parameter :: LTXTAB =  14
+     integer, parameter :: LTXTAC =   1
+     integer, parameter :: LTXTAD =   1
+     integer, parameter :: LTXTAE =   1
+     integer, parameter :: LTXTAF =  21
+     integer, parameter :: LTXTAG =   1
+     integer, parameter :: LTXTAH =  16
+     integer, parameter :: LTXTAI =  22
+     integer, parameter :: LTXTAJ =   1
+     integer, parameter :: LTXTAK =   1
+     integer, parameter :: LTXTAL =   1
+     integer, parameter :: LTXTAM = 655
+     integer, parameter :: LTXTAN =   1
+     integer, parameter :: LTXTAO =   1
+     integer, parameter :: LTXTAP =   1
+     integer, parameter :: LTXTAQ =   1
+
       character MTXTAA(1) * (26)
       character MTXTAB(1) * (13)
       character MTXTAC(1) * (13)
@@ -4834,9 +4914,12 @@
 !++SP Default KDIM = 16
 !++  Default KDIM = 20
 !++  Default MAXORD = 2, MAXSTF = 1
-      integer KDIM, MAXORD, MAXSTF
-!++ Substitute for KDIM, MAXORD, MAXSTF below
-      parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
+
+      !++ Substitute for KDIM, MAXORD, MAXSTF below
+      integer, parameter :: KDIM = 20
+      integer, parameter :: MAXORD = 2
+      integer, parameter :: MAXSTF = 1
+
       double precision TN
       double precision XI(KDIM)
 !
@@ -4857,6 +4940,7 @@
       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
      &   EEPS16, EROV10
       save / DIVAEV /
+
       integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
      &   NTE, NYNY, NDTF, NUMDT
       common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
@@ -4887,18 +4971,20 @@
 !
 !                      Declarations for error message processing.
 !
-      integer MEMDA1, MERET, MEEMES
-      parameter (MEMDA1 =27)
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
+      integer, parameter :: MEMDA1 = 27
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+
       integer MACT(7)
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
 !AA DIVAG$B
 !AB Call with bad values of KORD.  KORD(1)=$I, KORD(2)=$I, when $C
 !   TSPECS(1)=$F and KSTEP=$M.$E
-      integer LTXTAA,LTXTAB
-      parameter (LTXTAA= 1,LTXTAB= 8)
+
+      integer, parameter :: LTXTAA = 1
+      integer, parameter :: LTXTAB = 8
+
       character MTXTAA(1) * (95)
       data MTXTAA/'DIVAG$BCall with bad values of KORD.  KORD(1)=$I, KOR&
      &D(2)=$I, when TSPECS(1)=$F and KSTEP=$M.$E'/
@@ -5238,10 +5324,10 @@
 !
 ! For comments on these variables, see the listing for MESS.
 !
-      integer   LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -5659,39 +5745,44 @@
       integer MODE
       double precision X1, X2, F1, F2, TOL
 
-      !external D1MACH
-      integer LINIT, KS, KTYP, J, I
-      parameter (LINIT = -40)
+      integer KS, KTYP, J, I
+
+      integer, parameter :: LINIT = -40
+
       integer KNKP(2), LCHG(30), LMODE, LNLP(2), NP
       double precision XX, XO, XL, FF, FO, FL, FFDFO
       double precision DIV, QFM, QXM, TP, TP1, XXMXO, XXMXOL
       double precision RND, XRND, SMALL, TOLX
       double precision XXMXL, XLMXB, FFMFL, FFMFB, FLMFB
       double precision DXDFFF, DXDFFO, DFDXXX, DFDXXO
-      double precision C0, C1, C2, C4, CP125, CP25, CP5, CP75, C1P25
-      double precision C8, CP01, CP99, CP001, C1P031
-      !double precision D1MACH
-!
-      parameter (C0 = 0.D0, C1 = 1.D0, C2 = 2.D0, C4 = 4.D0)
-      parameter (C8 = 8.D0)
-      parameter (CP125 = 0.125D0, CP25 = 0.25D0, CP75 = 0.75D0)
-      parameter (CP5 = 0.5D0)
-      parameter (C1P25 = 1.25D0)
-      parameter (CP01 = 0.01D0)
-      parameter (CP001 = 0.001D0)
-      parameter (CP99 = 0.99D0)
-      parameter (C1P031 = 1.03125D0)
+
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C2 = 2.D0
+      double precision, parameter :: C4 = 4.D0
+      double precision, parameter :: C8 = 8.D0
+      double precision, parameter :: CP125 = 0.125D0
+      double precision, parameter :: CP25 = 0.25D0
+      double precision, parameter :: CP75 = 0.75D0
+      double precision, parameter :: CP5 = 0.5D0
+      double precision, parameter :: C1P25 = 1.25D0
+      double precision, parameter :: CP01 = 0.01D0
+      double precision, parameter :: CP001 = 0.001D0
+      double precision, parameter :: CP99 = 0.99D0
+      double precision, parameter :: C1P031 = 1.03125D0
 !
 !                      Declarations for error message processing.
 !
-      integer MERET, MEEMES, METEXT
+
       double precision FDAT(4)
       integer MACT(5), MACT1(2), MLOC(4), IDAT(2)
       save DIV, FL, FLMFB, FO, KNKP, KS, KTYP, LCHG, LMODE,             &
      &   LNLP, MACT, NP, RND, SMALL, XL, XLMXB, XO, XX, XXMXOL
-      parameter (MERET  =51)
-      parameter (MEEMES =52)
-      parameter (METEXT =53)
+
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+      integer, parameter :: METEXT = 53
+
 ! ********* Error message text ***************
 ![Last 2 letters of Param. name]  [Text generating message.]
 !AA DZERO$B
@@ -5703,9 +5794,15 @@
 !AF In DZERO -- X1=$F F1=$F KTYP=$I DIV=$G KS=$I$E
 !   $
 !AG             X2=$F F2=$F$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE,LTXTAF,LTXTAG
-      parameter (LTXTAA=  1,LTXTAB=  8,LTXTAC= 63,LTXTAD=112,LTXTAE=169,&
-     & LTXTAF=  1,LTXTAG=  1)
+
+      integer, parameter :: LTXTAA =   1
+      integer, parameter :: LTXTAB =   8
+      integer, parameter :: LTXTAC =  63
+      integer, parameter :: LTXTAD = 112
+      integer, parameter :: LTXTAE = 169
+      integer, parameter :: LTXTAF =   1
+      integer, parameter :: LTXTAG =   1
+
       character MTXTAA(1) * (193)
       character MTXTAB(1) * (46)
       character MTXTAC(1) * (25)
@@ -6556,31 +6653,64 @@
 
     subroutine MESS(MACT, TEXT, IDAT)
 
-      integer LNMSG, LNERR
-      parameter (LNMSG=128)
-      parameter (LNERR=79)
+      integer, parameter :: LNMSG = 128
+      integer, parameter :: LNERR = 79
 !
 ! ************** Parameters Defining Actions (See Above) ***************
 !
-      integer   MESUNI, MEHEAD, MEDDIG, MEMLIN, MEELIN, MEMUNI, MEEUNI, &
-     &  MESCRN, MEDIAG, MEMAXE, MESTOP, MEPRNT, METDIG, MENTXT, MEIDAT, &
-     &  MEFDAT, MEMDAT, MEMDA1, MEMDA2, MEMDA3, MEMDA4, MEMDA5, METABS, &
-     &  MEERRS, MECONT, MERET , MEEMES, METEXT, METABL, MERES3, MEIVCI, &
-     &  MEIVEC, MEIMAT, MEJVCI, MEJVEC, MEJMAT, MEFVCI, MEFVEC, MEFMAT, &
-     &  MEGVCI, MEGVEC, MEGMAT, MEMAXI, MEGBAS, MEVBAS, MEVLAS, MEFSPV
+
 ! Parameters for changing the environment.
-      parameter (MESUNI=10,MEHEAD=11,MEDDIG=12,MEMLIN=13,MEELIN=14,     &
-     & MEMUNI=15,MEEUNI=16,MESCRN=17,MEDIAG=18,MEMAXE=19,MESTOP=20,     &
-     & MEPRNT=21,METDIG=22,MENTXT=23,MEIDAT=24,MEFDAT=25,MEMDAT=26,     &
-     & MEMDA1=27,MEMDA2=28,MEMDA3=29,MEMDA4=30,MEMDA5=31,METABS=32,     &
-     & MEERRS=33)
+    integer, parameter :: MESUNI=10
+    integer, parameter :: MEHEAD=11
+    integer, parameter :: MEDDIG=12
+    integer, parameter :: MEMLIN=13
+    integer, parameter :: MEELIN=14
+    integer, parameter :: MEMUNI=15
+    integer, parameter :: MEEUNI=16
+    integer, parameter :: MESCRN=17
+    integer, parameter :: MEDIAG=18
+    integer, parameter :: MEMAXE=19
+    integer, parameter :: MESTOP=20
+    integer, parameter :: MEPRNT=21
+    integer, parameter :: METDIG=22
+    integer, parameter :: MENTXT=23
+    integer, parameter :: MEIDAT=24
+    integer, parameter :: MEFDAT=25
+    integer, parameter :: MEMDAT=26
+    integer, parameter :: MEMDA1=27
+    integer, parameter :: MEMDA2=28
+    integer, parameter :: MEMDA3=29
+    integer, parameter :: MEMDA4=30
+    integer, parameter :: MEMDA5=31
+    integer, parameter :: METABS=32
+    integer, parameter :: MEERRS=33
+
 ! Parameters for actions.
-      parameter (MECONT=50, MERET=51,MEEMES=52,METEXT=53,MEFSPV=54,     &
-     & METABL=55,MERES3=56,MEIVEC=57,MEIMAT=58,MEJVEC=59,MEJMAT=60,     &
-     & MEFVEC=61,MEFMAT=62,MEGVEC=63,MEGMAT=64,MEIVCI=65,MEJVCI=66,     &
-     & MEFVCI=67,MEGVCI=68)
+    integer, parameter :: MECONT=50
+    integer, parameter ::  MERET=51
+    integer, parameter :: MEEMES=52
+    integer, parameter :: METEXT=53
+    integer, parameter :: MEFSPV=54
+    integer, parameter :: METABL=55
+    integer, parameter :: MERES3=56
+    integer, parameter :: MEIVEC=57
+    integer, parameter :: MEIMAT=58
+    integer, parameter :: MEJVEC=59
+    integer, parameter :: MEJMAT=60
+    integer, parameter :: MEFVEC=61
+    integer, parameter :: MEFMAT=62
+    integer, parameter :: MEGVEC=63
+    integer, parameter :: MEGMAT=64
+    integer, parameter :: MEIVCI=65
+    integer, parameter :: MEJVCI=66
+    integer, parameter :: MEFVCI=67
+    integer, parameter :: MEGVCI=68
+
 ! Parameter derived from those above.
-      parameter (MEMAXI=68,MEGBAS=49,MEVBAS=10,MEVLAS=33)
+    integer, parameter :: MEMAXI=68
+    integer, parameter :: MEGBAS=49
+    integer, parameter :: MEVBAS=10
+    integer, parameter :: MEVLAS=33
 !
 ! ************************** Variable Declarations *********************
 !
@@ -6590,14 +6720,15 @@
 !
       integer    I, ICOL, INCM(MECONT:MEIMAT), INERR, IOUT, IROW, IROW1,&
      &    ITEXTR, ITXTSV, J, JJ, K, K1, K2, KDILAB, KK, KNT, KOLWID, KP,&
-     &    KS, LASKNT, LBUF1, LBUF2, LENBUF, LINSTR, M,                  &
+     &    KS, LASKNT, LBUF1, LBUF2, LINSTR, M,                          &
      &    MBNDHI(MEVBAS:MEVLAS), MBNDLO(MEVBAS:MEVLAS), MTEXT(2),       &
      &    MTEXTC, MTEXTR, NLINE, NROCO(2), NSKIP, NTEXTR, NTXTSV
-      !integer MESSGS
       logical   GETW, FIRST
       character ERMSG*63, ERMSG1*27
-      character SC, C
-      parameter (SC='$')
+      character C
+
+      character, parameter :: SC = '$'
+
       save  FIRST, I, ICOL, INERR, IROW, IROW1, ITXTSV, KDILAB, KNT,    &
      &   LASKNT, M, MTEXT, NLINE, NSKIP, NTEXTR, NTXTSV
       save /CMESSI/, /CMESSC/
@@ -6605,7 +6736,8 @@
 !
 ! ************************** Data from common block ********************
 !
-      parameter (LENBUF=250)
+      integer, parameter :: LENBUF = 250
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -7535,10 +7667,10 @@
       integer J, K, IDAT(*), IMAX, IMIN
 !
 ! For comments on other variables, see the listing for MESS.
-      integer   LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -7601,10 +7733,10 @@
       integer I, K, KD
 !
 ! For comments on other variables, see the listing for MESS.
-      integer   LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -7702,13 +7834,17 @@
 
       integer J, K, KB, KK, L, LFLGDB, LSTRDB, LTXTDB
       character*(*)  TEXT(*)
-      character SC, C
-      parameter (SC='$')
+      character C
+
+      character, parameter :: SC = '$'
+
 ! For comments on other variables, see the listing for MESS.
-      integer   KOLWID, LINSTR, LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer   KOLWID, LINSTR
+
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -7876,10 +8012,10 @@
       save      NSCRN
 !
 ! For comments on other variables, see the listing for MESS.
-      integer   LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -7951,18 +8087,20 @@
       integer MACT(*)
       character FTEXT*(*)
 !
-      integer J, K, IDAT(1), MECONT, MEPRNT, MESUNI
+      integer J, K, IDAT(1)
 !++ CODE for ~.C. is active
       character TEXT(1)*1
 !++ CODE for .C. is inactive
 !      character TEXT(1)*2
 !++ END
-      parameter (MESUNI=10, MEPRNT=21, MECONT=50)
+      integer, parameter :: MESUNI=10
+      integer, parameter :: MEPRNT=21
+      integer, parameter :: MECONT=50
 !
-      INTEGER LENBUF, MEVBAS, MEVLAS
-      parameter (LENBUF=250)
-      parameter (MEVBAS=10)
-      parameter (MEVLAS=33)
+      integer, parameter :: LENBUF = 250
+      integer, parameter :: MEVBAS = 10
+      integer, parameter :: MEVLAS = 33
+
       logical          XARG, GOTFMT, XARGOK
       integer          ERRCNT, EUNIT, ICHAR0, IRC, IVAR(MEVBAS:MEVLAS), &
      &   IMAG, INC, ITEXT, IWF, IWG, KDF, KDFDEF, KDI, KDIAG, KDJ,      &
@@ -8142,16 +8280,16 @@
       integer INTCHK(0:*), IOPT(*)
       character ETEXT*(*)
       integer I, ISTRT, KEX, L, LAST, LNEG, LOPT, LWANT, MI, MV, N
-! Declarations for error messages.
-      integer MENTXT, MEIDAT, MECONT, MERET, MEEMES, METEXT, MEIMAT,    &
-     &   LTXTEE, LTXEND
-      parameter (MENTXT =23)
-      parameter (MEIDAT =24)
-      parameter (MECONT =50)
-      parameter (MERET =51)
-      parameter (MEEMES =52)
-      parameter (METEXT =53)
-      parameter (MEIMAT =58)
+
+      ! Declarations for error messages.
+      integer, parameter :: MENTXT = 23
+      integer, parameter :: MEIDAT = 24
+      integer, parameter :: MECONT = 50
+      integer, parameter :: MERET  = 51
+      integer, parameter :: MEEMES = 52
+      integer, parameter :: METEXT = 53
+      integer, parameter :: MEIMAT = 58
+
       integer MACT(16), ERRBAD, NERBAD(0:7)
 !
 ! ********* Error message text ***************
@@ -8164,12 +8302,17 @@
 !AC Option #$HFirst Loc.$HLast Loc.$E
 !AD From subprogram/argument: $B
 !AE Space for ETEXT.$E
-      integer LTXTAA,LTXTAB,LTXTAC,LTXTAD,LTXTAE
-      parameter (LTXTAA=  1,LTXTAB=  9,LTXTAC=233,LTXTAD=267,LTXTAE=295)
+
+      integer, parameter :: LTXTAA =   1
+      integer, parameter :: LTXTAB =   9
+      integer, parameter :: LTXTAC = 233
+      integer, parameter :: LTXTAD = 267
+      integer, parameter :: LTXTAE = 295
+
       character MTXTAA(2) * (156)
 !                          Next 4 lines not automatically generated
-      parameter (LTXTEE = LTXTAE - 156 - 2)
-      parameter (LTXEND = 156)
+      integer, parameter :: LTXTEE = LTXTAE - 156 - 2
+      integer, parameter :: LTXEND = 156
 !
       data MTXTAA/'OPTCHK$B"Option #" is negated if option needs attenti&
      &on.$N"Option 0" is for space not associated with a specific option&
