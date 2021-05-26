@@ -122,7 +122,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.5% of total for procedures.">181 statements</a>
+    title=" 4.4% of total for procedures.">181 statements</a>
      </li> 
      
      
@@ -2345,9 +2345,12 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 <span class="c">!++SP Default KDIM = 16</span>
 <span class="c">!++  Default KDIM = 20</span>
 <span class="c">!++  Default MAXORD = 2, MAXSTF = 1</span>
-      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
-<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+      <span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span>
+
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
@@ -2368,6 +2371,7 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
       <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
       <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+
       <span class="kt">integer </span><span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span> <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
       <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
@@ -2398,18 +2402,20 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 <span class="c">!</span>
 <span class="c">!                      Declarations for error message processing.</span>
 <span class="c">!</span>
-      <span class="kt">integer </span><span class="n">MEMDA1</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">MEEMES</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEMDA1</span> <span class="o">=</span><span class="mi">27</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span><span class="p">)</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEMDA1</span> <span class="o">=</span> <span class="mi">27</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MERET</span>  <span class="o">=</span> <span class="mi">51</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEEMES</span> <span class="o">=</span> <span class="mi">52</span>
+
       <span class="kt">integer </span><span class="n">MACT</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 <span class="c">! ********* Error message text ***************</span>
 <span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
 <span class="c">!AA DIVAG$B</span>
 <span class="c">!AB Call with bad values of KORD.  KORD(1)=$I, KORD(2)=$I, when $C</span>
 <span class="c">!   TSPECS(1)=$F and KSTEP=$M.$E</span>
-      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span> <span class="mi">8</span><span class="p">)</span>
+
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAA</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAB</span> <span class="o">=</span> <span class="mi">8</span>
+
       <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">95</span><span class="p">)</span>
       <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;DIVAG$BCall with bad values of KORD.  KORD(1)=$I, KOR&amp;</span>
 <span class="s1">     &amp;D(2)=$I, when TSPECS(1)=$F and KSTEP=$M.$E&#39;</span><span class="o">/</span>

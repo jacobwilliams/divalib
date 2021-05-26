@@ -122,7 +122,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.7% of total for procedures.">190 statements</a>
+    title=" 4.6% of total for procedures.">190 statements</a>
      </li> 
      
      
@@ -739,9 +739,11 @@ public subroutine DIVAIN(T, Y, F, KORD)
       <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">T</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span>
-<span class="c">!++ Substitute for KDIM, MAXORD below</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+      <span class="c">!++ Substitute for KDIM, MAXORD below</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span>
+
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
@@ -750,12 +752,14 @@ public subroutine DIVAIN(T, Y, F, KORD)
       <span class="k">common</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span> <span class="n">TN</span><span class="p">,</span> <span class="n">XI</span><span class="p">,</span> <span class="n">IOPST</span><span class="p">,</span> <span class="n">KORDI</span><span class="p">,</span> <span class="n">KQMAXD</span><span class="p">,</span> <span class="n">KQMAXI</span><span class="p">,</span> <span class="n">LDT</span><span class="p">,</span>      <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">MAXDIF</span><span class="p">,</span> <span class="n">MAXINT</span><span class="p">,</span> <span class="n">NKDKO</span><span class="p">,</span> <span class="n">NTE</span><span class="p">,</span> <span class="n">NYNY</span><span class="p">,</span> <span class="n">NDTF</span><span class="p">,</span> <span class="n">NUMDT</span>
       <span class="k">save</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+
       <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">ICI</span><span class="p">,</span> <span class="n">IDT</span><span class="p">,</span> <span class="n">INTERP</span><span class="p">,</span> <span class="n">INTEG</span><span class="p">,</span> <span class="n">INTEGZ</span><span class="p">,</span> <span class="n">IY</span><span class="p">,</span> <span class="n">IYI</span><span class="p">,</span> <span class="n">IYN</span><span class="p">,</span> <span class="n">IYNI</span><span class="p">,</span> <span class="n">J</span><span class="p">,&amp;</span>
      <span class="p">&amp;</span>    <span class="n">K</span><span class="p">,</span> <span class="n">KQMXI</span><span class="p">,</span> <span class="n">KQMXS</span><span class="p">,</span> <span class="n">KQQ</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">N</span>
-      <span class="kt">double precision </span><span class="n">C0</span><span class="p">,</span> <span class="n">C1</span><span class="p">,</span> <span class="n">C2</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C2</span> <span class="o">=</span> <span class="mf">2.D0</span><span class="p">)</span>
+
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C2</span> <span class="o">=</span> <span class="mf">2.D0</span>
+
       <span class="kt">double precision </span><span class="n">C</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ETA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="nb">GAMMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">TP1</span><span class="p">,</span> <span class="n">HI</span>
@@ -766,20 +770,26 @@ public subroutine DIVAIN(T, Y, F, KORD)
 <span class="c">!              Stuff for processing error messages</span>
       <span class="kt">integer </span><span class="n">IDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-      <span class="kt">integer </span><span class="n">MENTXT</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">MEEMES</span><span class="p">,</span> <span class="n">METEXT</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MENTXT</span> <span class="o">=</span><span class="mi">23</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span><span class="p">)</span>
+
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MENTXT</span> <span class="o">=</span><span class="mi">23</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MERET</span>  <span class="o">=</span><span class="mi">51</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span>
+
       <span class="kt">integer </span><span class="n">MACT</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
 <span class="c">! ********* Error message text ***************</span>
 <span class="c">![Last 2 letters of Param. name]  [Text generating message.]</span>
 <span class="c">!AA DIVAIN$B</span>
 <span class="c">!AB Interpolating at T(1)=$F with $B</span>
 <span class="c">!AC TN=$F, T(2)=$F and H=$F.  T(1) must be in [$F, $F].$E</span>
 <span class="c">!AD internal variable LDT = $I.  Interpolation not allowed now.$E</span>
-      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span><span class="p">,</span><span class="n">LTXTAC</span><span class="p">,</span><span class="n">LTXTAD</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span>  <span class="mi">9</span><span class="p">,</span><span class="n">LTXTAC</span><span class="o">=</span> <span class="mi">41</span><span class="p">,</span><span class="n">LTXTAD</span><span class="o">=</span> <span class="mi">94</span><span class="p">)</span>
+
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAA</span> <span class="o">=</span>  <span class="mi">1</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAB</span> <span class="o">=</span>  <span class="mi">9</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAC</span> <span class="o">=</span> <span class="mi">41</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAD</span> <span class="o">=</span> <span class="mi">94</span>
+
       <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">154</span><span class="p">)</span>
       <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;DIVAIN$BInterpolating at T(1)=$F with $BTN=$F, T(2)=$&amp;</span>
 <span class="s1">     &amp;F and H=$F.  T(1) must be in [$F, $F].$Einternal variable LDT = $I&amp;</span>

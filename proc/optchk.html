@@ -122,7 +122,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.3% of total for procedures.">134 statements</a>
+    title=" 3.3% of total for procedures.">136 statements</a>
      </li> 
      
      
@@ -559,16 +559,16 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
       <span class="kt">integer </span><span class="n">INTCHK</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="o">*</span><span class="p">),</span> <span class="n">IOPT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">character </span><span class="n">ETEXT</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">integer </span><span class="n">I</span><span class="p">,</span> <span class="n">ISTRT</span><span class="p">,</span> <span class="n">KEX</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LAST</span><span class="p">,</span> <span class="n">LNEG</span><span class="p">,</span> <span class="n">LOPT</span><span class="p">,</span> <span class="n">LWANT</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">MV</span><span class="p">,</span> <span class="n">N</span>
-<span class="c">! Declarations for error messages.</span>
-      <span class="kt">integer </span><span class="n">MENTXT</span><span class="p">,</span> <span class="n">MEIDAT</span><span class="p">,</span> <span class="n">MECONT</span><span class="p">,</span> <span class="n">MERET</span><span class="p">,</span> <span class="n">MEEMES</span><span class="p">,</span> <span class="n">METEXT</span><span class="p">,</span> <span class="n">MEIMAT</span><span class="p">,</span>    <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">LTXTEE</span><span class="p">,</span> <span class="n">LTXEND</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MENTXT</span> <span class="o">=</span><span class="mi">23</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEIDAT</span> <span class="o">=</span><span class="mi">24</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MECONT</span> <span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MERET</span> <span class="o">=</span><span class="mi">51</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEEMES</span> <span class="o">=</span><span class="mi">52</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">METEXT</span> <span class="o">=</span><span class="mi">53</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">MEIMAT</span> <span class="o">=</span><span class="mi">58</span><span class="p">)</span>
+
+      <span class="c">! Declarations for error messages.</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MENTXT</span> <span class="o">=</span> <span class="mi">23</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEIDAT</span> <span class="o">=</span> <span class="mi">24</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MECONT</span> <span class="o">=</span> <span class="mi">50</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MERET</span>  <span class="o">=</span> <span class="mi">51</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEEMES</span> <span class="o">=</span> <span class="mi">52</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">METEXT</span> <span class="o">=</span> <span class="mi">53</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEIMAT</span> <span class="o">=</span> <span class="mi">58</span>
+
       <span class="kt">integer </span><span class="n">MACT</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">ERRBAD</span><span class="p">,</span> <span class="n">NERBAD</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">7</span><span class="p">)</span>
 <span class="c">!</span>
 <span class="c">! ********* Error message text ***************</span>
@@ -581,12 +581,17 @@ public subroutine OPTCHK(INTCHK, IOPT, ETEXT)
 <span class="c">!AC Option #$HFirst Loc.$HLast Loc.$E</span>
 <span class="c">!AD From subprogram/argument: $B</span>
 <span class="c">!AE Space for ETEXT.$E</span>
-      <span class="kt">integer </span><span class="n">LTXTAA</span><span class="p">,</span><span class="n">LTXTAB</span><span class="p">,</span><span class="n">LTXTAC</span><span class="p">,</span><span class="n">LTXTAD</span><span class="p">,</span><span class="n">LTXTAE</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTAA</span><span class="o">=</span>  <span class="mi">1</span><span class="p">,</span><span class="n">LTXTAB</span><span class="o">=</span>  <span class="mi">9</span><span class="p">,</span><span class="n">LTXTAC</span><span class="o">=</span><span class="mi">233</span><span class="p">,</span><span class="n">LTXTAD</span><span class="o">=</span><span class="mi">267</span><span class="p">,</span><span class="n">LTXTAE</span><span class="o">=</span><span class="mi">295</span><span class="p">)</span>
+
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAA</span> <span class="o">=</span>   <span class="mi">1</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAB</span> <span class="o">=</span>   <span class="mi">9</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAC</span> <span class="o">=</span> <span class="mi">233</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAD</span> <span class="o">=</span> <span class="mi">267</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTAE</span> <span class="o">=</span> <span class="mi">295</span>
+
       <span class="kt">character </span><span class="n">MTXTAA</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">156</span><span class="p">)</span>
 <span class="c">!                          Next 4 lines not automatically generated</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXTEE</span> <span class="o">=</span> <span class="n">LTXTAE</span> <span class="o">-</span> <span class="mi">156</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">LTXEND</span> <span class="o">=</span> <span class="mi">156</span><span class="p">)</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXTEE</span> <span class="o">=</span> <span class="n">LTXTAE</span> <span class="o">-</span> <span class="mi">156</span> <span class="o">-</span> <span class="mi">2</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LTXEND</span> <span class="o">=</span> <span class="mi">156</span>
 <span class="c">!</span>
       <span class="k">data </span><span class="n">MTXTAA</span><span class="o">/</span><span class="s1">&#39;OPTCHK$B&quot;Option #&quot; is negated if option needs attenti&amp;</span>
 <span class="s1">     &amp;on.$N&quot;Option 0&quot; is for space not associated with a specific option&amp;</span>

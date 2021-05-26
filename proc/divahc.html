@@ -2161,9 +2161,11 @@ public subroutine DIVAHC()
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAHC</span>
 
-      <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
-<span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span>
+
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
@@ -2200,24 +2202,27 @@ public subroutine DIVAHC()
      <span class="p">&amp;</span>   <span class="n">KSC</span><span class="p">,</span><span class="n">KSOUT</span><span class="p">,</span><span class="n">KSSTRT</span><span class="p">,</span><span class="n">KSTEP</span><span class="p">,</span><span class="n">LEX</span><span class="p">,</span><span class="n">LINC</span><span class="p">,</span><span class="n">LINCD</span><span class="p">,</span><span class="n">LINCQ</span><span class="p">,</span><span class="n">LSC</span><span class="p">,</span><span class="n">MAXKQD</span><span class="p">,</span><span class="n">MAXKQI</span><span class="p">,</span> <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">METHOD</span><span class="p">,</span><span class="n">NE</span><span class="p">,</span><span class="n">NEPTOL</span><span class="p">,</span><span class="n">NG</span><span class="p">,</span><span class="n">NGTOT</span><span class="p">,</span><span class="n">NOISEQ</span><span class="p">,</span><span class="n">NOUTKO</span><span class="p">,</span><span class="n">NTOLF</span><span class="p">,</span><span class="n">NY</span><span class="p">,</span><span class="n">IDAT</span>
       <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAMC</span> <span class="o">/</span> <span class="p">,</span> <span class="o">/</span> <span class="n">DIVASC</span> <span class="o">/</span>
+
 <span class="c">!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.</span>
       <span class="kt">double precision </span><span class="n">EEPS10</span><span class="p">,</span> <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span><span class="p">,</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span>
       <span class="kt">double precision </span><span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span>
       <span class="k">common</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span> <span class="n">EEPS2</span><span class="p">,</span> <span class="n">EEPT75</span><span class="p">,</span> <span class="n">EOVEP2</span><span class="p">,</span> <span class="n">OVTM75</span><span class="p">,</span> <span class="n">OVD10</span><span class="p">,</span> <span class="n">EEPS10</span><span class="p">,</span>   <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">EEPS16</span><span class="p">,</span> <span class="n">EROV10</span>
       <span class="k">save</span> <span class="o">/</span> <span class="n">DIVAEV</span> <span class="o">/</span>
+
 <span class="c">!                 K - 1 + 1 / K  is equivalent to max(1, K-1)</span>
       <span class="kt">double precision </span><span class="n">GG</span><span class="p">(</span><span class="n">MAXORD</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">B</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">),</span>       <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="n">W</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">integer  </span><span class="n">K</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">J</span>
-      <span class="kt">double precision </span><span class="n">C0</span><span class="p">,</span> <span class="n">CP1</span><span class="p">,</span> <span class="n">CRBQI</span><span class="p">,</span> <span class="n">CP5</span><span class="p">,</span> <span class="n">CP5625</span><span class="p">,</span> <span class="n">C1</span><span class="p">,</span> <span class="n">C1P125</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP1</span> <span class="o">=</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CRBQI</span> <span class="o">=</span> <span class="p">.</span><span class="mi">421875</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP5</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP5625</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5625</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1P125</span> <span class="o">=</span> <span class="mf">1.125D0</span><span class="p">)</span>
+
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP1</span> <span class="o">=</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CRBQI</span> <span class="o">=</span> <span class="p">.</span><span class="mi">421875</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP5</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP5625</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5625</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1P125</span> <span class="o">=</span> <span class="mf">1.125D0</span>
+
 <span class="c">!++  Code for STIFF is inactive</span>
 <span class="c">!      INTEGER          GODIF</span>
 <span class="c">!++  End</span>
