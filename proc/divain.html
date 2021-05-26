@@ -737,13 +737,11 @@ public subroutine DIVAIN(T, Y, F, KORD)
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAIN</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">)</span>
 
       <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">T</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span>
 <span class="c">!++ Substitute for KDIM, MAXORD below</span>
       <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
@@ -762,7 +760,6 @@ public subroutine DIVAIN(T, Y, F, KORD)
       <span class="kt">double precision </span><span class="nb">GAMMA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">TP1</span><span class="p">,</span> <span class="n">HI</span>
       <span class="kt">double precision </span><span class="n">CSUM</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">XP1</span>
       <span class="kt">logical </span><span class="n">LNOTM1</span>
 <span class="c">!</span>
@@ -1040,7 +1037,6 @@ public subroutine DIVAIN(T, Y, F, KORD)
          <span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">TN</span> <span class="o">-</span> <span class="n">T</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
       <span class="k">end if</span>
 <span class="k"> </span><span class="mi">4190</span> <span class="n">FDAT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
       <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">3820</span>
       <span class="k">return</span>

@@ -5,13 +5,11 @@
 !
 !### Original Copyright
 !
-! Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
-! ALL RIGHTS RESERVED.
-! Based on Government Sponsored Research NAS7-03001.
-
+!  Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
+!  ALL RIGHTS RESERVED.
+!  Based on Government Sponsored Research NAS7-03001.
 
     module diva_module
-!*************************************************************************
 
     use iso_fortran_env, only: wp => real64
 
@@ -65,8 +63,10 @@
 !  * [[DZERO]]   Called only if [[DIVAG]] is used.  Iterates to find zeros of
 !                arbitrary (continuous) functions.
 !
-! Common blocks -- As a left over from the distant past, some variables
-!   are in common so that they would be saved.
+!### Common blocks
+!  As a left over from the distant past, some variables
+!  are in common so that they would be saved.
+!
 !  * DIVAEV  Holds variables that depend on the environment.
 !  * DIVAMC  The main common block for the package.
 !  * DIVASC  The secondary common block for the package.  This contains
@@ -74,7 +74,7 @@
 !            separate to simplify saving the variables that are required
 !            when the solution is being dumped (saved).
 !
-! Common variables and local variables
+!### Common variables and local variables
 ! ALPHA  (DIVAMC) Array with I-th entry = (current step size) / XI(I).
 !   Used in computing integration coefficients.
 ! B      (DIVAHC) Array used to get started on computing integration
@@ -943,7 +943,6 @@
 
       integer NEQ, IDIMT, IDIMY, IDIMF, IDIMK
       integer KORD(*), IOPT(*)
-!--D Next line special: P=>D, X=>Q
       double precision TSPECS(*), Y(*)
       double precision F(*)
       external DIVAF, DIVAO
@@ -958,14 +957,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -1457,7 +1454,6 @@
       MACT(4) = LTXTAF
       if (KGO >= 8) MACT(4) = -1
       MACT(6) = MLOC(KGO)
-!--D Next line special: P=>S, X=>D
       CALL DMESS(MACT, MTXTAA, IDAT, FDAT)
       if (KGO < 8) then
          MACT(10) = ILOW
@@ -1486,7 +1482,6 @@
     subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
 
       integer KORD(*)
-!--D Next line special: P=>D, X=>Q
       double precision TSPECS(*), Y(*)
       double precision F(*)
       external DIVAF, DIVAO
@@ -1494,14 +1489,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -1567,7 +1560,6 @@
       integer LDIS, KEXIT, I, J, K, J1, J2, L, LX
       double precision TP, TP1, TP2, TP3, HH, DISADJ
       double precision SIGMAS, TPS1, TPS2, EIMINO, EXR
-!--D Next line special: P=>D, X=>Q
       double precision  TMARKA(2), XP, XP1
       equivalence (G(1, 1), HH), (TMARKA(1), TMARK)
       equivalence (KEXIT, IOP17)
@@ -2449,7 +2441,6 @@
       KORD1I = mod(L, 32)
       MACT(3) = KORD1I
       MACT(K) = MERET
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT, MTXTAA, IDAT, FDAT)
       MACT(K) = MENTXT
       go to 2110
@@ -2477,14 +2468,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -2611,14 +2600,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -2684,21 +2671,18 @@
     subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 
       integer LGROUP(*), KORD(*)
-!--D Next line special: P=>D, X=>Q
       double precision Y(*)
       double precision TOL(*), F(*)
 !
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -2738,29 +2722,28 @@
 !
       integer L, I, KQL, KQN, KQD, JLGREP, J, K, ILGROR, ITOLOR, JLGROR,&
      &   IORD, KOUTKO, KQLORD, LL, LKQMAX
-      double precision CM8, CM2, CMP5, C0, CQ3125, CP1, CP125, CP25, CP5
-      double precision CP75, CP8, CP9375, C1, C1P4, C2, C4, C10, C20
-      double precision C1000, C40
-      parameter (CM8 = -8.D0)
-      parameter (CM2 = -2.D0)
-      parameter (CMP5 = -.5D0)
-      parameter (C0 = 0.D0)
-      parameter (CQ3125 = .03125D0)
-      parameter (CP1 = .1D0)
-      parameter (CP125 = .125D0)
-      parameter (CP25 = .25D0)
-      parameter (CP5 = .5D0)
-      parameter (CP75 = .75D0)
-      parameter (CP8 = .8D0)
-      parameter (CP9375 = .9375D0)
-      parameter (C1 = 1.D0)
-      parameter (C1P4 = 1.4D0)
-      parameter (C2 = 2.D0)
-      parameter (C4 = 4.D0)
-      parameter (C10 = 10.D0)
-      parameter (C20 = 20.D0)
-      parameter (C40 = 40.D0)
-      parameter (C1000 = 1000.D0)
+
+      double precision, parameter :: CM8 = -8.D0
+      double precision, parameter :: CM2 = -2.D0
+      double precision, parameter :: CMP5 = -.5D0
+      double precision, parameter :: C0 = 0.D0
+      double precision, parameter :: CQ3125 = .03125D0
+      double precision, parameter :: CP1 = .1D0
+      double precision, parameter :: CP125 = .125D0
+      double precision, parameter :: CP25 = .25D0
+      double precision, parameter :: CP5 = .5D0
+      double precision, parameter :: CP75 = .75D0
+      double precision, parameter :: CP8 = .8D0
+      double precision, parameter :: CP9375 = .9375D0
+      double precision, parameter :: C1 = 1.D0
+      double precision, parameter :: C1P4 = 1.4D0
+      double precision, parameter :: C2 = 2.D0
+      double precision, parameter :: C4 = 4.D0
+      double precision, parameter :: C10 = 10.D0
+      double precision, parameter :: C20 = 20.D0
+      double precision, parameter :: C40 = 40.D0
+      double precision, parameter :: C1000 = 1000.D0
+
       double precision TPP, HH, E, EI, EPS, ERCOEF, RND, RNOISE, S
       double precision TP2, TPS1, TPS2, TPS3, TPS4, TPS5, TPS6, TPS7
       double precision REF(4)
@@ -3273,7 +3256,6 @@
 !++  Code for ~{p,x} is active
             Y(IY - K) = Y(IY - K) + G(KQL + 1, K) * TPP
 !++  Code for {p,x} is inactive
-!c--D Next line special: P=>D, X=>Q
 !            Y(IY - K) = Y(IY - K) + dble(G(KQL + 1, K)) * dble(TPP)
 !++  END
  3320    continue
@@ -3293,7 +3275,6 @@
             FDAT(5) = SIGMA(IOP11)
             FDAT(6) = ROBND
             MACT2(3) = NTE
-!--D Next line special: P=>S, X=>D
             call DMESS(MACT1, MTXTAA, IDAT, FDAT)
             KOUTKO = NOUTKO
          end if
@@ -3320,7 +3301,6 @@
          FDAT(10) = 0.D0
          if (KQL == 1) FDAT(10) = S
          FDAT(11) = BETA(KQD)
-!--D Next line special: P=>S, X=>D
          call DMESS(MACT2, MTXTAB, IDAT, FDAT)
  3328    if (I == NTE) IOP10 = IOP10 - 1
       end if
@@ -3344,14 +3324,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -3656,13 +3634,11 @@
     subroutine DIVAIN(T, Y, F, KORD)
 
       integer KORD(*)
-!--D Next line special: P=>D, X=>Q
       double precision T(*), Y(*)
       double precision F(*)
       integer KDIM, MAXORD
 !++ Substitute for KDIM, MAXORD below
       parameter (KDIM = 20, MAXORD = 2)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
@@ -3681,7 +3657,6 @@
       double precision GAMMA(KDIM)
       double precision TP1, HI
       double precision CSUM(KDIM+MAXORD-1)
-!--D Next line special: P=>D, X=>Q
       double precision XP1
       logical LNOTM1
 !
@@ -3959,7 +3934,6 @@
          FDAT(6) = TN - T(2)
       end if
  4190 FDAT(1) = T(1)
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT, MTXTAA, IDAT, FDAT)
       if (MACT(2) < 50) go to 3820
       return
@@ -3980,14 +3954,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -4256,21 +4228,18 @@
     subroutine DIVAPR(Y, YN, F, KORD)
 
       integer KORD(*)
-!--D Next line special: P=>D, X=>Q
       double precision Y(*), YN(*)
       double precision F(*)
 !
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -4313,7 +4282,6 @@
       integer I, INTEG, INTEGS, J, K, KQQ, L, N
       double precision TEMP(KDIM)
       double precision TP1
-!--D Next line special: P=>D, X=>Q
       double precision XP
       data INTEGS / -1 /
 !
@@ -4417,7 +4385,6 @@
 !++  Code for ~{p,x} is active
             XP = XP + G(J, INTEG) * TEMP(J)
 !++  Code for {p,x} is inactive
-!c--D Next line special: P=>D, X=>Q
 !            XP = XP + dble(G(J, INTEG)) * dble(TEMP(J))
 !++  END
  4650    continue
@@ -4426,7 +4393,6 @@
 !++  Code for ~{p,x} is active
             XP = XP + G(1, J) * YN(IY + J)
 !++  Code for {p,x} is inactive
-!c--D Next line special: P=>D, X=>Q
 !            XP = XP + dble(G(1, J)) * dble(YN(IY + J))
 !++  END
  4660    continue
@@ -4512,8 +4478,7 @@
       character TEXT*(*)
       character TEXT1(1)*11, TEXT2(1)*4, TEXT3(1)*5, TEXT4(1)*4
       integer IVC1(12), IVC2(65), J, K, L, N1, N2
-      double precision  DVC2(7), RVC2(8), EVC(8)
-!--D Next line special: P=>D, X=>Q
+      double precision DVC2(7), RVC2(8), EVC(8)
       double precision TSPECS(*), Y(*), TNEQ(1), DVC1(7)
       double precision F(*)
 !
@@ -4524,14 +4489,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -4748,15 +4711,11 @@
 ! PRINT ALL EXTERNAL VARIABLES EXCEPT FOR THE DIFFERENCES
 ! ********
       MACTFV(3) = max(IOP5, 4)
-!--D Next line special: P=>D, X=>Q
       call DMESS(MACTFV, TEXT1, KORD, TSPECS)
       MACTFV(3) = NY
-!--D Next line special: P=>D, X=>Q
       call DMESS(MACTFV, TEXT2, KORD, Y)
-!--D Next line special: P=>D, X=>Q
       call DMESS(MACTFV, TEXT3, KORD, Y(NYNY))
       MACTFV(3) = NTE
-!--D Next line special: P=>S, X=>D
       call DMESS(MACTFV, TEXT4, KORD, F)
       MACT2(6) = NTE
       call MESS(MACT2, MTXTAA, KORD)
@@ -4769,7 +4728,6 @@
       if (KORD(K - 1) < NTE) go to 70
       MACT3(3) = K - IOP16
       MACT3(6) = MACT3(3)
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT3, MTXTAD, KORD(IOP16), F(NTOLF))
       if (N1 == 2) go to 80
 ! ********
@@ -4780,14 +4738,12 @@
       MACT4(3) = NUMDT
       MACT4(4) = -K
       MACT4(5) = NTE
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT4, MTXTAE, KORD, F(NDTF))
 !
    80 if (N2 <= 1) return
 ! ********
 ! WRITE SCALARS IN COMMON
 ! ********
-!--D Next line special: P=>D, X=>Q
       call DMESS(MACT1, MTXTAF, KORD, TNEQ)
 !
 ! ===== COMMON 1  -- INTEGER
@@ -4799,11 +4755,8 @@
 !
 ! ===== COMMON 2  -- INTEGER AND FLOATING POINT
 !
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT5, MTXTAH, IVC2, RVC2)
-!--D Next line special: P=>D, X=>Q
       call DMESS(MACT1, MTXTAI, IVC2, DVC1)
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT1, MTXTAJ, IVC2, DVC2)
       if (N2 == 3) return
 !         wddtrr              wddtrr
@@ -4834,19 +4787,15 @@
                FDAT(7+J) = G(K, J)
    95       continue
          end if
-!--D Next line special: P=>S, X=>D
          call DMESS(MACT7, MTXTAK, IDAT, FDAT)
   100 continue
 !++  Code for STIFF is inactive
 !     if (MAXDIF <= 0) return
 !        Need to define MACT8 and set values
-!c--D Next line special: P=>S, X=>D
 !     call DMESS(MACT8, 'D$B', IDAT, D)
-!c--D Next line special: P=>S, X=>D
 !     call DMESS(MACT8, 'DS$B', IDAT, DS)
 !++  End
 !
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT1, MTXTAL, IDAT, EVC)
       return
     end subroutine divadb
@@ -4878,7 +4827,6 @@
     subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 
       integer KORD(*), IFLAG, NSTOP
-!--D Next line special: P=>D, X=>Q
       double precision TSPECS(*), Y(*), TOLD, TSAVE
       double precision F(*), GNEW(*), GT(*), GOLD
       save GOLD, TOLD, TSAVE
@@ -4889,14 +4837,12 @@
       integer KDIM, MAXORD, MAXSTF
 !++ Substitute for KDIM, MAXORD, MAXSTF below
       parameter (KDIM = 20, MAXORD = 2, MAXSTF = 1)
-!--D Next line special: P=>D, X=>Q
       double precision TN
       double precision XI(KDIM)
 !
-!--D Next line special: P=>D, X=>Q
       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
       double precision ALPHA(KDIM), BETA(KDIM+1)
-      double precision  D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
+      double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
       double precision V(KDIM+MAXORD)
       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
       double precision FDAT(11)
@@ -5163,7 +5109,6 @@
 ! ********************** ERROR PROCESSING ******************
 !
   500 MACT(2) = KSTEP
-!--D Next line special: P=>S, X=>D
       call DMESS(MACT, MTXTAA, KORD, TSPECS)
       IFLAG = 8
       KEXIT = 6
@@ -5243,7 +5188,6 @@
 ! TEXT   Formal argument, passed to MESS, see there.
 ! XARGOK In common CMESSI, see MESS.
 !
-!%% void dmessxc(long int);
 !
 !### History
 !  * 2009-09-27 DMESS Krogh  Same as below, in another place.
@@ -5281,20 +5225,15 @@
 
     subroutine DMESS (MACT, TEXT, IDAT, FDAT)
 
-      !external         D1MACH
       integer          MACT(*), IDAT(*)
       double precision FDAT(*)
       character        TEXT(*)*(*)
       character        FMTSP*29
       integer          ICOL, ID, J, K, KSMA, KBIG, KEXE, LDFDEF, NEG
-      double precision FBIG, FOUT, FSMA !, D1MACH
+      double precision FBIG, FOUT, FSMA
       save LDFDEF, FMTSP
       save /CMESSI/, /CMESSC/
-!++ CODE for .C. is inactive
-!      integer  kciwid, kccwid, kcrwid, lbeg, lend, lfprec, lgprec
-!      common /MESSCC/ kciwid,kccwid,kcrwid,lbeg,lend,lfprec,lgprec
-!++ END
-!
+
 ! ************************** Data from common block ********************
 !
 ! For comments on these variables, see the listing for MESS.
@@ -5346,13 +5285,6 @@
       NFDAT = NFDAT + 1
       if (KSPEC >= 8) then
          LBUF = LBUF + IWG
-!%% messcc.lend = cmessi.lbuf;
-!%% cmessc.buf[messcc.lend] = ' ';
-!%% if ((j > 1) && (cmessc.buf[j-2] >= '0') &&
-!%%    (cmessc.buf[j-2] <= '9')) cmessc.buf[j++ - 1] = ' ';
-!%% sprintf(&cmessc.buf[j-1], cmessc.fmtg, cmessi.iwg,
-!%%    messcc.lgprec, fout);
-!%% if (cmessc.buf[messcc.lend] != 0) {messcc.lbeg=j; dmessxc(kexe);}
          write (BUF(J:LBUF), FMTG) FOUT
          go to 10
       end if
@@ -5414,7 +5346,6 @@
      &      IWF, ID, KEXE - 2
 !++ CODE for .C. is inactive
 !c WATCOM C and others (?) man need an extra 1 here??
-!%%    strcpy(cmessc.fmtf, "%*.*E ");
 !      lfprec = id
 !++ END
           go to 60
@@ -5434,7 +5365,6 @@
       write (FMTF, '(''(0P,99(F'',I2,''.'',I2,'':1X))'')') IWF,ID
 !++ CODE for .C. is inactive
 !      IWF = IWF + ID + max(KBIG, 0)
-!%%    strcpy(cmessc.fmtf, "%*.*f ");
 !      lfprec = id
 !++ END
    60 if (LENTRY /= 4) then
@@ -5458,25 +5388,12 @@
         end if
 !++ CODE for .C. is inactive
 !c Using cmessc.fmtf in place of fmtsp
-!%%      if (cmessc.fmtf[4] == 'f') {
-!%%      strcpy(cmessc.fmtf, "%*ld) %*.*f ");
-!%%      kexe = 0;
-!%%      }
-!%%      else strcpy(cmessc.fmtf, "%*ld) %*.*E ");
-!%%      cmessi.iwf++;
 !++ END
         IWF = IWF + KDI + 1
         go to 10
       end if
 !
       LBUF = LBUF + IWF
-!%% messcc.lend = cmessi.lbuf;
-!%% cmessc.buf[messcc.lend] = ' ';
-!%% if ((j > 1) && (cmessc.buf[j-2] >= '0') &&
-!%%    (cmessc.buf[j-2] <= '9')) cmessc.buf[j++ - 1] = ' ';
-!%% sprintf(&cmessc.buf[j-1], cmessc.fmtf, cmessi.iwf,
-!%%    messcc.lfprec, fout);
-!%% if (cmessc.buf[messcc.lend] != 0) {messcc.lbeg=j; dmessxc(kexe);}
       write (BUF(J:LBUF),FMTF) FOUT
       go to 10
 !                                     Get format for a vector or matrix
@@ -5520,21 +5437,7 @@
       go to 40
 !                                    Floating point vector output
   200 continue
-!%% messcc.lend = cmessi.lstrt-1;
-!%% neg = 0;
-!%% for (j=cmessi.mpt; j<cmessi.mpt+cmessi.kline; j++){
-!%%   messcc.lbeg = messcc.lend;
-!%%   messcc.lend = messcc.lend + cmessi.iwf;
-!%%   if (kexe) {
-!%%     if (kexe == 5)
-!%%        neg = ((fabs(fdat[cmessi.inc*j-1]) < 1.e100)) ? -1: 0;
-!%%     else if (kexe ==3) neg = 1;
-!%%   }
-!%%   sprintf(&cmessc.buf[messcc.lbeg], cmessc.fmtf,
-!%%    cmessi.iwf+neg, messcc.lfprec, fdat[cmessi.inc*j-1]);
-!%%   if ((kexe == 3) || ((kexe == 5) && neg)) dmessxc(kexe); }
       write(BUF(LSTRT:LBUF),FMTF)(FDAT(K),K=MPT,MPT+INC*(KLINE-1),INC)
-
 
 !      print '(/A/)', BUF(1:LBUF)
 
@@ -5542,53 +5445,15 @@
       go to 10
 !                                    Floating point matrix output
   300 continue
-!%% messcc.lend = cmessi.lstrt-1;
-!%% neg = 0;
-!%% for (j=cmessi.mpt; j<=cmessi.lasti; j+=cmessi.ndim){
-!%%    messcc.lbeg = messcc.lend;
-!%%    messcc.lend = messcc.lend + cmessi.iwf;
-!%%   if (kexe) {
-!%%     if (kexe == 5) neg = ((fabs(fdat[j-1]) < 1.e100)) ? -1: 0;
-!%%     else if (kexe ==3) neg = 1;
-!%%   }
-!C%%    if ((messcc.lbeg > 1) && (cmessc.buf[messcc.lbeg-1] >= '0') &&
-!C%%       (cmessc.buf[messcc.lbeg-1] <= '9'))
-!C%%       cmessc.buf[messcc.lbeg++] = ' ';
-!%%    sprintf(&cmessc.buf[messcc.lbeg],
-!%%       cmessc.fmtf, cmessi.iwf+neg, messcc.lfprec, fdat[j-1]);
-!%%    if ((kexe == 3) || ((kexe == 5) && neg)) dmessxc(kexe); }
       write (BUF(LSTRT:LBUF), FMTF) (FDAT(K), K = MPT, LASTI, NDIM)
       go to 10
 !                                    Table output
   400 continue
-!%% messcc.lend = cmessi.lstrt-1;
-!%% neg=0;
-!%% for (j=cmessi.mpt; j<cmessi.mpt+cmessi.kline; j++){
-!%%    messcc.lbeg = messcc.lend;
-!%%    messcc.lend = messcc.lend + cmessi.iwf;
-!C%%    if ((messcc.lbeg > 1) && (cmessc.buf[messcc.lbeg-1] >= '0') &&
-!C%%       (cmessc.buf[messcc.lbeg-1] <= '9'))
-!C%%       cmessc.buf[messcc.lbeg++] = ' ';
-!%%    sprintf(&cmessc.buf[messcc.lbeg], cmessc.fmtf,
-!%%       cmessi.iwf+neg, messcc.lfprec, fdat[j-1]); }
       write (BUF(LSTRT:LBUF), FMTF) (FDAT(K), K = MPT, MPT+KLINE-1)
       go to 10
 
-
 !                                   Sparse vector output
   500 continue
-!%%  messcc.lend = -1;
-!%%  neg = 0;
-!%%  for (j=cmessi.mpt; j<cmessi.mpt+cmessi.kline; j++) {
-!%%    messcc.lbeg = messcc.lend + 1;
-!%%     messcc.lend = messcc.lend + cmessi.iwf;
-!%%   if (kexe) {
-!%%     if (kexe == 5) neg = ((fabs(fdat[j-1]) < 1.e100)) ? -1: 0;
-!%%     else if (kexe == 3) neg = 1;
-!%%   }
-!%%   sprintf(&cmessc.buf[messcc.lbeg], cmessc.fmtf, cmessi.kdi,
-!%%     idat[j-1],cmessi.iwf-cmessi.kdi-2+neg,messcc.lfprec,fdat[j-1]);
-!%%     if ((kexe == 3) || ((kexe == 5) && neg)) dmessxc(kexe); }
       write (BUF(1:LBUF), FMTSP) (IDAT(K),FDAT(K),K=MPT,MPT+KLINE-1)
       MPT = MPT + KLINE
       go to 10
@@ -5596,27 +5461,6 @@
     end subroutine dmess
 !*************************************************************************
 
-!%%  void dmessxc(long int kexe)
-!%%{
-!%%  /* Adjust for lack of control on digits in exponent */
-!%%  char c;
-!%% if (cmessc.fmtf[4] == 'f') return;
-!%% if (kexe == 4) return;
-!%% if (kexe == 3) { // Should only be one digit in the exponent
-!%%   cmessc.buf[messcc.lend-1] = cmessc.buf[messcc.lend];
-!%%   cmessc.buf[messcc.lend] = ' ';
-!%% }
-!%% else { // Should be at least 3 digits in the exponent.
-!%%   c =cmessc.buf[messcc.lend-4];
-!%%   if ((c < '0') || (c > '9')) {
-!%%     cmessc.buf[messcc.lend-1] = cmessc.buf[messcc.lend-2];
-!%%     cmessc.buf[messcc.lend-2] = cmessc.buf[messcc.lend-3];
-!%%     cmessc.buf[messcc.lend-3] = '0';
-!%%     cmessc.buf[messcc.lend] = ' ';
-!%%   }
-!%% }
-!%% return;
-!%%} /* end of function */
 
 !*************************************************************************
 !>
@@ -6148,12 +5992,6 @@
     end subroutine dzero
 !*************************************************************************
 
-!++ CODE for .C. is inactive
-!%% static FILE *c_handle[2], *scratch_file;
-!%% static char *c_fname[2]={"MESSF-xx", "MESSF-xx"};
-!%% char *ctmp;
-!++ END
-
 !*************************************************************************
 !>
 ! Processes Messages -- Actions are controlled by MACT().
@@ -6660,12 +6498,6 @@
 ! XARGOK Set .true. if call is from program that will print data from
 !   FDAT.
 !
-!++ CODE for .C. is inactive
-!      integer  kciwid, kccwid, kcrwid, lbeg, lend, lfprec, lgprec
-!      common /MESSCC/ kciwid,kccwid,kcrwid,lbeg,lend,lfprec,lgprec
-!%%    long int kc;
-!++ END
-!
 !### History
 !  * 2010-02-22 MESS  Krogh  Moved NSKIP=0 to start of code.
 !  * 2009-10-30 MESS  Krogh  Defined DSCRN.
@@ -6845,7 +6677,6 @@
          FMTJ = '(99I06)'
          FMTG = '(1P,99Exx.xx)  '
 !++ CODE for .C. is inactive
-!%%    memset(cmessc.dols,'$',72);
 !      FMTI = '%*d'
 !      FMTJ = '%*d\0'
 !      FMTG = '%*.*E\0'
@@ -6914,22 +6745,12 @@
   126    LENLIN = LINMSG
          go to 120
   128    if (IVAR(M) /= 0) then
-!%%          k = labs(cmessi.ounit);
-!%%          c_fname[m-15][6] = k / 10 + '0';
-!%%          c_fname[m-15][7] = k % 10 + '0';
-!%%          if (strcmp(&c_fname[16-m][6], &c_fname[m-15][6]))
-!%%             c_handle[m-15] = fopen(c_fname[m-15],"w");
-!%%          else
-!%%             c_handle[m-15] = c_handle[16-m];
             K = abs(IVAR(M))
          end if
          OUNIT = MUNIT
          go to 120
       end if
       if (M == -MESUNI) then
-!%%      if (cmessi.sunit == -1L) {
-!%%          scratch_file = tmpfile();
-!%%          cmessi.sunit = 1L;}
          if (SUNIT <= 0) SUNIT = MESSGS()
       end if
 !
@@ -6949,10 +6770,6 @@
 !++ CODE for ~.C. is active
       BUF(1:57) =                                                       &
      &   'Actions in MESS terminated due to error in usage of MESS.'
-!++ CODE for .C. is inactive
-!%%   memcpy(cmessc.buf,
-!%%   "Actions in MESS terminated due to error in usage of MESS.",57);
-!++ END
       LBUF = 57
 !
 ! Action MERET -- Finish a message.
@@ -6997,11 +6814,6 @@
 !++ CODE for ~.C. is active
          BUF(1:LBUF) = DOLS(1:LBUF)
          if (INERR<0) BUF(5:37)=' Fatal error -- Program stopped. '
-!++ CODE for .C. is inactive
-!%%      memcpy(cmessc.buf, cmessc.dols, cmessi.lbuf);
-!%%      if (inerr < 0L)
-!%%      memcpy(&cmessc.buf[4]," Fatal error -- Program stopped. ",34);
-!++ END
          call MESSPR
       end if
       if (INERR <= 0) then
@@ -7018,21 +6830,17 @@
   370 LBUF = min(LBUF, 40)
       if (KS == 0) then
          ERMSG1(17:17) = char(KP + ICHAR0)
-!%%       memcpy(&cmessc.buf[cmessi.lbuf], ermsg1, strlen(ermsg1));
          BUF(LBUF+1:LBUF+len(ERMSG1)) = ERMSG1
          LBUF = LBUF + len(ERMSG1)
       else
          ERMSG(30:30) = char(KS + ICHAR0)
          ERMSG(47:47) = char(KP + ICHAR0)
-!%%       memcpy(&cmessc.buf[cmessi.lbuf], ermsg, strlen(ermsg));
          BUF(LBUF+1:LBUF+len(ERMSG)) = ERMSG
          LBUF = LBUF + len(ERMSG)
       end if
       LSTRT = LBUF + 1
       call MESSFI
       LBUF = LBUF + KDI
-!%%   sprintf(&cmessc.buf[cmessi.lstrt-1L], "%*ld",
-!%%           (int)messcc.kciwid, cmessi.imag);
       write (BUF(LSTRT:LBUF), FMTI) IMAG
 !          Finish up the start error message action.
       if (MACT(I+3) < 0) go to 40
@@ -7060,17 +6868,10 @@
 
   410 LSTRT = LBUF + 1
       K2 = min(LENTXT, NTEXT + (LENBUF - LSTRT))
-!%%       if ((ctmp=memchr(TEXT(cmessi.itext-1L,cmessi.ntext-1), SC,
-!%%          k2 - cmessi.ntext + 1)) == NULL)
-!%%             k = 0;
-!%%       else
-!%%             k = ctmp - TEXT(cmessi.itext-1L,cmessi.ntext-1) + 1;
       K = index(TEXT(ITEXT)(NTEXT:K2), SC)
       if (K == 0) then
 ! Want to take all that we can.
          LBUF = LSTRT + K2 - NTEXT
-!%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-1L,
-!%%         cmessi.ntext-1), k2 - cmessi.ntext + 1L);
          BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:K2)
          if (K2 == LENTXT) then
            ITEXT = ITEXT + 1
@@ -7085,8 +6886,6 @@
          go to 430
       end if
       LBUF = LBUF + K - 1
-!%%   if (k >= 2) memcpy(&cmessc.buf[cmessi.lstrt-1],
-!%%     TEXT(cmessi.itext-1L, cmessi.ntext-1), k - 1L);
       if (K >= 2) BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:NTEXT+K-2)
 !        Jump to location below if get $ after computing an NSKIP.
   415 continue
@@ -7188,14 +6987,11 @@
   530 if (LBUF >= LBUF1) then
 !                              Take care of overlap.
          K = 2*LBUF1 - LSTRT
-!%%memcpy(&cmessc.buf[cmessi.lstrt-1],&cmessc.buf[lbuf1-1],k-lbuf1);
          BUF(LSTRT:LBUF1-1) = BUF(LBUF1:K-1)
          LSTRT = LBUF1
          LBUF1 = K
          go to 530
       end if
-!%% if (cmessi.lbuf>=cmessi.lstrt) memcpy(&cmessc.buf[cmessi.lstrt-1],
-!%%       &cmessc.buf[lbuf1-1L], lbuf2-lbuf1+1);
       if (LBUF >= LSTRT) BUF(LSTRT:LBUF) = BUF(LBUF1:LBUF2)
       go to 430
 !
@@ -7208,18 +7004,12 @@
   601 continue
 !++ CODE for ~.C. is active
       FMTG='(0P,99F'
-!++ CODE for .C. is inactive
-!%%   strcpy(cmessc.fmtg, "%*.*f\0");
-!%%   messcc.lgprec = 0;
-!++ END
       go to 603
   602 continue
 !++ CODE for ~.C. is active
       FMTG='(1P,99'//TEXT(ITEXT)(NTEXT:NTEXT)
 !++ CODE for .C. is inactive
-!%%   strcpy(cmessc.fmtg, "%*.*E\0");
 !      FMTG(5:5) = TEXT(ITEXT)(NTEXT:NTEXT)
-!%%   messcc.lgprec = 0;
 !++ END
   603 KSPEC = 9
   604 IMAG = 0
@@ -7247,9 +7037,6 @@
          else
             if (TEXT(ITEXT)(NTEXT:NTEXT) == ')') go to 610
             if ((JJ < 0) .or. (JJ > 9)) go to 180
-!++ CODE for .C. is inactive
-!%%         messcc.lgprec = 10*messcc.lgprec + jj;
-!++ END
          end if
       go to 606
 !
@@ -7266,12 +7053,6 @@
          IWG = IMAG
          FMTG(8:15) = FMTT
       end if
-!++ CODE for .C. is inactive
-!%%   if (cmessi.kspec == 8)
-!%%       cmessi.kdj = cmessi.imag;
-!%%   else
-!%%       cmessi.iwg = cmessi.imag;
-!++ END
       if (TEXT(ITEXT)(NTEXT:NTEXT) == SC) go to 410
       if (KSPEC == 8) go to 700
       if (XARGOK) return
@@ -7289,7 +7070,6 @@
 !                         Process a tab
   690 LSTRT = LBUF + 1
       LBUF = min(LBUF + TABSPA - mod(LBUF, TABSPA), LENLIN+1)
-!%%  for (kc=cmessi.lstrt-1; kc<cmessi.lbuf; kc++) cmessc.buf[kc]=' ';
       BUF(LSTRT:LBUF) = ' '
       go to 850
 !                         Print from IDAT
@@ -7301,7 +7081,6 @@
       IMAG = IOUT
       if (KSPEC >= 8) then
          LBUF = LBUF + KDJ
-!%%   sprintf(&cmessc.buf[cmessi.lstrt-1],"%*ld",(int)cmessi.kdj, iout);
       write (BUF(LSTRT:LBUF), FMTJ) IOUT
          go to 850
       end if
@@ -7309,7 +7088,6 @@
 !                Get format for integer output.
       call MESSFI
       LBUF = LBUF + KDI
-!%% sprintf(&cmessc.buf[cmessi.lstrt-1],"%*ld",(int)messcc.kciwid,iout);
       write (BUF(LSTRT:LBUF), FMTI) IOUT
 !                         Entry here to check line after numeric output.
   850 if (LBUF <= LENLIN) go to 410
@@ -7329,7 +7107,6 @@
       LENTRY = 9
       if (LBUF /= 0) call MESSPR
   920 continue
-!%%   memset(cmessc.buf,' ',LENBUF);
       BUF = ' '
       NROW = 1
       NCOL = MACT(I+3)
@@ -7356,8 +7133,6 @@
          FMTI(6:6) = char(mod(LENOUT, 10) + ichar0)
 !++ END
          if (KK == 3) then
-!%%         sprintf(&cmessc.buf[cmessi.lstrt-1], "%*ld",
-!%%            (int)cmessi.lenout, mact[i]);
             write (BUF(LSTRT:LBUF), FMTI) MACT(I+1)
             go to 960
          end if
@@ -7368,12 +7143,6 @@
          write (BUF(LSTRT:LBUF), FMTI) (IDAT(K), K = NIDAT,             &
      &      NIDAT+KLINE-1)
          NIDAT = NIDAT + KLINE
-!++ CODE for .C. is inactive
-!%%  kk = cmessi.nidat;
-!%%  for (cmessi.nidat=kk; cmessi.nidat<kk+cmessi.kline; cmessi.nidat++)
-!%%     sprintf(&cmessc.buf[cmessi.lstrt+cmessi.lenout*(cmessi.nidat
-!%%       - kk) - 1], "%*ld", (int)cmessi.lenout, idat[cmessi.nidat-1]);
-!++ END
          go to 960
 !                           Various floating point output
   943    continue
@@ -7397,7 +7166,6 @@
          FMTF(11:11) = char(ICHAR0 + JJ / 10)
          FMTF(12:12) = char(ICHAR0 + mod(JJ, 10))
 !++ CODE for .C. is inactive
-!%%      strcpy(cmessc.fmtf, "%*.*E\0");
 !        IWF = LENOUT
 !        lfprec = JJ
 !++ END
@@ -7407,8 +7175,6 @@
          return
 !                           Text output
   948    K1 = NTEXT + LBUF - LSTRT
-!%%    memcpy(&cmessc.buf[cmessi.lstrt-1], TEXT(cmessi.itext-1,
-!%%       cmessi.ntext -1), k1 - cmessi.ntext);
          BUF(LSTRT:LBUF) = TEXT(ITEXT)(NTEXT:K1-1)
          NTEXT = K1
       else
@@ -7429,21 +7195,11 @@
 !++ CODE for ~.C. is active
                if (SUNIT <= 0) SUNIT = MESSGS()
                rewind(SUNIT)
-!++ CODE for .C. is inactive
-!%%        if (cmessi.sunit == -1) {
-!%%           scratch_file = tmpfile();
-!%%           cmessi.sunit = 1;}
-!%%        rewind(scratch_file);
-!++ END
             end if
          end if
-!%%       fwrite(&cmessc.buf[4], cmessi.mdat[cmessi.nrow-1]-4, 1,
-!%%          scratch_file);
          write(SUNIT) BUF(5:MDAT(NROW))
       end if
       if (LBUF > MDAT(NROW)) then
-!%%  memcpy(&cmessc.buf[4], &cmessc.buf[cmessi.mdat[cmessi.nrow-1]],
-!%%     cmessi.lbuf - cmessi.mdat[cmessi.nrow-1]);
          BUF(5:LBUF - MDAT(NROW) + 4) = BUF(MDAT(NROW)+1:LBUF)
          LBUF = LBUF - MDAT(NROW) + 4
          NROW = NROW + 1
@@ -7464,28 +7220,22 @@
       if (MACT(I+1) <= MACT(I+2)) go to 999
       MACT(I+1) = 1
       if (NROW == 1) go to 999
-!%%    fputc(EOF, scratch_file);
       endfile SUNIT
       KK = 1
   994 KK = KK + 1
       if (KK > NROW) go to 999
-!%%   rewind(scratch_file);
       rewind(SUNIT)
       IROW = -1
       K = KK
   995 LBUF = 5
       IROW = IROW + 1
       if (IROW /= 0) then
-!%%      sprintf(cmessc.buf, "%4ld",  irow%10000);
          write(BUF(1:4), '(I4)') mod(IROW, 10000)
       else
-!%%    memset(cmessc.buf,' ',4);
          BUF(1:4) = ' '
       end if
       do 996 J = 2, K
          if (J == K) LBUF = MDAT(KK)
-!%%       if (fread(&cmessc.buf[4], cmessi.lbuf-4, 1,
-!%%         scratch_file) == 0) goto L_994;
          read(SUNIT, END = 994) BUF(5:LBUF)
   996 continue
       K = NROW
@@ -7528,7 +7278,6 @@
       NCOL = 0
 !                          Get format for label output.
       call MESSFI
-!%%   messcc.kcrwid = messcc.kciwid;
       FMTR = FMTI
       KDILAB = KDI+1
       LINSTR = 2*KDILAB+2
@@ -7536,10 +7285,6 @@
          if (.not. GOTFMT) go to 1150
          IWF = IWG
          FMTF = FMTG
-!++ CODE for .C. is inactive
-!%%      cmessi.iwf = cmessi.iwg;
-!%%      messcc.lfprec = messcc.lgprec;
-!++ END
          go to 1160
       end if
       call MESSFD(IDAT)
@@ -7560,7 +7305,6 @@
          K = LBUF + 1
       end if
       KNT = KNT + KLINE
-!%%    for (kc=cmessi.lbuf; kc < k; kc++) cmessc.buf[kc] = ' ';
       BUF(LBUF+1:K) = ' '
       LBUF = K
       go to 1110
@@ -7569,17 +7313,10 @@
 !++ CODE for ~.C. is active
       BUF = ' '
       write (BUF(1:KDILAB), FMTR) KNT+1
-!++ CODE for .C. is inactive
-!%%   memset(cmessc.buf,' ',LENBUF);
-!%%   sprintf(cmessc.buf, "%*ld", (int)messcc.kcrwid, knt+1);
-!++ END
       BUF(KDILAB:KDILAB) = '-'
       KLINE = min(NLINE, LASKNT - KNT)
       KNT = KNT + KLINE
-!%%    sprintf(&cmessc.buf[kdilab], "%*ld", (int)messcc.kcrwid, knt);
       write (BUF(KDILAB+1:2*KDILAB), FMTR) KNT
-!%%    cmessc.buf[kdilab*2L-1] = ':';
-!%%    for (kc=kdilab*2L; kc < *linstr-1; kc++) cmessc.buf[kc] = ' ';
       BUF(2*KDILAB:LINSTR-1) = ':'
       LBUF = LINSTR
  1110 LSTRT = LBUF
@@ -7589,11 +7326,6 @@
 !++ CODE for ~.C. is active
       write (BUF(LSTRT:LBUF), FMTI) (IDAT(K), K = MPT,                  &
      &    MPT+INC*(KLINE-1), INC)
-!++ CODE for .C. is inactive
-!%%   for (k=cmessi.mpt; k<=cmessi.mpt+cmessi.kline-1; k++)
-!%%  sprintf(&cmessc.buf[cmessi.lstrt+messcc.kciwid*(k-cmessi.mpt)-1],
-!%%      "%*ld", (int)messcc.kciwid, idat[cmessi.inc*k-1]);
-!++ END
       MPT = MPT + KLINE * INC
 !
 !                                     Entry here after vector output.
@@ -7678,10 +7410,6 @@
          end if
          call MESSFI
          MAXWID(IRC) = max(MAXWID(IRC), LTEXT + KDI+1)
-!%%      if (cmessi.irc == 1)
-!%%         messcc.kcrwid = cmessi.kdi;
-!%%      else
-!%%         messcc.kccwid = cmessi.kdi;
          FMTIM(IRC) = FMTI
       end if
       IRC = IRC + 1
@@ -7694,10 +7422,6 @@
 !++ CODE for ~.C. is active
          IWF = IWG
          FMTF = FMTG
-!++ CODE for .C. is inactive
-!%%      cmessi.iwf = cmessi.iwg;
-!%%      messcc.lfprec = messcc.lgprec;
-!++ END
          go to 1620
       end if
       call MESSFD(IDAT)
@@ -7711,9 +7435,6 @@
          KDI = KOLWID
          FMTI(5:5) = char(ICHAR0 + KOLWID / 10)
          FMTI(6:6) = char(ICHAR0 + mod(KOLWID, 10))
-!++ CODE for .C. is inactive
-!%%  messcc.kciwid = *kolwid;
-!++ END
       end if
       NIDAT = NIDAT + NDIM*NCOL
 !                              Continue with commmon code
@@ -7737,7 +7458,6 @@
 !                      Output row labels (if any)
       if (MTEXTR < 0) go to 1520
       if (MTEXTR == 0) then
-!%%       memcpy(&cmessc.buf[cmessi.lbuf],"Row ", 4);
          BUF(LBUF+1:LBUF+4) = 'Row '
          LBUF = LBUF + 4
          go to 1515
@@ -7753,23 +7473,16 @@
 !                     Return from getting text for row label
  1510 if (C /= '#') then
          MTEXTR = NTEXT + LENTXT * (ITEXT-1)
-!%%    for (kc=cmessi.lbuf; kc < *linstr; kc++) cmessc.buf[kc] = ' ';
          BUF(LBUF+1:LINSTR) = ' '
          go to 1520
       end if
  1515 continue
-!%%   sprintf(&cmessc.buf[cmessi.lbuf],"%*ld",(int)messcc.kcrwid,irow);
-!%%    for (kc=cmessi.lbuf+messcc.kcrwid;
-!%%       kc < *linstr; kc++) cmessc.buf[kc] = ' ';
       write (BUF(LBUF+1:LINSTR), FMTR) IROW
  1520 LSTRT = LINSTR + 1
       LBUF = LINSTR + LENOUT*KLINE
       LASTI = MPT + NDIM * KLINE - 1
       if (XARG) return
 !                                    Integer output
-!%% for (k=cmessi.mpt; k<=cmessi.lasti; k+=cmessi.ndim)
-!%%  sprintf(&cmessc.buf[cmessi.lstrt + messcc.kciwid*(k-cmessi.mpt)/
-!%%     cmessi.ndim - 1], "%*ld", (int)messcc.kciwid, idat[k-1]);
          write (BUF(LSTRT:LBUF), FMTI) (IDAT(K), K=MPT,LASTI,NDIM)
 !
 !                                     Entry here after matrix output.
@@ -7797,8 +7510,6 @@
       else
          KSHIFT = (KOLWID - IWF + 2) /2
          LENOUT = KOLWID
-!%%      cmessi.iwf = *kolwid;
-!%%      strcpy(cmessc.fmtf, "%*.*E\0");
          write (FMTF(7:8), '(I2)') KOLWID
       end if
       NFDAT = NFDAT + NDIM*NCOL
@@ -7852,7 +7563,6 @@
 !
       if (GOTFMT) then
          KDI = KDJ
-!%%      messcc.kciwid = cmessi.kdj;
          FMTI = FMTJ
          return
       end if
@@ -7939,9 +7649,6 @@
 !++ CODE for ~.C. is active
          FMTI(5:5) = char(ICHAR0 + KDI / 10)
          FMTI(6:6) = char(ICHAR0 + mod(KDI, 10))
-!++ CODE for .C. is inactive
-!%%      messcc.kciwid = cmessi.kdi;
-!++ END
       end if
       return
     end subroutine messfi
@@ -7949,19 +7656,26 @@
 
 !*************************************************************************
 !>
-! Get a scratch unit assigned.
+!  Get a scratch unit assigned.
+!
+!### History
+!  * Jacob Williams : 5/25/2021 : changed this routine
 
-    integer function MESSGS()
-    integer J
+    integer function messgs()
 
-      MESSGS = 31
-   10 MESSGS = MESSGS - 1
-      if (MESSGS == 0) stop 'Could not assign scratch unit in MESS.'
-      open (MESSGS, STATUS='SCRATCH', ACCESS='SEQUENTIAL', &
-            FORM='UNFORMATTED', IOSTAT=J)
-      if (J /= 0) go to 10
+    integer :: j !! iostat code
 
-    END function MESSGS
+    messgs = 31
+
+    do
+        messgs = messgs + 1
+        if (MESSGS == 0) stop 'Could not assign scratch unit in MESS.'
+        open (MESSGS, STATUS='SCRATCH', ACCESS='SEQUENTIAL', &
+              FORM='UNFORMATTED', IOSTAT=J)
+        if (j == 0) exit
+    end do
+
+    end function messgs
 !*************************************************************************
 
 !*************************************************************************
@@ -8018,9 +7732,6 @@
       equivalence (MAXWID(1), LINSTR), (MAXWID(2), KOLWID)
 
       save /CMESSI/, /CMESSC/
-!++ CODE for .C. is inactive
-!%%      long int kc;
-!++ END
       save LFLGDB
       data LFLGDB / 2 /
 !
@@ -8037,12 +7748,6 @@
          LFLGDB = 2
          LTEXT = 0
   110    continue
-!%%       ctmp=memchr(TEXT(cmessi.itext-1L,cmessi.ntext-1), SC,
-!%%          cmessi.lentxt - cmessi.ntext + 1);
-!%%       if (ctmp == NULL)
-!%%             l = 0;
-!%%       else
-!%%             l = ctmp - TEXT(cmessi.itext-1L,cmessi.ntext-1) + 1;
          L = index(TEXT(ITEXT)(NTEXT:LENTXT), SC)
          if (L == 0) then
             LTEXT = LTEXT + LENTXT - NTEXT + 1
@@ -8116,12 +7821,9 @@
          LBUF = LSTRT + K - 1
 !                                  Set initial blanks
   220    continue
-!%%      if (kb > 0) for (kc=cmessi.lstrt-kb-1; kc<cmessi.lstrt-1; kc++)
-!%%         cmessc.buf[kc] = ' ';
          if (KB > 0) BUF(LSTRT-KB:LSTRT-1) = ' '
 !                                  Move characters
          if (NTEXT == 0) then
-!%%       memcpy(&cmessc.buf[cmessi.lstrt-1],"Col ", 4);
             BUF(LSTRT:LSTRT+3) = 'Col '
             C = '#'
             LSTRT = LSTRT+4
@@ -8129,15 +7831,11 @@
             K = NTEXT - LTEXT - LFLGDB
             if (K <= 0) then
                KK = max(0, 3-NTEXT)
-!%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-2L,
-!%%         cmessi.lentxt+k-1), -k-kk+1L);
                BUF(LSTRT:LSTRT-K-KK)=TEXT(ITEXT-1)(LENTXT+K:LENTXT-KK)
                LSTRT = LSTRT-K-KK+1
                K = 1
             end if
             if (NTEXT > 3) then
-!%%       memcpy(&cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-1L,
-!%%         k-1), cmessi.ntext-k-2L);
                BUF(LSTRT:LSTRT+NTEXT-K-3) = TEXT(ITEXT)(K:NTEXT-3)
                LSTRT = LSTRT + NTEXT - K - 2
             end if
@@ -8152,16 +7850,11 @@
          end if
          if (C == '#') then
 !                                  Output column index
-!%%         sprintf(&cmessc.buf[cmessi.lstrt-1], "%*ld ",
-!%%           (int)(cmessi.lbuf-cmessi.lstrt), cmessi.imag+j-1);
             write (BUF(LSTRT:LBUF), FMTC) IMAG + J - 1
             if (NTEXT /= 0) NTEXT = K
             go to 300
          end if
 !                                  Set trailing blanks
-!%%      if (cmessi.lstrt <= cmessi.lbuf)
-!%%           for (kc=cmessi.lstrt-1; kc < cmessi.lbuf; kc++)
-!%%              cmessc.buf[kc] = ' ';
          if (LSTRT <= LBUF) BUF(LSTRT:LBUF) = ' '
   300 continue
   310 return
@@ -8220,25 +7913,18 @@
         if (OUNIT <= 0) then
           if (KSCRN > 0) then
             if (NSCRN >= KSCRN) then
-!%%               printf( " Type 'Enter' to continue\n" );
               print '('' Type "Enter" to continue'')'
-!%%               scanf( "%*[^\n]%*c" );
               read (*, *)
               NSCRN = 0
             end if
             NSCRN = NSCRN + 1
           end if
-!%%      printf( "%.*s\n", (int)cmessi.lbuf, cmessc.buf);
           print '(1X, A)', BUF(1:LBUF)
           if (OUNIT == 0) go to 20
         end if
 !++ CODE for ~.C. is active
         K = abs(OUNIT)
         write (K, '(A)', ERR=30) BUF(1:LBUF)
-!++ CODE for .C. is inactive
-!%%      fprintf(c_handle[labs(cmessi.ounit)-1], "%.*s\n",
-!%%      (int)cmessi.lbuf, cmessc.buf);
-!++ END
    20   LBUF = 0
       end if
       return
@@ -8305,7 +7991,6 @@
       MACT(J) = MECONT
       call MESS(MACT, TEXT, IDAT)
       MACT(J) = K
-!%%      k = strlen(ftext);
       K = len(FTEXT)
       NTEXT = 1
       if (K /= 0) then
@@ -8319,7 +8004,6 @@
          end if
          call MESSPR
          LBUF = K
-!%%      memcpy(cmessc.buf, &ftext[cmessi.ntext-1], k);
          BUF(1:K) = FTEXT(NTEXT:NTEXT+K-1)
       end if
       ICHAR0 = ICHAR('0')
@@ -8484,7 +8168,6 @@
       parameter (LTXTAA=  1,LTXTAB=  9,LTXTAC=233,LTXTAD=267,LTXTAE=295)
       character MTXTAA(2) * (156)
 !                          Next 4 lines not automatically generated
-!%%    #define LTXTEE  137
       parameter (LTXTEE = LTXTAE - 156 - 2)
       parameter (LTXEND = 156)
 !
@@ -8621,7 +8304,6 @@
             KEX = -KEX
          end if
          MACT(13) = (LAST - 4) / 3
-!%%       strcpy(&mtxtaa[1][LTXTEE-1], etext);
          MTXTAA(2)(LTXTEE:LTXEND)=ETEXT(1:)
          call MESS(MACT, MTXTAA, INTCHK(1))
          if (MACT(2) > 10) INTCHK(1) = -LAST

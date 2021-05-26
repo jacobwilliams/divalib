@@ -122,7 +122,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 9.4% of total for procedures.">377 statements</a>
+    title=" 9.3% of total for procedures.">374 statements</a>
      </li> 
      
      
@@ -2279,21 +2279,18 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVACR</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TOL</span><span class="p">,</span> <span class="n">LGROUP</span><span class="p">)</span>
 
       <span class="kt">integer </span><span class="n">LGROUP</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">TOL</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
 <span class="c">!</span>
       <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
 <span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
       <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
       <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
       <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
@@ -2333,29 +2330,28 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 <span class="c">!</span>
       <span class="kt">integer </span><span class="n">L</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">KQL</span><span class="p">,</span> <span class="n">KQN</span><span class="p">,</span> <span class="n">KQD</span><span class="p">,</span> <span class="n">JLGREP</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">ILGROR</span><span class="p">,</span> <span class="n">ITOLOR</span><span class="p">,</span> <span class="n">JLGROR</span><span class="p">,&amp;</span>
      <span class="p">&amp;</span>   <span class="n">IORD</span><span class="p">,</span> <span class="n">KOUTKO</span><span class="p">,</span> <span class="n">KQLORD</span><span class="p">,</span> <span class="n">LL</span><span class="p">,</span> <span class="n">LKQMAX</span>
-      <span class="kt">double precision </span><span class="n">CM8</span><span class="p">,</span> <span class="n">CM2</span><span class="p">,</span> <span class="n">CMP5</span><span class="p">,</span> <span class="n">C0</span><span class="p">,</span> <span class="n">CQ3125</span><span class="p">,</span> <span class="n">CP1</span><span class="p">,</span> <span class="n">CP125</span><span class="p">,</span> <span class="n">CP25</span><span class="p">,</span> <span class="n">CP5</span>
-      <span class="kt">double precision </span><span class="n">CP75</span><span class="p">,</span> <span class="n">CP8</span><span class="p">,</span> <span class="n">CP9375</span><span class="p">,</span> <span class="n">C1</span><span class="p">,</span> <span class="n">C1P4</span><span class="p">,</span> <span class="n">C2</span><span class="p">,</span> <span class="n">C4</span><span class="p">,</span> <span class="n">C10</span><span class="p">,</span> <span class="n">C20</span>
-      <span class="kt">double precision </span><span class="n">C1000</span><span class="p">,</span> <span class="n">C40</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CM8</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CM2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CMP5</span> <span class="o">=</span> <span class="o">-</span><span class="p">.</span><span class="mi">5</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CQ3125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">03125</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP1</span> <span class="o">=</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">125</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP25</span> <span class="o">=</span> <span class="p">.</span><span class="mi">25</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP5</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP75</span> <span class="o">=</span> <span class="p">.</span><span class="mi">75</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP8</span> <span class="o">=</span> <span class="p">.</span><span class="mi">8</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">CP9375</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9375</span><span class="n">D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1P4</span> <span class="o">=</span> <span class="mf">1.4D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C2</span> <span class="o">=</span> <span class="mf">2.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C4</span> <span class="o">=</span> <span class="mf">4.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C10</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C20</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C40</span> <span class="o">=</span> <span class="mi">4</span><span class="mf">0.D0</span><span class="p">)</span>
-      <span class="k">parameter</span> <span class="p">(</span><span class="n">C1000</span> <span class="o">=</span> <span class="mi">100</span><span class="mf">0.D0</span><span class="p">)</span>
+
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CM8</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CM2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CMP5</span> <span class="o">=</span> <span class="o">-</span><span class="p">.</span><span class="mi">5</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C0</span> <span class="o">=</span> <span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CQ3125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">03125</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP1</span> <span class="o">=</span> <span class="p">.</span><span class="mi">1</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP125</span> <span class="o">=</span> <span class="p">.</span><span class="mi">125</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP25</span> <span class="o">=</span> <span class="p">.</span><span class="mi">25</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP5</span> <span class="o">=</span> <span class="p">.</span><span class="mi">5</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP75</span> <span class="o">=</span> <span class="p">.</span><span class="mi">75</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP8</span> <span class="o">=</span> <span class="p">.</span><span class="mi">8</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">CP9375</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9375</span><span class="n">D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1</span> <span class="o">=</span> <span class="mf">1.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1P4</span> <span class="o">=</span> <span class="mf">1.4D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C2</span> <span class="o">=</span> <span class="mf">2.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C4</span> <span class="o">=</span> <span class="mf">4.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C10</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C20</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C40</span> <span class="o">=</span> <span class="mi">4</span><span class="mf">0.D0</span>
+      <span class="kt">double precision</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">C1000</span> <span class="o">=</span> <span class="mi">100</span><span class="mf">0.D0</span>
+
       <span class="kt">double precision </span><span class="n">TPP</span><span class="p">,</span> <span class="n">HH</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">EI</span><span class="p">,</span> <span class="n">EPS</span><span class="p">,</span> <span class="n">ERCOEF</span><span class="p">,</span> <span class="n">RND</span><span class="p">,</span> <span class="n">RNOISE</span><span class="p">,</span> <span class="n">S</span>
       <span class="kt">double precision </span><span class="n">TP2</span><span class="p">,</span> <span class="n">TPS1</span><span class="p">,</span> <span class="n">TPS2</span><span class="p">,</span> <span class="n">TPS3</span><span class="p">,</span> <span class="n">TPS4</span><span class="p">,</span> <span class="n">TPS5</span><span class="p">,</span> <span class="n">TPS6</span><span class="p">,</span> <span class="n">TPS7</span>
       <span class="kt">double precision </span><span class="n">REF</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -2868,7 +2864,6 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
 <span class="c">!++  Code for ~{p,x} is active</span>
             <span class="n">Y</span><span class="p">(</span><span class="n">IY</span> <span class="o">-</span> <span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">IY</span> <span class="o">-</span> <span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span><span class="n">KQL</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span> <span class="o">*</span> <span class="n">TPP</span>
 <span class="c">!++  Code for {p,x} is inactive</span>
-<span class="c">!c--D Next line special: P=&gt;D, X=&gt;Q</span>
 <span class="c">!            Y(IY - K) = Y(IY - K) + dble(G(KQL + 1, K)) * dble(TPP)</span>
 <span class="c">!++  END</span>
  <span class="mi">3320</span>    <span class="k">continue</span>
@@ -2888,7 +2883,6 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
             <span class="n">FDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="n">SIGMA</span><span class="p">(</span><span class="n">IOP11</span><span class="p">)</span>
             <span class="n">FDAT</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="n">ROBND</span>
             <span class="n">MACT2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">NTE</span>
-<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
             <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT1</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
             <span class="n">KOUTKO</span> <span class="o">=</span> <span class="n">NOUTKO</span>
          <span class="k">end if</span>
@@ -2915,7 +2909,6 @@ public subroutine DIVACR(Y, F, KORD, TOL, LGROUP)
          <span class="n">FDAT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.D0</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">KQL</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">FDAT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">=</span> <span class="n">S</span>
          <span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KQD</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
          <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT2</span><span class="p">,</span> <span class="n">MTXTAB</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
  <span class="mi">3328</span>    <span class="k">if</span> <span class="p">(</span><span class="n">I</span> <span class="o">==</span> <span class="n">NTE</span><span class="p">)</span> <span class="n">IOP10</span> <span class="o">=</span> <span class="n">IOP10</span> <span class="o">-</span> <span class="mi">1</span>
       <span class="k">end if</span>

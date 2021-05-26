@@ -419,7 +419,7 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 </g>
 </g>
 <!-- proc~divag&#45;&gt;proc~divabu -->
-<g id="proc~~divag~~CallsGraph_edge2" class="edge">
+<g id="proc~~divag~~CallsGraph_edge1" class="edge">
 <title>proc~divag&#45;&gt;proc~divabu</title>
 <path fill="none" stroke="#000000" d="M54.4,-39.3C62.48,-41.23 71.51,-43.38 80.1,-45.43"/>
 <polygon fill="#000000" stroke="#000000" points="79.38,-48.86 89.92,-47.78 81,-42.05 79.38,-48.86"/>
@@ -434,7 +434,7 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 </g>
 </g>
 <!-- proc~divag&#45;&gt;proc~dmess -->
-<g id="proc~~divag~~CallsGraph_edge1" class="edge">
+<g id="proc~~divag~~CallsGraph_edge2" class="edge">
 <title>proc~divag&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M54.4,-26.7C62.48,-24.77 71.51,-22.62 80.1,-20.57"/>
 <polygon fill="#000000" stroke="#000000" points="81,-23.95 89.92,-18.22 79.38,-17.14 81,-23.95"/>
@@ -2338,7 +2338,6 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAG</span><span class="p">(</span><span class="n">TSPECS</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">IFLAG</span><span class="p">,</span> <span class="n">NSTOP</span><span class="p">,</span> <span class="n">GNEW</span><span class="p">,</span> <span class="n">GT</span><span class="p">)</span>
 
       <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">IFLAG</span><span class="p">,</span> <span class="n">NSTOP</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TSPECS</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">TOLD</span><span class="p">,</span> <span class="n">TSAVE</span>
       <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GNEW</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">GOLD</span>
       <span class="k">save </span><span class="n">GOLD</span><span class="p">,</span> <span class="n">TOLD</span><span class="p">,</span> <span class="n">TSAVE</span>
@@ -2349,14 +2348,12 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
       <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
 <span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
       <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
       <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
       <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
@@ -2623,7 +2620,6 @@ public subroutine DIVAG(TSPECS, Y, F, KORD, IFLAG, NSTOP, GNEW, GT)
 <span class="c">! ********************** ERROR PROCESSING ******************</span>
 <span class="c">!</span>
   <span class="mi">500</span> <span class="n">MACT</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">KSTEP</span>
-<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
       <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">TSPECS</span><span class="p">)</span>
       <span class="n">IFLAG</span> <span class="o">=</span> <span class="mi">8</span>
       <span class="n">KEXIT</span> <span class="o">=</span> <span class="mi">6</span>

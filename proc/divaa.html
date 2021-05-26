@@ -376,7 +376,7 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~divabu -->
-<g id="proc~~divaa~~CallsGraph_edge3" class="edge">
+<g id="proc~~divaa~~CallsGraph_edge1" class="edge">
 <title>proc~divaa&#45;&gt;proc~divabu</title>
 <path fill="none" stroke="#000000" d="M53.45,-66.15C62.21,-70.33 72.17,-75.08 81.52,-79.54"/>
 <polygon fill="#000000" stroke="#000000" points="80.07,-82.73 90.6,-83.88 83.09,-76.41 80.07,-82.73"/>
@@ -391,7 +391,7 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~divahc -->
-<g id="proc~~divaa~~CallsGraph_edge1" class="edge">
+<g id="proc~~divaa~~CallsGraph_edge2" class="edge">
 <title>proc~divaa&#45;&gt;proc~divahc</title>
 <path fill="none" stroke="#000000" d="M54.4,-54C62.39,-54 71.31,-54 79.82,-54"/>
 <polygon fill="#000000" stroke="#000000" points="79.92,-57.5 89.92,-54 79.92,-50.5 79.92,-57.5"/>
@@ -406,7 +406,7 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
 </g>
 </g>
 <!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~divaa~~CallsGraph_edge2" class="edge">
+<g id="proc~~divaa~~CallsGraph_edge3" class="edge">
 <title>proc~divaa&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M53.45,-41.85C62.21,-37.67 72.17,-32.92 81.52,-28.46"/>
 <polygon fill="#000000" stroke="#000000" points="83.09,-31.59 90.6,-24.12 80.07,-25.27 83.09,-31.59"/>
@@ -2310,7 +2310,6 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DIVAA</span><span class="p">(</span><span class="n">TSPECS</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">KORD</span><span class="p">,</span> <span class="n">DIVAF</span><span class="p">,</span> <span class="n">DIVAO</span><span class="p">)</span>
 
       <span class="kt">integer </span><span class="n">KORD</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TSPECS</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">Y</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">F</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
       <span class="k">external </span><span class="n">DIVAF</span><span class="p">,</span> <span class="n">DIVAO</span>
@@ -2318,14 +2317,12 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
       <span class="kt">integer </span><span class="n">KDIM</span><span class="p">,</span> <span class="n">MAXORD</span><span class="p">,</span> <span class="n">MAXSTF</span>
 <span class="c">!++ Substitute for KDIM, MAXORD, MAXSTF below</span>
       <span class="k">parameter</span> <span class="p">(</span><span class="n">KDIM</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">MAXORD</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">MAXSTF</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TN</span>
       <span class="kt">double precision </span><span class="n">XI</span><span class="p">(</span><span class="n">KDIM</span><span class="p">)</span>
 <span class="c">!</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision </span><span class="n">TG</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TGSTOP</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">,</span> <span class="n">TMARKX</span><span class="p">,</span> <span class="n">TOUT</span><span class="p">,</span> <span class="n">TOLG</span>
       <span class="kt">double precision </span><span class="n">ALPHA</span><span class="p">(</span><span class="n">KDIM</span><span class="p">),</span> <span class="n">BETA</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-      <span class="kt">double precision  </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
+      <span class="kt">double precision </span><span class="n">D</span><span class="p">(</span><span class="n">MAXSTF</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">),</span> <span class="n">G</span><span class="p">(</span><span class="n">KDIM</span><span class="p">,</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">V</span><span class="p">(</span><span class="n">KDIM</span><span class="o">+</span><span class="n">MAXORD</span><span class="p">)</span>
       <span class="kt">double precision </span><span class="n">HC</span><span class="p">,</span> <span class="n">HDEC</span><span class="p">,</span> <span class="n">HINC</span><span class="p">,</span> <span class="n">HINCC</span><span class="p">,</span> <span class="n">HMAX</span><span class="p">,</span> <span class="n">HMAXP9</span><span class="p">,</span> <span class="n">HMIN</span>
       <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
@@ -2391,7 +2388,6 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
       <span class="kt">integer </span><span class="n">LDIS</span><span class="p">,</span> <span class="n">KEXIT</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">J1</span><span class="p">,</span> <span class="n">J2</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LX</span>
       <span class="kt">double precision </span><span class="n">TP</span><span class="p">,</span> <span class="n">TP1</span><span class="p">,</span> <span class="n">TP2</span><span class="p">,</span> <span class="n">TP3</span><span class="p">,</span> <span class="n">HH</span><span class="p">,</span> <span class="n">DISADJ</span>
       <span class="kt">double precision </span><span class="n">SIGMAS</span><span class="p">,</span> <span class="n">TPS1</span><span class="p">,</span> <span class="n">TPS2</span><span class="p">,</span> <span class="n">EIMINO</span><span class="p">,</span> <span class="n">EXR</span>
-<span class="c">!--D Next line special: P=&gt;D, X=&gt;Q</span>
       <span class="kt">double precision  </span><span class="n">TMARKA</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">XP</span><span class="p">,</span> <span class="n">XP1</span>
       <span class="k">equivalence</span> <span class="p">(</span><span class="n">G</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">HH</span><span class="p">),</span> <span class="p">(</span><span class="n">TMARKA</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">TMARK</span><span class="p">)</span>
       <span class="k">equivalence</span> <span class="p">(</span><span class="n">KEXIT</span><span class="p">,</span> <span class="n">IOP17</span><span class="p">)</span>
@@ -3273,7 +3269,6 @@ public subroutine DIVAA(TSPECS, Y, F, KORD, DIVAF, DIVAO)
       <span class="n">KORD1I</span> <span class="o">=</span> <span class="nb">mod</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
       <span class="n">MACT</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">KORD1I</span>
       <span class="n">MACT</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">MERET</span>
-<span class="c">!--D Next line special: P=&gt;S, X=&gt;D</span>
       <span class="k">call </span><span class="n">DMESS</span><span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">MTXTAA</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
       <span class="n">MACT</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="n">MENTXT</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">2110</span>

@@ -718,11 +718,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
    print data from FDAT.
  XARGOK Set .true. if call is from program that will print data from
    FDAT.</p>
-<p>++ CODE for .C. is inactive
-      integer  kciwid, kccwid, kcrwid, lbeg, lend, lfprec, lgprec
-      common /MESSCC/ kciwid,kccwid,kcrwid,lbeg,lend,lfprec,lgprec
-%%    long int kc;
-++ END</p>
 <h3>History</h3>
 <ul>
 <li>2010-02-22 MESS  Krogh  Moved NSKIP=0 to start of code.</li>
@@ -867,89 +862,89 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <!-- proc~mess -->
 <g id="proc~~mess~~CallsGraph_node1" class="node">
 <title>proc~mess</title>
-<polygon fill="none" stroke="black" points="54,-106 0,-106 0,-82 54,-82 54,-106"/>
-<text text-anchor="middle" x="27" y="-91.6" font-family="Helvetica,sans-Serif" font-size="10.50">MESS</text>
-</g>
-<!-- proc~messfd -->
-<g id="proc~~mess~~CallsGraph_node2" class="node">
-<title>proc~messfd</title>
-<g id="a_proc~~mess~~CallsGraph_node2"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
-<polygon fill="#d9534f" stroke="#d9534f" points="147.5,-188 91.5,-188 91.5,-164 147.5,-164 147.5,-188"/>
-<text text-anchor="middle" x="119.5" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
-</a>
-</g>
-</g>
-<!-- proc~mess&#45;&gt;proc~messfd -->
-<g id="proc~~mess~~CallsGraph_edge1" class="edge">
-<title>proc~mess&#45;&gt;proc~messfd</title>
-<path fill="none" stroke="#000000" d="M39.41,-106.21C51.5,-118.92 71.39,-139.13 90,-155 91,-155.85 92.03,-156.71 93.08,-157.56"/>
-<polygon fill="#000000" stroke="#000000" points="91.27,-160.59 101.32,-163.95 95.56,-155.05 91.27,-160.59"/>
+<polygon fill="none" stroke="black" points="54,-104 0,-104 0,-80 54,-80 54,-104"/>
+<text text-anchor="middle" x="27" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50">MESS</text>
 </g>
 <!-- proc~messgs -->
-<g id="proc~~mess~~CallsGraph_node3" class="node">
+<g id="proc~~mess~~CallsGraph_node2" class="node">
 <title>proc~messgs</title>
-<g id="a_proc~~mess~~CallsGraph_node3"><a xlink:href=".././proc/messgs.html" xlink:title="MESSGS">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="148,-146 91,-146 91,-122 148,-122 148,-146"/>
-<text text-anchor="middle" x="119.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSGS</text>
+<g id="a_proc~~mess~~CallsGraph_node2"><a xlink:href=".././proc/messgs.html" xlink:title="messgs">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146.5,-188 92.5,-188 92.5,-164 146.5,-164 146.5,-188"/>
+<text text-anchor="middle" x="119.5" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">messgs</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messgs -->
-<g id="proc~~mess~~CallsGraph_edge2" class="edge">
+<g id="proc~~mess~~CallsGraph_edge1" class="edge">
 <title>proc~mess&#45;&gt;proc~messgs</title>
-<path fill="none" stroke="#000000" d="M54.18,-105.57C62.78,-109.37 72.5,-113.67 81.74,-117.75"/>
-<polygon fill="#000000" stroke="#000000" points="80.56,-121.06 91.12,-121.9 83.39,-114.66 80.56,-121.06"/>
-</g>
-<!-- proc~messfi -->
-<g id="proc~~mess~~CallsGraph_node4" class="node">
-<title>proc~messfi</title>
-<g id="a_proc~~mess~~CallsGraph_node4"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
-<polygon fill="#d9534f" stroke="#d9534f" points="239,-147 185,-147 185,-123 239,-123 239,-147"/>
-<text text-anchor="middle" x="212" y="-132.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
-</a>
-</g>
-</g>
-<!-- proc~mess&#45;&gt;proc~messfi -->
-<g id="proc~~mess~~CallsGraph_edge3" class="edge">
-<title>proc~mess&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M54.25,-96.7C78.95,-99.57 116.85,-104.85 149,-113 157.59,-115.18 166.68,-118.06 175.16,-121.02"/>
-<polygon fill="#000000" stroke="#000000" points="174.19,-124.39 184.78,-124.48 176.56,-117.8 174.19,-124.39"/>
+<path fill="none" stroke="#000000" d="M38.9,-104.17C50.89,-117.3 70.98,-138.52 90,-155 90.99,-155.86 92.02,-156.72 93.06,-157.58"/>
+<polygon fill="#000000" stroke="#000000" points="91.24,-160.6 101.28,-163.99 95.55,-155.08 91.24,-160.6"/>
 </g>
 <!-- proc~messpr -->
-<g id="proc~~mess~~CallsGraph_node5" class="node">
+<g id="proc~~mess~~CallsGraph_node3" class="node">
 <title>proc~messpr</title>
-<g id="a_proc~~mess~~CallsGraph_node5"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
-<polygon fill="#d9534f" stroke="#d9534f" points="147,-66 92,-66 92,-42 147,-42 147,-66"/>
-<text text-anchor="middle" x="119.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
+<g id="a_proc~~mess~~CallsGraph_node3"><a xlink:href=".././proc/messpr.html" xlink:title="MESSPR">
+<polygon fill="#d9534f" stroke="#d9534f" points="147,-146 92,-146 92,-122 147,-122 147,-146"/>
+<text text-anchor="middle" x="119.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSPR</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messpr -->
-<g id="proc~~mess~~CallsGraph_edge4" class="edge">
+<g id="proc~~mess~~CallsGraph_edge2" class="edge">
 <title>proc~mess&#45;&gt;proc~messpr</title>
-<path fill="none" stroke="#000000" d="M54.18,-82.43C63.02,-78.52 73.06,-74.08 82.54,-69.9"/>
-<polygon fill="#000000" stroke="#000000" points="84.02,-73.07 91.75,-65.82 81.19,-66.66 84.02,-73.07"/>
+<path fill="none" stroke="#000000" d="M54.18,-104.15C63.18,-108.33 73.42,-113.08 83.04,-117.54"/>
+<polygon fill="#000000" stroke="#000000" points="81.84,-120.84 92.38,-121.88 84.79,-114.49 81.84,-120.84"/>
 </g>
 <!-- proc~messmh -->
-<g id="proc~~mess~~CallsGraph_node6" class="node">
+<g id="proc~~mess~~CallsGraph_node4" class="node">
 <title>proc~messmh</title>
-<g id="a_proc~~mess~~CallsGraph_node6"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
-<polygon fill="#d9534f" stroke="#d9534f" points="149,-24 90,-24 90,0 149,0 149,-24"/>
-<text text-anchor="middle" x="119.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
+<g id="a_proc~~mess~~CallsGraph_node4"><a xlink:href=".././proc/messmh.html" xlink:title="MESSMH">
+<polygon fill="#d9534f" stroke="#d9534f" points="149,-104 90,-104 90,-80 149,-80 149,-104"/>
+<text text-anchor="middle" x="119.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSMH</text>
 </a>
 </g>
 </g>
 <!-- proc~mess&#45;&gt;proc~messmh -->
-<g id="proc~~mess~~CallsGraph_edge5" class="edge">
+<g id="proc~~mess~~CallsGraph_edge3" class="edge">
 <title>proc~mess&#45;&gt;proc~messmh</title>
-<path fill="none" stroke="#000000" d="M39.41,-81.79C51.5,-69.08 71.39,-48.87 90,-33 91,-32.15 92.03,-31.29 93.08,-30.44"/>
-<polygon fill="#000000" stroke="#000000" points="95.56,-32.95 101.32,-24.05 91.27,-27.41 95.56,-32.95"/>
+<path fill="none" stroke="#000000" d="M54.18,-92C62.12,-92 71.02,-92 79.61,-92"/>
+<polygon fill="#000000" stroke="#000000" points="79.85,-95.5 89.85,-92 79.85,-88.5 79.85,-95.5"/>
+</g>
+<!-- proc~messfi -->
+<g id="proc~~mess~~CallsGraph_node5" class="node">
+<title>proc~messfi</title>
+<g id="a_proc~~mess~~CallsGraph_node5"><a xlink:href=".././proc/messfi.html" xlink:title="MESSFI">
+<polygon fill="#d9534f" stroke="#d9534f" points="239,-44 185,-44 185,-20 239,-20 239,-44"/>
+<text text-anchor="middle" x="212" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFI</text>
+</a>
+</g>
+</g>
+<!-- proc~mess&#45;&gt;proc~messfi -->
+<g id="proc~~mess~~CallsGraph_edge4" class="edge">
+<title>proc~mess&#45;&gt;proc~messfi</title>
+<path fill="none" stroke="#000000" d="M54.22,-83.02C65.25,-79.27 78.24,-74.89 90,-71 118.42,-61.61 150.69,-51.22 174.75,-43.53"/>
+<polygon fill="#000000" stroke="#000000" points="176.06,-46.78 184.53,-40.41 173.94,-40.12 176.06,-46.78"/>
+</g>
+<!-- proc~messfd -->
+<g id="proc~~mess~~CallsGraph_node6" class="node">
+<title>proc~messfd</title>
+<g id="a_proc~~mess~~CallsGraph_node6"><a xlink:href=".././proc/messfd.html" xlink:title="MESSFD">
+<polygon fill="#d9534f" stroke="#d9534f" points="147.5,-24 91.5,-24 91.5,0 147.5,0 147.5,-24"/>
+<text text-anchor="middle" x="119.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFD</text>
+</a>
+</g>
+</g>
+<!-- proc~mess&#45;&gt;proc~messfd -->
+<g id="proc~~mess~~CallsGraph_edge5" class="edge">
+<title>proc~mess&#45;&gt;proc~messfd</title>
+<path fill="none" stroke="#000000" d="M41.75,-79.85C56.45,-66.85 79.96,-46.07 97.09,-30.92"/>
+<polygon fill="#000000" stroke="#000000" points="99.75,-33.25 104.92,-24 95.11,-28 99.75,-33.25"/>
 </g>
 <!-- proc~messfd&#45;&gt;proc~messfi -->
 <g id="proc~~mess~~CallsGraph_edge6" class="edge">
 <title>proc~messfd&#45;&gt;proc~messfi</title>
-<path fill="none" stroke="#000000" d="M147.16,-163.92C156.08,-159.88 166.16,-155.31 175.63,-151.02"/>
-<polygon fill="#000000" stroke="#000000" points="177.17,-154.17 184.84,-146.85 174.29,-147.79 177.17,-154.17"/>
+<path fill="none" stroke="#000000" d="M147.65,-18C156.2,-19.89 165.78,-22.01 174.86,-24.01"/>
+<polygon fill="#000000" stroke="#000000" points="174.28,-27.47 184.8,-26.21 175.79,-20.63 174.28,-27.47"/>
 </g>
 </g>
 </svg>
@@ -1038,35 +1033,20 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <polygon fill="none" stroke="black" points="235,-84 181,-84 181,-60 235,-60 235,-84"/>
 <text text-anchor="middle" x="208" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50">MESS</text>
 </g>
-<!-- proc~divadb -->
-<g id="proc~~mess~~CalledByGraph_node2" class="node">
-<title>proc~divadb</title>
-<g id="a_proc~~mess~~CalledByGraph_node2"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-114 0,-114 0,-90 54,-90 54,-114"/>
-<text text-anchor="middle" x="27" y="-99.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
-</a>
-</g>
-</g>
-<!-- proc~divadb&#45;&gt;proc~mess -->
-<g id="proc~~mess~~CalledByGraph_edge1" class="edge">
-<title>proc~divadb&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M54.12,-110.04C78.21,-116.15 114.72,-122.11 145,-113 159.97,-108.5 174.65,-99.08 185.97,-90.4"/>
-<polygon fill="#000000" stroke="#000000" points="188.32,-93 193.92,-84 183.93,-87.55 188.32,-93"/>
-</g>
 <!-- proc~messft -->
-<g id="proc~~mess~~CalledByGraph_node5" class="node">
+<g id="proc~~mess~~CalledByGraph_node2" class="node">
 <title>proc~messft</title>
-<g id="a_proc~~mess~~CalledByGraph_node5"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
+<g id="a_proc~~mess~~CalledByGraph_node2"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
 <polygon fill="#d9534f" stroke="#d9534f" points="145,-104 90,-104 90,-80 145,-80 145,-104"/>
 <text text-anchor="middle" x="117.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
 </a>
 </g>
 </g>
-<!-- proc~divadb&#45;&gt;proc~messft -->
-<g id="proc~~mess~~CalledByGraph_edge6" class="edge">
-<title>proc~divadb&#45;&gt;proc~messft</title>
-<path fill="none" stroke="#000000" d="M54.07,-99.05C62.21,-98.13 71.34,-97.1 80.05,-96.12"/>
-<polygon fill="#000000" stroke="#000000" points="80.46,-99.6 90,-94.99 79.67,-92.64 80.46,-99.6"/>
+<!-- proc~messft&#45;&gt;proc~mess -->
+<g id="proc~~mess~~CalledByGraph_edge1" class="edge">
+<title>proc~messft&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M145.05,-86C153.18,-84.16 162.25,-82.11 170.9,-80.16"/>
+<polygon fill="#000000" stroke="#000000" points="171.79,-83.55 180.77,-77.93 170.25,-76.72 171.79,-83.55"/>
 </g>
 <!-- proc~diva -->
 <g id="proc~~mess~~CalledByGraph_node3" class="node">
@@ -1093,22 +1073,37 @@ public subroutine MESS(MACT, TEXT, IDAT)
 </g>
 </g>
 <!-- proc~diva&#45;&gt;proc~divaop -->
-<g id="proc~~mess~~CalledByGraph_edge5" class="edge">
+<g id="proc~~mess~~CalledByGraph_edge6" class="edge">
 <title>proc~diva&#45;&gt;proc~divaop</title>
 <path fill="none" stroke="#000000" d="M54.07,-32.46C62.37,-29.74 71.7,-26.68 80.57,-23.77"/>
 <polygon fill="#000000" stroke="#000000" points="81.89,-27.02 90.31,-20.58 79.71,-20.37 81.89,-27.02"/>
 </g>
 <!-- proc~divaop&#45;&gt;proc~mess -->
-<g id="proc~~mess~~CalledByGraph_edge4" class="edge">
+<g id="proc~~mess~~CalledByGraph_edge3" class="edge">
 <title>proc~divaop&#45;&gt;proc~mess</title>
 <path fill="none" stroke="#000000" d="M136.41,-24.14C149.12,-32.76 166.4,-44.48 180.68,-54.16"/>
 <polygon fill="#000000" stroke="#000000" points="178.88,-57.16 189.12,-59.88 182.8,-51.37 178.88,-57.16"/>
 </g>
-<!-- proc~messft&#45;&gt;proc~mess -->
-<g id="proc~~mess~~CalledByGraph_edge3" class="edge">
-<title>proc~messft&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M145.05,-86C153.18,-84.16 162.25,-82.11 170.9,-80.16"/>
-<polygon fill="#000000" stroke="#000000" points="171.79,-83.55 180.77,-77.93 170.25,-76.72 171.79,-83.55"/>
+<!-- proc~divadb -->
+<g id="proc~~mess~~CalledByGraph_node5" class="node">
+<title>proc~divadb</title>
+<g id="a_proc~~mess~~CalledByGraph_node5"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-114 0,-114 0,-90 54,-90 54,-114"/>
+<text text-anchor="middle" x="27" y="-99.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;proc~mess -->
+<g id="proc~~mess~~CalledByGraph_edge4" class="edge">
+<title>proc~divadb&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M54.12,-110.04C78.21,-116.15 114.72,-122.11 145,-113 159.97,-108.5 174.65,-99.08 185.97,-90.4"/>
+<polygon fill="#000000" stroke="#000000" points="188.32,-93 193.92,-84 183.93,-87.55 188.32,-93"/>
+</g>
+<!-- proc~divadb&#45;&gt;proc~messft -->
+<g id="proc~~mess~~CalledByGraph_edge5" class="edge">
+<title>proc~divadb&#45;&gt;proc~messft</title>
+<path fill="none" stroke="#000000" d="M54.07,-99.05C62.21,-98.13 71.34,-97.1 80.05,-96.12"/>
+<polygon fill="#000000" stroke="#000000" points="80.46,-99.6 90,-94.99 79.67,-92.64 80.46,-99.6"/>
 </g>
 </g>
 </svg>
@@ -2269,7 +2264,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">FMTJ</span> <span class="o">=</span> <span class="s1">&#39;(99I06)&#39;</span>
          <span class="n">FMTG</span> <span class="o">=</span> <span class="s1">&#39;(1P,99Exx.xx)  &#39;</span>
 <span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%    memset(cmessc.dols,&#39;$&#39;,72);</span>
 <span class="c">!      FMTI = &#39;%*d&#39;</span>
 <span class="c">!      FMTJ = &#39;%*d\0&#39;</span>
 <span class="c">!      FMTG = &#39;%*.*E\0&#39;</span>
@@ -2338,23 +2332,13 @@ public subroutine MESS(MACT, TEXT, IDAT)
   <span class="mi">126</span>    <span class="n">LENLIN</span> <span class="o">=</span> <span class="n">LINMSG</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
   <span class="mi">128</span>    <span class="k">if</span> <span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!%%          k = labs(cmessi.ounit);</span>
-<span class="c">!%%          c_fname[m-15][6] = k / 10 + &#39;0&#39;;</span>
-<span class="c">!%%          c_fname[m-15][7] = k % 10 + &#39;0&#39;;</span>
-<span class="c">!%%          if (strcmp(&amp;c_fname[16-m][6], &amp;c_fname[m-15][6]))</span>
-<span class="c">!%%             c_handle[m-15] = fopen(c_fname[m-15],&quot;w&quot;);</span>
-<span class="c">!%%          else</span>
-<span class="c">!%%             c_handle[m-15] = c_handle[16-m];</span>
-            <span class="n">K</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="k">            </span><span class="n">K</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
          <span class="k">end if</span>
 <span class="k">         </span><span class="n">OUNIT</span> <span class="o">=</span> <span class="n">MUNIT</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
       <span class="k">end if</span>
 <span class="k">      if</span> <span class="p">(</span><span class="n">M</span> <span class="o">==</span> <span class="o">-</span><span class="n">MESUNI</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!%%      if (cmessi.sunit == -1L) {</span>
-<span class="c">!%%          scratch_file = tmpfile();</span>
-<span class="c">!%%          cmessi.sunit = 1L;}</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">SUNIT</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">SUNIT</span> <span class="o">=</span> <span class="n">MESSGS</span><span class="p">()</span>
+<span class="k">         if</span> <span class="p">(</span><span class="n">SUNIT</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">SUNIT</span> <span class="o">=</span> <span class="n">MESSGS</span><span class="p">()</span>
       <span class="k">end if</span>
 <span class="c">!</span>
       <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">IVAR</span><span class="p">(</span><span class="o">-</span><span class="n">M</span><span class="p">)</span>
@@ -2373,10 +2357,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
       <span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">57</span><span class="p">)</span> <span class="o">=</span>                                                       <span class="p">&amp;</span>
      <span class="p">&amp;</span>   <span class="s1">&#39;Actions in MESS terminated due to error in usage of MESS.&#39;</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   memcpy(cmessc.buf,</span>
-<span class="c">!%%   &quot;Actions in MESS terminated due to error in usage of MESS.&quot;,57);</span>
-<span class="c">!++ END</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="mi">57</span>
 <span class="c">!</span>
 <span class="c">! Action MERET -- Finish a message.</span>
@@ -2421,11 +2401,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
          <span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">DOLS</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">INERR</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">37</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39; Fatal error -- Program stopped. &#39;</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%      memcpy(cmessc.buf, cmessc.dols, cmessi.lbuf);</span>
-<span class="c">!%%      if (inerr &lt; 0L)</span>
-<span class="c">!%%      memcpy(&amp;cmessc.buf[4],&quot; Fatal error -- Program stopped. &quot;,34);</span>
-<span class="c">!++ END</span>
          <span class="k">call </span><span class="n">MESSPR</span>
       <span class="k">end if</span>
 <span class="k">      if</span> <span class="p">(</span><span class="n">INERR</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
@@ -2442,21 +2417,17 @@ public subroutine MESS(MACT, TEXT, IDAT)
   <span class="mi">370</span> <span class="n">LBUF</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">LBUF</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">KS</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">         </span><span class="n">ERMSG1</span><span class="p">(</span><span class="mi">17</span><span class="p">:</span><span class="mi">17</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">KP</span> <span class="o">+</span> <span class="n">ICHAR0</span><span class="p">)</span>
-<span class="c">!%%       memcpy(&amp;cmessc.buf[cmessi.lbuf], ermsg1, strlen(ermsg1));</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">ERMSG1</span><span class="p">))</span> <span class="o">=</span> <span class="n">ERMSG1</span>
          <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">ERMSG1</span><span class="p">)</span>
       <span class="k">else</span>
 <span class="k">         </span><span class="n">ERMSG</span><span class="p">(</span><span class="mi">30</span><span class="p">:</span><span class="mi">30</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">KS</span> <span class="o">+</span> <span class="n">ICHAR0</span><span class="p">)</span>
          <span class="n">ERMSG</span><span class="p">(</span><span class="mi">47</span><span class="p">:</span><span class="mi">47</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">KP</span> <span class="o">+</span> <span class="n">ICHAR0</span><span class="p">)</span>
-<span class="c">!%%       memcpy(&amp;cmessc.buf[cmessi.lbuf], ermsg, strlen(ermsg));</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">ERMSG</span><span class="p">))</span> <span class="o">=</span> <span class="n">ERMSG</span>
          <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">ERMSG</span><span class="p">)</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">call </span><span class="n">MESSFI</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KDI</span>
-<span class="c">!%%   sprintf(&amp;cmessc.buf[cmessi.lstrt-1L], &quot;%*ld&quot;,</span>
-<span class="c">!%%           (int)messcc.kciwid, cmessi.imag);</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="nb">IMAG</span>
 <span class="c">!          Finish up the start error message action.</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
@@ -2484,17 +2455,10 @@ public subroutine MESS(MACT, TEXT, IDAT)
 
   <span class="mi">410</span> <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="n">K2</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">LENTXT</span><span class="p">,</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="p">(</span><span class="n">LENBUF</span> <span class="o">-</span> <span class="n">LSTRT</span><span class="p">))</span>
-<span class="c">!%%       if ((ctmp=memchr(TEXT(cmessi.itext-1L,cmessi.ntext-1), SC,</span>
-<span class="c">!%%          k2 - cmessi.ntext + 1)) == NULL)</span>
-<span class="c">!%%             k = 0;</span>
-<span class="c">!%%       else</span>
-<span class="c">!%%             k = ctmp - TEXT(cmessi.itext-1L,cmessi.ntext-1) + 1;</span>
       <span class="n">K</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">K2</span><span class="p">),</span> <span class="n">SC</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="c">! Want to take all that we can.</span>
          <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">+</span> <span class="n">K2</span> <span class="o">-</span> <span class="n">NTEXT</span>
-<span class="c">!%%       memcpy(&amp;cmessc.buf[cmessi.lstrt-1L], TEXT(cmessi.itext-1L,</span>
-<span class="c">!%%         cmessi.ntext-1), k2 - cmessi.ntext + 1L);</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">K2</span><span class="p">)</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">K2</span> <span class="o">==</span> <span class="n">LENTXT</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">           </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
@@ -2509,8 +2473,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">go</span> <span class="n">to</span> <span class="mi">430</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="c">!%%   if (k &gt;= 2) memcpy(&amp;cmessc.buf[cmessi.lstrt-1],</span>
-<span class="c">!%%     TEXT(cmessi.itext-1L, cmessi.ntext-1), k - 1L);</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">NTEXT</span><span class="o">+</span><span class="n">K</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 <span class="c">!        Jump to location below if get $ after computing an NSKIP.</span>
   <span class="mi">415</span> <span class="k">continue</span>
@@ -2612,15 +2574,12 @@ public subroutine MESS(MACT, TEXT, IDAT)
   <span class="mi">530</span> <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&gt;=</span> <span class="n">LBUF1</span><span class="p">)</span> <span class="k">then</span>
 <span class="c">!                              Take care of overlap.</span>
          <span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">LBUF1</span> <span class="o">-</span> <span class="n">LSTRT</span>
-<span class="c">!%%memcpy(&amp;cmessc.buf[cmessi.lstrt-1],&amp;cmessc.buf[lbuf1-1],k-lbuf1);</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF1</span><span class="p">:</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
          <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF1</span>
          <span class="n">LBUF1</span> <span class="o">=</span> <span class="n">K</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">530</span>
       <span class="k">end if</span>
-<span class="c">!%% if (cmessi.lbuf&gt;=cmessi.lstrt) memcpy(&amp;cmessc.buf[cmessi.lstrt-1],</span>
-<span class="c">!%%       &amp;cmessc.buf[lbuf1-1L], lbuf2-lbuf1+1);</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&gt;=</span> <span class="n">LSTRT</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF1</span><span class="p">:</span><span class="n">LBUF2</span><span class="p">)</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&gt;=</span> <span class="n">LSTRT</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF1</span><span class="p">:</span><span class="n">LBUF2</span><span class="p">)</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">430</span>
 <span class="c">!</span>
 <span class="c">! Get information on user format</span>
@@ -2632,18 +2591,12 @@ public subroutine MESS(MACT, TEXT, IDAT)
   <span class="mi">601</span> <span class="k">continue</span>
 <span class="c">!++ CODE for ~.C. is active</span>
       <span class="n">FMTG</span><span class="o">=</span><span class="s1">&#39;(0P,99F&#39;</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   strcpy(cmessc.fmtg, &quot;%*.*f\0&quot;);</span>
-<span class="c">!%%   messcc.lgprec = 0;</span>
-<span class="c">!++ END</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">603</span>
   <span class="mi">602</span> <span class="k">continue</span>
 <span class="c">!++ CODE for ~.C. is active</span>
       <span class="n">FMTG</span><span class="o">=</span><span class="s1">&#39;(1P,99&#39;</span><span class="o">//</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">NTEXT</span><span class="p">)</span>
 <span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   strcpy(cmessc.fmtg, &quot;%*.*E\0&quot;);</span>
 <span class="c">!      FMTG(5:5) = TEXT(ITEXT)(NTEXT:NTEXT)</span>
-<span class="c">!%%   messcc.lgprec = 0;</span>
 <span class="c">!++ END</span>
   <span class="mi">603</span> <span class="n">KSPEC</span> <span class="o">=</span> <span class="mi">9</span>
   <span class="mi">604</span> <span class="nb">IMAG</span> <span class="o">=</span> <span class="mi">0</span>
@@ -2671,9 +2624,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="k">         else</span>
 <span class="k">            if</span> <span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">NTEXT</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">610</span>
             <span class="k">if</span> <span class="p">((</span><span class="n">JJ</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="p">(</span><span class="n">JJ</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">180</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%         messcc.lgprec = 10*messcc.lgprec + jj;</span>
-<span class="c">!++ END</span>
          <span class="k">end if</span>
 <span class="k">      </span><span class="n">go</span> <span class="n">to</span> <span class="mi">606</span>
 <span class="c">!</span>
@@ -2690,13 +2640,7 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="k">         </span><span class="n">IWG</span> <span class="o">=</span> <span class="nb">IMAG</span>
 <span class="nb">         </span><span class="n">FMTG</span><span class="p">(</span><span class="mi">8</span><span class="p">:</span><span class="mi">15</span><span class="p">)</span> <span class="o">=</span> <span class="n">FMTT</span>
       <span class="k">end if</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   if (cmessi.kspec == 8)</span>
-<span class="c">!%%       cmessi.kdj = cmessi.imag;</span>
-<span class="c">!%%   else</span>
-<span class="c">!%%       cmessi.iwg = cmessi.imag;</span>
-<span class="c">!++ END</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">NTEXT</span><span class="p">)</span> <span class="o">==</span> <span class="n">SC</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">410</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">NTEXT</span><span class="p">)</span> <span class="o">==</span> <span class="n">SC</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">410</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">KSPEC</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">700</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">XARGOK</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">      </span><span class="n">go</span> <span class="n">to</span> <span class="mi">440</span>
@@ -2713,7 +2657,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!                         Process a tab</span>
   <span class="mi">690</span> <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">LBUF</span> <span class="o">+</span> <span class="n">TABSPA</span> <span class="o">-</span> <span class="nb">mod</span><span class="p">(</span><span class="n">LBUF</span><span class="p">,</span> <span class="n">TABSPA</span><span class="p">),</span> <span class="n">LENLIN</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">!%%  for (kc=cmessi.lstrt-1; kc&lt;cmessi.lbuf; kc++) cmessc.buf[kc]=&#39; &#39;;</span>
       <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">850</span>
 <span class="c">!                         Print from IDAT</span>
@@ -2725,7 +2668,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
       <span class="nb">IMAG</span> <span class="o">=</span> <span class="n">IOUT</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">KSPEC</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">         </span><span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KDJ</span>
-<span class="c">!%%   sprintf(&amp;cmessc.buf[cmessi.lstrt-1],&quot;%*ld&quot;,(int)cmessi.kdj, iout);</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTJ</span><span class="p">)</span> <span class="n">IOUT</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">850</span>
       <span class="k">end if</span>
@@ -2733,7 +2675,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!                Get format for integer output.</span>
       <span class="k">call </span><span class="n">MESSFI</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KDI</span>
-<span class="c">!%% sprintf(&amp;cmessc.buf[cmessi.lstrt-1],&quot;%*ld&quot;,(int)messcc.kciwid,iout);</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="n">IOUT</span>
 <span class="c">!                         Entry here to check line after numeric output.</span>
   <span class="mi">850</span> <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&lt;=</span> <span class="n">LENLIN</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">410</span>
@@ -2753,8 +2694,7 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="k">      </span><span class="n">LENTRY</span> <span class="o">=</span> <span class="mi">9</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">MESSPR</span>
   <span class="mi">920</span> <span class="k">continue</span>
-<span class="c">!%%   memset(cmessc.buf,&#39; &#39;,LENBUF);</span>
-      <span class="n">BUF</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+<span class="k">      </span><span class="n">BUF</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
       <span class="n">NROW</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="n">NCOL</span> <span class="o">=</span> <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span>
       <span class="n">ICOL</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="mi">3</span>
@@ -2780,9 +2720,7 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">FMTI</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">LENOUT</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">ichar0</span><span class="p">)</span>
 <span class="c">!++ END</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">KK</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!%%         sprintf(&amp;cmessc.buf[cmessi.lstrt-1], &quot;%*ld&quot;,</span>
-<span class="c">!%%            (int)cmessi.lenout, mact[i]);</span>
-            <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">            write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">go</span> <span class="n">to</span> <span class="mi">960</span>
          <span class="k">end if</span>
 <span class="c">!                            Regular integer output</span>
@@ -2792,12 +2730,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="p">(</span><span class="n">IDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">K</span> <span class="o">=</span> <span class="n">NIDAT</span><span class="p">,</span>             <span class="p">&amp;</span>
      <span class="p">&amp;</span>      <span class="n">NIDAT</span><span class="o">+</span><span class="n">KLINE</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
          <span class="n">NIDAT</span> <span class="o">=</span> <span class="n">NIDAT</span> <span class="o">+</span> <span class="n">KLINE</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%  kk = cmessi.nidat;</span>
-<span class="c">!%%  for (cmessi.nidat=kk; cmessi.nidat&lt;kk+cmessi.kline; cmessi.nidat++)</span>
-<span class="c">!%%     sprintf(&amp;cmessc.buf[cmessi.lstrt+cmessi.lenout*(cmessi.nidat</span>
-<span class="c">!%%       - kk) - 1], &quot;%*ld&quot;, (int)cmessi.lenout, idat[cmessi.nidat-1]);</span>
-<span class="c">!++ END</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">960</span>
 <span class="c">!                           Various floating point output</span>
   <span class="mi">943</span>    <span class="k">continue</span>
@@ -2821,7 +2753,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">FMTF</span><span class="p">(</span><span class="mi">11</span><span class="p">:</span><span class="mi">11</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="n">JJ</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
          <span class="n">FMTF</span><span class="p">(</span><span class="mi">12</span><span class="p">:</span><span class="mi">12</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="nb">mod</span><span class="p">(</span><span class="n">JJ</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%      strcpy(cmessc.fmtf, &quot;%*.*E\0&quot;);</span>
 <span class="c">!        IWF = LENOUT</span>
 <span class="c">!        lfprec = JJ</span>
 <span class="c">!++ END</span>
@@ -2831,8 +2762,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="k">return</span>
 <span class="c">!                           Text output</span>
   <span class="mi">948</span>    <span class="n">K1</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="n">LBUF</span> <span class="o">-</span> <span class="n">LSTRT</span>
-<span class="c">!%%    memcpy(&amp;cmessc.buf[cmessi.lstrt-1], TEXT(cmessi.itext-1,</span>
-<span class="c">!%%       cmessi.ntext -1), k1 - cmessi.ntext);</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">K1</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
          <span class="n">NTEXT</span> <span class="o">=</span> <span class="n">K1</span>
       <span class="k">else</span>
@@ -2853,22 +2782,12 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
                <span class="k">if</span> <span class="p">(</span><span class="n">SUNIT</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">SUNIT</span> <span class="o">=</span> <span class="n">MESSGS</span><span class="p">()</span>
                <span class="k">rewind</span><span class="p">(</span><span class="n">SUNIT</span><span class="p">)</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%        if (cmessi.sunit == -1) {</span>
-<span class="c">!%%           scratch_file = tmpfile();</span>
-<span class="c">!%%           cmessi.sunit = 1;}</span>
-<span class="c">!%%        rewind(scratch_file);</span>
-<span class="c">!++ END</span>
             <span class="k">end if</span>
 <span class="k">         end if</span>
-<span class="c">!%%       fwrite(&amp;cmessc.buf[4], cmessi.mdat[cmessi.nrow-1]-4, 1,</span>
-<span class="c">!%%          scratch_file);</span>
-         <span class="k">write</span><span class="p">(</span><span class="n">SUNIT</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">))</span>
+<span class="k">         write</span><span class="p">(</span><span class="n">SUNIT</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">))</span>
       <span class="k">end if</span>
 <span class="k">      if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&gt;</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">))</span> <span class="k">then</span>
-<span class="c">!%%  memcpy(&amp;cmessc.buf[4], &amp;cmessc.buf[cmessi.mdat[cmessi.nrow-1]],</span>
-<span class="c">!%%     cmessi.lbuf - cmessi.mdat[cmessi.nrow-1]);</span>
-         <span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="n">LBUF</span> <span class="o">-</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span>
+<span class="k">         </span><span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="n">LBUF</span> <span class="o">-</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span>
          <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">-</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span>
          <span class="n">NROW</span> <span class="o">=</span> <span class="n">NROW</span> <span class="o">+</span> <span class="mi">1</span>
          <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">GOTFMT</span><span class="p">)</span> <span class="k">then</span>
@@ -2888,28 +2807,22 @@ public subroutine MESS(MACT, TEXT, IDAT)
       <span class="k">if</span> <span class="p">(</span><span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">999</span>
       <span class="n">MACT</span><span class="p">(</span><span class="n">I</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">NROW</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">999</span>
-<span class="c">!%%    fputc(EOF, scratch_file);</span>
       <span class="n">endfile</span> <span class="n">SUNIT</span>
       <span class="n">KK</span> <span class="o">=</span> <span class="mi">1</span>
   <span class="mi">994</span> <span class="n">KK</span> <span class="o">=</span> <span class="n">KK</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">KK</span> <span class="o">&gt;</span> <span class="n">NROW</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">999</span>
-<span class="c">!%%   rewind(scratch_file);</span>
       <span class="k">rewind</span><span class="p">(</span><span class="n">SUNIT</span><span class="p">)</span>
       <span class="n">IROW</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
       <span class="n">K</span> <span class="o">=</span> <span class="n">KK</span>
   <span class="mi">995</span> <span class="n">LBUF</span> <span class="o">=</span> <span class="mi">5</span>
       <span class="n">IROW</span> <span class="o">=</span> <span class="n">IROW</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">IROW</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!%%      sprintf(cmessc.buf, &quot;%4ld&quot;,  irow%10000);</span>
-         <span class="k">write</span><span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">),</span> <span class="s1">&#39;(I4)&#39;</span><span class="p">)</span> <span class="nb">mod</span><span class="p">(</span><span class="n">IROW</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="k">         write</span><span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">),</span> <span class="s1">&#39;(I4)&#39;</span><span class="p">)</span> <span class="nb">mod</span><span class="p">(</span><span class="n">IROW</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
       <span class="k">else</span>
-<span class="c">!%%    memset(cmessc.buf,&#39; &#39;,4);</span>
-         <span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+<span class="k">         </span><span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
       <span class="k">end if</span>
 <span class="k">      do </span><span class="mi">996</span> <span class="n">J</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">K</span>
          <span class="k">if</span> <span class="p">(</span><span class="n">J</span> <span class="o">==</span> <span class="n">K</span><span class="p">)</span> <span class="n">LBUF</span> <span class="o">=</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">KK</span><span class="p">)</span>
-<span class="c">!%%       if (fread(&amp;cmessc.buf[4], cmessi.lbuf-4, 1,</span>
-<span class="c">!%%         scratch_file) == 0) goto L_994;</span>
          <span class="k">read</span><span class="p">(</span><span class="n">SUNIT</span><span class="p">,</span> <span class="k">END</span> <span class="o">=</span> <span class="mi">994</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span>
   <span class="mi">996</span> <span class="k">continue</span>
 <span class="k">      </span><span class="n">K</span> <span class="o">=</span> <span class="n">NROW</span>
@@ -2952,7 +2865,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
       <span class="n">NCOL</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="c">!                          Get format for label output.</span>
       <span class="k">call </span><span class="n">MESSFI</span>
-<span class="c">!%%   messcc.kcrwid = messcc.kciwid;</span>
       <span class="n">FMTR</span> <span class="o">=</span> <span class="n">FMTI</span>
       <span class="n">KDILAB</span> <span class="o">=</span> <span class="n">KDI</span><span class="o">+</span><span class="mi">1</span>
       <span class="n">LINSTR</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">KDILAB</span><span class="o">+</span><span class="mi">2</span>
@@ -2960,10 +2872,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="k">         if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">GOTFMT</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">1150</span>
          <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWG</span>
          <span class="n">FMTF</span> <span class="o">=</span> <span class="n">FMTG</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%      cmessi.iwf = cmessi.iwg;</span>
-<span class="c">!%%      messcc.lfprec = messcc.lgprec;</span>
-<span class="c">!++ END</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">1160</span>
       <span class="k">end if</span>
 <span class="k">      call </span><span class="n">MESSFD</span><span class="p">(</span><span class="n">IDAT</span><span class="p">)</span>
@@ -2984,7 +2892,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">K</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">KNT</span> <span class="o">=</span> <span class="n">KNT</span> <span class="o">+</span> <span class="n">KLINE</span>
-<span class="c">!%%    for (kc=cmessi.lbuf; kc &lt; k; kc++) cmessc.buf[kc] = &#39; &#39;;</span>
       <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">K</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="n">K</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">1110</span>
@@ -2993,17 +2900,10 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
       <span class="n">BUF</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">KDILAB</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">)</span> <span class="n">KNT</span><span class="o">+</span><span class="mi">1</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   memset(cmessc.buf,&#39; &#39;,LENBUF);</span>
-<span class="c">!%%   sprintf(cmessc.buf, &quot;%*ld&quot;, (int)messcc.kcrwid, knt+1);</span>
-<span class="c">!++ END</span>
       <span class="n">BUF</span><span class="p">(</span><span class="n">KDILAB</span><span class="p">:</span><span class="n">KDILAB</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
       <span class="n">KLINE</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">NLINE</span><span class="p">,</span> <span class="n">LASKNT</span> <span class="o">-</span> <span class="n">KNT</span><span class="p">)</span>
       <span class="n">KNT</span> <span class="o">=</span> <span class="n">KNT</span> <span class="o">+</span> <span class="n">KLINE</span>
-<span class="c">!%%    sprintf(&amp;cmessc.buf[kdilab], &quot;%*ld&quot;, (int)messcc.kcrwid, knt);</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">KDILAB</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">KDILAB</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">)</span> <span class="n">KNT</span>
-<span class="c">!%%    cmessc.buf[kdilab*2L-1] = &#39;:&#39;;</span>
-<span class="c">!%%    for (kc=kdilab*2L; kc &lt; *linstr-1; kc++) cmessc.buf[kc] = &#39; &#39;;</span>
       <span class="n">BUF</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">KDILAB</span><span class="p">:</span><span class="n">LINSTR</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LINSTR</span>
  <span class="mi">1110</span> <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span>
@@ -3013,11 +2913,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
       <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="p">(</span><span class="n">IDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">K</span> <span class="o">=</span> <span class="n">MPT</span><span class="p">,</span>                  <span class="p">&amp;</span>
      <span class="p">&amp;</span>    <span class="n">MPT</span><span class="o">+</span><span class="n">INC</span><span class="o">*</span><span class="p">(</span><span class="n">KLINE</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">INC</span><span class="p">)</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%   for (k=cmessi.mpt; k&lt;=cmessi.mpt+cmessi.kline-1; k++)</span>
-<span class="c">!%%  sprintf(&amp;cmessc.buf[cmessi.lstrt+messcc.kciwid*(k-cmessi.mpt)-1],</span>
-<span class="c">!%%      &quot;%*ld&quot;, (int)messcc.kciwid, idat[cmessi.inc*k-1]);</span>
-<span class="c">!++ END</span>
       <span class="n">MPT</span> <span class="o">=</span> <span class="n">MPT</span> <span class="o">+</span> <span class="n">KLINE</span> <span class="o">*</span> <span class="n">INC</span>
 <span class="c">!</span>
 <span class="c">!                                     Entry here after vector output.</span>
@@ -3102,10 +2997,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="k">         end if</span>
 <span class="k">         call </span><span class="n">MESSFI</span>
          <span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">),</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="n">KDI</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">!%%      if (cmessi.irc == 1)</span>
-<span class="c">!%%         messcc.kcrwid = cmessi.kdi;</span>
-<span class="c">!%%      else</span>
-<span class="c">!%%         messcc.kccwid = cmessi.kdi;</span>
          <span class="n">FMTIM</span><span class="p">(</span><span class="n">IRC</span><span class="p">)</span> <span class="o">=</span> <span class="n">FMTI</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">IRC</span> <span class="o">=</span> <span class="n">IRC</span> <span class="o">+</span> <span class="mi">1</span>
@@ -3118,10 +3009,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!++ CODE for ~.C. is active</span>
          <span class="n">IWF</span> <span class="o">=</span> <span class="n">IWG</span>
          <span class="n">FMTF</span> <span class="o">=</span> <span class="n">FMTG</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%      cmessi.iwf = cmessi.iwg;</span>
-<span class="c">!%%      messcc.lfprec = messcc.lgprec;</span>
-<span class="c">!++ END</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">1620</span>
       <span class="k">end if</span>
 <span class="k">      call </span><span class="n">MESSFD</span><span class="p">(</span><span class="n">IDAT</span><span class="p">)</span>
@@ -3135,9 +3022,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
          <span class="n">KDI</span> <span class="o">=</span> <span class="n">KOLWID</span>
          <span class="n">FMTI</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="n">KOLWID</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
          <span class="n">FMTI</span><span class="p">(</span><span class="mi">6</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span> <span class="o">=</span> <span class="nb">char</span><span class="p">(</span><span class="n">ICHAR0</span> <span class="o">+</span> <span class="nb">mod</span><span class="p">(</span><span class="n">KOLWID</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="c">!++ CODE for .C. is inactive</span>
-<span class="c">!%%  messcc.kciwid = *kolwid;</span>
-<span class="c">!++ END</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">NIDAT</span> <span class="o">=</span> <span class="n">NIDAT</span> <span class="o">+</span> <span class="n">NDIM</span><span class="o">*</span><span class="n">NCOL</span>
 <span class="c">!                              Continue with commmon code</span>
@@ -3161,8 +3045,7 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!                      Output row labels (if any)</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">MTEXTR</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">1520</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">MTEXTR</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!%%       memcpy(&amp;cmessc.buf[cmessi.lbuf],&quot;Row &quot;, 4);</span>
-         <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Row &#39;</span>
+<span class="k">         </span><span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Row &#39;</span>
          <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="mi">4</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">1515</span>
       <span class="k">end if</span>
@@ -3177,23 +3060,16 @@ public subroutine MESS(MACT, TEXT, IDAT)
 <span class="c">!                     Return from getting text for row label</span>
  <span class="mi">1510</span> <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">/=</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">         </span><span class="n">MTEXTR</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="n">LENTXT</span> <span class="o">*</span> <span class="p">(</span><span class="n">ITEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">!%%    for (kc=cmessi.lbuf; kc &lt; *linstr; kc++) cmessc.buf[kc] = &#39; &#39;;</span>
          <span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LINSTR</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
          <span class="n">go</span> <span class="n">to</span> <span class="mi">1520</span>
       <span class="k">end if</span>
 <span class="k"> </span><span class="mi">1515</span> <span class="k">continue</span>
-<span class="c">!%%   sprintf(&amp;cmessc.buf[cmessi.lbuf],&quot;%*ld&quot;,(int)messcc.kcrwid,irow);</span>
-<span class="c">!%%    for (kc=cmessi.lbuf+messcc.kcrwid;</span>
-<span class="c">!%%       kc &lt; *linstr; kc++) cmessc.buf[kc] = &#39; &#39;;</span>
-      <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LINSTR</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">)</span> <span class="n">IROW</span>
+<span class="k">      write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LBUF</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">LINSTR</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">)</span> <span class="n">IROW</span>
  <span class="mi">1520</span> <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LINSTR</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LINSTR</span> <span class="o">+</span> <span class="n">LENOUT</span><span class="o">*</span><span class="n">KLINE</span>
       <span class="n">LASTI</span> <span class="o">=</span> <span class="n">MPT</span> <span class="o">+</span> <span class="n">NDIM</span> <span class="o">*</span> <span class="n">KLINE</span> <span class="o">-</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">XARG</span><span class="p">)</span> <span class="k">return</span>
 <span class="c">!                                    Integer output</span>
-<span class="c">!%% for (k=cmessi.mpt; k&lt;=cmessi.lasti; k+=cmessi.ndim)</span>
-<span class="c">!%%  sprintf(&amp;cmessc.buf[cmessi.lstrt + messcc.kciwid*(k-cmessi.mpt)/</span>
-<span class="c">!%%     cmessi.ndim - 1], &quot;%*ld&quot;, (int)messcc.kciwid, idat[k-1]);</span>
          <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTI</span><span class="p">)</span> <span class="p">(</span><span class="n">IDAT</span><span class="p">(</span><span class="n">K</span><span class="p">),</span> <span class="n">K</span><span class="o">=</span><span class="n">MPT</span><span class="p">,</span><span class="n">LASTI</span><span class="p">,</span><span class="n">NDIM</span><span class="p">)</span>
 <span class="c">!</span>
 <span class="c">!                                     Entry here after matrix output.</span>
@@ -3221,8 +3097,6 @@ public subroutine MESS(MACT, TEXT, IDAT)
       <span class="k">else</span>
 <span class="k">         </span><span class="n">KSHIFT</span> <span class="o">=</span> <span class="p">(</span><span class="n">KOLWID</span> <span class="o">-</span> <span class="n">IWF</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span><span class="mi">2</span>
          <span class="n">LENOUT</span> <span class="o">=</span> <span class="n">KOLWID</span>
-<span class="c">!%%      cmessi.iwf = *kolwid;</span>
-<span class="c">!%%      strcpy(cmessc.fmtf, &quot;%*.*E\0&quot;);</span>
          <span class="k">write</span> <span class="p">(</span><span class="n">FMTF</span><span class="p">(</span><span class="mi">7</span><span class="p">:</span><span class="mi">8</span><span class="p">),</span> <span class="s1">&#39;(I2)&#39;</span><span class="p">)</span> <span class="n">KOLWID</span>
       <span class="k">end if</span>
 <span class="k">      </span><span class="n">NFDAT</span> <span class="o">=</span> <span class="n">NFDAT</span> <span class="o">+</span> <span class="n">NDIM</span><span class="o">*</span><span class="n">NCOL</span>
