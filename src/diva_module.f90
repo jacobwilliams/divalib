@@ -31,213 +31,196 @@
 !>
 !  Main routine.
 !
-!--D replaces "?": ?IVA,?IVAA,?IVABU,?IVACO,?IVACR,?IVAEV,?IVAF,?IVAHC,
-!-- & ?IVAG,?IVAIN,?IVAMC,?IVAO,?IVAOP,?IVAPR,?IVASC,?IVACE,?IVAIE,
-!-- & ?IVAPE,?MESS
-!
-! Note a "*" at the start of a name is used to indicate "D" for the
-! double precision version and "S" for the single precision version.
-!
 ! When converting between precisions, don't forget to change the value
 ! of KDIM set in parameter statements in a variety of routines, and to
 ! adjust comments for the data statements associated with EIBND in
-! *IVACR, and B in *IVAHC.
+! [[DIVACR]], and B in [[DIVAHC]].
 !
-! Entries
-!  *IVA    Main entry for starting the package.
-!  *IVAA   Main program inside the package, calls the other routines,
-!          and does checks for output, and noise.  Called by the user
-!          if reverse communication is used.
-!  *IVABU  Back ups the solution to the current base time, if a step
-!          that has been started must be taken over for some reason.
-!  *IVACO  Called by user to get certain information from the common
-!          blocks.
-!  *IVACR  Corrects the solution, estimates errors, and selects order.
-!  *IVADB  Subroutine to assist in debugging codes.  Called by user to
-!          get a formatted list of all the variables used in the
-!          integration.  Not required in usual case.
-!  *IVADE  Needed only for delay differential equations.  This is called
-!          by the user from the derivative subprogram.
-!  *IVAG   Required only if the user has G-Stops, i.e. places to call
-!          his output subroutine where certain functions have zeroes.
-!  *IVAHC  Compute coefficients that depend on the step size history.
-!  *IVAIN  Used to interpolate to arbitrary points.
-!  *IVAOP  Used to process user option requests.
-!  *IVAPR  Used to update the differences and to predict the solution
-!          at the end of the current step.
-!
-! External Routines
-!  *1MACH  Not used in the Fortran 95 version.  ("*" is "D" for double
-!          and "R" for single precision.) This returns constants that
-!          depend on the floating point arithmetic.  Input arguments of
-!          1 to 4 give respectively:  underflow limit, overflow limit,
-!          smallest relative difference between two floating point
-!          numbers, and the largest relative difference between two
-!          floating point numbers.
-! DERIVS (formal) Name of subroutine to be called for computing
-
-!  OPTCHK  Used in checking storage allocation.
-!  *MESS   Used to output error messages and diaganostic messages.
-!          (Just MESS if no floating point is output.)
-!  *ZERO   Called only if *IVAG is used.  Iterates to find zeros of
-!          arbitrary (continuous) functions.
+!### Entries
+!  * [[DIVA]]    Main entry for starting the package.
+!  * [[DIVAA]]   Main program inside the package, calls the other routines,
+!                and does checks for output, and noise.  Called by the user
+!                if reverse communication is used.
+!  * [[DIVABU]]  Back ups the solution to the current base time, if a step
+!                that has been started must be taken over for some reason.
+!  * [[DIVACO]]  Called by user to get certain information from the common
+!                blocks.
+!  * [[DIVACR]]  Corrects the solution, estimates errors, and selects order.
+!  * [[DIVADB]]  Subroutine to assist in debugging codes.  Called by user to
+!                get a formatted list of all the variables used in the
+!                integration.  Not required in usual case.
+!  * [[DIVADE]]  Needed only for delay differential equations.  This is called
+!                by the user from the derivative subprogram.
+!  * [[DIVAG]]   Required only if the user has G-Stops, i.e. places to call
+!                his output subroutine where certain functions have zeroes.
+!  * [[DIVAHC]]  Compute coefficients that depend on the step size history.
+!  * [[DIVAIN]]  Used to interpolate to arbitrary points.
+!  * [[DIVAOP]]  Used to process user option requests.
+!  * [[DIVAPR]]  Used to update the differences and to predict the solution
+!                at the end of the current step.
+!  * DERIVS (formal) Name of subroutine to be called for computing
+!  * [[OPTCHK]]  Used in checking storage allocation.
+!  * [[DMESS]]   Used to output error messages and diaganostic messages.
+!                (Just [[MESS]] if no floating point is output.)
+!  * [[DZERO]]   Called only if [[DIVAG]] is used.  Iterates to find zeros of
+!                arbitrary (continuous) functions.
 !
 ! Common blocks -- As a left over from the distant past, some variables
 !   are in common so that they would be saved.
-!  *IVAEV  Holds variables that depend on the environment.
-!  *IVAMC  The main common block for the package.
-!  *IVASC  The secondary common block for the package.  This contains
-!          variables that are required for doing interpolation and is
-!          separate to simplify saving the variables that are required
-!          when the solution is being dumped (saved).
+!  * DIVAEV  Holds variables that depend on the environment.
+!  * DIVAMC  The main common block for the package.
+!  * DIVASC  The secondary common block for the package.  This contains
+!            variables that are required for doing interpolation and is
+!            separate to simplify saving the variables that are required
+!            when the solution is being dumped (saved).
 !
 ! Common variables and local variables
-! ALPHA  (*IVAMC) Array with I-th entry = (current step size) / XI(I).
+! ALPHA  (DIVAMC) Array with I-th entry = (current step size) / XI(I).
 !   Used in computing integration coefficients.
-! B      (*IVAHC) Array used to get started on computing integration
+! B      (DIVAHC) Array used to get started on computing integration
 !   coefficients.  B(K) = 1. / (K*(K+1))
-! BAKMIN (*IVADE) The largest delay at the initial point.
-! BETA   (*IVAMC) Array with I-th entry = product (K=1,I-1) of
+! BAKMIN (DIVADE) The largest delay at the initial point.
+! BETA   (DIVAMC) Array with I-th entry = product (K=1,I-1) of
 !   (current (XI(K)) / XI(K) from previous step),  BETA(1)=1.  Used in
 !    updating the difference tables.
-! C      (*IVAIN) Array used to hold integration/interpolation coeffs.
-! C0     Parameter = 0. (in *IVAA,DE,CR,A,G,HC,IN,OP,PR)
-! C1     Parameter = 1. (in *IVA,A,CR,DA,HC,IN,OP)
-! C10    Parameter = 10. (in *IVAA,CR,OP)
-! C1000  Parameter = 1000. (in *IVACR)
-! C16    Parameter = 16. (in *IVAA,OP)
-! C1M3   Parameter = .001 (in *IVAA)
-! C1M5   Parameter = .00001 (in *IVAA)
-! C1P125 Parameter = 1.125 (in *IVAA,HC,OP)
-! C1P3   Parameter = 1.3 (in *IVAA)
-! C1P4   Parameter = 1.4 (in *IVACR)
-! C2     Parameter = 2. (in *IVAA,DE,BU,CR,IN,OP)
-! C20    Parameter = 20. (in *IVACR)
-! C2P5M3 Parameter = .0025 (in *IVAA)
-! C4     Parameter = 4. (in *IVACR,OP)
-! C40    Parameter = 40. (in *IVACR)
-! C4096  Parameter = 4096. (in *IVAA)
-! C6     Parameter = 6. (in *IVAA)
-! C8M3   Parameter = .008 (in *IVAA)
-! CM2    Parameter = -2. (in *IVACR)
-! CM8    Parameter = -8. (in *IVACR)
-! CMP5   Parameter = -.5 (in *IVACR)
-! CMP75  Parameter = -.75 (in *IVAOP)
-! CP0625 Parameter = .0625 (in *IVAA)
-! CP1    Parameter = .1 (in *IVAA,CR,DA,HC)
-! CP125  Parameter = .125 (in *IVACR)
-! CP25   Parameter = .25 (in *IVAA,CR,DE,OP)
-! CP3    Parameter = .3 (in *IVAA,OP)
-! CP4    Parameter = .4 (in *IVAA)
-! CP5    Parameter = .5 (in *IVAA,CR,DA,DE,HC,OP)
-! CP5625 Parameter = .5625 (in *IVAHC)
-! CP625  Parameter = .625 (in *IVAOP)
-! CP75   Parameter = .75 (in *IVACR,OP)
-! CP8    Parameter = .8 (in *IVACR)
-! CP875  Parameter = .875 (in *IVAA, OP)
-! CP9    Parameter = .9 (in *IVAOP)
-! CP9375 Parameter = .9375 (in *IVACR)
-! CQ3125 Parameter = .03125 (in *IVACR)
-! CRBQI  Parameter = .421875 (in *IVAHC)  Initial val for computing RBQ.
-! CSUM   (*IVAIN) Array used to contain partial sums of the integration
+! C      (DIVAIN) Array used to hold integration/interpolation coeffs.
+! C0     Parameter = 0. (in DIVAA,DE,CR,A,G,HC,IN,OP,PR)
+! C1     Parameter = 1. (in DIVA,A,CR,DA,HC,IN,OP)
+! C10    Parameter = 10. (in DIVAA,CR,OP)
+! C1000  Parameter = 1000. (in DIVACR)
+! C16    Parameter = 16. (in DIVAA,OP)
+! C1M3   Parameter = .001 (in DIVAA)
+! C1M5   Parameter = .00001 (in DIVAA)
+! C1P125 Parameter = 1.125 (in DIVAA,HC,OP)
+! C1P3   Parameter = 1.3 (in DIVAA)
+! C1P4   Parameter = 1.4 (in DIVACR)
+! C2     Parameter = 2. (in DIVAA,DE,BU,CR,IN,OP)
+! C20    Parameter = 20. (in DIVACR)
+! C2P5M3 Parameter = .0025 (in DIVAA)
+! C4     Parameter = 4. (in DIVACR,OP)
+! C40    Parameter = 40. (in DIVACR)
+! C4096  Parameter = 4096. (in DIVAA)
+! C6     Parameter = 6. (in DIVAA)
+! C8M3   Parameter = .008 (in DIVAA)
+! CM2    Parameter = -2. (in DIVACR)
+! CM8    Parameter = -8. (in DIVACR)
+! CMP5   Parameter = -.5 (in DIVACR)
+! CMP75  Parameter = -.75 (in DIVAOP)
+! CP0625 Parameter = .0625 (in DIVAA)
+! CP1    Parameter = .1 (in DIVAA,CR,DA,HC)
+! CP125  Parameter = .125 (in DIVACR)
+! CP25   Parameter = .25 (in DIVAA,CR,DE,OP)
+! CP3    Parameter = .3 (in DIVAA,OP)
+! CP4    Parameter = .4 (in DIVAA)
+! CP5    Parameter = .5 (in DIVAA,CR,DA,DE,HC,OP)
+! CP5625 Parameter = .5625 (in DIVAHC)
+! CP625  Parameter = .625 (in DIVAOP)
+! CP75   Parameter = .75 (in DIVACR,OP)
+! CP8    Parameter = .8 (in DIVACR)
+! CP875  Parameter = .875 (in DIVAA, OP)
+! CP9    Parameter = .9 (in DIVAOP)
+! CP9375 Parameter = .9375 (in DIVACR)
+! CQ3125 Parameter = .03125 (in DIVACR)
+! CRBQI  Parameter = .421875 (in DIVAHC)  Initial val for computing RBQ.
+! CSUM   (DIVAIN) Array used to contain partial sums of the integration
 !   coefficients.  This is used to corrrect for a difference table that
 !   has not yet been updated.
-! D      (*IVAMC) Array to be used later to store coefficients for
+! D      (DIVAMC) Array to be used later to store coefficients for
 !   integrating stiff equations.
 !   derivatives.  Not used if option 13 is set.
-! DISADJ (*IVAA) Value of stepsize when discontinuity is indicated.
-! DNOISE (*IVAMC) Used in determining if noise is limiting the
+! DISADJ (DIVAA) Value of stepsize when discontinuity is indicated.
+! DNOISE (DIVAMC) Used in determining if noise is limiting the
 !   precision.  It is usually |highest difference used in correcting|
 !   of the equation with the largest error estimate.
-! DS     (*IVAMC) Array to be used later to store coefficients for
+! DS     (DIVAMC) Array to be used later to store coefficients for
 !   estimating errors when integrating stiff equations.
-! DVC2   (*IVADB) Array used for output of variables HC to TOUT in
-!   common block *IVAMC.
-! E      (*IVACR) (Estimated error) / (Requested accuracy)
-! EAVE   (*IVAMC) This is a weighted average of past values of EIMAX.
+! DVC2   (DIVADB) Array used for output of variables HC to TOUT in
+!   common block DIVAMC.
+! E      (DIVACR) (Estimated error) / (Requested accuracy)
+! EAVE   (DIVAMC) This is a weighted average of past values of EIMAX.
 !   It is adjusted to account for expected changes due to step changes.
-! EEPS10 (*IVAEV) = 10. * (machine epsilon).
-! EEPS16 (*IVAEV) = 16. * (machine epsilon).
-! EEPS2  (*IVAEV) =  2. * (machine epsilon).
-! EEPT75 (*IVAEV) = (machine epsilon) ** (.75)
-! EI     (*IVACR) Estimate for what E would be if step size increased.
-! EIBND  (*IVACR) Array containing limits on the estimated error with
+! EEPS10 (DIVAEV) = 10. * (machine epsilon).
+! EEPS16 (DIVAEV) = 16. * (machine epsilon).
+! EEPS2  (DIVAEV) =  2. * (machine epsilon).
+! EEPT75 (DIVAEV) = (machine epsilon) ** (.75)
+! EI     (DIVACR) Estimate for what E would be if step size increased.
+! EIBND  (DIVACR) Array containing limits on the estimated error with
 !   the stepsize increased.  This array tends to make the code a little
 !   more conservative on step size increases at low order.
-! EIMAX  (*IVAMC) Estimate of (error estimate / error requested) if the
+! EIMAX  (DIVAMC) Estimate of (error estimate / error requested) if the
 !   step size should be increased.
-! EIMIN  (*IVAMC) An error estimate is small enough to allow a step
+! EIMIN  (DIVAMC) An error estimate is small enough to allow a step
 !   increase if the estimate of ((error with the step size increased) /
 !   (error requested)) is less than EIMIN.
-! EIMINO (*IVAA) Set to C8M3 and never changed.  When step size is being
+! EIMINO (DIVAA) Set to C8M3 and never changed.  When step size is being
 !   reduced if EIMIN <= EIMINO then the reduction factor is set to
 !   CP875.  This variable could be a parameter.
-! EMAX   (*IVAMC) Largest value computed for (error estimate) / (error
+! EMAX   (DIVAMC) Largest value computed for (error estimate) / (error
 !   requested).
-! EOVEP2 (*IVAEV) = EEPS2 * (largest floating point number).
-! EPS    (*IVACR) Current absolute error tolerance.  Also used for
+! EOVEP2 (DIVAEV) = EEPS2 * (largest floating point number).
+! EPS    (DIVACR) Current absolute error tolerance.  Also used for
 !   temporary storage when computing the desired value of EPS.
-! ERCOEF (*IVACR) (Error coefficient from formula) / EPS
-! EREP   (*IVAMC) If EMAX > EREP, a step is repeated.  Ordinarily
+! ERCOEF (DIVACR) (Error coefficient from formula) / EPS
+! EREP   (DIVAMC) If EMAX > EREP, a step is repeated.  Ordinarily
 !   this has the value .3.  This is set < 0 if the error tolerance is
 !   specified improperly, and is set to a large value if the user
 !   requests complete control over the step size.  EREP is also set
 !   < 0 after a user specified discontinuity.
-! EROV10 (*IVAEV) = 10. / (largest floating point number).
-! ETA    (*IVAIN) Array used in computing integration/interp. coeffs.
-! EVC    (*IVADB) Array used for output of variables EEPS2 to EROV10 in
-!   common block *IVAEV.
-! EXR    (*IVAA) Set to CP1 and never changed.  If it is estimated the
+! EROV10 (DIVAEV) = 10. / (largest floating point number).
+! ETA    (DIVAIN) Array used in computing integration/interp. coeffs.
+! EVC    (DIVADB) Array used for output of variables EEPS2 to EROV10 in
+!   common block DIVAEV.
+! EXR    (DIVAA) Set to CP1 and never changed.  If it is estimated the
 !   the (error estimate) / (error requested) on the next step will be
 !   >= EXR then the step size is reduced.  Could be a parameter.
 ! F      (formal) Array used to store derivative values, the difference
 !   tables, error tolerance requests, and values used by some other
-!   options. (in *IVA,A,BU,CR,DA,DB,G,IN,PR)
-! FDAT  (*IVAMC) Used to store data for error messages.  (Local array in
-!   *IVAIN.)
-! FOPT  (formal) in *IVAOP.  Passed as place to save floating point data
-!   for options.  This package passes F in for FOPT when calling *IVAOP.
-! G      (*IVAMC) Integration coefficients used for predicting solution.
+!   options. (in DIVA,A,BU,CR,DA,DB,G,IN,PR)
+! FDAT  (DIVAMC) Used to store data for error messages.  (Local array in
+!   DIVAIN.)
+! FOPT  (formal) in DIVAOP.  Passed as place to save floating point data
+!   for options.  This package passes F in for FOPT when calling DIVAOP.
+! G      (DIVAMC) Integration coefficients used for predicting solution.
 !   G(I, J) gives the I-th coefficient for integrating a J-th order
 !   differential equation.  G(1, 1) is equal to the step size.
-! GAMMA  (*IVAIN) Array used in computing integration/interp. coeffs.
-! GG     (*IVAHC) Array of length = max. differential equation order
+! GAMMA  (DIVAIN) Array used in computing integration/interp. coeffs.
+! GG     (DIVAHC) Array of length = max. differential equation order
 !   allowed by code - 1.  GG(K) = (HH**(K+1)) / K!
-! GNEW   (formal) in *IVAG.  Current value for vector function g, whose
+! GNEW   (formal) in DIVAG.  Current value for vector function g, whose
 !   zeroes are to be found.
-! GOINT  (*IVACR) Used for assigned go to used in computing integration
+! GOINT  (DIVACR) Used for assigned go to used in computing integration
 !   coefficients.
-! GOLD   (*IVAG) Previous value for element of G whose zero search is
+! GOLD   (DIVAG) Previous value for element of G whose zero search is
 !   active.
-! GS     (*IVAMC) Integration coefficients used in estimating errors.
-! GT     (formal) in *IVAG.  Previous value of GNEW.
-! HC     (*IVAMC) Ratio of (new step size) / (old step size)
-! HDEC   (*IVAMC) Default value to use for HC when reducing the step
+! GS     (DIVAMC) Integration coefficients used in estimating errors.
+! GT     (formal) in DIVAG.  Previous value of GNEW.
+! HC     (DIVAMC) Ratio of (new step size) / (old step size)
+! HDEC   (DIVAMC) Default value to use for HC when reducing the step
 !   size.  (Values closer to 1 may be used some of the time.)
-! HH     Equivalenced to G(1,1) = current step size in *IVAA,CR,DA,G,HC.
-! HI     (*IVAIN) Step length from the base value of the independent
+! HH     Equivalenced to G(1,1) = current step size in DIVAA,CR,DA,G,HC.
+! HI     (DIVAIN) Step length from the base value of the independent
 !   variable for the interpolation.
-! HINC   (*IVAMC) Default value to use for HC when increasing the step
+! HINC   (DIVAMC) Default value to use for HC when increasing the step
 !   size.  (Values closer to 1 may be used some of the time.)
-! HINCC  (*IVAMC) Actual value used for default value of HC when
+! HINCC  (DIVAMC) Actual value used for default value of HC when
 !   increasing the step size.  Set to HINC after start is considered
 !   complete.  During the start HINCC is set to 1.125.
-! HMAX   (*IVAMC) Largest value allowed for abs(step size).  Default
+! HMAX   (DIVAMC) Largest value allowed for abs(step size).  Default
 !   value is a very large number.
-! HMAXP9 (*IVAMC) .9 * HMAX.
-! HMIN   (*IVAMC) Smallest value allowed for abs(step size).  Default
+! HMAXP9 (DIVAMC) .9 * HMAX.
+! HMIN   (DIVAMC) Smallest value allowed for abs(step size).  Default
 !   value is 0.
-! HNEW   (*IVADE) Value of step size when iterating at initial point
+! HNEW   (DIVADE) Value of step size when iterating at initial point
 !   for delay differential equations.
-! I      Used for temporary storage. (*IVAA,BU,CR,DA,DE,G,IN,OP,PR)
-! IA     (*IVAOP) absolute value of first integer stored for an option.
-! ICF    (*IVAMC) Final index for current loop in *IVACR.  Required by
+! I      Used for temporary storage. (DIVAA,BU,CR,DA,DE,G,IN,OP,PR)
+! IA     (DIVAOP) absolute value of first integer stored for an option.
+! ICF    (DIVAMC) Final index for current loop in DIVACR.  Required by
 !   option 18.
-! ICI    (*IVAIN) Temporary index, = 0 for interpolation, 1 or 0 for
+! ICI    (DIVAIN) Temporary index, = 0 for interpolation, 1 or 0 for
 !   differentiation, and d-1, d-2, ... 0 for integration, where d is the
 !   order of the differential equation.  Index of first location
 !   in C() used is ICI + an offset.
-! ICS    (*IVAMC) Starting index for current loop in *IVACR.
+! ICS    (DIVAMC) Starting index for current loop in DIVACR.
 ! ID     (formal) Array use to contain integer data from common.  Values
 !   are returned in locations 1 to 5 as follows.
 !   1    KEMAX = Index of equation with largest error estimate
@@ -245,21 +228,21 @@
 !   3    NUMDT = Number of differences used for each equation
 !   4            Reserved for future use
 !   5            Reserved for future use
-! IDAT   (*IVAMC) Used to store integer for error messages.  (Also used
-!   in *IVAA for temporary storage of KORD(2).  (Local array in *IVAIN.)
-! IDE    (*IVADE - formal) Array used to contain past information so
+! IDAT   (DIVAMC) Used to store integer for error messages.  (Also used
+!   in DIVAA for temporary storage of KORD(2).  (Local array in DIVAIN.)
+! IDE    (DIVADE - formal) Array used to contain past information so
 !   that delays can stretch back indefinitely.  If the first location is
 !   0, then any interpolations requested must be in the range of the
 !   current difference tables.  At present, only the value 0 is allowed
 !   in IDE(1).  This array is intended for the support of saving long
 !   past histories.  IDE(2) must contain the declared dimension of WDE.
-! IDEF   (*IVADE -- formal) Flag giving indicaion of what is going on.
+! IDEF   (DIVADE -- formal) Flag giving indicaion of what is going on.
 !   = 0  User should compute derivatives and return to the main
 !        integrator.
 !   = 1  Code is computing additional values in order to get past data
 !        necessary for starting.  User should compute derivatives and
-!        call *IVADE.
-!   < 0  Indicates an error condition.  If *IVADE is called without
+!        call DIVADE.
+!   < 0  Indicates an error condition.  If DIVADE is called without
 !        changing the value of IDEF, the integration is stopped and an
 !        error message printed.  Possible error flags are:
 !    -1  Difference tables do not span back far enough to compute the
@@ -270,21 +253,21 @@
 ! IDIMK  (formal) Declared dimension of KORD().
 ! IDIMT  (formal) Declared dimension of TSPECS().
 ! IDIMY  (formal) Declared dimension of Y().
-! IDT    (*IVAIN) Used as a base index into the difference table.
-! IFLAG  (formal in *IVAG) Used for communication with user.
-!   = 1  Continue as if *IVAG was not called.
+! IDT    (DIVAIN) Used as a base index into the difference table.
+! IFLAG  (formal in DIVAG) Used for communication with user.
+!   = 1  Continue as if DIVAG was not called.
 !   = 2  Check KORD(1) as one would do at start of OUTPUT if no G-Stops
 !        were present. (Exit if in DERIVS.)
 !   = 3  Return to the integrator.
-!   = 4  Compute G and return to *IVAG.
+!   = 4  Compute G and return to DIVAG.
 !   = 5  A G-Stop has been found, and NSTOP gives its index.  (If NSTOP
 !        < 0, the stop was an extrapolating stop.)
 !   = 6  Same as 5, but requested accuracy was not met.
 !   = 7  Same as 5, but there is a probable error in computing G.
 !   = 8  Fatal error of some type.  (An error message has been printed.)
-! IG     (*IVAG)  IG = KORD(2) on the initial entry (0 for extrapolating
+! IG     (DIVAG)  IG = KORD(2) on the initial entry (0 for extrapolating
 !   G-Stops, and 1 for interpolating).
-! IGFLG  (*IVAMC) Used primarily in *ivag, but also used in *iva to keep
+! IGFLG  (DIVAMC) Used primarily in DIVAg, but also used in DIVA to keep
 !   track of the state of GSTOP calculations.
 !   = -2 Extrapolatory G's initialized, but not the interpolatory.
 !   = -1 Interpolatory G's initialized, but not the extrapolatory.
@@ -295,10 +278,10 @@
 !   =  3 Checking G's at point where a GSTOP was located.
 !   =  4 Checking G's at a T output point.
 !   =  5 Usual case, no sign change detected.
-! IGSTOP (*IVAMC) IGSTOP(k) is set in *ivag to the index of the last G
+! IGSTOP (DIVAMC) IGSTOP(k) is set in DIVAg to the index of the last G
 !   with a 0, where k is one for an interpolatory G-Stop, and k is two
 !   for an extrapolatory G-Stop.
-! IGTYPE (*IVAMC) Array with two elements as for IGSTOP, but this saves
+! IGTYPE (DIVAMC) Array with two elements as for IGSTOP, but this saves
 !   a flag giving the nature of convergence to the stop.
 !   = 0  All known G-stops completely processed.
 !   = 4  Need to compute next value while iterating.
@@ -306,117 +289,117 @@
 !   = 6  Got convergence, but not to desired accuracy.
 !   = 7  Problem in getting convergence.
 !   = 8  A fatal error of some type.
-! IHI    (*IVA) Last location used by the current option.
-! ILGREP (*IVAMC) Used when correction to keep track of equations that
+! IHI    (DIVA) Last location used by the current option.
+! ILGREP (DIVAMC) Used when correction to keep track of equations that
 !   are to use a certain error tolerance.
-! ILGROR (*IVACR) Index of last equation in the current group of
+! ILGROR (DIVACR) Index of last equation in the current group of
 !   equations grouped for selecting integration order.
-! ILOW   (*IVA) First location used by the current option.
-! INCOM  (*IVADE) Array equivalenced to LDT in the common block *IVASC.
+! ILOW   (DIVA) First location used by the current option.
+! INCOM  (DIVADE) Array equivalenced to LDT in the common block DIVASC.
 !   Used to simplify saving information in the common block.
-! INCOP  (*IVAOP) Array containing data giving the amount of space in
+! INCOP  (DIVAOP) Array containing data giving the amount of space in
 !   IOPT used for each of the options.
 ! INGS   Current index for G-stop being examined in DIVAG.
-! INICAS (*IVADE) Used to track the initialization for a delay equation.
+! INICAS (DIVADE) Used to track the initialization for a delay equation.
 !   = 1  Very beginning.
 !   = 2  Getting derivative at the very beginning.
 !   = 3  Getting derivatives at points prior to the initial point.
 !   = 4  Getting derivative at initial point after iteration is started.
-! INTCHK (*IVA) Array passed to OPTCHK containing information on storage
+! INTCHK (DIVA) Array passed to OPTCHK containing information on storage
 !   allocation.  See comments in OPTCHK for details.
-! INTEG  (*IVAIN) Number of integrations being done. (<0 for
+! INTEG  (DIVAIN) Number of integrations being done. (<0 for
 !   differentiations and =0 for interpolation.)  Also used as counter
 !   when computing integration coefficients.
-!        (*IVAPR) Number of integrations being done.
-! INTEGS (*IVAPR) = -1 for equations that are not stiff, 0 for those
+!        (DIVAPR) Number of integrations being done.
+! INTEGS (DIVAPR) = -1 for equations that are not stiff, 0 for those
 !   that are stiff.
-! INTEGZ (*IVAIN) min(INTEG, 0)
-! INTERP (*IVAIN) added to the usual integration order to get the order
+! INTEGZ (DIVAIN) min(INTEG, 0)
+! INTERP (DIVAIN) added to the usual integration order to get the order
 !   to be used when interpolating: 3-KQMAXI, if HI=0; 1, if
 !   |HI| > |XI(1)| and HI * XI(1) < 0; 0, otherwise -- the usual case.
-! IOP10  (*IVAMC) Number of times diagnostic output is to be given when
-!   leaving *ivacr (the corrector).
-! IOP11  (*IVAMC) Gives current step number of the method.  Tells how
+! IOP10  (DIVAMC) Number of times diagnostic output is to be given when
+!   leaving DIVAcr (the corrector).
+! IOP11  (DIVAMC) Gives current step number of the method.  Tells how
 !   many of certain coefficients must be computed. (Has nothing to do
 !   with options.) = min(max integ order + 1, KDIM).  Also set when
 !   starting to flag that certain memory locations must be set to 0.
-! IOP12  (*IVAMC) Points to location in F() where user supplied values
+! IOP12  (DIVAMC) Points to location in F() where user supplied values
 !   of HINC, HDEC, HMIN, and HMAX.  (0 if option 12 not used.)
-! IOP13  (*IVAMC) If not zero, reverse communication will be used for
+! IOP13  (DIVAMC) If not zero, reverse communication will be used for
 !   getting the values of derivatives.  Associated with option 13.
-! IOP14  (*IVAMC) If not zero, reverse communication will be used in
+! IOP14  (DIVAMC) If not zero, reverse communication will be used in
 !   place of calls to the output routine.  Associated with option 14.
-! IOP15  (*IVAMC) If not zero, a return will be made to the user after
+! IOP15  (DIVAMC) If not zero, a return will be made to the user after
 !   the initialization.  Associated with option 15.  This might be used
-!   to overlay *iva, some of the user's code, and perhaps *ivaop.
-! IOP16  (*IVAMC) Points to location in KORD() where information for
+!   to overlay DIVA, some of the user's code, and perhaps DIVAop.
+! IOP16  (DIVAMC) Points to location in KORD() where information for
 !   specifying the error tolerance is specified.  See option 16.
-! IOP17  (*IVAMC) Used in initialization for option 17, afterwards this
+! IOP17  (DIVAMC) Used in initialization for option 17, afterwards this
 !   cell is used by KEXIT which is equivalenced to IOP17.
-! IOP18  (*IVAMC) Points to location in KORD() where information for
+! IOP18  (DIVAMC) Points to location in KORD() where information for
 !   specifying a grouping of equations for derivative evaluation is
 !   stored.  See option 18.
-! IOP19  (*IVAMC) Points to location in KORD() where information for
+! IOP19  (DIVAMC) Points to location in KORD() where information for
 !   specifying a grouping of equations for integration order control
 !   is stored.  See option 19.
-! IOP20  (*IVAMC) Used for option 20, gives first location in F where
+! IOP20  (DIVAMC) Used for option 20, gives first location in F where
 !   estimated errors are to be stored.  Expected to be useful in a
 !   program for solving boundary value problems using multiple shooting.
-! IOP21  (*IVAMC) Was used for stiff equations option (never completely
+! IOP21  (DIVAMC) Was used for stiff equations option (never completely
 !   coded).  The optional code still uses this (don't activate it!).
 !   Now used to flag the location if F where the user has stored the
 !    tolerance to use in finding G-Stops.
-! IOP21S (*IVAMC) Was used for stiff equations see above.
-! IOP22  (*IVAMC) Set aside for possible option for stiff equations.
-! IOP3   (*IVAMC) Value set by option 3.
+! IOP21S (DIVAMC) Was used for stiff equations see above.
+! IOP22  (DIVAMC) Set aside for possible option for stiff equations.
+! IOP3   (DIVAMC) Value set by option 3.
 !   =  0 Interpolate to final point. (The default)
 !   =  1 Integrate to final point.
 !   = -1 Extrapolate to final point.
-! IOP4   (*IVAMC) Value set by option 4.  The output routine is called
+! IOP4   (DIVAMC) Value set by option 4.  The output routine is called
 !   with KORD(1) = 4, every IOP4 steps.  (Default value for IOP4 is a
 !   very large number.
-! IOP5   (*IVAMC) Value provided by option 5, used to specify extra
+! IOP5   (DIVAMC) Value provided by option 5, used to specify extra
 !   output points.
-! IOP6   (*IVAMC) Value provided by option 6.  If nonzero, the output
+! IOP6   (DIVAMC) Value provided by option 6.  If nonzero, the output
 !   routine is called at the end of every step.  If > 0, there are
 !   IOP6 interpolating G-Stops.
-! IOP7   (*IVAMC) Value provided by option 7.  If > 0, there are K7
+! IOP7   (DIVAMC) Value provided by option 7.  If > 0, there are K7
 !   extrapolating G-Stops.
-! IOP8   (*IVAMC) Value provided by option 8.  If nonzero, the output
+! IOP8   (DIVAMC) Value provided by option 8.  If nonzero, the output
 !   routine is called with KORD(1)=8 whenever the step size is changed.
-! IOP9   (*IVAMC) Value provided by option 9.  Used to specify that the
+! IOP9   (DIVAMC) Value provided by option 9.  Used to specify that the
 !   user wishes to save the solution.
-! IOPIVA (*IVA) Used to save length of IOPT vector for error messages.
-! IOPST  (*IVASC) Intended for possible use in stiff equations.
-! IOPT   (formal *IVA and IVAOP) Used to specify options.
-! IOPTC  (*IVAOP) In *IVAOP equivalenced so that IOPTC(3) is equivalent
+! IOPIVA (DIVA) Used to save length of IOPT vector for error messages.
+! IOPST  (DIVASC) Intended for possible use in stiff equations.
+! IOPT   (formal DIVA and IVAOP) Used to specify options.
+! IOPTC  (DIVAOP) In DIVAOP equivalenced so that IOPTC(3) is equivalent
 !   to IOP3.
-! IOPTS  (*IVAOP) Array containing the current default values to be
+! IOPTS  (DIVAOP) Array containing the current default values to be
 !   stored into IOPTC.
-! IORD   (*IVACR) Index of first equation in the current group of
+! IORD   (DIVACR) Index of first equation in the current group of
 !   equations grouped for selecting integration order.
-! IOUTKO (*IVADC) Used in *IVADI to point to KORD to keep track of
+! IOUTKO (DIVADC) Used in DIVADI to point to KORD to keep track of
 !   equation grouping for diagnostic output.
-! ISVCOM (*IVADE) Used to save info. in the common block *IVASC.
-! ITERS  (*IVADE) Counts iterations in starting delay differential
+! ISVCOM (DIVADE) Used to save info. in the common block DIVASC.
+! ITERS  (DIVADE) Counts iterations in starting delay differential
 !   equations.  Max. value for this is arbitrarily 100.
-! ITOLEP (*IVAMC) Used for temporary storage, and for the index of a
+! ITOLEP (DIVAMC) Used for temporary storage, and for the index of a
 !   tolerance relative to the start of tolerances.
-! IVC1   (*IVADB) Array used for output of variables IOPST to NUMDT in
-!   common block *IVASC.
-! IVC2   (*IVADB) Array used for output of variables ICF to NY in
-!   common block *IVAMC.
-! IWB    (*IVADE) Current base index for saving F values in WDE when
+! IVC1   (DIVADB) Array used for output of variables IOPST to NUMDT in
+!   common block DIVASC.
+! IVC2   (DIVADB) Array used for output of variables ICF to NY in
+!   common block DIVAMC.
+! IWB    (DIVADE) Current base index for saving F values in WDE when
 !   starting delay differential equations.
-! IY     (*IVAMC) Used for the current index to the Y() array.  (Local
-!   variable in *IVAIN used in computing IYI.)  Equivalenced to
-!   IZFLAG in *IVAG.
-! IYI    (*IVAIN) Y(IYI) is currently being computed.
-! IYN    (*IVAIN) Y(IYN) is base Y() corresponding to Y(IYI).
-! IYNI   (*IVAIN) Used as base index for computing IYN as IY is for INI.
-! IYO    (*IVADE) Points to first base value of Y for current
+! IY     (DIVAMC) Used for the current index to the Y() array.  (Local
+!   variable in DIVAIN used in computing IYI.)  Equivalenced to
+!   IZFLAG in DIVAG.
+! IYI    (DIVAIN) Y(IYI) is currently being computed.
+! IYN    (DIVAIN) Y(IYN) is base Y() corresponding to Y(IYI).
+! IYNI   (DIVAIN) Used as base index for computing IYN as IY is for INI.
+! IYO    (DIVADE) Points to first base value of Y for current
 !   interpolation when getting values for a delay differential equation.
-! IZFLAG (*IVAG)  Equivalenced to IY.  Set to 0 initially, and later
+! IZFLAG (DIVAG)  Equivalenced to IY.  Set to 0 initially, and later
 !   set to the value returned by *ZERO.
 !    = 0  Value set on entry at start of search.
 !    = 1  Compute next g again.
@@ -425,32 +408,32 @@
 !    = 4  Apparent discontinuity -- no zero found.
 !    = 5  Couldn't find a sign change.
 !    = 6  *ZERO was called with a bad value in IZFLAG.
-! J      For temporary storage. (In *IVA,A,BU,CR,DA,DB,DE,HC,IN,OP,PR)
-! J1     (*IVAA & DA) Used for temporary storage.
-! J2     (*IVAA) Used for temporary storage.
-! JL     (*IVA) Used for checking storage.
-! JLGREP (*IVACR) Contents of first location of KORD (called LGROUP in
-!   *IVACR) for the current error tolerance rule.
-! JLGROR (*IVACR) Contents of first location of KORD for the current
+! J      For temporary storage. (In DIVA,A,BU,CR,DA,DB,DE,HC,IN,OP,PR)
+! J1     (DIVAA & DA) Used for temporary storage.
+! J2     (DIVAA) Used for temporary storage.
+! JL     (DIVA) Used for checking storage.
+! JLGREP (DIVACR) Contents of first location of KORD (called LGROUP in
+!   DIVACR) for the current error tolerance rule.
+! JLGROR (DIVACR) Contents of first location of KORD for the current
 !   integration order control.
-! JLIM   (*IVA) Used for checking second item in KORD list for options
+! JLIM   (DIVA) Used for checking second item in KORD list for options
 !   16 and 19.
-! K      For temporary storage.  (In *IVA,A,BU,CR,DA,DB,DE,HC,IN,OP,PR)
+! K      For temporary storage.  (In DIVA,A,BU,CR,DA,DB,DE,HC,IN,OP,PR)
 ! KDIM   Parameter giving the largest number of differences supported.
 !        Used in all the routines.
-! KEMAX  (*IVAMC) Index associated with equation giving the largest
+! KEMAX  (DIVAMC) Index associated with equation giving the largest
 !   value for (estimated error) / (requested error).
-! KEXIT  (*IVAMC) Equivalenced to IOP17 which is not used after
+! KEXIT  (DIVAMC) Equivalenced to IOP17 which is not used after
 !   initialization.  Defines actions when KORD2I = -7.  (Referenced in
-!   (*IVAA,DA,G).)
+!   (DIVAA,DA,G).)
 !   =  1  Take the step over with reduced H.
 !   =  2  Take the step over.
 !   =  3  Do the end of step call to OUTPUT.
 !   =  4  Reset TMARK, then do same as for KEXIT = 2.
 !   =  5  Reset TMARK, then do same as for KEXIT = 3.
 !   =  6  Give the fatal error diagnostic.
-! KFERR  (*IVA)  Temporary storage in checking for option 16.
-! KGO    (*IVA)  Used to tell from whence a check is being done or an
+! KFERR  (DIVA)  Temporary storage in checking for option 16.
+! KGO    (DIVA)  Used to tell from whence a check is being done or an
 !   error message is being written.
 !   = 1 Checking an equation group for variational equations.
 !   = 2 Checking an equation group for diagnostic print.
@@ -463,25 +446,25 @@
 !   = 9 Order specified for the ODE's in the system is out of range.
 !   =10 Option 16 was not used (an error).
 !   =11 Error tolerance of 0 specified without proper flags.
-! KIS    (*IVAMC) Used to check if it is time to dump the solution.
+! KIS    (DIVAMC) Used to check if it is time to dump the solution.
 !   The check involves incrementing KIS at the end of the step, and
 !   dumping the solution if KIS is 0.
-!   = -1  Set in *ivacr when it is time to dump solution
+!   = -1  Set in DIVAcr when it is time to dump solution
 !   =  0  When starting
 !   =  2  After being dumped.
 !   This is set to 1000 just after a user specified discontinuity, and
 !   counted up from that point.
-! KMARK  (*IVAMC) Identifies the type of output associated with the next
+! KMARK  (DIVAMC) Identifies the type of output associated with the next
 !   output point specified by TSPECS.
-! KONV   (*IVADE) Counts iterations.  Test for convergence if KONV > 1.
-! KORD   (formal in *IVA,A,BU,CR,DA,DB,DE,G,IN,PR) KORD(1) is used to
+! KONV   (DIVADE) Counts iterations.  Test for convergence if KONV > 1.
+! KORD   (formal in DIVA,A,BU,CR,DA,DB,DE,G,IN,PR) KORD(1) is used to
 !   return flags for the user to test, and KORD(2) tells what routine
 !   the flag is associated with.  See KORD1I and KORD2I below and the
 !   write up for the program.  KORD(3) is used for communicating extra
 !   information to the user in some cases.  KORD(4) to KORD(NTE+3) are
 !   used for integration order for the equations, and the rest of KORD()
 !   is available for user options.
-! KORD1I (*IVAMC) Helps in defining the state of the integrator.
+! KORD1I (DIVAMC) Helps in defining the state of the integrator.
 !   Frequently has the same value as KORD(1).  Meaning depends on the
 !   value of KORD(2), or the value about to be assigned to KORD(2).
 !   <  0  Happens when preparing to give output with extrapolation.
@@ -513,73 +496,73 @@
 !                       to T.
 !   = 22  (KORD(2)=-1)  Error, bad tolerance.
 !   = 23  (KORD(2)=-1)  Set after message for a fatal error.
-!   = 24  Set on error message in *iva, along with KORD2I = -4.
-!   Also used as an index into MLOC in *IVAA when an error is being
+!   = 24  Set on error message in DIVA, along with KORD2I = -4.
+!   Also used as an index into MLOC in DIVAA when an error is being
 !   processsed, see MLOC below.
-! KORD2I (*IVAMC) Helps in defining the state of the integrator.
+! KORD2I (DIVAMC) Helps in defining the state of the integrator.
 !   Frequently has the same value as KORD(2).
-!   = -3  Set in *ivag, to get a derivative evaluation.
-!   = -2  Set in *ivag, to get another entry to OUTPUT.
+!   = -3  Set in DIVAg, to get a derivative evaluation.
+!   = -2  Set in DIVAg, to get another entry to OUTPUT.
 !   = -1  Return to calling program, done, interrupt, or got an error.
 !   =  1  Calling OUTPUT or returning to user for OUTPUT type action.
 !   =  0  Calling DERIVS or returning to user for DERIVS type action.
-!   = -4  Error message in *iva and in *ivaop, along with KORD1I = 24.
+!   = -4  Error message in DIVA and in DIVAop, along with KORD1I = 24.
 !   = -5  Starting
 !   = -6  Starting, getting the initial derivative value or derivatives
 !         for the noise test.
 !   = -7  Done some extrapolation, KEXIT defines the action to take.
-!         Set in *ivag to activate KEXIT action in *iva.
+!         Set in DIVAg to activate KEXIT action in DIVA.
 !   = -8  Set when user has requested adjustment of the difference
 !         tables for a discontinutiy.
-! KORDI  (*IVASC) Order of differential equation being integrated.  If
+! KORDI  (DIVASC) Order of differential equation being integrated.  If
 !   all orders are the same, this set once at the beginning.
-! KOUNT   (*IVADE) Count of number of points back from the initial point
+! KOUNT   (DIVADE) Count of number of points back from the initial point
 !   when solving a delay differential equation.
-! KOUNTM  (*IVADE) Largest value currrently allowed for KOUNT.
-! KOUNTX  (*IVADE) Largest value allowed for KOUNTM.
+! KOUNTM  (DIVADE) Largest value currrently allowed for KOUNT.
+! KOUNTX  (DIVADE) Largest value allowed for KOUNTM.
 ! KOUTKO  Used in DIVACR to track where output is wanted.
-! KPRED  (*IVAMC) Value assigned to KORD1I when getting a predicted
+! KPRED  (DIVAMC) Value assigned to KORD1I when getting a predicted
 !   derivative.  (1 used now, 5 planned for use with stiff equations.)
-! KQD    (*IVACR) = max(2, integration order)
-! KQDCON (*IVAMC) Number of coefficients computed with constant step
+! KQD    (DIVACR) = max(2, integration order)
+! KQDCON (DIVAMC) Number of coefficients computed with constant step
 !   size for stiff equations.
-! KQICON (*IVAMC) Number of coefficients computed with constant step
+! KQICON (DIVAMC) Number of coefficients computed with constant step
 !   size for nonstiff equations.
-! KQL    (*IVACR) Integration order at start of (*IVACR)
-! KQLORD (*IVACR) Saved value of KQL when equations are grouped for
+! KQL    (DIVACR) Integration order at start of (DIVACR)
+! KQLORD (DIVACR) Saved value of KQL when equations are grouped for
 !   controlling the integration order.
-! KQMAXD (*IVASC) Maximum integration order used for stiff equations.
-! KQMAXI (*IVASC) Maximum integration order used for nonstiff equations.
-! KQMAXS (*IVAMC) Maximum integration order for equations that have
+! KQMAXD (DIVASC) Maximum integration order used for stiff equations.
+! KQMAXI (DIVASC) Maximum integration order used for nonstiff equations.
+! KQMAXS (DIVAMC) Maximum integration order for equations that have
 !   some limit on the error that can be committed.
-! KQMXDS (*IVAMC) Used to save KQMAXD in case step is repeated and the
+! KQMXDS (DIVAMC) Used to save KQMAXD in case step is repeated and the
 !   solution must be dumped.
-! KQMXI  (*IVAIN) Maximum integration order used for integration or
+! KQMXI  (DIVAIN) Maximum integration order used for integration or
 !   interpolation, = KQMAXI+INTERP-1.
-! KQMXS  (*IVAIN) Maximum step number, = max(KQMXI, KQMAXD).
-! KQMXIL (*IVAMC) Value of KQMAXI the last time integration coefficients
+! KQMXS  (DIVAIN) Maximum step number, = max(KQMXI, KQMAXD).
+! KQMXIL (DIVAMC) Value of KQMAXI the last time integration coefficients
 !   were computed.
-! KQMXIP (*IVAMC) = KQMAXI + MAXINT, for computing integration coeffs.
-! KQMXIS (*IVAMC) Used to save KQMAXI in case step is repeated and the
+! KQMXIP (DIVAMC) = KQMAXI + MAXINT, for computing integration coeffs.
+! KQMXIS (DIVAMC) Used to save KQMAXI in case step is repeated and the
 !   solution must be dumped.
-! KQN    (*IVACR) Value of integration order at end of *IVACR.
+! KQN    (DIVACR) Value of integration order at end of DIVACR.
 ! KQQ    Used for the integration order for current equation.  (Values
-!   < 0 are intended for stiff equations.)  (In *IVA,BU,DA,IN,PR)
-! KSC    (*IVAMC) Number of steps that have been taken with a constant
+!   < 0 are intended for stiff equations.)  (In DIVA,BU,DA,IN,PR)
+! KSC    (DIVAMC) Number of steps that have been taken with a constant
 !   step size.
-! KSOUT  (*IVAMC) When KSTEP reaches this value, the output routine is
+! KSOUT  (DIVAMC) When KSTEP reaches this value, the output routine is
 !   called with KORD(1) = 4.  The default value is a very large number.
-! KSSTRT (*IVAMC) Set when ending one derivative per step to KSTEP + 2.
-!   Checked later in *IVAHC to decide whether to set the step changing
+! KSSTRT (DIVAMC) Set when ending one derivative per step to KSTEP + 2.
+!   Checked later in DIVAHC to decide whether to set the step changing
 !   factors to their nominal values.
-! KSTEP  (*IVAMC) Number of steps taken since the start of integration.
-! L      Used for temporary storage.  In *IVAIN, L is the initial value
-!   of LDT, except L=1 if LDT=-1, and MAXINT >= 0.  (Used in *IVAA,BU
+! KSTEP  (DIVAMC) Number of steps taken since the start of integration.
+! L      Used for temporary storage.  In DIVAIN, L is the initial value
+!   of LDT, except L=1 if LDT=-1, and MAXINT >= 0.  (Used in DIVAA,BU
 !   CR,DA,DB,IN,PR.)
-! LAHAG  (*IVADB) Used to get proper offset into an diagnostic message.
-! LAIAG  (*IVADB) Used to get proper offset into an diagnostic message.
-! LDIS   (*IVAA) Count of steps since user flagged a discontinuity.
-! LDT    (*IVASC) Used to keep track of state of difference table.
+! LAHAG  (DIVADB) Used to get proper offset into an diagnostic message.
+! LAIAG  (DIVADB) Used to get proper offset into an diagnostic message.
+! LDIS   (DIVAA) Count of steps since user flagged a discontinuity.
+! LDT    (DIVASC) Used to keep track of state of difference table.
 !   = -5  Used only on first step to indicate that an extra iteration
 !         is desired to get a firm estimate on the error.
 !   = -4  Set on initialization before there is any difference table.
@@ -594,16 +577,16 @@
 !         step, e.g. by doing an interpolation.
 !   =  2  Set when doing a special interpolation during computation of
 !         derivatives.  (For delay equations.)
-! LEX    (*IVAMC) Indicates how to get values at next output point:
+! LEX    (DIVAMC) Indicates how to get values at next output point:
 !   = -1  Extrapolate
 !   =  0  Interpolate (The usual case.)
 !   =  1  Integrate to the output point, integration is not continued.
-! LGO    (*IVAIN) Used as an an assigned go to.  Result is to add in
+! LGO    (DIVAIN) Used as an an assigned go to.  Result is to add in
 !   extra correction term when LDT has been set to 2.
-! LGROUP (formal) This is a part of KORD passed into *IVACR.  The first
+! LGROUP (formal) This is a part of KORD passed into DIVACR.  The first
 !   location is the start of the information on the grouping of
 !   equations for error control.
-! LINC   (*IVAMC) Used to indicate state of step size selection.
+! LINC   (DIVAMC) Used to indicate state of step size selection.
 !   = -10 After computed derivatives at base time, after computing other
 !         extra derivatives for the noise test.
 !   = -9  After computed second extra derivative for noise test.
@@ -620,23 +603,23 @@
 !   = -1  Step is being repeated.
 !   =  0  Step size is not to be increased on this step.
 !   = k>0 Step size can be increased by HINCC**k.
-! LINCD  (*IVAMC) Value of smallest k for which HINCC**k >= 2.
+! LINCD  (DIVAMC) Value of smallest k for which HINCC**k >= 2.
 !   (=-2 if user is specifying all step size changes.)
-! LINCQ  (*IVAMC) Value of smallest k for which HINCC**k >= 4.
-! LIOPT  (*IVAOP) Value of the last index in IOPT on the last call.
-!   Used so *IVA can print IOPT in error messages.
-! LL     (*IVACR) Temporary variable used when equations are grouped
+! LINCQ  (DIVAMC) Value of smallest k for which HINCC**k >= 4.
+! LIOPT  (DIVAOP) Value of the last index in IOPT on the last call.
+!   Used so DIVA can print IOPT in error messages.
+! LL     (DIVACR) Temporary variable used when equations are grouped
 !   for integration order control.
-! LNOTM1 (*IVAIN) Logical variable = L /= -1.  If LNOTM1 is true,
+! LNOTM1 (DIVAIN) Logical variable = L /= -1.  If LNOTM1 is true,
 !   storage in Y() is different in some way lost to antiquity.  Such
 !   a case can only arise in the case of stiff equations.
-! LOCF1  (*IVADB) Gives packed data needed for output of tables by the
+! LOCF1  (DIVADB) Gives packed data needed for output of tables by the
 !   message processor MESS.  See comments there under METABL for defs.
-! LOCF2  (*IVADB) As for LOCF1 above.
-! LOCM   (*IVAA) Parameter = 32*256, used to unpack integers stored
+! LOCF2  (DIVADB) As for LOCF1 above.
+! LOCM   (DIVAA) Parameter = 32*256, used to unpack integers stored
 !   in MLOC for use in error message processing.
-! LPRINT (formal, *IVADB) Defines how much printing is to be done in
-!   *IVADB.  Let |LPRINT| = 10*N1 + N2     (N1,N2 digits)
+! LPRINT (formal, DIVADB) Defines how much printing is to be done in
+!   DIVADB.  Let |LPRINT| = 10*N1 + N2     (N1,N2 digits)
 !    N1=1   Do not print any variables external to the integrator.
 !    N1=2   Print  tspecs, current y, past y, current f, all pertinent
 !           contents of KORD, and TOL.
@@ -648,7 +631,7 @@
 !    N2=4   Same as N1=3 + all used in arrays XI,BETA,ALPHA, first
 !           column of G, GS,RBQ,SIGMA
 !    N2=5   Same as N1=4 + all used in arrays G,D,DS,V
-! LSC    (*IVAMC) Indicates if starting or if noise may be present.
+! LSC    (DIVAMC) Indicates if starting or if noise may be present.
 !   =k<0 -k steps have been taken for which noise appears to be limiting
 !        the precision.
 !   = 0  Usual case
@@ -663,8 +646,8 @@
 ! LTXT?? Names of this form are used in setting up data statements for
 !   error messages.  These names are generated automatically by PMESS,
 !   the program that makes up these messages.
-! LX     (*IVAA) Used for temporary storage in computing TMARKA().
-!        ( formal *IVADE)  An integer array containing extra
+! LX     (DIVAA) Used for temporary storage in computing TMARKA().
+!        ( formal DIVADE)  An integer array containing extra
 !   information, as follows.
 !  LX(1) Points to a location in Y beyond those already in use.  Values
 !        of Y requested are computed at TSPECS(1) - Y(LX(1)) and stored
@@ -697,174 +680,174 @@
 !  LX(5i+k) , k = 1, 2, ... 5.  Treated as for the cases above.  If i
 !        different cases of delayed Y's are to be computed, then
 !        LX(5i+1) must be 0.
-! LX2    (*IVADE) Value of LX(5i+2), when working on the i-th delay.
+! LX2    (DIVADE) Value of LX(5i+2), when working on the i-th delay.
 ! MACT   Used in the programs which call the error message program.
 !   This array difines the actions to be taken by that program.  (In
-!   (*IVA,A,DA,DE,G,IN,OP)
-! MACT0  (*IVADB) Used to call the message program, see MACT.
-! MACT?  As for MACT, in (*IVA,CR,DB)
-! MACTFV (*IVADB) As for MACT0.
-! MAXDIF (*IVASC) Maximum differentiations required for stiff equations.
-! MAXINT (*IVASC) Maximum integrations required.  (= max. order of
+!   (DIVA,A,DA,DE,G,IN,OP)
+! MACT0  (DIVADB) Used to call the message program, see MACT.
+! MACT?  As for MACT, in (DIVA,CR,DB)
+! MACTFV (DIVADB) As for MACT0.
+! MAXDIF (DIVASC) Maximum differentiations required for stiff equations.
+! MAXINT (DIVASC) Maximum integrations required.  (= max. order of
 !   differential equations if equations are not stiff.)
-! MAXKQ  (*IVA, BU)e
-! MAXKQD (*IVAMC) Largest integration order allowed for stiff equations.
-! MAXKQI (*IVAMC) Largest integ. order allowed for nonstiff equations.
+! MAXKQ  (DIVA, BU)e
+! MAXKQD (DIVAMC) Largest integration order allowed for stiff equations.
+! MAXKQI (DIVAMC) Largest integ. order allowed for nonstiff equations.
 ! ME???? Parameters defining constants used for interaction with the
 !   error message program MESS.  See comments there for definitions.
-!   (In *IVA,A,DA,DE,G,IN,OP)
-! METHOD (*IVAMC) Defines kind of methods being used.
+!   (In DIVA,A,DA,DE,G,IN,OP)
+! METHOD (DIVAMC) Defines kind of methods being used.
 !   = -1  Only stiff equations are being integrated.
 !   =  0  Only nonstiff equations are being integrated.
 !   =  1  Both kinds of methods are required.
-! MLOC   (*IVA,A,DE) Contains locations in MTEXT for error messages.  In
-!   *IVAA this data is packed using MLOC??, see below.
-! MLOC?? (*IVAA) Parameters constructed to aid in making up packed data
+! MLOC   (DIVA,A,DE) Contains locations in MTEXT for error messages.  In
+!   DIVAA this data is packed using MLOC??, see below.
+! MLOC?? (DIVAA) Parameters constructed to aid in making up packed data
 !   for processing error messages.  Low two digits give the value of
 !   KORD1I to use for the error index and later processing, the next two
 !   give the error severity level, and the rest point to text used for
 !   the message.
-! MODF2  (*IVADB) Used in constructing the same kind of packed data as
+! MODF2  (DIVADB) Used in constructing the same kind of packed data as
 !   described for LOCF1 above.
 ! MULTJ  Local to DIVAOP for calls not using F.
-! MTEXT  (*IVA,A,CR,IN,OP) Text for error messages.
-! MTXT?? (*IVA,A,CR,DA,DB,DE,G,IN,OP) Equivalenced into MTEXT.
-! N      Used for temporary storage.  (In *IVAHC,IN,PR)
-! NDTF   (*IVASC) Location in F() where difference table starts.
-! NE     (*IVAMC) Number of equations in the first group.  (=NTE if
+! MTEXT  (DIVA,A,CR,IN,OP) Text for error messages.
+! MTXT?? (DIVA,A,CR,DA,DB,DE,G,IN,OP) Equivalenced into MTEXT.
+! N      Used for temporary storage.  (In DIVAHC,IN,PR)
+! NDTF   (DIVASC) Location in F() where difference table starts.
+! NE     (DIVAMC) Number of equations in the first group.  (=NTE if
 !   option 18 is not used.)
-! NEDDIG (*IVADB) Parameter = -MEDDIG.
-! NEPTOL (*IVAMC) Used for temporary storage and to save the value of
+! NEDDIG (DIVADB) Parameter = -MEDDIG.
+! NEPTOL (DIVAMC) Used for temporary storage and to save the value of
 !   ITOLEP for error messages.
 ! NEQ    (formal) Total number of equations being integrated.
-! NG     (*IVAMC) Used in *ivag for the number of g's in the current
+! NG     (DIVAMC) Used in DIVAg for the number of g's in the current
 !   context.
-! NGSTOP (*IVAG) Dimension 2 array equivalenced to IOP6, and IOP7.  To
+! NGSTOP (DIVAG) Dimension 2 array equivalenced to IOP6, and IOP7.  To
 !   get the number of interpolating and extrapolating G-Stops.
-! NGTOT  (*IVAMC) NGTOT(1) gives the number of interpolating G-Stops,
+! NGTOT  (DIVAMC) NGTOT(1) gives the number of interpolating G-Stops,
 !   and NGTOT(2) gives the number of extrapolating G-Stops.
-! NKDKO  (*IVASC) If this is nonzero (option 17), it gives the location
+! NKDKO  (DIVASC) If this is nonzero (option 17), it gives the location
 !   in KORD() where a vector defining the order of each equation is
 !   specified.
-! NLX    (*IVADE) Temporary index used to keep track of interpolations
+! NLX    (DIVADE) Temporary index used to keep track of interpolations
 !   being done to get Y() values for a delay differential equation.
-! NOISEQ (*IVAMC) max(2, order of equation for which (error estimate)/
+! NOISEQ (DIVAMC) max(2, order of equation for which (error estimate)/
 !   (error requested) is a maximum).
-! NOUTKO (*IVAMC) If nonzero, gives the index in KORD where information
+! NOUTKO (DIVAMC) If nonzero, gives the index in KORD where information
 !   on what equations are to be included in the diagnostic output is
 !   given.   See option 10.
-! NSTOP  (formal) In *IVAG.  Index of the G-stop, see IFLAG.
-! NTE    (*IVASC) Total number of equations being integrated = NEQ.
-! NTEXT  (formao *IVADB) Character variable containing heading text.
-! NTOLF  (*IVAMC) First location in F() where tolerance specifying
+! NSTOP  (formal) In DIVAG.  Index of the G-stop, see IFLAG.
+! NTE    (DIVASC) Total number of equations being integrated = NEQ.
+! NTEXT  (formao DIVADB) Character variable containing heading text.
+! NTOLF  (DIVAMC) First location in F() where tolerance specifying
 !   accuracy desired is stored.
-! NUMDT  (*IVASC) Maximum allowed number of differences available for
+! NUMDT  (DIVASC) Maximum allowed number of differences available for
 !   doing an integration.
-! NXTCHK (*IVA) Equivalenced to INTCHK(1), which gives the next
+! NXTCHK (DIVA) Equivalenced to INTCHK(1), which gives the next
 !   available location in INTCHK for storing data on storage allocation.
-! NY     (*IVAMC) Total order of the system.
-! NYNY   (*IVASC) Location in Y() where the base value for Y() is saved.
-! NYNYO  (*IVADE) Equivalenced to the saved value from common of NYNY.
+! NY     (DIVAMC) Total order of the system.
+! NYNY   (DIVASC) Location in Y() where the base value for Y() is saved.
+! NYNYO  (DIVADE) Equivalenced to the saved value from common of NYNY.
 ! OUTPUT (formal) Name of subroutine to be called for the output of
 !   data or for computing G-Stops.  Not used if option 14 is set.
-! OVD10  (*IVAEV) (largest floating point number) / 10.
-! OVTM75 (*IVAEV) (largest floating point number) ** (-.75)
-! RBQ    (*IVAMC) Array containing data for the preliminary noise test.
-! RD     (formal *IVACO) Array use to contain floating point data from
+! OVD10  (DIVAEV) (largest floating point number) / 10.
+! OVTM75 (DIVAEV) (largest floating point number) ** (-.75)
+! RBQ    (DIVAMC) Array containing data for the preliminary noise test.
+! RD     (formal DIVACO) Array use to contain floating point data from
 !   common.  Values are returned in locations 1 to 3 as follows.
 !   1    EMAX =  Max. ratio of estimated error to requested error
 !   2            Reserved for future use
 !   3            Reserved for future use
-! REF    (*IVACR) Array of length 3 used for translating error tolerance
+! REF    (DIVACR) Array of length 3 used for translating error tolerance
 !   type into the factor used for exponential averaging for that type.
-! RND    (*IVACR) Usually the current estimated error.  Used in deciding
+! RND    (DIVACR) Usually the current estimated error.  Used in deciding
 !   if noise is limiting precision.
-! RNOISE (*IVACR) Value used in comparison with RBQ() for preliminary
+! RNOISE (DIVACR) Value used in comparison with RBQ() for preliminary
 !   noise test.
-! ROBND  (*IVAMC) Used to influence the selection of integration order.
+! ROBND  (DIVAMC) Used to influence the selection of integration order.
 !   The larger ROBND, the harder it is to increase the order and the
 !   easier it is to decrease it.
-! RVC2   (*IVADB) Array used for output of variables DNOISE to SNOISE in
-!   common block *IVAMC.  These are variables that don't require a great
+! RVC2   (DIVADB) Array used for output of variables DNOISE to SNOISE in
+!   common block DIVAMC.  These are variables that don't require a great
 !   deal of precision.
-! S      (*IVACR) Estimate of (step size) * eigenvalue of Jacobian.
-! SIGMA  (*IVAMC) The k-th entry of this array contains a factor that
+! S      (DIVACR) Estimate of (step size) * eigenvalue of Jacobian.
+! SIGMA  (DIVAMC) The k-th entry of this array contains a factor that
 !   gives the amount the k-th difference is expected to increase if the
 !   step size in increased.  These numbers get bigger it there is a past
 !   history of increasing the step size.
-! SIGMAS (*IVAA) Saved value of SIGMA(k) from the last step, where k =
+! SIGMAS (DIVAA) Saved value of SIGMA(k) from the last step, where k =
 !   integration order for equation with index KEMAX.
-! SNOISE (*IVAMC) Value used in comparison with RBQ() on equation with
+! SNOISE (DIVAMC) Value used in comparison with RBQ() on equation with
 !   largest value for (error estimate) / (error requested).
-! T      (formal) in *IVAIN. T(1) contains the point to be interpolated
+! T      (formal) in DIVAIN. T(1) contains the point to be interpolated
 !   to, and T(2) is used in a check that |HI| <= |T(2)|.  When used by
 !   other routines in this package, TSPECS is passed in for T.
-! TB      (*IVADE) Base time for current interpolation.
-! TC      (*IVADE) Original value of TN when getting past Y's for a
+! TB      (DIVADE) Base time for current interpolation.
+! TC      (DIVADE) Original value of TN when getting past Y's for a
 !   delay differential equation.
-! TEMP   Used for temporary storage, in *IVAHC,PR
-! TEMPA  (*IVACR) Array equivalenced to (TPS1,TPS2,TPS3,TPS4).
-! TEMPAO (*IVACR) Array used to accumulate values in TEMPA.
-! TG     (*IVAMC) TG(1) gives the last value of TSPECS(1) for which an
+! TEMP   Used for temporary storage, in DIVAHC,PR
+! TEMPA  (DIVACR) Array equivalenced to (TPS1,TPS2,TPS3,TPS4).
+! TEMPAO (DIVACR) Array used to accumulate values in TEMPA.
+! TG     (DIVAMC) TG(1) gives the last value of TSPECS(1) for which an
 !   interpolatory G-Stop has been computed.  TG(2) is defined similarly
 !   for extrapolatory G-Stops.
-! TGSTOP (*IVAMC) TGSTOP(1) gives the value of TSPECS(1) where the last
+! TGSTOP (DIVAMC) TGSTOP(1) gives the value of TSPECS(1) where the last
 !   0 for an interpolatory G-Stop was found.  TGSTOP(2) is defined
 !   similarly for extrapolatory G-Stops.
-! TMARK  (*IVAMC) Location of the next output point.
-! TMARKA (*IVAA)  Array of length 2 equivalenced to TMARK (and TMARKX).
-! TMARKX (*IVAMC) Location of the next output point to be found using
+! TMARK  (DIVAMC) Location of the next output point.
+! TMARKA (DIVAA)  Array of length 2 equivalenced to TMARK (and TMARKX).
+! TMARKX (DIVAMC) Location of the next output point to be found using
 !   integration or extrapolation.  This variable must follow immediately
 !   after TMARK in the common block.
-! TN     (*IVASC) The value of TSPECS(1) at the conclusion of the last
+! TN     (DIVASC) The value of TSPECS(1) at the conclusion of the last
 !   step.
-! TNEQ   (*IVADB) Array of dimension 1 equivalenced to TN so that an
+! TNEQ   (DIVADB) Array of dimension 1 equivalenced to TN so that an
 !   array can be passed to *MESS.
-! TOL    (formal) This is a part of F passed into *IVACR.  The first
+! TOL    (formal) This is a part of F passed into DIVACR.  The first
 !   location is the start of the information on the tolerances for error
 !   control.
-! TOLD   (*IVAG) Value of TSPECS(1) on one side of a zero.
-! TOLG   (*IVAMC) Tolerance to pass to dzero when locating G-Stops.
-! TOUT   (*IVAMC) Location of next output point defined by value of
+! TOLD   (DIVAG) Value of TSPECS(1) on one side of a zero.
+! TOLG   (DIVAMC) Tolerance to pass to dzero when locating G-Stops.
+! TOUT   (DIVAMC) Location of next output point defined by value of
 !   TSPECS(3).  Such output is given with KORD(1) = 2.
-! TP     (*IVA,A,DA,DE,HC) Used for temporary storage.
-! TP1    (*IVAA,DA,HC,IN,PR) Used for temporary storage.
-! TP2    (*IVAA,DA,HC,PR) Used for temporary storage.
-! TP3    (*IVAA) Used for temporary storage.
-! TPD    (*IVABU) Used for temporary storage.
-! TPP    (*IVACR) Used for temporary storage.  Usually same as TPS3.
-! TPS1   (*IVAA,CR) Used for temporary storage.  (In *IVACR is the
+! TP     (DIVA,A,DA,DE,HC) Used for temporary storage.
+! TP1    (DIVAA,DA,HC,IN,PR) Used for temporary storage.
+! TP2    (DIVAA,DA,HC,PR) Used for temporary storage.
+! TP3    (DIVAA) Used for temporary storage.
+! TPD    (DIVABU) Used for temporary storage.
+! TPP    (DIVACR) Used for temporary storage.  Usually same as TPS3.
+! TPS1   (DIVAA,CR) Used for temporary storage.  (In DIVACR is the
 !   difference of order KQQ-2)
-! TPS2   (*IVAA,CR) Used for temporary storage.  (In *IVACR is the
+! TPS2   (DIVAA,CR) Used for temporary storage.  (In DIVACR is the
 !   difference of order KQQ-1)
-! TPS3   (*IVACR) Contains the difference of order KQQ.  This is the
+! TPS3   (DIVACR) Contains the difference of order KQQ.  This is the
 !   last difference used in the corrector.
-! TPS4   (*IVACR) Contains the difference of order KQQ+1.
-! TPS5   (*IVACR) Temporary storage.
-! TPS6   (*IVACR) Temporary storage.
-! TPS7   (*IVACR) Temporary storage.
-! TSAVE  (*IVAG) Value of TSPECS(1) before starting the search for a 0.
-! TSPECS (formal *IVA,A,DB,DE,G)
+! TPS4   (DIVACR) Contains the difference of order KQQ+1.
+! TPS5   (DIVACR) Temporary storage.
+! TPS6   (DIVACR) Temporary storage.
+! TPS7   (DIVACR) Temporary storage.
+! TSAVE  (DIVAG) Value of TSPECS(1) before starting the search for a 0.
+! TSPECS (formal DIVA,A,DB,DE,G)
 !   TSPECS(1) is the current value of the independent variable.
 !   TSPECS(2) is the current value of the step size.
 !   TSPECS(3) is the increment to use between output points that give
 !             output with KORD(1) = 2.
 !   TSPECS(4) is the "final" output point.
-! V      (*IVAMC) Array used in computing integration coefficients.
-! XI     (*IVASC) XI(K) = TSPECS(1) - value of TSPECS(1) K steps
+! V      (DIVAMC) Array used in computing integration coefficients.
+! XI     (DIVASC) XI(K) = TSPECS(1) - value of TSPECS(1) K steps
 !   previous.
-! W      (*IVAHC) Array used in computing integration coefficients.
-! WDE    (formal, *IVADE)  Array used for working storage.  This storage
+! W      (DIVAHC) Array used in computing integration coefficients.
+! WDE    (formal, DIVADE)  Array used for working storage.  This storage
 !   is used to save derivative values when iterating to get started.  To
 !   be safe one should allow as much space as is allowed for differences
 !   in F.  In most cases the start will not require this much space
 !   however.  This array is also intended for the support of saving long
 !   past histories.
-! Y      (formal, *IVA,A,CR,DA,DB,DE,G,IN,PR) Array containing the
+! Y      (formal, DIVA,A,CR,DA,DB,DE,G,IN,PR) Array containing the
 !   independent variable and all derivatives up to order one less than
 !   the order of the differential equation.  Also use to save these
 !   values at the beginning of the current step, the base values.
-! YN     (formal, in *IVAPR)  Base values of y, these follow the
+! YN     (formal, in DIVAPR)  Base values of y, these follow the
 !   current values of the dependent variable, y, in Y().
 !
 !++S Default KDIM = 16
