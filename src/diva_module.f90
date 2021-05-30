@@ -950,64 +950,7 @@
       double precision TSPECS(*), Y(*)
       double precision F(*)
       external DIVAF, DIVAO
-!
-! *********************** Internal Variables ***************************
-!
-! Comments for variables used in this package can be found in the file
-!   IVACOM.
-!
-! *********************** Type Declarations ****************************
-!
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
-
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2
-    !   double precision EEPT75, EOVEP2, OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-!
       integer KGO, INTCHK(0:30), NXTCHK
       integer IHI, JL, J, ILOW, K, KQQ, JLIM, KFERR
 !
@@ -1512,58 +1455,6 @@
       double precision F(*)
       external DIVAF, DIVAO
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
-
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2
-    !   double precision EEPT75, EOVEP2, OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-!
-    !   double precision CMP75, C0, C1M5, C1M3, C2P5M3, C8M3, CP0625, CP1
-    !   double precision CP25, CP3, CP4, CP5, CP875, C1, C1P125, C1P3, C2
-    !   double precision C6, C10, C16, C4096
       double precision, parameter :: CMP75 = -.75D0
       double precision, parameter :: C0 = 0.D0
       double precision, parameter :: C1M5 = 1.D-5
@@ -1586,12 +1477,11 @@
       double precision, parameter :: C16 = 16.D0
       double precision, parameter :: C4096 = 4096.D0
 !
-      integer LDIS, I, J, K, J1, J2, L, LX !KEXIT
-      double precision TP, TP1, TP2, TP3, DISADJ  !HH
+      integer LDIS, I, J, K, J1, J2, L, LX
+      double precision TP, TP1, TP2, TP3, DISADJ
       double precision SIGMAS, TPS1, TPS2, EIMINO, EXR
-      double precision XP, XP1 !TMARKA(2),
-   !   equivalence (G(1, 1), HH) !, (TMARKA(1), TMARK)
-    !  equivalence (KEXIT, IOP17)
+      double precision XP, XP1
+
       save EIMINO, EXR, SIGMAS, TP, TP1, TP2, TP3, TPS1, TPS2, DISADJ,  &
      &   LDIS
 !
@@ -2489,137 +2379,95 @@
 
 !*************************************************************************
 !>
-! THIS SUBROUTINE RESTORES THE DIFFERENCE TABLE TO ITS STATE
-! AT THE BEGINNING OF THE CURRENT STEP.  IF THE INTEGRATION ORDER
-! WAS INCREASED, IT IS REDUCED. THE COMMON ARRAY XI IS ALSO
-! RESTORED TO ITS STATE AT THE BEGINNING OF THE STEP. IF THE
-! STEPSIZE IS NOT BEING CHANGED, THE ARRAY V USED TO COMPUTE
-! INTEGRATION COEFFICIENTS IS RESTORED.
+!  This subroutine restores the difference table to its state
+!  at the beginning of the current step.  if the integration order
+!  was increased, it is reduced. the common array xi is also
+!  restored to its state at the beginning of the step. if the
+!  stepsize is not being changed, the array v used to compute
+!  integration coefficients is restored.
 !
 !### History
 !  * 1987-12-07 DIVABU Krogh   Initial code.
 
-    subroutine DIVABU(F, KORD)
+    subroutine divabu(f, kord)
 
     use diva_constants
     use divasc_module
     use divamc_module
 
-      integer KORD(*)
-      double precision F(*)
-!
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
+    integer :: kord(*)
+    double precision :: f(*)
 
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-!
-      integer I, L, KQQ, J, K
-      double precision TPD
+    integer :: i, l, kqq, j, k
+    double precision :: tpd
 
-      double precision, parameter :: C0 = 0.D0
-      double precision, parameter :: C2 = 2.D0
+    double precision, parameter :: c0 = 0.d0
+    double precision, parameter :: c2 = 2.d0
 
-! ********* START OF EXECUTABLE CODE **********
-!
 ! ********
-! BEGIN LOOP TO BACK UP DIFFERENCE TABLES
+! begin loop to back up difference tables
 ! ********
-      L = NDTF - 1
-      do 2410 I = 1, NTE
-         KQQ = KORD(I + 3)
-!++  Code for STIFF is inactive
-!         IF (KQQ) 2302,2400,2310
-!c.           EQUATION IS STIFF
-! 2302    IF (LINC>=0) GO TO 2310
-!         IF (F(L+1+I)) 2306,2308,2304
-!c.     ORDER WAS INCREASED, AND THUS MUST BE DECREASED (KQQ<0)
-! 2304    KQQ=KQQ+1
-!         KORD(I+3) = KQQ
-!         GO TO 2308
-!c.     ORDER WAS DECREASED
-! 2306    KQQ=KQQ-1
-! 2308    KQQ=max(2,-KQQ)
-!         GO TO 2350
-!++  End
-!     EQUATION IS NOT STIFF
- 2310    if (KQQ > 2) then
-            if (F(L + KQQ) == C0) then
-!                 ORDER WAS INCREASED, AND THUS MUST BE DECREASED
-               KQQ = KQQ - 1
-               KORD(I + 3) = KQQ
+    l = ndtf - 1
+    do i = 1, nte
+         kqq = kord(i + 3)
+!++  code for stiff is inactive
+!         if (kqq) 2302,2400,2310
+!c.           equation is stiff
+! 2302    if (linc>=0) go to 2310
+!         if (f(l+1+i)) 2306,2308,2304
+!c.     order was increased, and thus must be decreased (kqq<0)
+! 2304    kqq=kqq+1
+!         kord(i+3) = kqq
+!         go to 2308
+!c.     order was decreased
+! 2306    kqq=kqq-1
+! 2308    kqq=max(2,-kqq)
+!         go to 2350
+!++  end
+!     equation is not stiff
+ 2310    if (kqq > 2) then
+            if (f(l + kqq) == c0) then
+               ! order was increased, and thus must be decreased
+               kqq = kqq - 1
+               kord(i + 3) = kqq
             end if
          end if
-         J = min(KQQ, KSC)
-         KQMAXI = max(KQMAXI, KQQ)
-         if (KQQ /= 1) F(L + KQQ + 1) = 0.D0
-!           BACK UP FOR BACKWARD DIFFERENCES
-         do 2360 K = 1, J
-            F(L + K) = F(L + K) - F(L + K + 1)
- 2360    continue
-         if (KQQ > KSC) then
-!           BACK UP FOR MODIFIED DIVIDED DIFFERENCES
-            do 2390 K = J+1, KQQ
-               F(L + K) = (F(L+K) - F(L+K+1)) / BETA(K)
- 2390       continue
+         j = min(kqq, ksc)
+         kqmaxi = max(kqmaxi, kqq)
+         if (kqq /= 1) f(l + kqq + 1) = 0.d0
+         ! back up for backward differences
+         do k = 1, j
+            f(l + k) = f(l + k) - f(l + k + 1)
+         end do
+         if (kqq > ksc) then
+            ! back up for modified divided differences
+            do k = j+1, kqq
+               f(l + k) = (f(l+k) - f(l+k+1)) / beta(k)
+            end do
          end if
- 2400    F(L + KQQ + 1) = F(L + KQQ + 1) / BETA(KQQ + 1)
-         L = L + NUMDT
- 2410 continue
-! END OF LOOP TO BACK UP DIFFERENCE TABLES
+ 2400    f(l + kqq + 1) = f(l + kqq + 1) / beta(kqq + 1)
+         l = l + numdt
+    end do
+! end of loop to back up difference tables
+
 ! ********
-! BACK UP XI TO BEGINNING OF THE STEP
+! back up xi to beginning of the step
 ! ********
-      I = KSC + 1
-      if (I - IOP11 - 1) 2420, 2440, 2450
- 2420 TPD = XI(1)
-!                Check below needed when starting?
-      if (TPD == XI(2)) go to 2450
-      do 2430 K = I, IOP11
- 2430    XI(K - 1) = XI(K) - TPD
- 2440 XI(IOP11) = C2 * XI(IOP11 - 1)
-      if (IOP11 /= 2) XI(IOP11) = XI(IOP11) - XI(IOP11 - 2)
- 2450 KQICON = -1
-      ICF = NE
-      ICS = 1
-      LDT = 1
-      return
+      i = ksc + 1
+      if (i - iop11 - 1) 2420, 2440, 2450
+ 2420 tpd = xi(1)
+      ! check below needed when starting?
+      if (tpd == xi(2)) go to 2450
+      do k = i, iop11
+         xi(k - 1) = xi(k) - tpd
+      end do
+ 2440 xi(iop11) = c2 * xi(iop11 - 1)
+      if (iop11 /= 2) xi(iop11) = xi(iop11) - xi(iop11 - 2)
+ 2450 kqicon = -1
+      icf = ne
+      ics = 1
+      ldt = 1
+
     end subroutine divabu
 !*************************************************************************
 
@@ -2639,83 +2487,31 @@
 !### History
 !  * 1987-12-07 DIVACO Krogh   Initial code.
 
-    subroutine DIVACO(ID, RD)
+    subroutine divaco(id, rd)
 
     use diva_constants
     use divasc_module
     use divamc_module
 
-      integer ID(5)
-      double precision RD(3)
+    integer :: id(5)
+    double precision :: rd(3)
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
+    id(1) = kemax
+    id(2) = kstep
+    id(3) = numdt
+    rd(1) = emax
 
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-!
-      ID(1) = KEMAX
-      ID(2) = KSTEP
-      ID(3) = NUMDT
-      RD(1) = EMAX
-
-    end subroutine DIVACO
+    end subroutine divaco
 !*************************************************************************
 
 !*************************************************************************
 !>
-! THIS SUBROUTINE
-!   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
-!   2. ESTIMATES ERRORS
-!   3. SELECTS INTEGRATION ORDERS
-!   4. TESTS IF NOISE LIMITS THE PRECISION
+! This subroutine:
 !
-!     Y = VECTOR OF PREDICTED VALUES ON ENTRY, AND OF CORRECTED
-!         VALUES WHEN THE RETURN IS MADE.
-! LGROUP= VECTOR INDICATING HOW ERROR TOLERANCES ARE TO BE GROUPED
-!         (AND POSSIBLY HOW INTEGRATION ORDERS ARE TO BE GROUPED).
-!   TOL = VECTOR CONTAINING ERROR TOLERANCES (AND POSSIBLY RELATIVE
-!         ERROR FACTORS).
-!     F = VECTOR GIVING PREDICTED DERIVATIVE VALUES AND DIFF. TABLES.
-!    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
-!         (IF EQUATIONS HAVE DIFFERENT ORDERS).
-!    KQ = VECTOR OF INTEGRATION ORDERS.
+!  1. Corrects y for equations which are not stiff
+!  2. Estimates errors
+!  3. Selects integration orders
+!  4. Tests if noise limits the precision
 !
 !### History
 !  * 1988-08-25 DIVACR Krogh   Fix bug in relative error test.
@@ -2728,61 +2524,21 @@
       use divasc_module
       use divamc_module
 
-      integer LGROUP(*), KORD(*)
-      double precision Y(*)
-      double precision TOL(*), F(*)
+      integer :: lgroup(*) !! vector indicating how error tolerances are to be grouped
+                           !! (and possibly how integration orders are to be grouped).
+      integer :: kord(*)
+      double precision :: y(*) !! vector of predicted values on entry, and of corrected
+                               !! values when the return is made.
+      double precision :: tol(*) !! vector containing error tolerances (and possibly relative
+                                 !! error factors).
+      double precision :: f(*)
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
+!    KD = VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS
+!         (IF EQUATIONS HAVE DIFFERENT ORDERS).
+!    KQ = VECTOR OF INTEGRATION ORDERS.
 
-! !
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
-    !   double precision OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-!
       integer L, I, KQL, KQN, KQD, JLGREP, J, K, ILGROR, ITOLOR, JLGROR,&
-     &   IORD, KOUTKO, KQLORD, LL, LKQMAX
+              IORD, KOUTKO, KQLORD, LL, LKQMAX
 
       double precision, parameter :: CM8 = -8.D0
       double precision, parameter :: CM2 = -2.D0
@@ -3389,55 +3145,6 @@
       use divasc_module
       use divamc_module
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
-
-! !
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
-    !   double precision OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-
 !                 K - 1 + 1 / K  is equivalent to max(1, K-1)
       double precision GG(MAXORD - 1 + 1/MAXORD), B(KDIM+MAXORD), W(KDIM+MAXORD)
       integer  K, N, J
@@ -3711,19 +3418,6 @@
       integer KORD(*)
       double precision T(*), Y(*)
       double precision F(*)
-
-    !   !++ Substitute for KDIM, MAXORD below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-    !   save / DIVASC /
 
       integer I, ICI, IDT, INTERP, INTEG, INTEGZ, IY, IYI, IYN, IYNI, J,&
      &    K, KQMXI, KQMXS, KQQ, L, N
@@ -4042,56 +3736,7 @@
       double precision FOPT(*)
       integer IOPT(*)
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
-
-! !
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2, EEPT75, EOVEP2
-    !   double precision OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-!
-      integer IOPTS(23), INCOP(22), I, IA, J, K, LIOPT, MULTJ !, IOPTC(23)
+      integer IOPTS(23), INCOP(22), I, IA, J, K, LIOPT, MULTJ
 
       double precision, parameter :: CMP75  = -.75D0
       double precision, parameter :: C0     = 0.D0
@@ -4331,55 +3976,6 @@
       double precision Y(*), YN(*)
       double precision F(*)
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
-
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2
-    !   double precision EEPT75, EOVEP2, OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-
       double precision, parameter :: C0 = 0.D0
 !
       integer I, INTEG, INTEGS, J, K, KQQ, L, N
@@ -4585,71 +4181,11 @@
       integer LPRINT, KORD(*)
       character TEXT*(*)
       character TEXT1(1)*11, TEXT2(1)*4, TEXT3(1)*5, TEXT4(1)*4
-      integer J, K, L, N1, N2  !, IVC1(12), IVC2(65),
-     ! double precision DVC2(7), RVC2(8)  !, EVC(8)
-      double precision TSPECS(*), Y(*) ! DVC1(7)  !, TNEQ(1)
+      integer J, K, L, N1, N2
+      double precision TSPECS(*), Y(*)
       double precision F(*)
-!
-!++S Default KDIM = 16
-!++  Default KDIM = 20
-!++  Default MAXORD = 2, MAXSTF = 1
-!++  Default STIFF=.F.
 
-! !++ Substitute for KDIM, MAXORD, MAXSTF below
-!       integer, parameter :: KDIM = 20
-!       integer, parameter :: MAXORD = 2
-!       integer, parameter :: MAXSTF = 1
-
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-!.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-    !   double precision EEPS10, EEPS16, EROV10, EEPS2
-    !   double precision EEPT75, EOVEP2, OVTM75, OVD10
-    !   common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-    !  &   EEPS16, EROV10
-    !   save / DIVAEV /
-
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-! !
-!       integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-!      &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-!      &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-!      &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-!      &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-!      &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-!      &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-!       common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-!      &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-!      &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-!      &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-!      &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-!      &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-!      &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-!      &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-!      &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-!       save / DIVAMC / !, / DIVASC /
-
-     ! equivalence (IVC2(1), ICF)  !, (IVC1(1), IOPST)
-    !  equivalence (TNEQ, TN)
-    !  equivalence (RVC2(1), DNOISE), (DVC1(1), TG), (DVC2(1), HC)  ! ,      &
-    ! &   (EVC(1), EEPS2)
-!
-!                      Declarations for error message processing.
+    ! Declarations for error message processing.
       integer, parameter :: MEDDIG = 12
       integer, parameter :: NEDDIG = -MEDDIG
       integer, parameter :: METDIG = 22
@@ -4661,7 +4197,7 @@
       integer, parameter :: MEFVEC = 61
       integer, parameter :: MEFMAT = 62
 
-      integer MACT0(3), MACT1(2), MACT2(7), MACT3(7), MACT4(8),         &
+      integer MACT0(3), MACT1(2), MACT2(7), MACT3(7), MACT4(8), &
      &   MACT5(11), MACT6(3), MACT7(14), MACTFV(4)
 
       integer, parameter :: KPI = 400301  !! wddtrr
@@ -4960,67 +4496,10 @@
       double precision TSPECS(*), Y(*), TOLD, TSAVE
       double precision F(*), GNEW(*), GT(*), GOLD
       save GOLD, TOLD, TSAVE
-!
-!++SP Default KDIM = 16
-!++  Default KDIM = 20
-!++  Default MAXORD = 2, MAXSTF = 1
 
-    !   !++ Substitute for KDIM, MAXORD, MAXSTF below
-    !   integer, parameter :: KDIM = 20
-    !   integer, parameter :: MAXORD = 2
-    !   integer, parameter :: MAXSTF = 1
+      integer I, IG
 
-!
-!       double precision TG(2), TGSTOP(2), TMARK, TMARKX, TOUT, TOLG
-!       double precision ALPHA(KDIM), BETA(KDIM+1)
-!       double precision D(MAXSTF+MAXORD,MAXORD), G(KDIM,MAXORD)
-!       double precision V(KDIM+MAXORD)
-!       double precision HC, HDEC, HINC, HINCC, HMAX, HMAXP9, HMIN
-!       double precision FDAT(11)
-! !
-!       double precision DS(MAXSTF+MAXORD, MAXORD), GS(KDIM)
-!       double precision SIGMA(KDIM), RBQ(KDIM), DNOISE
-!       double precision EAVE, EIMAX, EIMIN, EMAX, EREP, ROBND, SNOISE
-!
-! !.    SPECIFICATION OF ENVIRONMENTAL CONSTANTS.
-!       double precision EEPS10, EEPS16, EROV10, EEPS2
-!       double precision EEPT75, EOVEP2, OVTM75, OVD10
-!       common / DIVAEV / EEPS2, EEPT75, EOVEP2, OVTM75, OVD10, EEPS10,   &
-!      &   EEPS16, EROV10
-!       save / DIVAEV /
-
-    !   double precision TN
-    !   double precision XI(KDIM)
-    !   integer IOPST, KORDI, KQMAXD, KQMAXI, LDT, MAXDIF, MAXINT, NKDKO, &
-    !  &   NTE, NYNY, NDTF, NUMDT
-    !   common / DIVASC / TN, XI, IOPST, KORDI, KQMAXD, KQMAXI, LDT,      &
-    !  &   MAXDIF, MAXINT, NKDKO, NTE, NYNY, NDTF, NUMDT
-!
-    !   integer ICF,ICS,IGFLG,IGTYPE(2),IGSTOP(2),ILGREP,INGS,IOP3,IOP4,  &
-    !  &   IOP5,IOP6,IOP7,IOP8,IOP9,IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,  &
-    !  &   IOP16,IOP17,IOP18,IOP19,IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,    &
-    !  &   KEMAX,KIS,KMARK,KORD1I,KORD2I,KPRED,KQDCON,KQICON,KQMAXS,      &
-    !  &   KQMXDS,KQMXIL,KQMXIP,KQMXIS,KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,   &
-    !  &   LINCD,LINCQ,LSC,MAXKQD,MAXKQI,METHOD,NE,NEPTOL,NG,NGTOT,       &
-    !  &   NOISEQ,NOUTKO,NTOLF,NY,IDAT(6)
-    !   common /DIVAMC/ TG,TGSTOP,TMARK,TMARKX,TOUT,TOLG,HC,HDEC,HINC,    &
-    !  &   HINCC,HMAX,HMAXP9,HMIN,ALPHA,BETA,D,G,V,DS,GS,SIGMA,RBQ,DNOISE,&
-    !  &   EAVE,EIMAX,EIMIN,EMAX,EREP,ROBND,SNOISE,FDAT,ICF,ICS,IGFLG,    &
-    !  &   IGTYPE,IGSTOP,ILGREP,INGS,IOP3,IOP4,IOP5,IOP6,IOP7,IOP8,IOP9,  &
-    !  &   IOP10,IOP11,IOP12,IOP13,IOP14,IOP15,IOP16,IOP17,IOP18,IOP19,   &
-    !  &   IOP20,IOP21,IOP22,IOP21S,ITOLEP,IY,KEMAX,KIS,KMARK,KORD1I,     &
-    !  &   KORD2I,KPRED,KQDCON,KQICON,KQMAXS,KQMXDS,KQMXIL,KQMXIP,KQMXIS, &
-    !  &   KSC,KSOUT,KSSTRT,KSTEP,LEX,LINC,LINCD,LINCQ,LSC,MAXKQD,MAXKQI, &
-    !  &   METHOD,NE,NEPTOL,NG,NGTOT,NOISEQ,NOUTKO,NTOLF,NY,IDAT
-    !   save / DIVAMC / !, / DIVASC /
-!
-      integer I, IG ! KEXIT !, NGSTOP(2) IGFLGS, IZFLAG
-      !double precision HH
-      !equivalence (KEXIT, IOP17),      &
-     ! equivalence (IZFLAG, IY), (IGFLGS, ITOLEP)  !(G(1,1), HH), (NGSTOP(1), IOP6)
-!
-!                      Declarations for error message processing.
-!
+      ! Declarations for error message processing.
       integer, parameter :: MEMDA1 = 27
       integer, parameter :: MERET  = 51
       integer, parameter :: MEEMES = 52
