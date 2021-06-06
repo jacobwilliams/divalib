@@ -1129,15 +1129,6 @@
          INTCHK(NXTCHK+2) = NTE
          NXTCHK = NXTCHK + 3
       end if
-!++  Code for STIFF is inactive
-!      IF (IOPST /= 0) then
-!         INTCHK(NXTCHK) = 17
-!         INTCHK(NXTCHK+1) = IOPST
-!         INTCHK(NXTCHK+2) = NTE
-!         NXTCHK = NXTCHK + 3
-!      end if
-!++  End
-!
 ! **** SET INITIAL INTEGRATION ORDERS, TEST ODE ORDERS ****
 !
       MAXINT = 0
@@ -1146,26 +1137,7 @@
       do 80 K = 1, NTE
          if (NKDKO /= 0) KORDI = KORD(NKDKO + K - 1)
          NY = NY + abs(KORDI)
-!++  Code for STIFF is inactive
-!      IF (IOPST == 0) GO TO 60
-!c.    **** CHECK FOR POTENTIAL STIFF EQUATION
-!      JS = abs(KORD(IOPST+K-1)) - 1
-!      IF ( JS ) 52,60,54
-!c.    **** EQUATION IS NOT ACTIVE
-!   52 KQQ = 0
-!      GO TO 56
-!c.    **** EQUATION USES IMPLICIT METHOD
-!   54 KQQ = -1
-!      IF (JS > abs(KORDI)) then
-!        Set up an error message.
-!      end if
-!      MAXINT = max(MAXINT, abs(KORDI) - JS)
-!   56 IF (KORDI >= 0) GO TO 70
-!      KORDI = -1 - KORDI
-!      JS = JS - 1
-!      MAXDIF = max(MAXDIF, JS, 1)
-!      GO TO 70
-!++  End
+
 !     **** EQUATION IS TO USE AN EXPLICIT METHOD
    60    KQQ = 1
          MAXINT = max(MAXINT, KORDI)
@@ -1188,14 +1160,6 @@
          KORD(K + 3) = KQQ
    80 continue
 !     **** SET FLAGS WHICH DEPEND ON METHOD USED
-!++  Code for STIFF is inactive
-!      METHOD = 1
-!      IF (MAXINT > 0) IF (MAXDIF) 85,90,85
-!      METHOD = -1
-!   85 CONTINUE
-!      KPRED = 5
-!      GO TO 100
-!++  End
    90 METHOD = 0
       KPRED = 1
   100 continue
@@ -1277,26 +1241,7 @@
          INTCHK(NXTCHK+2) = 1
          NXTCHK = NXTCHK + 3
       end if
-!
-!++  Code for ERRSTO is inactive
-!      IF (IOP20 /= 0) then
-!c.                                Space for saving error estimates
-!         INTCHK(NXTCHK) = 20
-!         INTCHK(NXTCHK) = IOP20
-!         INTCHK(NXTCHK) = NTE
-!         NXTCHK = NXTCHK + 3
-!      end if
-!++  Code for STIFF is inactive
-!      if (IOP21 > 0) then
-!c.                               Info. for stiff equations
-!         INTCHK(NXTCHK) = 21
-!         INTCHK(NXTCHK+1) = IOP21
-!         INTCHK(NXTCHK+2) = IOP21S
-!         NXTCHK = NXTCHK + 3
-!      end if
-!      MAXKQD = min(MAXKQI, 6)
-!++  End
-!                          Set aside space for the difference tables.
+      ! Set aside space for the difference tables.
       INTCHK(NXTCHK) = 0
       INTCHK(NXTCHK+1) = -KDIM * NTE
       INTCHK(NXTCHK+2) = 0
@@ -1705,8 +1650,6 @@
   890 continue
 !++  Code for DUMP is active
       if (IOP9 == 0) go to 920
-!++  Code for DUMP & STIFF is inactive
-!      KQMXDS=KQMAXD
 !++  Code for DUMP is active
       KQMXIS = KQMAXI
       KIS = KIS + 1
@@ -1850,8 +1793,6 @@
  1240 KQICON = -1
 !   TEST IF SUBROUTINE FOR COMPUTING INTEGRATION COEFF. SHOULD BE CALLED
  1250 continue
-!++  Code for STIFF is inactive
-!      IF ((KQMAXI <KQICON) .OR. (KQMAXD<KQDCON)) GO TO 1320
 !++  Code for ~STIFF is active
       if (KQMAXI < KQICON) go to 1320
 !++  End
@@ -1859,23 +1800,11 @@
 !     TEST IF STARTING
       if (LSC < 7) go to 1310
  1260 KQMAXI = 2
-!++  Code for STIFF is inactive
-!      IF (METHOD) 1262,1270,1264
-! 1262 KQMAXI=0
-! 1264 KQMAXD=max(MAXDIF,2)
-!      CALL DIVAHC
-!c.  SET UP TO GO DO INITIALIZATION FOR CASE OF STIFF EQUATIONS
-!      KORD1I=5
-!      GO TO 1350
-!++  End
 !   INITIALIZE FOR EQUATIONS WHICH ARE NOT STIFF
  1270 KQMAXD = 0
       call DIVAHC
       J = NDTF
       do 1300 I = 1, NTE
-!++  Code for STIFF is inactive
-!         if (KORD(I + 3) <= 0) go to 1290
-!++  End
          KORD(I + 3) = 1
 !     INITIALIZE THE DIFFERENCE TABLE
          if (LDT == -4) F(J) = F(I)
@@ -1906,9 +1835,6 @@
  1330 continue
 !++  Code for ~ARGM is active
       call DIVAPR(Y, Y(NYNY), F, KORD)
-!++  Code for ARGM is inactive
-!      CALL DIVAPE
-!++  End
 !     GO GET PREDICTED DERIVATIVES
  1340 KORD1I = KPRED
 ! ********
@@ -1941,17 +1867,9 @@
       EMAX = C0
       KQMAXI = 2
       KQMAXS = 2
-!++  Code for STIFF is inactive
-!      IF (METHOD) 1404,1410,1406
-! 1404 KQMAXI=0
-! 1406 KQMAXD=2
-!++  End
  1410 continue
 !++  Code for ~ARGM is active
       call DIVACR(Y, F, KORD, F(NTOLF), KORD(IOP16))
-!++  Code for ARGM is inactive
-!      CALL DIVACE
-!++  End
 !     TEST IF ESTIMATED ERROR IS TOO BIG (OR IF DIAGNOSTIC CALLED FOR)
       if (EMAX > EREP) if (EREP) 2210, 2210, 1670
  1420 continue
@@ -1963,9 +1881,6 @@
       if (EMAX < C0) go to 1470
 !++  Code for ~STIFF is active
       if (LSC) 1450, 1360, 1610
-!++  Code for STIFF is inactive
-!      IF (LSC) 1450,1460,1610
-!++  End
 !     SET LSC=0 IF NOISE NO LONGER APPEARS TO LIMIT PRECISION
 !     OR IF THE END OF THE STARTING PHASE HAS BEEN REACHED
  1450 LSC = 0
@@ -2092,8 +2007,6 @@
       LINC = -6
 !.    GO DUMP SOLUTION BEFORE REPEATING THE STEP
  1720 KQMAXI = KQMXIS
-!++  Code for DUMP & STIFF is inactive
-!      KQMAXD=KQMXDS
 !++  Code for DUMP is active
       call DIVABU(F, KORD)
       go to 900
@@ -2145,8 +2058,6 @@
       if (IOP14 /= 0) return
       call DIVAO(TSPECS(1), Y, F, KORD(1))
 !     TEST FOR SPECIAL USER RETURN OR FOR A RESTART
-!++  Code for ~DUMP is inactive
-! 1840 IF (KORD(1)) 2130,700,1880
 !++  Code for DUMP is active
  1840 if (KORD(1) > 0) go to 1880
  1850 if (IOP9 == 0) go to 1870
@@ -2220,9 +2131,6 @@
  2080 if (K /= KMARK) go to 2070
 !++  Code for DUMP is active
       if (KORD1I == 3) go to 1850
-!++  Code for ~DUMP is inactive
-!      IF (KORD1I == 3) GO TO 2100
-!++  End
  2090 if (KORD1I == 13) go to 2190
 ! SETUP TO INDICATE ERROR IN SPECIFICATION OF OUTPUT POINTS
       KORD1I = 2
@@ -2399,20 +2307,6 @@
     l = ndtf - 1
     do i = 1, nte
          kqq = kord(i + 3)
-!++  code for stiff is inactive
-!         if (kqq) 2302,2400,2310
-!c.           equation is stiff
-! 2302    if (linc>=0) go to 2310
-!         if (f(l+1+i)) 2306,2308,2304
-!c.     order was increased, and thus must be decreased (kqq<0)
-! 2304    kqq=kqq+1
-!         kord(i+3) = kqq
-!         go to 2308
-!c.     order was decreased
-! 2306    kqq=kqq-1
-! 2308    kqq=max(2,-kqq)
-!         go to 2350
-!++  end
 !     equation is not stiff
  2310    if (kqq > 2) then
             if (f(l + kqq) == c0) then
@@ -2617,10 +2511,6 @@
       data EIBND(19) / C1 /
 !     data EIBND(20) / C1 /
 !
-!++  Code for ARGM is inactive
-!      RETURN
-!      ENTRY DIVACE
-!++  End
 ! ********
 ! START OF CODE
 ! ********
@@ -2682,35 +2572,6 @@
 ! ********
 ! EQUATION IS STIFF
  2600    continue
-!++  Code for STIFF is inactive
-!      JS=abs(KORD(NJSKO+I-1))-1
-!      JSI=JS
-!      TPP=C0
-!      TPS4=F(L+KQD+2)
-!      TPS3=F(L+KQD+1)
-!      TPS2=F(L+KQD)
-!      TPS1=F(L+KQD-1)
-!      IF (KQD==2) TPS1=Y(IY-1)
-!      E=ABS(TPS3)+ABS(TPS4)
-!      EI=E+ABS(TPS2)
-!      RND=EI
-!      IF (KORDI>=0) GO TO 2604
-!c.    EQUATION IS IMPLICIT
-!      JSI=JSI-1
-!      IF (JSI/=0) GO TO 2604
-!      IF (KORDI==-1) GO TO 2602
-!      ERCOEF=GS(KQN+1)
-!      GO TO 2606
-! 2602 ERCOEF=.5D0*DS(KQD,1)
-!      JSI=1
-!      GO TO 2606
-!c.    END OF SPECIAL CODE FOR IMPLICIT EQUATIONS
-! 2604 ERCOEF = DS(KQD,JSI)
-! 2606 ERCOEF = ABS(ERCOEF) / EPS
-!      IF (LSC<=2)  GO TO 2710
-!      IF (LSC-5) 2650,2710,2710
-!c.  END OF CODE FOR STIFF EQUATIONS
-!++  End
 !
 ! EQUATION IS NOT STIFF
  2610    TPP = F(I) - F(L + 1)
@@ -2836,13 +2697,6 @@
  2800    LINC = K
 ! END OF COMPUTING ERROR ESTIMATES
  2810    continue
-!++  Code for ERRSTO is inactive
-!      IF (IOP20 == 0) GO TO 780
-!c.********
-!c.STORE ERROR ESTIMATE (OPTIONAL)
-!c.********
-!      F(IOP20+I-1)=TPS3*GS(KQN+1)
-!c.END OF STORING ERROR ESTIMATE
 !++  Code for INTEGO | ERRSTO is active
          if (IOP19 == 0) go to 3090
 !.********
@@ -2901,25 +2755,12 @@
          go to 3270
 !.  ORDER FOR STIFF EQUATION WAS REDUCED
  3010    continue
-!++  Code for INTEGO & STIFF is inactive
-!      IF (KQN<JSI) GO TO 990
-!      TPP=-C1
-!      GO TO 1090
 !c.  TEST IF ORDER CAN BE INCREASED
 !++  Code for INTEGO is active
  3020    if (JLGROR == -2) go to 2970
-!++  Code for INTEGO & STIFF is inactive
-!      IF (KQL>=0) GO TO 1140
-!      IF ((JSI/=0).AND.(KQN>(MAXKQD+JSI))) GO TO 990
-!      TPP=C1
 !c.  STORE RESULTS FOR STIFF EQUATIONS
 !++  Code for INTEGO is active
  3030    continue
-!++  Code for INTEGO & STIFF is inactive
-!      DO 3035 K=IORD,I
-!      KORD(K+3) = -KQN
-! 3035 F(NDTF+K*NUMDT-NUMDT)=TPP
-!      GO TO 3245
 !c.  STORE RESULTS FOR EQUATIONS WHICH ARE NOT STIFF
 !++  Code for INTEGO is active
  3040    LL = NDTF + NUMDT * IORD - NUMDT
@@ -2957,9 +2798,6 @@
          KQN = KQN + 1
 !++  Code for INTEGO | STIFF is active
          if (KQL) 3230, 2950, 3250
-!++  Code for ~(INTEGO | STIFF) is inactive
-!      GO TO 3250
-!++  End
 !.  CHECK IF ORDER SHOULD BE DECREASED
  3140    if (TPS6 < TPS7) go to 3210
          if (TPS5 < abs(TPS3 - TPS4)) go to 3210
@@ -2983,10 +2821,6 @@
  3210    continue
 !++  Code for INTEGO is active
          if (KQL) 3240, 2950, 3270
-!++  Code for ~INTEGO is inactive
-!         TPS1 = EEPS10
-!      GO TO 1530
-!++  End
 ! END OF SELECTING INTEGRATION ORDER
 ! ********
 ! COMPUTE MAXIMUM INTEGRATION ORDERS AND SET NEW ONES (IF ANY)
@@ -2995,29 +2829,11 @@
 !     ORDER WAS DECREASED
 !++  Code for INTEGO | STIFF is active
  3220    continue
-!++  Code for STIFF is inactive
-!      IF (KQN<JSI) GO TO 3236
-!      F(L+1)=-C1
-!      GO TO 3233
 !c.    ORDER WAS INCREASED
 !++  Code for INTEGO |  STIFF  is active
  3230    continue
-!++  Code for STIFF is inactive
-!      IF ((JSI/=0).AND.(KQN>(MAXKQD+JSI))) GO TO 3236
-!      F(L+1)=C1
-! 3233 KORD(I+3) = -KQN
-!      GO TO 3245
-!      ORDER WAS SET TO AN UNACCEPTABLE VALUE
-! 3236 KQN=abs(KQL)
-!      ORDER IS NOT BEING CHANGED
 !++  Code for STIFF |  INTEGO is active
  3240    continue
-!++  Code for STIFF is inactive
-!      F(L+1)=C0
-! 3245 IF (JSI/=0) KQMAXD=max(KQN,KQMAXD)
-!      IF (JS<abs(KORDI)) KQMAXI=max(KQN,KQMAXI)
-!      GO TO 3290
-!++  End
 ! EQUATION IS NOT STIFF
 !     ORDER INCREASED
  3250    F(L + KQN + 1) = -F(L + KQD + 1)
@@ -3063,9 +2879,6 @@
          do 3320 K = 1, KORDI
 !++  Code for ~{p,x} is active
             Y(IY - K) = Y(IY - K) + G(KQL + 1, K) * TPP
-!++  Code for {p,x} is inactive
-!            Y(IY - K) = Y(IY - K) + dble(G(KQL + 1, K)) * dble(TPP)
-!++  END
  3320    continue
 ! END OF CORRECTING
  3325 continue
@@ -3146,9 +2959,6 @@
       double precision, parameter :: C1     = 1.D0
       double precision, parameter :: C1P125 = 1.125D0
 
-!++  Code for STIFF is inactive
-!      INTEGER          GODIF
-!++  End
       double precision TP1, TP2, TEMP, TP !HH
      ! equivalence (G(1, 1), HH)
 !
@@ -3185,8 +2995,6 @@
 ! START OF CODE
 ! ********
 !     SET STEP NUMBER OF METHOD
-!++  Code for STIFF is inactive
-!      IOP11 = MIN(max(KQMAXI,KQMAXD) + 1), KDIM)
 !++  Code for ~STIFF is active
       IOP11 = MIN(KQMAXI + 1, KDIM)
 !++  End
@@ -3207,9 +3015,6 @@
  3440    continue
 !     SET CONSTANTS INDICATING STEP CHANGE
  3450 KQICON = 0
-!++  Code for STIFF is inactive
-!      KQDCON=0
-!++  End
       KQMXIP = 1
       KSC = 1
       if (LSC < 7) go to 3490
@@ -3224,9 +3029,6 @@
  3460 SIGMA(1) = 1.0D0
       BETA(1) = C1
       do 3470 N = 1, IOP11
-!++  Code for STIFF is inactive
-!      D(1,N)=C0
-!++  End
          XI(N) = TP1
          ALPHA(N) = C1
          BETA(N + 1) = C1
@@ -3339,11 +3141,6 @@
 !++  Code for MAXORD >= 2 is active
       if (MAXINT >= 2) then
          G(N + 1, 2) = GG(1) * W(2)
-!++  Code for MAXORD >= 3 is inactive
-!        if (MAXINT > 2) then
-!           DO 3665 K=3,MAXINT
-!3665          G(N+1,K)=GG(K-1)*W(K)
-!        end if
 !++  Code for MAXORD >= 2 is active
       end if
 !++  End
@@ -3352,41 +3149,6 @@
 ! END OF COMPUTING INTEGRATION COEFFICIENTS
 !
  3690 continue
-!++  Code for STIFF is inactive
-!      IF (KQDCON>KQMAXD) GO TO 4662
-!c.********
-!c.COMPUTE DIFFERENTIATION COEFFICIENTS WHICH ARE STILL CHANGING
-!c.********
-!c.SET TRANSFER FOR LOOP BELOW, DEPENDING ON VALUE OF MAXDIF
-!++  Code for STIFF & MAXORD >= 2 is inactive
-!      IF (MAXDIF-2) 3693,3692,3691
-! 3691 ASSIGN 3696 TO GODIF
-!      GO TO 3694
-! 3692 ASSIGN 3698 TO GODIF
-!      GO TO 3694
-! 3693 ASSIGN 3699 TO GODIF
-!++  Code for STIFF is inactive
-! 3694 KQDCON=KQDCON+1
-!c.LOOP FOR COMPUTING DIFFERENTIATION COEFFICIENTS
-!      DO 3699 N=KQDCON,KQMAXD
-!      DS(N+1,2)=C1/XI(N)
-!      D(N+1,1)=DS(N+1,2)+D(N,1)
-!      DS(N+1,1)=DS(N+1,2)/D(N+1,1)
-!++  Code for STIFF & MAXORD >= 2 is inactive
-!      GO TO GODIF, (3696,3698,3699)
-! 3696 CONTINUE
-!++  Code for STIFF & MAXORD >= 3 is inactive
-!      DO 3697 K=3,MAXDIF
-!      DS(N+1,K)=D(N,K-2) * (K-1)/XI(N)
-! 3697 D(N+1,K-1)=DS(N+1,K) + D(N,K-1)
-!++  Code for STIFF is inactive
-! 3698 CONTINUE
-!++  Code for STIFF & MAXORD >= 2 is inactive
-!      D(N+1,MAXDIF)=D(N,MAXDIF) + D(N,MAXDIF-1) * (MAXDIF)/XI(N)
-!++  Code for STIFF is inactive
-! 3699 CONTINUE
-!++  End
-!
 ! END OF COMPUTING DIFFERENTIATION COEFFICIENTS
       return
     end subroutine divahc
@@ -3453,9 +3215,6 @@
 !                      1 2 3 4       5 6       7      8
       data MACT / MEEMES,0,0,0, MENTXT,0, METEXT, MERET /
 !
-!++  Code for ARGM is inactive
-!      ENTRY DIVAIE
-!++  End
 ! ********
 ! START OF CODE -- CHECK ON STATE OF DIFFERENCE TABLE
 ! ********
@@ -3497,8 +3256,6 @@
       go to 3820
  3810 if (GAMMA(1) > C2) if (LDT - 2) 4180, 3820, 3820
  3820 KQMXI = KQMAXI + INTERP - 1
-!++  Code for STIFF is inactive
-!      KQMXS=max(KQMXI,KQMAXD)
 !++  Code for ~STIFF is active
       KQMXS = KQMXI
 !++  End
@@ -3606,36 +3363,6 @@
          if (KQQ) 4030, 4130, 4040
 ! EQUATION IS STIFF
  4030    continue
-!++  Code for STIFF is inactive
-!      JS=abs(KORD(NJSKO+I-1))-1
-!      IYI=IYI-JS
-!      IF(LNOTM1) IF (IYI) 4034,4032,4130
-!      IF (KORDI<0) IYI=IYI+1
-!      IYI=IYI+MAXINT-abs(KORDI)
-!      IF (IYI) 4034,4130,4130
-!c.      IF EQUATION IS IMPLICIT DO NOT COMPUTE AN F
-! 4032 IF (KORDI<0) GO TO 4130
-!c.      TEST IF INTEG TOO BIG FOR THIS EQUATION
-! 4034 IF (abs(KORDI)<-IYI) GO TO 4130
-!      IYI=IYI+IY
-!      IYN=IYI+IYNI
-!c. COMPUTE INNER PRODUCT FOR STIFF EQUATIONS
-!      IF (INTEGZ==0) GO TO ???
-!c.    DIFFERENTIATING
-!      TP1 = C0
-!      DO 4036 J = K+INTEGZ, 1, -1
-!         TP1 = TP1 + C(J) * F(IDT+J-1)
-! 4036 CONTINUE
-!c.    TEST WHETHER TO STORE RESULT IN Y OR F
-!      IF (IYI-IY) 4080, 4090, 4080
-!c.    INTEGRATING OR INTERPOLATING
-!      TP1 = C0
-!      DO 4037 J = ICI + K, ICI + 2, -1
-!         TP1 = TP1 + C(J) * F(IDT+J-ICI-1)
-! 4037 CONTINUE
-!      IF (INTEG==0) GO TO 4120
-!      TP1=TP1 + C(ICI+1)*Y(IYN+1)
-!++  End
          go to 4100
 ! END OF SPECIAL CODE FOR STIFF EQUATIONS
 !
@@ -3937,186 +3664,143 @@
 
 !*************************************************************************
 !>
-! THIS SUBROUTINE
-!  1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
-!     DONE ALREADY).
-!  2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
-!     THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.
+! This subroutine:
 !
-!   Y = VECTOR OF PREDICTED VALUES COMPUTED BY THIS SUBROUTINE.
-!   YN= VECTOR OF VALUES OF Y COMPUTED ON THE LAST STEP.
-!   F = VECTOR OF DERIVATIVE VALUES.
-!   DT= ARRAY CONTAINING DIFFERENCE TABLES.
-!   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
-!       EQUATIONS HAVE DIFFERENT ORDERS).
-!   KQ= VECTOR OF INTEGRATION ORDERS.
+!  1. Updates the difference table from the previous step (if not
+!     done already).
+!  2. Predicts what the values of the dependent variables, y, and
+!     the difference table, dt, will be at the end of the current step.
 !
 !### History
 !  * 1988-01-13 DIVAPR Krogh   Initial code.
 
-    subroutine DIVAPR(Y, YN, F, KORD)
+    subroutine divapr(y, yn, f, kord)
 
       use divaev_module
       use diva_constants
       use divasc_module
       use divamc_module
 
-      integer KORD(*)
-      double precision Y(*), YN(*)
-      double precision F(*)
+      double precision :: y(*) !! Vector of predicted values computed by this subroutine.
+      double precision :: yn(*) !! Vector of values of y computed on the last step.
+      double precision :: f(*) !! Vector of derivative values.
+      integer :: kord(*)
 
-      double precision, parameter :: C0 = 0.D0
-!
-      integer I, INTEG, INTEGS, J, K, KQQ, L, N
-      double precision TEMP(KDIM)
-      double precision TP1
-      double precision XP
+      double precision, parameter :: c0 = 0.d0
+
+!   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
+!       EQUATIONS HAVE DIFFERENT ORDERS).
+!   KQ= VECTOR OF INTEGRATION ORDERS.
+
+      integer :: I
+      integer :: INTEG !! Number of integrations being done.
+      integer :: INTEGS !! -1 for equations that are not stiff, 0 for those
+                        !! that are stiff.
+      integer :: J, K, KQQ, L, N
+      double precision :: TEMP(KDIM)
+      double precision :: TP1
+      double precision :: XP
+
       data INTEGS / -1 /
-!
-!++  Code for ARGM is inactive
-!      RETURN
-!      ENTRY DIVAPE
-!++  End
+
 ! ********
 ! START OF CODE
 ! ********
-      IY = 0
-      L = NDTF - 1
-      do 4680 I = 1, NTE
-         INTEG = KORDI
-         if (NKDKO /= 0) INTEG = KORD(NKDKO + I - 1)
-         KQQ = KORD(I + 3)
-         K = max(abs(KQQ), 2)
-         if (KQQ) 4530, 4520, 4540
- 4520    IY = IY + abs(INTEG)
+      iy = 0
+      l = ndtf - 1
+      do 4680 i = 1, nte
+         integ = kordi
+         if (nkdko /= 0) integ = kord(nkdko + i - 1)
+         kqq = kord(i + 3)
+         k = max(abs(kqq), 2)
+         if (kqq) 4530, 4520, 4540
+ 4520    iy = iy + abs(integ)
          go to 4670
 ! ********
 ! EQUATION IS STIFF, OR IMPLICIT
 ! ********
  4530    continue
-!++  Code for STIFF is inactive
-!      KQQ=-KQQ
-!      N=KQQ-1
-!      JS=abs(KORD(NJSKO+I-1))-1
-!      IMPLIC=INTEG
-!      INTEG=abs(IMPLIC)-JS
-!c.    SET INTEGS FOR STIFF EQUATIONS
-!      INTEGS=0
-!      IF (K-KSC) 160,160,140
-!c.END OF SET-UP FOR STIFF EQUATIONS
-!++  End
 ! ********
 ! EQUATION IS NOT STIFF
 ! ********
- 4540    N = KQQ
-         if (LDT /= 0) if (K - KSC) 4570, 4570, 4550
+ 4540    n = kqq
+         if (ldt /= 0) if (k - ksc) 4570, 4570, 4550
 !     DIFFERENCE TABLE HAS NOT BEEN UPDATED
-         TP1 = F(I) - F(L + 1)
-         if (K - KSC) 4610, 4610, 4590
+         tp1 = f(i) - f(l + 1)
+         if (k - ksc) 4610, 4610, 4590
 ! END OF SET-UP FOR EQUATIONS WHICH ARE NOT STIFF
 ! ********
 ! GET PREDICTED DIFFERENCES FROM UPDATED DIFFERENCE TABLE
 ! ********
- 4550    F(L + K + 1) = F(L + K + 1) * BETA(K + 1)
-         TEMP(K) = F(L + K) * BETA(K)
-         F(L + K) = TEMP(K)
+ 4550    f(l + k + 1) = f(l + k + 1) * beta(k + 1)
+         temp(k) = f(l + k) * beta(k)
+         f(l + k) = temp(k)
 ! LOOP FOR MODIFIED DIVIDED DIFFERENCES
- 4560    K = K - 1
-         if (K <= KSC) go to 4580
-         TEMP(K) = F(L + K) * BETA(K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
+ 4560    k = k - 1
+         if (k <= ksc) go to 4580
+         temp(k) = f(l + k) * beta(k)
+         f(l + k) = temp(k) + f(l + k + 1)
          go to 4560
 ! CODE FOR BACKWARD DIFFERENCES
- 4570    F(L + K + 1) = F(L + K + 1)
-         TEMP(K) = F(L + K)
-         K = K - 1
+ 4570    f(l + k + 1) = f(l + k + 1)
+         temp(k) = f(l + k)
+         k = k - 1
 !
- 4580    TEMP(K) = F(L + K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
-         K = K - 1
-         if (K /= 0) go to 4580
+ 4580    temp(k) = f(l + k)
+         f(l + k) = temp(k) + f(l + k + 1)
+         k = k - 1
+         if (k /= 0) go to 4580
          go to 4630
 ! ********
 ! UPDATE DIFFERENCE TABLE AND GET PREDICTED DIFFERENCES
 ! ********
 ! CODE FOR MODIFIED DIVIDED DIFFERENCES
- 4590    F(L + K + 1) = (F(L+K+1) + TP1) * BETA(K + 1)
-         TEMP(K) = (F(L + K) + TP1) * BETA(K)
-         F(L + K) = TEMP(K)
- 4600    K = K - 1
-         if (K <= KSC) go to 4620
-         TEMP(K) = (F(L + K) + TP1) * BETA(K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
+ 4590    f(l + k + 1) = (f(l+k+1) + tp1) * beta(k + 1)
+         temp(k) = (f(l + k) + tp1) * beta(k)
+         f(l + k) = temp(k)
+ 4600    k = k - 1
+         if (k <= ksc) go to 4620
+         temp(k) = (f(l + k) + tp1) * beta(k)
+         f(l + k) = temp(k) + f(l + k + 1)
          go to 4600
 ! CODE FOR BACKWARD DIFFERENCES
- 4610    F(L + K + 1) = (F(L+K+1) + TP1)
-         TEMP(K) = F(L + K) + TP1
-         F(L + K) = TEMP(K)
-         K = K - 1
+ 4610    f(l + k + 1) = (f(l+k+1) + tp1)
+         temp(k) = f(l + k) + tp1
+         f(l + k) = temp(k)
+         k = k - 1
 !
- 4620    TEMP(K) = F(L + K) + TP1
-         F(L + K) = TEMP(K) + F(L + K + 1)
-         K = K - 1
-         if (K /= 0) go to 4620
+ 4620    temp(k) = f(l + k) + tp1
+         f(l + k) = temp(k) + f(l + k + 1)
+         k = k - 1
+         if (k /= 0) go to 4620
 ! ********
 ! COMPUTE Y-S OBTAINED USING INTEGRATION
 ! ********
 !     TEST IF NEXT Y TO BE OBTAINED BY INTERPOLATION
  4630    continue
-!++  Code for STIFF is inactive
-!      IF (INTEG==0) GO TO 4662
-!++  End
-         IY = IY + 1
+         iy = iy + 1
 !     FORM INNER PRODUCT
-         XP = C0
-         do 4650 J = INTEGS + N + 1, INTEGS + 2, -1
+         xp = c0
+         do 4650 j = integs + n + 1, integs + 2, -1
 !++  Code for ~{p,x} is active
-            XP = XP + G(J, INTEG) * TEMP(J)
-!++  Code for {p,x} is inactive
-!            XP = XP + dble(G(J, INTEG)) * dble(TEMP(J))
-!++  END
+            xp = xp + g(j, integ) * temp(j)
  4650    continue
-         K = INTEG + INTEGS
-         do 4660 J = K, 1, -1
+         k = integ + integs
+         do 4660 j = k, 1, -1
 !++  Code for ~{p,x} is active
-            XP = XP + G(1, J) * YN(IY + J)
-!++  Code for {p,x} is inactive
-!            XP = XP + dble(G(1, J)) * dble(YN(IY + J))
-!++  END
+            xp = xp + g(1, j) * yn(iy + j)
  4660    continue
-         Y(IY) = YN(IY) + XP
-         INTEG = INTEG - 1
-         if (K) 4670, 4670, 4630
+         y(iy) = yn(iy) + xp
+         integ = integ - 1
+         if (k) 4670, 4670, 4630
 ! END OF COMPUTING Y-S OBTAINED BY INTEGRATION
 ! ********
 ! COMPUTE Y-S OBTAINED USING INTERPOLATION AND DIFFERENTIATION
 ! ********
-!++  Code for STIFF is inactive
-!c.    RESTORE INTEGS FOR EQUATIONS WHICH ARE NOT STIFF
-! 4662 INTEGS=-1
-!      IY=IY+1
-!c.    COMPUTE Y USING INTERPOLATION
-!      Y(IY)=YN(IY) + F(L+2)
-!      IF (KQQ==1) Y(IY)=YN(IY)
-! 4663 INTEG=INTEG+1
-!      IF (INTEG==JS) IF (IMPLIC) 4680,4680,4664
-!c.    COMPUTE INTEG-TH DERIVATIVE
-!      XP = C0
-! 4664 DO 4666 J = KQQ+1, INTEG+1, -1
-!         XP = XP + D(J, INTEG) * TEMP(J)
-! 4666 CONTINUE
-!      IF (INTEG==JS) GO TO 4667
-!      IY=IY+1
-!      Y(IY)=XP
-!      GO TO 4663
-!c.STORE PREDICTED VALUE FOR F
-! 4667 CONTINUE
-!      F(L+NUMDT)=XP
-!++  End
- 4670    L = L + NUMDT
+ 4670    l = l + numdt
  4680    continue
-      LDT = -3
-      return
+      ldt = -3
+
     end subroutine divapr
 !*************************************************************************
 
@@ -4439,13 +4123,6 @@
          end if
          call DMESS(MACT7, MTXTAK, IDAT, FDAT)
   100 continue
-!++  Code for STIFF is inactive
-!     if (MAXDIF <= 0) return
-!        Need to define MACT8 and set values
-!     call DMESS(MACT8, 'D$B', IDAT, D)
-!     call DMESS(MACT8, 'DS$B', IDAT, DS)
-!++  End
-!
       call DMESS(MACT1, MTXTAL, IDAT, EVC)
       return
     end subroutine divadb
