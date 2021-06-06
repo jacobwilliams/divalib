@@ -57,7 +57,7 @@
         <ul class="dropdown-menu">
           
               
-            <li><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+            <li><a href="../lists/files.html">Source Files</a></li>
         
         
         
@@ -73,7 +73,7 @@
             </li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
 
@@ -122,21 +122,21 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.2% of total for procedures.">131 statements</a>
+    title=" 3.5% of total for procedures.">138 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/messages_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+     <li><a href='../sourcefile/messages_module.f90.html'>messages_module.f90</a></li>
     
-     <li><a href='../module/diva_module.html'>diva_module</a></li>
+     <li><a href='../module/messages_module.html'>messages_module</a></li>
     
   
      <li class="active">MESSMH</li>
@@ -221,22 +221,7 @@ public subroutine MESSMH(TEXT)
 
 
     
-    <p>Processing of multiple headings:</p>
-<p>J     Used as a temporary index.
- K     Used as a temporary index.
- KB    Number of initial blanks
- KK    Used as a temporary index.
- KT    Used for logic in output of headings.  Set &lt;0 on exit if there
-       is an input error.
-     KT = 1 Output table headings.  (Set to -1 on fatal error.)
-     KT = 2 Get row/column widths for matrix output.  (Set to -2 if
-            error results in no headings.)
-     KT = 3 Output column headings.  (Set to -1 on fatal error.)
- L     Used as a temporary index.
- LFLGDB 2 in usual case, 3 if see a "$ ".
- LSTRDB Value of LSTRT when see a "$ ".
- LTXTDB Value of LTEXT when see a "$ ".
- TEXT  Original input character vector.</p>
+    <p>Processing of multiple headings.</p>
     
 
     <h3>Arguments</h3>
@@ -257,12 +242,12 @@ public subroutine MESSMH(TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-text~4"></span>character(len=*)</td>
+  <td><span class="anchor" id="variable-text~3"></span>character(len=*)</td>
   <td></td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>TEXT</strong>(*)</td><td></td>
+  <td><strong>TEXT</strong>(*)</td><td><p>Original input character vector.</p></td>
   
 </tr>
 
@@ -313,50 +298,41 @@ public subroutine MESSMH(TEXT)
 <path fill="none" stroke="#000000" d="M235.18,-72C243.12,-72 252.02,-72 260.61,-72"/>
 <polygon fill="#000000" stroke="#000000" points="260.85,-75.5 270.85,-72 260.85,-68.5 260.85,-75.5"/>
 </g>
-<!-- proc~divadb -->
+<!-- proc~messft -->
 <g id="proc~~messmh~~CalledByGraph_node3" class="node">
+<title>proc~messft</title>
+<g id="a_proc~~messmh~~CalledByGraph_node3"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
+<polygon fill="#d9534f" stroke="#d9534f" points="145,-104 90,-104 90,-80 145,-80 145,-104"/>
+<text text-anchor="middle" x="117.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
+</a>
+</g>
+</g>
+<!-- proc~messft&#45;&gt;proc~mess -->
+<g id="proc~~messmh~~CalledByGraph_edge2" class="edge">
+<title>proc~messft&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M145.05,-86C153.18,-84.16 162.25,-82.11 170.9,-80.16"/>
+<polygon fill="#000000" stroke="#000000" points="171.79,-83.55 180.77,-77.93 170.25,-76.72 171.79,-83.55"/>
+</g>
+<!-- proc~divadb -->
+<g id="proc~~messmh~~CalledByGraph_node4" class="node">
 <title>proc~divadb</title>
-<g id="a_proc~~messmh~~CalledByGraph_node3"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<g id="a_proc~~messmh~~CalledByGraph_node4"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
 <polygon fill="#d9534f" stroke="#d9534f" points="54,-114 0,-114 0,-90 54,-90 54,-114"/>
 <text text-anchor="middle" x="27" y="-99.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
 </a>
 </g>
 </g>
 <!-- proc~divadb&#45;&gt;proc~mess -->
-<g id="proc~~messmh~~CalledByGraph_edge2" class="edge">
+<g id="proc~~messmh~~CalledByGraph_edge3" class="edge">
 <title>proc~divadb&#45;&gt;proc~mess</title>
 <path fill="none" stroke="#000000" d="M54.12,-110.04C78.21,-116.15 114.72,-122.11 145,-113 159.97,-108.5 174.65,-99.08 185.97,-90.4"/>
 <polygon fill="#000000" stroke="#000000" points="188.32,-93 193.92,-84 183.93,-87.55 188.32,-93"/>
 </g>
-<!-- proc~messft -->
-<g id="proc~~messmh~~CalledByGraph_node6" class="node">
-<title>proc~messft</title>
-<g id="a_proc~~messmh~~CalledByGraph_node6"><a xlink:href=".././proc/messft.html" xlink:title="MESSFT">
-<polygon fill="#d9534f" stroke="#d9534f" points="145,-104 90,-104 90,-80 145,-80 145,-104"/>
-<text text-anchor="middle" x="117.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">MESSFT</text>
-</a>
-</g>
-</g>
 <!-- proc~divadb&#45;&gt;proc~messft -->
-<g id="proc~~messmh~~CalledByGraph_edge7" class="edge">
+<g id="proc~~messmh~~CalledByGraph_edge6" class="edge">
 <title>proc~divadb&#45;&gt;proc~messft</title>
 <path fill="none" stroke="#000000" d="M54.07,-99.05C62.21,-98.13 71.34,-97.1 80.05,-96.12"/>
 <polygon fill="#000000" stroke="#000000" points="80.46,-99.6 90,-94.99 79.67,-92.64 80.46,-99.6"/>
-</g>
-<!-- proc~divaop -->
-<g id="proc~~messmh~~CalledByGraph_node4" class="node">
-<title>proc~divaop</title>
-<g id="a_proc~~messmh~~CalledByGraph_node4"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
-<polygon fill="#d9534f" stroke="#d9534f" points="144.5,-24 90.5,-24 90.5,0 144.5,0 144.5,-24"/>
-<text text-anchor="middle" x="117.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
-</a>
-</g>
-</g>
-<!-- proc~divaop&#45;&gt;proc~mess -->
-<g id="proc~~messmh~~CalledByGraph_edge3" class="edge">
-<title>proc~divaop&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M136.41,-24.14C149.12,-32.76 166.4,-44.48 180.68,-54.16"/>
-<polygon fill="#000000" stroke="#000000" points="178.88,-57.16 189.12,-59.88 182.8,-51.37 178.88,-57.16"/>
 </g>
 <!-- proc~diva -->
 <g id="proc~~messmh~~CalledByGraph_node5" class="node">
@@ -373,17 +349,26 @@ public subroutine MESSMH(TEXT)
 <path fill="none" stroke="#000000" d="M54.03,-45.51C84.78,-50.83 136.14,-59.73 170.77,-65.73"/>
 <polygon fill="#000000" stroke="#000000" points="170.49,-69.23 180.94,-67.49 171.68,-62.33 170.49,-69.23"/>
 </g>
+<!-- proc~divaop -->
+<g id="proc~~messmh~~CalledByGraph_node6" class="node">
+<title>proc~divaop</title>
+<g id="a_proc~~messmh~~CalledByGraph_node6"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
+<polygon fill="#d9534f" stroke="#d9534f" points="144.5,-24 90.5,-24 90.5,0 144.5,0 144.5,-24"/>
+<text text-anchor="middle" x="117.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
+</a>
+</g>
+</g>
 <!-- proc~diva&#45;&gt;proc~divaop -->
-<g id="proc~~messmh~~CalledByGraph_edge6" class="edge">
+<g id="proc~~messmh~~CalledByGraph_edge7" class="edge">
 <title>proc~diva&#45;&gt;proc~divaop</title>
 <path fill="none" stroke="#000000" d="M54.07,-32.46C62.37,-29.74 71.7,-26.68 80.57,-23.77"/>
 <polygon fill="#000000" stroke="#000000" points="81.89,-27.02 90.31,-20.58 79.71,-20.37 81.89,-27.02"/>
 </g>
-<!-- proc~messft&#45;&gt;proc~mess -->
+<!-- proc~divaop&#45;&gt;proc~mess -->
 <g id="proc~~messmh~~CalledByGraph_edge5" class="edge">
-<title>proc~messft&#45;&gt;proc~mess</title>
-<path fill="none" stroke="#000000" d="M145.05,-86C153.18,-84.16 162.25,-82.11 170.9,-80.16"/>
-<polygon fill="#000000" stroke="#000000" points="171.79,-83.55 180.77,-77.93 170.25,-76.72 171.79,-83.55"/>
+<title>proc~divaop&#45;&gt;proc~mess</title>
+<path fill="none" stroke="#000000" d="M136.41,-24.14C149.12,-32.76 166.4,-44.48 180.68,-54.16"/>
+<polygon fill="#000000" stroke="#000000" points="178.88,-57.16 189.12,-59.88 182.8,-51.37 178.88,-57.16"/>
 </g>
 </g>
 </svg>
@@ -690,7 +675,7 @@ public subroutine MESSMH(TEXT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-lprint~6"></span>integer</td>
+  <td><span class="anchor" id="variable-lprint~5"></span>integer</td>
   
   
   <td></td><td>::</td>
@@ -1421,171 +1406,186 @@ public subroutine MESSMH(TEXT)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">MESSMH</span><span class="p">(</span><span class="n">TEXT</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>      <span class="k">subroutine </span><span class="n">MESSMH</span><span class="p">(</span><span class="n">TEXT</span><span class="p">)</span>
 
-      <span class="kt">integer </span><span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">KB</span><span class="p">,</span> <span class="n">KK</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LFLGDB</span><span class="p">,</span> <span class="n">LSTRDB</span><span class="p">,</span> <span class="n">LTXTDB</span>
-      <span class="kt">character</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>  <span class="n">TEXT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-      <span class="kt">character </span><span class="n">C</span>
+        <span class="kt">character</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="kd">::</span> <span class="n">TEXT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="c">!! Original input character vector.</span>
 
-      <span class="kt">character</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">SC</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">J</span> <span class="c">!! Used as a temporary index.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">K</span> <span class="c">!! Used as a temporary index.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">KB</span> <span class="c">!! Number of initial blanks</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">KK</span> <span class="c">!! Used as a temporary index.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">L</span> <span class="c">!! Used as a temporary index.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">LFLGDB</span> <span class="c">!! 2 in usual case, 3 if see a &quot;$ &quot;.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">LSTRDB</span> <span class="c">!! Value of LSTRT when see a &quot;$ &quot;.</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">LTXTDB</span> <span class="c">!! Value of LTEXT when see a &quot;$ &quot;.</span>
+        <span class="kt">character</span> <span class="kd">::</span> <span class="n">C</span>
 
-<span class="c">! For comments on other variables, see the listing for MESS.</span>
-      <span class="kt">integer   </span><span class="n">KOLWID</span><span class="p">,</span> <span class="n">LINSTR</span>
+        <span class="kt">character</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">SC</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
 
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LENBUF</span> <span class="o">=</span> <span class="mi">250</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEVBAS</span> <span class="o">=</span> <span class="mi">10</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEVLAS</span> <span class="o">=</span> <span class="mi">33</span>
+  <span class="c">! For comments on other variables, see the listing for MESS.</span>
+        <span class="kt">integer   </span><span class="n">KOLWID</span><span class="p">,</span> <span class="n">LINSTR</span>
 
-      <span class="kt">logical          </span><span class="n">XARG</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARGOK</span>
-      <span class="kt">integer          </span><span class="n">ERRCNT</span><span class="p">,</span> <span class="n">EUNIT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span> <span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">:</span><span class="n">MEVLAS</span><span class="p">),</span> <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span>      <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span>  <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span> <span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span>     <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">NDIM</span><span class="p">,</span> <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">TABSPA</span>
-<span class="c">!</span>
-      <span class="kt">character </span><span class="n">BUF</span><span class="o">*</span><span class="p">(</span><span class="n">LENBUF</span><span class="p">),</span> <span class="n">DOLS</span><span class="o">*</span><span class="mi">72</span><span class="p">,</span> <span class="n">FMTC</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTF</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> <span class="n">FMTG</span><span class="o">*</span><span class="mi">15</span><span class="p">,</span>        <span class="p">&amp;</span>
-     <span class="p">&amp;</span>  <span class="n">FMTI</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTJ</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTR</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTT</span><span class="o">*</span><span class="mi">15</span>
-      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span>      <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">EUNIT</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">MDAT</span><span class="p">,</span> <span class="n">TABSPA</span><span class="p">,</span> <span class="n">ERRCNT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span>    <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span> <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span>    <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span> <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span>    <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="n">MAXWID</span><span class="p">,</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span> <span class="n">NDIM</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARG</span><span class="p">,</span> <span class="n">XARGOK</span>
-      <span class="k">common</span> <span class="o">/</span><span class="n">CMESSC</span> <span class="o">/</span> <span class="n">BUF</span><span class="p">,</span> <span class="n">DOLS</span><span class="p">,</span> <span class="n">FMTF</span><span class="p">,</span> <span class="n">FMTG</span><span class="p">,</span> <span class="n">FMTI</span><span class="p">,</span> <span class="n">FMTJ</span><span class="p">,</span> <span class="n">FMTT</span><span class="p">,</span> <span class="n">FMTIM</span>
-      <span class="k">equivalence</span> <span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">),</span> <span class="n">SUNIT</span><span class="p">)</span>
-      <span class="k">equivalence</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">),</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span>
-<span class="c">!</span>
-      <span class="k">equivalence</span> <span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">LINSTR</span><span class="p">),</span> <span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">KOLWID</span><span class="p">)</span>
+        <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">LENBUF</span> <span class="o">=</span> <span class="mi">250</span>
+        <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEVBAS</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">MEVLAS</span> <span class="o">=</span> <span class="mi">33</span>
 
-      <span class="k">save</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span><span class="p">,</span> <span class="o">/</span><span class="n">CMESSC</span><span class="o">/</span>
-      <span class="k">save </span><span class="n">LFLGDB</span>
-      <span class="k">data </span><span class="n">LFLGDB</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span>
-<span class="c">!</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="p">(</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">LENTXT</span>
-         <span class="n">NTEXT</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">ITEXT</span> <span class="o">*</span> <span class="n">LENTXT</span>
-         <span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="k">end if</span>
-<span class="k">      do </span><span class="mi">300</span> <span class="n">J</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">KLINE</span><span class="p">)</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">            </span><span class="n">K</span> <span class="o">=</span> <span class="n">KOLWID</span>
-            <span class="n">go</span> <span class="n">to</span> <span class="mi">210</span>
-         <span class="k">end if</span>
-<span class="k">         </span><span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">2</span>
-         <span class="n">LTEXT</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="mi">110</span>    <span class="k">continue</span>
-<span class="k">         </span><span class="n">L</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">LENTXT</span><span class="p">),</span> <span class="n">SC</span><span class="p">)</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">L</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">            </span><span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="n">LENTXT</span> <span class="o">-</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">LTEXT</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
-               <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">1</span>
-               <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
-            <span class="k">end if</span>
-<span class="k">            </span><span class="n">LTEXT</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">KT</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">310</span>
-            <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
-         <span class="k">end if</span>
-<span class="k">         </span><span class="n">NTEXT</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
-         <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">LTEXT</span> <span class="o">-</span> <span class="mi">1</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">&gt;</span> <span class="n">LENTXT</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">            </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="n">LENTXT</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)(</span><span class="n">LENTXT</span><span class="p">:</span><span class="n">LENTXT</span><span class="p">)</span>
-               <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span>
-<span class="k">               </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span>
-               <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">2</span>
-            <span class="k">end if</span>
-<span class="k">         else</span>
-<span class="k">            </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-         <span class="k">end if</span>
-<span class="k">         if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!  Special code to set for removing the &quot;$&quot; preceding a blank.</span>
-            <span class="n">LSTRDB</span> <span class="o">=</span> <span class="n">LSTRT</span>
-            <span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">3</span>
-            <span class="n">LTXTDB</span> <span class="o">=</span> <span class="n">LTEXT</span>
-            <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
-         <span class="k">end if</span>
-<span class="k">         if</span> <span class="p">(</span><span class="n">KT</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
-  <span class="mi">140</span>    <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="mi">2</span>
-         <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
-  <span class="mi">160</span>    <span class="n">KT</span> <span class="o">=</span> <span class="o">-</span><span class="n">KT</span>
-         <span class="n">go</span> <span class="n">to</span> <span class="mi">310</span>
-<span class="c">!</span>
-  <span class="mi">180</span>    <span class="n">KOLWID</span> <span class="o">=</span> <span class="n">KOLWID</span> <span class="o">+</span> <span class="n">LENOUT</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">LTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
-         <span class="n">KB</span> <span class="o">=</span> <span class="n">KOLWID</span><span class="o">-</span><span class="n">LTEXT</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">KB</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">stop</span>                                            <span class="p">&amp;</span>
-     <span class="p">&amp;</span>   <span class="s1">&#39;Stopped in MESS -- Column width too small in a heading.&#39;</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">XARG</span><span class="p">)</span>  <span class="n">KB</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">KB</span><span class="o">/</span><span class="mi">2</span>
-         <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span>
-         <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KOLWID</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&lt;=</span> <span class="n">LENLIN</span><span class="p">)</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span> <span class="o">=</span> <span class="n">LBUF</span>
-         <span class="n">KOLWID</span> <span class="o">=</span> <span class="mi">0</span>
-         <span class="n">go</span> <span class="n">to</span> <span class="mi">220</span>
-<span class="c">!</span>
-<span class="c">!                                  Set up column widths</span>
-  <span class="mi">190</span>    <span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">),</span> <span class="n">LTEXT</span><span class="p">)</span>
-         <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
-<span class="c">!</span>
-<span class="c">!                                  Output matrix column</span>
-  <span class="mi">200</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">KOLWID</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">/=</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="n">K</span> <span class="o">=</span> <span class="n">LTEXT</span>
-  <span class="mi">210</span>    <span class="n">KB</span> <span class="o">=</span> <span class="n">LENOUT</span> <span class="o">-</span> <span class="n">KOLWID</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">J</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!                        Special setup for the first column.</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">XARG</span><span class="p">)</span> <span class="n">KB</span> <span class="o">=</span> <span class="p">(</span><span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-            <span class="n">KB</span> <span class="o">=</span> <span class="n">KB</span> <span class="o">+</span> <span class="n">KSHIFT</span> <span class="o">+</span> <span class="n">LINSTR</span> <span class="o">-</span> <span class="n">LBUF</span>
-         <span class="k">end if</span>
-<span class="k">         </span><span class="n">KB</span> <span class="o">=</span> <span class="n">KB</span> <span class="o">+</span> <span class="n">KOLWID</span> <span class="o">-</span> <span class="n">K</span>
-         <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span>
-         <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">+</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="c">!                                  Set initial blanks</span>
-  <span class="mi">220</span>    <span class="k">continue</span>
-<span class="k">         if</span> <span class="p">(</span><span class="n">KB</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="o">-</span><span class="n">KB</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
-<span class="c">!                                  Move characters</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">            </span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Col &#39;</span>
-            <span class="n">C</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span>
-            <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span><span class="o">+</span><span class="mi">4</span>
-         <span class="k">else</span>
-<span class="k">            </span><span class="n">K</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">LTEXT</span> <span class="o">-</span> <span class="n">LFLGDB</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">KK</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">-</span><span class="n">NTEXT</span><span class="p">)</span>
-               <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="n">KK</span><span class="p">)</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)(</span><span class="n">LENTXT</span><span class="o">+</span><span class="n">K</span><span class="p">:</span><span class="n">LENTXT</span><span class="o">-</span><span class="n">KK</span><span class="p">)</span>
-               <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="n">KK</span><span class="o">+</span><span class="mi">1</span>
-               <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">end if</span>
-<span class="k">            if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">               </span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">+</span><span class="n">NTEXT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">K</span><span class="p">:</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
-               <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">+</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">2</span>
-            <span class="k">end if</span>
-<span class="k">         end if</span>
-<span class="k">         if</span> <span class="p">(</span><span class="n">LFLGDB</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!  Special code to remove the &quot;$&quot; preceding a blank.  Only works for 1.</span>
-            <span class="k">do </span><span class="mi">250</span> <span class="n">L</span> <span class="o">=</span> <span class="n">LSTRDB</span> <span class="o">+</span> <span class="n">LTXTDB</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">KB</span><span class="p">),</span> <span class="n">LSTRT</span>
-               <span class="n">BUF</span><span class="p">(</span><span class="n">L</span><span class="p">:</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-  <span class="mi">250</span>       <span class="k">continue</span>
-<span class="k">            </span><span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">2</span>
-            <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">-</span> <span class="mi">1</span>
-         <span class="k">end if</span>
-<span class="k">         if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="k">then</span>
-<span class="c">!                                  Output column index</span>
-            <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span> <span class="nb">IMAG</span> <span class="o">+</span> <span class="n">J</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">NTEXT</span> <span class="o">=</span> <span class="n">K</span>
-            <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
-         <span class="k">end if</span>
-<span class="c">!                                  Set trailing blanks</span>
-         <span class="k">if</span> <span class="p">(</span><span class="n">LSTRT</span> <span class="o">&lt;=</span> <span class="n">LBUF</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
-  <span class="mi">300</span> <span class="k">continue</span>
-<span class="k">  </span><span class="mi">310</span> <span class="k">return</span>
-<span class="k">    end subroutine </span><span class="n">messmh</span>
+  <span class="c">! KT    Used for logic in output of headings.  Set &lt;0 on exit if there</span>
+  <span class="c">!       is an input error.</span>
+  <span class="c">!     KT = 1 Output table headings.  (Set to -1 on fatal error.)</span>
+  <span class="c">!     KT = 2 Get row/column widths for matrix output.  (Set to -2 if</span>
+  <span class="c">!            error results in no headings.)</span>
+  <span class="c">!     KT = 3 Output column headings.  (Set to -1 on fatal error.)</span>
+
+        <span class="kt">logical          </span><span class="n">XARG</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARGOK</span>
+        <span class="kt">integer          </span><span class="n">ERRCNT</span><span class="p">,</span> <span class="n">EUNIT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span> <span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">:</span><span class="n">MEVLAS</span><span class="p">),</span> <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span>      <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span> <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span>  <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span> <span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">MDAT</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span>     <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">NDIM</span><span class="p">,</span> <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">TABSPA</span>
+  <span class="c">!</span>
+        <span class="kt">character </span><span class="n">BUF</span><span class="o">*</span><span class="p">(</span><span class="n">LENBUF</span><span class="p">),</span> <span class="n">DOLS</span><span class="o">*</span><span class="mi">72</span><span class="p">,</span> <span class="n">FMTC</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTF</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> <span class="n">FMTG</span><span class="o">*</span><span class="mi">15</span><span class="p">,</span>        <span class="p">&amp;</span>
+       <span class="p">&amp;</span>  <span class="n">FMTI</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTJ</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTR</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">FMTT</span><span class="o">*</span><span class="mi">15</span>
+        <span class="k">common</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span> <span class="n">SUNIT</span><span class="p">,</span> <span class="n">LHEAD</span><span class="p">,</span> <span class="n">KDFDEF</span><span class="p">,</span> <span class="n">LINMSG</span><span class="p">,</span> <span class="n">LINERR</span><span class="p">,</span> <span class="n">MUNIT</span><span class="p">,</span>      <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">EUNIT</span><span class="p">,</span> <span class="n">KSCRN</span><span class="p">,</span> <span class="n">KDIAG</span><span class="p">,</span> <span class="n">MAXERR</span><span class="p">,</span> <span class="n">LSTOP</span><span class="p">,</span> <span class="n">LPRINT</span><span class="p">,</span> <span class="n">KDF</span><span class="p">,</span> <span class="n">NTEXT</span><span class="p">,</span> <span class="n">NIDAT</span><span class="p">,</span> <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">NFDAT</span><span class="p">,</span> <span class="n">NMDAT</span><span class="p">,</span> <span class="n">MDAT</span><span class="p">,</span> <span class="n">TABSPA</span><span class="p">,</span> <span class="n">ERRCNT</span><span class="p">,</span> <span class="n">ICHAR0</span><span class="p">,</span> <span class="nb">IMAG</span><span class="p">,</span> <span class="n">INC</span><span class="p">,</span> <span class="n">IRC</span><span class="p">,</span>    <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">ITEXT</span><span class="p">,</span> <span class="n">IWF</span><span class="p">,</span> <span class="n">IWG</span><span class="p">,</span> <span class="n">KDI</span><span class="p">,</span> <span class="n">KDJ</span><span class="p">,</span> <span class="n">KLINE</span><span class="p">,</span> <span class="n">KSHIFT</span><span class="p">,</span> <span class="n">KSPEC</span><span class="p">,</span> <span class="n">KT</span><span class="p">,</span> <span class="n">LASTI</span><span class="p">,</span>    <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">LBUF</span><span class="p">,</span> <span class="n">LENLIN</span><span class="p">,</span> <span class="n">LENOUT</span><span class="p">,</span> <span class="n">LENTRY</span><span class="p">,</span> <span class="n">LENTXT</span><span class="p">,</span> <span class="n">LOCBEG</span><span class="p">,</span> <span class="n">LSTRT</span><span class="p">,</span> <span class="n">LTEXT</span><span class="p">,</span>    <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="n">MAXWID</span><span class="p">,</span> <span class="n">MPT</span><span class="p">,</span> <span class="n">NROW</span><span class="p">,</span> <span class="n">NCOL</span><span class="p">,</span> <span class="n">NDIM</span><span class="p">,</span> <span class="n">OUNIT</span><span class="p">,</span> <span class="n">GOTFMT</span><span class="p">,</span> <span class="n">XARG</span><span class="p">,</span> <span class="n">XARGOK</span>
+        <span class="k">common</span> <span class="o">/</span><span class="n">CMESSC</span> <span class="o">/</span> <span class="n">BUF</span><span class="p">,</span> <span class="n">DOLS</span><span class="p">,</span> <span class="n">FMTF</span><span class="p">,</span> <span class="n">FMTG</span><span class="p">,</span> <span class="n">FMTI</span><span class="p">,</span> <span class="n">FMTJ</span><span class="p">,</span> <span class="n">FMTT</span><span class="p">,</span> <span class="n">FMTIM</span>
+        <span class="k">equivalence</span> <span class="p">(</span><span class="n">IVAR</span><span class="p">(</span><span class="n">MEVBAS</span><span class="p">),</span> <span class="n">SUNIT</span><span class="p">)</span>
+        <span class="k">equivalence</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">FMTR</span><span class="p">),</span> <span class="p">(</span><span class="n">FMTIM</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span>
+  <span class="c">!</span>
+        <span class="k">equivalence</span> <span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">LINSTR</span><span class="p">),</span> <span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">KOLWID</span><span class="p">)</span>
+
+        <span class="k">save</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span><span class="p">,</span> <span class="o">/</span><span class="n">CMESSC</span><span class="o">/</span>
+        <span class="k">save </span><span class="n">LFLGDB</span>
+        <span class="k">data </span><span class="n">LFLGDB</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span>
+  <span class="c">!</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">           </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="p">(</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">LENTXT</span>
+           <span class="n">NTEXT</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">ITEXT</span> <span class="o">*</span> <span class="n">LENTXT</span>
+           <span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">end if</span>
+<span class="k">        do </span><span class="mi">300</span> <span class="n">J</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">KLINE</span><span class="p">)</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">K</span> <span class="o">=</span> <span class="n">KOLWID</span>
+              <span class="n">go</span> <span class="n">to</span> <span class="mi">210</span>
+           <span class="k">end if</span>
+<span class="k">           </span><span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">2</span>
+           <span class="n">LTEXT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="mi">110</span>    <span class="k">continue</span>
+<span class="k">           </span><span class="n">L</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="p">:</span><span class="n">LENTXT</span><span class="p">),</span> <span class="n">SC</span><span class="p">)</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">L</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="n">LENTXT</span> <span class="o">-</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="mi">1</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">LTEXT</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                 </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
+                 <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">1</span>
+                 <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+              <span class="k">end if</span>
+<span class="k">              </span><span class="n">LTEXT</span> <span class="o">=</span> <span class="mi">0</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">KT</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">310</span>
+              <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
+           <span class="k">end if</span>
+<span class="k">           </span><span class="n">NTEXT</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">+</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+           <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">LTEXT</span> <span class="o">-</span> <span class="mi">1</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">&gt;</span> <span class="n">LENTXT</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">ITEXT</span> <span class="o">=</span> <span class="n">ITEXT</span> <span class="o">+</span> <span class="mi">1</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="n">LENTXT</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                 </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)(</span><span class="n">LENTXT</span><span class="p">:</span><span class="n">LENTXT</span><span class="p">)</span>
+                 <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">1</span>
+              <span class="k">else</span>
+<span class="k">                 </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span>
+                 <span class="n">NTEXT</span> <span class="o">=</span> <span class="mi">2</span>
+              <span class="k">end if</span>
+<span class="k">           else</span>
+<span class="k">              </span><span class="n">C</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+           <span class="k">end if</span>
+<span class="k">           if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="p">(</span><span class="mi">140</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">KT</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">then</span>
+  <span class="c">!  Special code to set for removing the &quot;$&quot; preceding a blank.</span>
+              <span class="n">LSTRDB</span> <span class="o">=</span> <span class="n">LSTRT</span>
+              <span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">3</span>
+              <span class="n">LTXTDB</span> <span class="o">=</span> <span class="n">LTEXT</span>
+              <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="mi">1</span>
+              <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+           <span class="k">end if</span>
+<span class="k">           if</span> <span class="p">(</span><span class="n">KT</span> <span class="o">/=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">160</span>
+    <span class="mi">140</span>    <span class="n">LTEXT</span> <span class="o">=</span> <span class="n">LTEXT</span> <span class="o">+</span> <span class="mi">2</span>
+           <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+    <span class="mi">160</span>    <span class="n">KT</span> <span class="o">=</span> <span class="o">-</span><span class="n">KT</span>
+           <span class="n">go</span> <span class="n">to</span> <span class="mi">310</span>
+  <span class="c">!</span>
+    <span class="mi">180</span>    <span class="n">KOLWID</span> <span class="o">=</span> <span class="n">KOLWID</span> <span class="o">+</span> <span class="n">LENOUT</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">LTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
+           <span class="n">KB</span> <span class="o">=</span> <span class="n">KOLWID</span><span class="o">-</span><span class="n">LTEXT</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">KB</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">stop</span>                                            <span class="p">&amp;</span>
+       <span class="p">&amp;</span>   <span class="s1">&#39;Stopped in MESS -- Column width too small in a heading.&#39;</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">XARG</span><span class="p">)</span>  <span class="n">KB</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">KB</span><span class="o">/</span><span class="mi">2</span>
+           <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span>
+           <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KOLWID</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">LBUF</span> <span class="o">&lt;=</span> <span class="n">LENLIN</span><span class="p">)</span> <span class="n">MDAT</span><span class="p">(</span><span class="n">NROW</span><span class="p">)</span> <span class="o">=</span> <span class="n">LBUF</span>
+           <span class="n">KOLWID</span> <span class="o">=</span> <span class="mi">0</span>
+           <span class="n">go</span> <span class="n">to</span> <span class="mi">220</span>
+  <span class="c">!</span>
+  <span class="c">!                                  Set up column widths</span>
+    <span class="mi">190</span>    <span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">MAXWID</span><span class="p">(</span><span class="n">IRC</span><span class="p">),</span> <span class="n">LTEXT</span><span class="p">)</span>
+           <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
+  <span class="c">!</span>
+  <span class="c">!                                  Output matrix column</span>
+    <span class="mi">200</span>    <span class="n">K</span> <span class="o">=</span> <span class="n">KOLWID</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">C</span> <span class="o">/=</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="n">K</span> <span class="o">=</span> <span class="n">LTEXT</span>
+    <span class="mi">210</span>    <span class="n">KB</span> <span class="o">=</span> <span class="n">LENOUT</span> <span class="o">-</span> <span class="n">KOLWID</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">J</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+  <span class="c">!                        Special setup for the first column.</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">XARG</span><span class="p">)</span> <span class="n">KB</span> <span class="o">=</span> <span class="p">(</span><span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+              <span class="n">KB</span> <span class="o">=</span> <span class="n">KB</span> <span class="o">+</span> <span class="n">KSHIFT</span> <span class="o">+</span> <span class="n">LINSTR</span> <span class="o">-</span> <span class="n">LBUF</span>
+           <span class="k">end if</span>
+<span class="k">           </span><span class="n">KB</span> <span class="o">=</span> <span class="n">KB</span> <span class="o">+</span> <span class="n">KOLWID</span> <span class="o">-</span> <span class="n">K</span>
+           <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LBUF</span> <span class="o">+</span> <span class="n">KB</span> <span class="o">+</span> <span class="mi">1</span>
+           <span class="n">LBUF</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">+</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="c">!                                  Set initial blanks</span>
+    <span class="mi">220</span>    <span class="k">continue</span>
+<span class="k">           if</span> <span class="p">(</span><span class="n">KB</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="o">-</span><span class="n">KB</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+  <span class="c">!                                  Move characters</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">              </span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Col &#39;</span>
+              <span class="n">C</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span>
+              <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span><span class="o">+</span><span class="mi">4</span>
+           <span class="k">else</span>
+<span class="k">              </span><span class="n">K</span> <span class="o">=</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">LTEXT</span> <span class="o">-</span> <span class="n">LFLGDB</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                 </span><span class="n">KK</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">-</span><span class="n">NTEXT</span><span class="p">)</span>
+                 <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="n">KK</span><span class="p">)</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="o">-</span><span class="mi">1</span><span class="p">)(</span><span class="n">LENTXT</span><span class="o">+</span><span class="n">K</span><span class="p">:</span><span class="n">LENTXT</span><span class="o">-</span><span class="n">KK</span><span class="p">)</span>
+                 <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="n">KK</span><span class="o">+</span><span class="mi">1</span>
+                 <span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+              <span class="k">end if</span>
+<span class="k">              if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                 </span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LSTRT</span><span class="o">+</span><span class="n">NTEXT</span><span class="o">-</span><span class="n">K</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">TEXT</span><span class="p">(</span><span class="n">ITEXT</span><span class="p">)(</span><span class="n">K</span><span class="p">:</span><span class="n">NTEXT</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+                 <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">+</span> <span class="n">NTEXT</span> <span class="o">-</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">2</span>
+              <span class="k">end if</span>
+<span class="k">           end if</span>
+<span class="k">           if</span> <span class="p">(</span><span class="n">LFLGDB</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
+  <span class="c">!  Special code to remove the &quot;$&quot; preceding a blank.  Only works for 1.</span>
+              <span class="k">do </span><span class="mi">250</span> <span class="n">L</span> <span class="o">=</span> <span class="n">LSTRDB</span> <span class="o">+</span> <span class="n">LTXTDB</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">KB</span><span class="p">),</span> <span class="n">LSTRT</span>
+                 <span class="n">BUF</span><span class="p">(</span><span class="n">L</span><span class="p">:</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">BUF</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="mi">250</span>       <span class="k">continue</span>
+<span class="k">              </span><span class="n">LFLGDB</span> <span class="o">=</span> <span class="mi">2</span>
+              <span class="n">LSTRT</span> <span class="o">=</span> <span class="n">LSTRT</span> <span class="o">-</span> <span class="mi">1</span>
+           <span class="k">end if</span>
+<span class="k">           if</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="k">then</span>
+  <span class="c">!                                  Output column index</span>
+              <span class="k">write</span> <span class="p">(</span><span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">),</span> <span class="n">FMTC</span><span class="p">)</span> <span class="nb">IMAG</span> <span class="o">+</span> <span class="n">J</span> <span class="o">-</span> <span class="mi">1</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">NTEXT</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">NTEXT</span> <span class="o">=</span> <span class="n">K</span>
+              <span class="n">go</span> <span class="n">to</span> <span class="mi">300</span>
+           <span class="k">end if</span>
+  <span class="c">!                                  Set trailing blanks</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">LSTRT</span> <span class="o">&lt;=</span> <span class="n">LBUF</span><span class="p">)</span> <span class="n">BUF</span><span class="p">(</span><span class="n">LSTRT</span><span class="p">:</span><span class="n">LBUF</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+    <span class="mi">300</span> <span class="k">continue</span>
+<span class="k">    </span><span class="mi">310</span> <span class="k">return</span>
+<span class="k">      end subroutine </span><span class="n">messmh</span>
 </pre></div>
 
     </section>

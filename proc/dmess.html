@@ -57,7 +57,7 @@
         <ul class="dropdown-menu">
           
               
-            <li><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+            <li><a href="../lists/files.html">Source Files</a></li>
         
         
         
@@ -73,7 +73,7 @@
             </li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
 
@@ -122,21 +122,21 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.2% of total for procedures.">171 statements</a>
+    title=" 4.4% of total for procedures.">172 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/diva_module.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/messages_module.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/diva_module.f90.html'>diva_module.f90</a></li>
+     <li><a href='../sourcefile/messages_module.f90.html'>messages_module.f90</a></li>
     
-     <li><a href='../module/diva_module.html'>diva_module</a></li>
+     <li><a href='../module/messages_module.html'>messages_module</a></li>
     
   
      <li class="active">DMESS</li>
@@ -224,71 +224,6 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
     <p>Processes Messages -- Actions are controlled by MACT().  See
  comment is subroutine MESS.  This program is for the extra
  argument of type real.</p>
-<p>BUF    In common CMESSC, see MESS.
- DOLS   In common for intitialization, not used here.  See MESS.
- EUNIT  In common for intitialization, not used here.  See MESS.
- FDAT   Formal argument -- gives floating point data to print.
- FBIG   Largest magnitude of floating point number to output.
- FSMA   Smalles magnitude floating point number to be printed.
- FMTF   In common CMESSC, format for printing floating point number.
- FMTG   In common CMESSC, user format to use in place of FMTF.
- FMTSP  Format for printing sparse vectors.
- FOUT   Floating point number to be output.
- FSMA   Smallest postitive floating point number.
- ICOL   In common CMESSI, see MESS.
- ID     Number of decimal digits for floating point format statement.
- IDAT   Integer data -- passed to MESS.
- IVAR   In common CMESSI, see MESS.
- IWF    In common CMESSI, see MESS.
- IWG    In common CMESSI, see MESS.
- J      Temporary index.
- K      Temporary index.
- KSMA   Number of leading 0's in "F" format.  If &lt; 0, -KSMA gives the
-    number of extra digits to the left of the decimal point.
-    KSMA depends on abs(smallest number printed).
- KBIG   Number of extra digits before the decimal point required by the
-    largest number to be printed if "F" format is used.
- KDF    In common CMESSI, see MESS.
- KDFDEF In common CMESSI, see MESS.
- KDIAG  In common CMESSI, not used here, see MESS.
- KEXE   Extra space required for E format.
- KF     In common CMESSI, see MESS.
- KLINE  In common CMESSI, see MESS.
- KSCRN  In common CMESSI, see MESS.
- KRES1  In common CMESSI, see MESS.
- KSPEC  In common CMESSI, see MESS.
- LASTER In common CMESSI, not used here, see MESS.
- LASTI  In common CMESSI, see MESS.
- LBUF   In common CMESSI, see MESS.
- LDFDEF Value of KDFDEF for this routine.  (Saved)
- LENBUF In common CMESSI, see MESS.
- LENLIN In common CMESSI, not used here, see MESS.
- LENTRY In common CMESSI, see MESS.
- LHEAD  In common CMESSI, not used here, see MESS.
- LINERR In common CMESSI, not used here, see MESS.
- LINMSG In common CMESSI, not used here, see MESS.
- LOCBEG In common CMESSI, see MESS.
- LPRINT In common CMESSI, not used here, see MESS.
- LSTOP  In common CMESSI, not used here, see MESS.
- LSTRT  In common CMESSI, see MESS.
- MACT   Formal argument, see MESS.
- MDAT   In common CMESSI, not used here, see MESS.
- MEMDA5 In common CMESSI, see MESS.
- MESS   Program called for most of the message processing.
- MPT    In common CMESSI, see MESS.
- MUNIT  In common CMESSI, not used here, see MESS.
- NCOL   In common CMESSI, see MESS.
- NDIM   In common CMESSI, see MESS.
- NEG    1 if any number is &lt; 0, else it is 0.
- NFDAT  In common CMESSI, see MESS.
- NIDAT  In common CMESSI, not used here, see MESS.
- NMDAT  In common CMESSI, not used here, see MESS.
- NTEXT  In common CMESSI, not used here, see MESS.
- OUNIT  In common CMESSI, not used here, see MESS.
- D1MACH External func. giving floating pt. info. about the environment.
- SUNIT  In common CMESSI, not used here, see MESS.
- TEXT   Formal argument, passed to MESS, see there.
- XARGOK In common CMESSI, see MESS.</p>
 <h3>History</h3>
 <ul>
 <li>2009-09-27 DMESS Krogh  Same as below, in another place.</li>
@@ -359,7 +294,7 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-text~2"></span>character</td>
+  <td><span class="anchor" id="variable-text"></span>character</td>
   <td></td>
   <td></td>
   
@@ -374,7 +309,7 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-idat~11"></span>integer</td>
+  <td><span class="anchor" id="variable-idat"></span>integer</td>
   <td></td>
   <td></td>
   
@@ -389,7 +324,7 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-fdat~11"></span>double precision</td>
+  <td><span class="anchor" id="variable-fdat"></span>double precision</td>
   <td></td>
   <td></td>
   
@@ -531,108 +466,108 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
 <polygon fill="none" stroke="black" points="144,-150 90,-150 90,-126 144,-126 144,-150"/>
 <text text-anchor="middle" x="117" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50">DMESS</text>
 </g>
-<!-- proc~divacr -->
-<g id="proc~~dmess~~CalledByGraph_node2" class="node">
-<title>proc~divacr</title>
-<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-276 0,-276 0,-252 54,-252 54,-276"/>
-<text text-anchor="middle" x="27" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
-</a>
-</g>
-</g>
-<!-- proc~divacr&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
-<title>proc~divacr&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M44.75,-251.95C48.02,-249.21 51.27,-246.16 54,-243 76.44,-217.02 95.33,-181.82 106.16,-159.51"/>
-<polygon fill="#000000" stroke="#000000" points="109.43,-160.78 110.56,-150.24 103.11,-157.78 109.43,-160.78"/>
-</g>
-<!-- proc~diva -->
-<g id="proc~~dmess~~CalledByGraph_node3" class="node">
-<title>proc~diva</title>
-<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-234 0,-234 0,-210 54,-210 54,-234"/>
-<text text-anchor="middle" x="27" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
-</a>
-</g>
-</g>
-<!-- proc~diva&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
-<title>proc~diva&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M43.64,-209.85C47.11,-207.02 50.73,-203.96 54,-201 69.44,-187 85.95,-170.13 98.04,-157.36"/>
-<polygon fill="#000000" stroke="#000000" points="100.66,-159.7 104.96,-150.01 95.56,-154.9 100.66,-159.7"/>
-</g>
 <!-- proc~divadb -->
-<g id="proc~~dmess~~CalledByGraph_node4" class="node">
+<g id="proc~~dmess~~CalledByGraph_node2" class="node">
 <title>proc~divadb</title>
-<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-192 0,-192 0,-168 54,-168 54,-192"/>
-<text text-anchor="middle" x="27" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+<g id="a_proc~~dmess~~CalledByGraph_node2"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-276 0,-276 0,-252 54,-252 54,-276"/>
+<text text-anchor="middle" x="27" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
 </a>
 </g>
 </g>
 <!-- proc~divadb&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge1" class="edge">
 <title>proc~divadb&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M53.45,-167.85C62.21,-163.67 72.17,-158.92 81.52,-154.46"/>
-<polygon fill="#000000" stroke="#000000" points="83.09,-157.59 90.6,-150.12 80.07,-151.27 83.09,-157.59"/>
-</g>
-<!-- proc~divag -->
-<g id="proc~~dmess~~CalledByGraph_node5" class="node">
-<title>proc~divag</title>
-<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-150 0,-150 0,-126 54,-126 54,-150"/>
-<text text-anchor="middle" x="27" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
-</a>
-</g>
-</g>
-<!-- proc~divag&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
-<title>proc~divag&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M54.4,-138C62.39,-138 71.31,-138 79.82,-138"/>
-<polygon fill="#000000" stroke="#000000" points="79.92,-141.5 89.92,-138 79.92,-134.5 79.92,-141.5"/>
-</g>
-<!-- proc~divain -->
-<g id="proc~~dmess~~CalledByGraph_node6" class="node">
-<title>proc~divain</title>
-<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-108 0,-108 0,-84 54,-84 54,-108"/>
-<text text-anchor="middle" x="27" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
-</a>
-</g>
-</g>
-<!-- proc~divain&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
-<title>proc~divain&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M53.45,-108.15C62.21,-112.33 72.17,-117.08 81.52,-121.54"/>
-<polygon fill="#000000" stroke="#000000" points="80.07,-124.73 90.6,-125.88 83.09,-118.41 80.07,-124.73"/>
-</g>
-<!-- proc~divaa -->
-<g id="proc~~dmess~~CalledByGraph_node7" class="node">
-<title>proc~divaa</title>
-<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
-<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
-</a>
-</g>
-</g>
-<!-- proc~divaa&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
-<title>proc~divaa&#45;&gt;proc~dmess</title>
-<path fill="none" stroke="#000000" d="M43.64,-66.15C47.11,-68.98 50.73,-72.04 54,-75 69.44,-89 85.95,-105.87 98.04,-118.64"/>
-<polygon fill="#000000" stroke="#000000" points="95.56,-121.1 104.96,-125.99 100.66,-116.3 95.56,-121.1"/>
+<path fill="none" stroke="#000000" d="M44.75,-251.95C48.02,-249.21 51.27,-246.16 54,-243 76.44,-217.02 95.33,-181.82 106.16,-159.51"/>
+<polygon fill="#000000" stroke="#000000" points="109.43,-160.78 110.56,-150.24 103.11,-157.78 109.43,-160.78"/>
 </g>
 <!-- proc~dzero -->
-<g id="proc~~dmess~~CalledByGraph_node8" class="node">
+<g id="proc~~dmess~~CalledByGraph_node3" class="node">
 <title>proc~dzero</title>
-<g id="a_proc~~dmess~~CalledByGraph_node8"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
-<polygon fill="#d9534f" stroke="#d9534f" points="54,-24 0,-24 0,0 54,0 54,-24"/>
-<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
+<g id="a_proc~~dmess~~CalledByGraph_node3"><a xlink:href=".././proc/dzero.html" xlink:title="DZERO">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-234 0,-234 0,-210 54,-210 54,-234"/>
+<text text-anchor="middle" x="27" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DZERO</text>
 </a>
 </g>
 </g>
 <!-- proc~dzero&#45;&gt;proc~dmess -->
-<g id="proc~~dmess~~CalledByGraph_edge7" class="edge">
+<g id="proc~~dmess~~CalledByGraph_edge2" class="edge">
 <title>proc~dzero&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M43.64,-209.85C47.11,-207.02 50.73,-203.96 54,-201 69.44,-187 85.95,-170.13 98.04,-157.36"/>
+<polygon fill="#000000" stroke="#000000" points="100.66,-159.7 104.96,-150.01 95.56,-154.9 100.66,-159.7"/>
+</g>
+<!-- proc~divain -->
+<g id="proc~~dmess~~CalledByGraph_node4" class="node">
+<title>proc~divain</title>
+<g id="a_proc~~dmess~~CalledByGraph_node4"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-192 0,-192 0,-168 54,-168 54,-192"/>
+<text text-anchor="middle" x="27" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge3" class="edge">
+<title>proc~divain&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M53.45,-167.85C62.21,-163.67 72.17,-158.92 81.52,-154.46"/>
+<polygon fill="#000000" stroke="#000000" points="83.09,-157.59 90.6,-150.12 80.07,-151.27 83.09,-157.59"/>
+</g>
+<!-- proc~divacr -->
+<g id="proc~~dmess~~CalledByGraph_node5" class="node">
+<title>proc~divacr</title>
+<g id="a_proc~~dmess~~CalledByGraph_node5"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-150 0,-150 0,-126 54,-126 54,-150"/>
+<text text-anchor="middle" x="27" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+</a>
+</g>
+</g>
+<!-- proc~divacr&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge4" class="edge">
+<title>proc~divacr&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M54.4,-138C62.39,-138 71.31,-138 79.82,-138"/>
+<polygon fill="#000000" stroke="#000000" points="79.92,-141.5 89.92,-138 79.92,-134.5 79.92,-141.5"/>
+</g>
+<!-- proc~divaa -->
+<g id="proc~~dmess~~CalledByGraph_node6" class="node">
+<title>proc~divaa</title>
+<g id="a_proc~~dmess~~CalledByGraph_node6"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-108 0,-108 0,-84 54,-84 54,-108"/>
+<text text-anchor="middle" x="27" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+</a>
+</g>
+</g>
+<!-- proc~divaa&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge5" class="edge">
+<title>proc~divaa&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M53.45,-108.15C62.21,-112.33 72.17,-117.08 81.52,-121.54"/>
+<polygon fill="#000000" stroke="#000000" points="80.07,-124.73 90.6,-125.88 83.09,-118.41 80.07,-124.73"/>
+</g>
+<!-- proc~diva -->
+<g id="proc~~dmess~~CalledByGraph_node7" class="node">
+<title>proc~diva</title>
+<g id="a_proc~~dmess~~CalledByGraph_node7"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
+<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+</a>
+</g>
+</g>
+<!-- proc~diva&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge6" class="edge">
+<title>proc~diva&#45;&gt;proc~dmess</title>
+<path fill="none" stroke="#000000" d="M43.64,-66.15C47.11,-68.98 50.73,-72.04 54,-75 69.44,-89 85.95,-105.87 98.04,-118.64"/>
+<polygon fill="#000000" stroke="#000000" points="95.56,-121.1 104.96,-125.99 100.66,-116.3 95.56,-121.1"/>
+</g>
+<!-- proc~divag -->
+<g id="proc~~dmess~~CalledByGraph_node8" class="node">
+<title>proc~divag</title>
+<g id="a_proc~~dmess~~CalledByGraph_node8"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
+<polygon fill="#d9534f" stroke="#d9534f" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
+</a>
+</g>
+</g>
+<!-- proc~divag&#45;&gt;proc~dmess -->
+<g id="proc~~dmess~~CalledByGraph_edge7" class="edge">
+<title>proc~divag&#45;&gt;proc~dmess</title>
 <path fill="none" stroke="#000000" d="M44.75,-24.05C48.02,-26.79 51.27,-29.84 54,-33 76.44,-58.98 95.33,-94.18 106.16,-116.49"/>
 <polygon fill="#000000" stroke="#000000" points="103.11,-118.22 110.56,-125.76 109.43,-115.22 103.11,-118.22"/>
 </g>
@@ -941,7 +876,7 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
   
 <tr>
   
-  <td><span class="anchor" id="variable-lprint~2"></span>integer</td>
+  <td><span class="anchor" id="variable-lprint"></span>integer</td>
   
   
   <td></td><td>::</td>
@@ -1674,14 +1609,82 @@ public subroutine DMESS(MACT, TEXT, IDAT, FDAT)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">DMESS</span> <span class="p">(</span><span class="n">MACT</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">IDAT</span><span class="p">,</span> <span class="n">FDAT</span><span class="p">)</span>
 
-      <span class="kt">integer          </span><span class="n">MACT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">IDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-      <span class="kt">double precision </span><span class="n">FDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-      <span class="kt">character        </span><span class="n">TEXT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">integer</span>          <span class="kd">::</span> <span class="n">MACT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">integer</span>          <span class="kd">::</span> <span class="n">IDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">double precision</span> <span class="kd">::</span> <span class="n">FDAT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+      <span class="kt">character</span>        <span class="kd">::</span> <span class="n">TEXT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+
       <span class="kt">character        </span><span class="n">FMTSP</span><span class="o">*</span><span class="mi">29</span>
       <span class="kt">integer          </span><span class="n">ICOL</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">KSMA</span><span class="p">,</span> <span class="n">KBIG</span><span class="p">,</span> <span class="n">KEXE</span><span class="p">,</span> <span class="n">LDFDEF</span><span class="p">,</span> <span class="n">NEG</span>
       <span class="kt">double precision </span><span class="n">FBIG</span><span class="p">,</span> <span class="n">FOUT</span><span class="p">,</span> <span class="n">FSMA</span>
       <span class="k">save </span><span class="n">LDFDEF</span><span class="p">,</span> <span class="n">FMTSP</span>
       <span class="k">save</span> <span class="o">/</span><span class="n">CMESSI</span><span class="o">/</span><span class="p">,</span> <span class="o">/</span><span class="n">CMESSC</span><span class="o">/</span>
+
+<span class="c">! BUF    In common CMESSC, see MESS.</span>
+<span class="c">! DOLS   In common for intitialization, not used here.  See MESS.</span>
+<span class="c">! EUNIT  In common for intitialization, not used here.  See MESS.</span>
+<span class="c">! FDAT   Formal argument -- gives floating point data to print.</span>
+<span class="c">! FBIG   Largest magnitude of floating point number to output.</span>
+<span class="c">! FSMA   Smalles magnitude floating point number to be printed.</span>
+<span class="c">! FMTF   In common CMESSC, format for printing floating point number.</span>
+<span class="c">! FMTG   In common CMESSC, user format to use in place of FMTF.</span>
+<span class="c">! FMTSP  Format for printing sparse vectors.</span>
+<span class="c">! FOUT   Floating point number to be output.</span>
+<span class="c">! FSMA   Smallest postitive floating point number.</span>
+<span class="c">! ICOL   In common CMESSI, see MESS.</span>
+<span class="c">! ID     Number of decimal digits for floating point format statement.</span>
+<span class="c">! IDAT   Integer data -- passed to MESS.</span>
+<span class="c">! IVAR   In common CMESSI, see MESS.</span>
+<span class="c">! IWF    In common CMESSI, see MESS.</span>
+<span class="c">! IWG    In common CMESSI, see MESS.</span>
+<span class="c">! J      Temporary index.</span>
+<span class="c">! K      Temporary index.</span>
+<span class="c">! KSMA   Number of leading 0&#39;s in &quot;F&quot; format.  If &lt; 0, -KSMA gives the</span>
+<span class="c">!    number of extra digits to the left of the decimal point.</span>
+<span class="c">!    KSMA depends on abs(smallest number printed).</span>
+<span class="c">! KBIG   Number of extra digits before the decimal point required by the</span>
+<span class="c">!    largest number to be printed if &quot;F&quot; format is used.</span>
+<span class="c">! KDF    In common CMESSI, see MESS.</span>
+<span class="c">! KDFDEF In common CMESSI, see MESS.</span>
+<span class="c">! KDIAG  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! KEXE   Extra space required for E format.</span>
+<span class="c">! KF     In common CMESSI, see MESS.</span>
+<span class="c">! KLINE  In common CMESSI, see MESS.</span>
+<span class="c">! KSCRN  In common CMESSI, see MESS.</span>
+<span class="c">! KRES1  In common CMESSI, see MESS.</span>
+<span class="c">! KSPEC  In common CMESSI, see MESS.</span>
+<span class="c">! LASTER In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LASTI  In common CMESSI, see MESS.</span>
+<span class="c">! LBUF   In common CMESSI, see MESS.</span>
+<span class="c">! LDFDEF Value of KDFDEF for this routine.  (Saved)</span>
+<span class="c">! LENBUF In common CMESSI, see MESS.</span>
+<span class="c">! LENLIN In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LENTRY In common CMESSI, see MESS.</span>
+<span class="c">! LHEAD  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LINERR In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LINMSG In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LOCBEG In common CMESSI, see MESS.</span>
+<span class="c">! LPRINT In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LSTOP  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! LSTRT  In common CMESSI, see MESS.</span>
+<span class="c">! MACT   Formal argument, see MESS.</span>
+<span class="c">! MDAT   In common CMESSI, not used here, see MESS.</span>
+<span class="c">! MEMDA5 In common CMESSI, see MESS.</span>
+<span class="c">! MESS   Program called for most of the message processing.</span>
+<span class="c">! MPT    In common CMESSI, see MESS.</span>
+<span class="c">! MUNIT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! NCOL   In common CMESSI, see MESS.</span>
+<span class="c">! NDIM   In common CMESSI, see MESS.</span>
+<span class="c">! NEG    1 if any number is &lt; 0, else it is 0.</span>
+<span class="c">! NFDAT  In common CMESSI, see MESS.</span>
+<span class="c">! NIDAT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! NMDAT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! NTEXT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! OUNIT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! D1MACH External func. giving floating pt. info. about the environment.</span>
+<span class="c">! SUNIT  In common CMESSI, not used here, see MESS.</span>
+<span class="c">! TEXT   Formal argument, passed to MESS, see there.</span>
+<span class="c">! XARGOK In common CMESSI, see MESS.</span>
 
 <span class="c">! ************************** Data from common block ********************</span>
 <span class="c">!</span>

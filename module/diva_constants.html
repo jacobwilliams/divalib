@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="Modern Fortran Edition of DIVA">
+    
+    <meta name="author" content="Jacob Williams" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>diva_constants &ndash; diva</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">diva </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+               
+        
+            </ul>
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>diva_constants 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title=" 0.2% of total for modules and submodules.">9 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/diva_constants.f90"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/diva_constants.f90.html'>diva_constants.f90</a></li>
+    
+  
+     <li class="active">diva_constants</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-kdim">kdim</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-maxord">maxord</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-maxstf">maxstf</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-d1mach">d1mach</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <p>DIVA constants.</p>
+      <br>
+    
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV">iso_fortran_env</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      <li class="list-group-item">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~diva_constants~~UsesGraph Pages: 1 -->
+<svg id="modulediva_constantsUsesGraph" width="229pt" height="32pt"
+ viewBox="0.00 0.00 229.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~diva_constants~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~diva_constants~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 225,-28 225,4 -4,4"/>
+<!-- module~diva_constants -->
+<g id="module~~diva_constants~~UsesGraph_node1" class="node">
+<title>module~diva_constants</title>
+<polygon fill="none" stroke="black" points="221,-24 130,-24 130,0 221,0 221,-24"/>
+<text text-anchor="middle" x="175.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">diva_constants</text>
+</g>
+<!-- iso_fortran_env -->
+<g id="module~~diva_constants~~UsesGraph_node2" class="node">
+<title>iso_fortran_env</title>
+<g id="a_module~~diva_constants~~UsesGraph_node2"><a xlink:href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="94,-24 0,-24 0,0 94,0 94,-24"/>
+<text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~diva_constants&#45;&gt;iso_fortran_env -->
+<g id="module~~diva_constants~~UsesGraph_edge1" class="edge">
+<title>module~diva_constants&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.9,-12C121.71,-12 113.06,-12 104.57,-12"/>
+<polygon fill="#000000" stroke="#000000" points="104.34,-8.5 94.34,-12 104.34,-15.5 104.34,-8.5"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+      </li>
+      
+      </ul>
+    </div>
+    
+
+    
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+  
+  
+  <li class="list-group-item">
+    <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~diva_constants~~UsedByGraph Pages: 1 -->
+<svg id="modulediva_constantsUsedByGraph" width="364pt" height="494pt"
+ viewBox="0.00 0.00 364.00 494.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~diva_constants~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 490)">
+<title>module~~diva_constants~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-490 360,-490 360,4 -4,4"/>
+<!-- module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_node1" class="node">
+<title>module~diva_constants</title>
+<polygon fill="none" stroke="black" points="91,-202 0,-202 0,-178 91,-178 91,-202"/>
+<text text-anchor="middle" x="45.5" y="-187.6" font-family="Helvetica,sans-Serif" font-size="10.50">diva_constants</text>
+</g>
+<!-- module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_node2" class="node">
+<title>module~divasc_module</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node2"><a xlink:href=".././module/divasc_module.html" xlink:title="divasc_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="229,-276 137,-276 137,-252 229,-252 229,-276"/>
+<text text-anchor="middle" x="183" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">divasc_module</text>
+</a>
+</g>
+</g>
+<!-- module~divasc_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge1" class="edge">
+<title>module~divasc_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M146.88,-251.9C140.17,-249.22 133.28,-246.22 127,-243 107.33,-232.92 86.53,-219.14 71,-208.15"/>
+<polygon fill="#000000" stroke="#000000" points="72.68,-205.05 62.51,-202.05 68.59,-210.73 72.68,-205.05"/>
+</g>
+<!-- proc~divaco -->
+<g id="module~~diva_constants~~UsedByGraph_node3" class="node">
+<title>proc~divaco</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node3"><a xlink:href=".././proc/divaco.html" xlink:title="divaco">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-444 288.5,-444 288.5,-420 342.5,-420 342.5,-444"/>
+<text text-anchor="middle" x="315.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">divaco</text>
+</a>
+</g>
+</g>
+<!-- proc~divaco&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge3" class="edge">
+<title>proc~divaco&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.93,-419.81C262.58,-407.21 220.33,-386.91 184,-369"/>
+</g>
+<!-- proc~divaco&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge16" class="edge">
+<title>proc~divaco&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.12,-420.5C283.45,-417.78 278.85,-414.61 275,-411 269.7,-406.04 220.37,-324.51 196.64,-285.06"/>
+<polygon fill="#000000" stroke="#000000" points="199.35,-282.78 191.2,-276.01 193.35,-286.39 199.35,-282.78"/>
+</g>
+<!-- module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_node4" class="node">
+<title>module~divamc_module</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node4"><a xlink:href=".././module/divamc_module.html" xlink:title="divamc_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="231.5,-234 134.5,-234 134.5,-210 231.5,-210 231.5,-234"/>
+<text text-anchor="middle" x="183" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">divamc_module</text>
+</a>
+</g>
+</g>
+<!-- proc~divaco&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge27" class="edge">
+<title>proc~divaco&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.24,-422.2C283.22,-419.28 278.46,-415.59 275,-411 228.99,-350.05 288.69,-300.98 239,-243 238.14,-242 237.23,-241.04 236.27,-240.13"/>
+<polygon fill="#000000" stroke="#000000" points="238.23,-237.22 228.13,-234 234.01,-242.82 238.23,-237.22"/>
+</g>
+<!-- module~divamc_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge4" class="edge">
+<title>module~divamc_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M134.23,-210.72C123.49,-208.18 112.03,-205.47 101.04,-202.88"/>
+<polygon fill="#000000" stroke="#000000" points="101.66,-199.43 91.12,-200.54 100.05,-206.24 101.66,-199.43"/>
+</g>
+<!-- proc~divadb -->
+<g id="module~~diva_constants~~UsedByGraph_node5" class="node">
+<title>proc~divadb</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node5"><a xlink:href=".././proc/divadb.html" xlink:title="DIVADB">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-276 288.5,-276 288.5,-252 342.5,-252 342.5,-276"/>
+<text text-anchor="middle" x="315.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVADB</text>
+</a>
+</g>
+</g>
+<!-- proc~divadb&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge5" class="edge">
+<title>proc~divadb&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.27,-276.17C284.4,-278.86 279.43,-281.85 275,-285 230.11,-316.85 233.37,-393.33 184,-369"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M182,-369C114.78,-335.87 72.1,-251.54 55.02,-211.6"/>
+<polygon fill="#000000" stroke="#000000" points="58.2,-210.14 51.14,-202.24 51.73,-212.82 58.2,-210.14"/>
+</g>
+<!-- proc~divadb&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge17" class="edge">
+<title>proc~divadb&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-264C274.36,-264 256.48,-264 239.49,-264"/>
+<polygon fill="#000000" stroke="#000000" points="239.08,-260.5 229.08,-264 239.08,-267.5 239.08,-260.5"/>
+</g>
+<!-- proc~divadb&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge28" class="edge">
+<title>proc~divadb&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-255.6C271.99,-250.32 250.32,-243.35 230.99,-237.12"/>
+<polygon fill="#000000" stroke="#000000" points="232.01,-233.78 221.42,-234.04 229.87,-240.44 232.01,-233.78"/>
+</g>
+<!-- proc~divapr -->
+<g id="module~~diva_constants~~UsedByGraph_node6" class="node">
+<title>proc~divapr</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node6"><a xlink:href=".././proc/divapr.html" xlink:title="DIVAPR">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-318 288.5,-318 288.5,-294 342.5,-294 342.5,-318"/>
+<text text-anchor="middle" x="315.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAPR</text>
+</a>
+</g>
+</g>
+<!-- proc~divapr&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge6" class="edge">
+<title>proc~divapr&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M291.74,-318.14C255.76,-337.16 189.25,-371.59 184,-369"/>
+</g>
+<!-- proc~divapr&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge18" class="edge">
+<title>proc~divapr&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-297.6C271.99,-292.32 250.32,-285.35 230.99,-279.12"/>
+<polygon fill="#000000" stroke="#000000" points="232.01,-275.78 221.42,-276.04 229.87,-282.44 232.01,-275.78"/>
+</g>
+<!-- proc~divapr&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge29" class="edge">
+<title>proc~divapr&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.13,-293.76C283.56,-291.15 279,-288.2 275,-285 255.81,-269.63 259.1,-257.15 239,-243 236.77,-241.43 234.4,-239.95 231.95,-238.58"/>
+<polygon fill="#000000" stroke="#000000" points="233.33,-235.35 222.82,-234 230.19,-241.61 233.33,-235.35"/>
+</g>
+<!-- proc~divain -->
+<g id="module~~diva_constants~~UsedByGraph_node7" class="node">
+<title>proc~divain</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node7"><a xlink:href=".././proc/divain.html" xlink:title="DIVAIN">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-486 288.5,-486 288.5,-462 342.5,-462 342.5,-486"/>
+<text text-anchor="middle" x="315.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAIN</text>
+</a>
+</g>
+</g>
+<!-- proc~divain&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge7" class="edge">
+<title>proc~divain&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.27,-461.83C284.4,-459.14 279.43,-456.15 275,-453 230.11,-421.15 233.37,-393.33 184,-369"/>
+</g>
+<!-- proc~divain&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge19" class="edge">
+<title>proc~divain&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.31,-463.58C283.41,-460.72 278.68,-457.21 275,-453 244.5,-418.03 259.09,-396.83 239,-355 226.95,-329.92 210.02,-302.83 198.14,-284.79"/>
+<polygon fill="#000000" stroke="#000000" points="200.9,-282.61 192.44,-276.24 195.07,-286.5 200.9,-282.61"/>
+</g>
+<!-- proc~divabu -->
+<g id="module~~diva_constants~~UsedByGraph_node8" class="node">
+<title>proc~divabu</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node8"><a xlink:href=".././proc/divabu.html" xlink:title="divabu">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-360 288.5,-360 288.5,-336 342.5,-336 342.5,-360"/>
+<text text-anchor="middle" x="315.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">divabu</text>
+</a>
+</g>
+</g>
+<!-- proc~divabu&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge8" class="edge">
+<title>proc~divabu&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M290.12,-360.21C262.9,-372.01 218.17,-385.84 184,-369"/>
+</g>
+<!-- proc~divabu&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge20" class="edge">
+<title>proc~divabu&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M290.44,-335.78C285.28,-333.01 279.91,-329.99 275,-327 251.87,-312.91 226.63,-295.24 208.61,-282.2"/>
+<polygon fill="#000000" stroke="#000000" points="210.53,-279.27 200.38,-276.21 206.4,-284.93 210.53,-279.27"/>
+</g>
+<!-- proc~divabu&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge30" class="edge">
+<title>proc~divabu&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.48,-337.43C283.57,-334.58 278.79,-331.12 275,-327 247.51,-297.1 268.29,-271.14 239,-243 237.73,-241.78 236.39,-240.63 234.98,-239.55"/>
+<polygon fill="#000000" stroke="#000000" points="236.67,-236.48 226.37,-234.03 232.9,-242.37 236.67,-236.48"/>
+</g>
+<!-- module~diva_module -->
+<g id="module~~diva_constants~~UsedByGraph_node9" class="node">
+<title>module~diva_module</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node9"><a xlink:href=".././module/diva_module.html" xlink:title="diva_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="356,-24 275,-24 275,0 356,0 356,-24"/>
+<text text-anchor="middle" x="315.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">diva_module</text>
+</a>
+</g>
+</g>
+<!-- module~diva_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge9" class="edge">
+<title>module~diva_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M274.82,-21.03C234.6,-31.62 172.06,-52.17 127,-86 96.67,-108.77 71.81,-145.78 58.09,-168.96"/>
+<polygon fill="#000000" stroke="#000000" points="55.02,-167.27 53.06,-177.68 61.09,-170.76 55.02,-167.27"/>
+</g>
+<!-- module~messages_module -->
+<g id="module~~diva_constants~~UsedByGraph_node16" class="node">
+<title>module~messages_module</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node16"><a xlink:href=".././module/messages_module.html" xlink:title="messages_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="239,-119 127,-119 127,-95 239,-95 239,-119"/>
+<text text-anchor="middle" x="183" y="-104.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">messages_module</text>
+</a>
+</g>
+</g>
+<!-- module~diva_module&#45;&gt;module~messages_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge37" class="edge">
+<title>module~diva_module&#45;&gt;module~messages_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.84,-24.16C284.82,-26.9 279.66,-29.91 275,-33 249.54,-49.89 222.67,-72.4 204.78,-88.14"/>
+<polygon fill="#000000" stroke="#000000" points="202.38,-85.59 197.24,-94.85 207.04,-90.82 202.38,-85.59"/>
+</g>
+<!-- proc~divacr -->
+<g id="module~~diva_constants~~UsedByGraph_node10" class="node">
+<title>proc~divacr</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node10"><a xlink:href=".././proc/divacr.html" xlink:title="DIVACR">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-402 288.5,-402 288.5,-378 342.5,-378 342.5,-402"/>
+<text text-anchor="middle" x="315.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVACR</text>
+</a>
+</g>
+</g>
+<!-- proc~divacr&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge10" class="edge">
+<title>proc~divacr&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.38,-390.24C261.02,-389.5 217.45,-385.48 184,-369"/>
+</g>
+<!-- proc~divacr&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge21" class="edge">
+<title>proc~divacr&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.56,-377.98C283.85,-375.31 279.13,-372.29 275,-369 243.69,-344.05 214.73,-307.32 198.23,-284.57"/>
+<polygon fill="#000000" stroke="#000000" points="201,-282.42 192.34,-276.31 195.3,-286.48 201,-282.42"/>
+</g>
+<!-- proc~divacr&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge31" class="edge">
+<title>proc~divacr&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.47,-380.02C283.44,-377.11 278.61,-373.47 275,-369 238.37,-323.72 278.36,-285.92 239,-243 238.09,-242 237.12,-241.06 236.11,-240.15"/>
+<polygon fill="#000000" stroke="#000000" points="237.79,-237.05 227.63,-234.06 233.71,-242.73 237.79,-237.05"/>
+</g>
+<!-- proc~divaa -->
+<g id="module~~diva_constants~~UsedByGraph_node11" class="node">
+<title>proc~divaa</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node11"><a xlink:href=".././proc/divaa.html" xlink:title="DIVAA">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-234 288.5,-234 288.5,-210 342.5,-210 342.5,-234"/>
+<text text-anchor="middle" x="315.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAA</text>
+</a>
+</g>
+</g>
+<!-- proc~divaa&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge11" class="edge">
+<title>proc~divaa&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.1,-209.94C254.27,-193.66 194.74,-166.93 184,-169"/>
+</g>
+<!-- proc~divaa&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge23" class="edge">
+<title>proc~divaa&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-230.4C271.99,-235.68 250.32,-242.65 230.99,-248.88"/>
+<polygon fill="#000000" stroke="#000000" points="229.87,-245.56 221.42,-251.96 232.01,-252.22 229.87,-245.56"/>
+</g>
+<!-- proc~divaa&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge33" class="edge">
+<title>proc~divaa&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-222C274.98,-222 258.04,-222 241.73,-222"/>
+<polygon fill="#000000" stroke="#000000" points="241.7,-218.5 231.7,-222 241.7,-225.5 241.7,-218.5"/>
+</g>
+<!-- proc~divahc -->
+<g id="module~~diva_constants~~UsedByGraph_node12" class="node">
+<title>proc~divahc</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node12"><a xlink:href=".././proc/divahc.html" xlink:title="DIVAHC">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-108 288.5,-108 288.5,-84 342.5,-84 342.5,-108"/>
+<text text-anchor="middle" x="315.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAHC</text>
+</a>
+</g>
+</g>
+<!-- proc~divahc&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge12" class="edge">
+<title>proc~divahc&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M291.46,-108.1C286.04,-110.98 280.3,-114.08 275,-117 234.21,-139.49 229.74,-160.17 184,-169"/>
+</g>
+<!-- proc~divahc&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge22" class="edge">
+<title>proc~divahc&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.47,-105.98C283.44,-108.89 278.61,-112.53 275,-117 238.37,-162.28 278.36,-200.08 239,-243 238.09,-244 237.12,-244.94 236.11,-245.85"/>
+<polygon fill="#000000" stroke="#000000" points="233.71,-243.27 227.63,-251.94 237.79,-248.95 233.71,-243.27"/>
+</g>
+<!-- proc~divahc&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge32" class="edge">
+<title>proc~divahc&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.37,-107.09C283.57,-109.87 278.86,-113.18 275,-117 251.25,-140.5 261.2,-158.03 239,-183 231.88,-191 222.83,-198.27 214.13,-204.3"/>
+<polygon fill="#000000" stroke="#000000" points="212.06,-201.48 205.63,-209.9 215.91,-207.32 212.06,-201.48"/>
+</g>
+<!-- proc~divaop -->
+<g id="module~~diva_constants~~UsedByGraph_node13" class="node">
+<title>proc~divaop</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node13"><a xlink:href=".././proc/divaop.html" xlink:title="DIVAOP">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-192 288.5,-192 288.5,-168 342.5,-168 342.5,-192"/>
+<text text-anchor="middle" x="315.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAOP</text>
+</a>
+</g>
+</g>
+<!-- proc~divaop&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge13" class="edge">
+<title>proc~divaop&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.28,-173.61C261.77,-168.13 219.72,-162.1 184,-169"/>
+</g>
+<!-- proc~divaop&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge24" class="edge">
+<title>proc~divaop&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.13,-192.24C283.56,-194.85 279,-197.8 275,-201 255.81,-216.37 259.1,-228.85 239,-243 236.77,-244.57 234.4,-246.05 231.95,-247.42"/>
+<polygon fill="#000000" stroke="#000000" points="230.19,-244.39 222.82,-252 233.33,-250.65 230.19,-244.39"/>
+</g>
+<!-- proc~divaop&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge34" class="edge">
+<title>proc~divaop&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.41,-188.4C271.99,-193.68 250.32,-200.65 230.99,-206.88"/>
+<polygon fill="#000000" stroke="#000000" points="229.87,-203.56 221.42,-209.96 232.01,-210.22 229.87,-203.56"/>
+</g>
+<!-- proc~divag -->
+<g id="module~~diva_constants~~UsedByGraph_node14" class="node">
+<title>proc~divag</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node14"><a xlink:href=".././proc/divag.html" xlink:title="DIVAG">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-66 288.5,-66 288.5,-42 342.5,-42 342.5,-66"/>
+<text text-anchor="middle" x="315.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVAG</text>
+</a>
+</g>
+</g>
+<!-- proc~divag&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge15" class="edge">
+<title>proc~divag&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.24,-65.64C283.56,-68.34 278.93,-71.47 275,-75 253.81,-94.02 258.69,-107.43 239,-128 217.92,-150.03 213.94,-163.22 184,-169"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M182,-169C155.5,-174.12 125.89,-178.82 101.13,-182.47"/>
+<polygon fill="#000000" stroke="#000000" points="100.58,-179.01 91.19,-183.92 101.59,-185.94 100.58,-179.01"/>
+</g>
+<!-- proc~divag&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge26" class="edge">
+<title>proc~divag&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.24,-63.8C283.22,-66.72 278.46,-70.41 275,-75 228.99,-135.95 288.69,-185.02 239,-243 238.14,-244 237.23,-244.96 236.27,-245.87"/>
+<polygon fill="#000000" stroke="#000000" points="234.01,-243.18 228.13,-252 238.23,-248.78 234.01,-243.18"/>
+</g>
+<!-- proc~divag&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge36" class="edge">
+<title>proc~divag&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.21,-64.33C283.31,-67.2 278.61,-70.73 275,-75 242.33,-113.63 269.13,-142.35 239,-183 232.9,-191.24 224.53,-198.4 216.17,-204.26"/>
+<polygon fill="#000000" stroke="#000000" points="214.01,-201.5 207.55,-209.89 217.83,-207.36 214.01,-201.5"/>
+</g>
+<!-- proc~diva -->
+<g id="module~~diva_constants~~UsedByGraph_node15" class="node">
+<title>proc~diva</title>
+<g id="a_module~~diva_constants~~UsedByGraph_node15"><a xlink:href=".././proc/diva.html" xlink:title="DIVA">
+<polygon fill="#d9534f" stroke="#d9534f" points="342.5,-150 288.5,-150 288.5,-126 342.5,-126 342.5,-150"/>
+<text text-anchor="middle" x="315.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DIVA</text>
+</a>
+</g>
+</g>
+<!-- proc~diva&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge14" class="edge">
+<title>proc~diva&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.15,-144.96C261.89,-151.72 220.35,-161.98 184,-169"/>
+</g>
+<!-- proc~diva&#45;&gt;module~divasc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge25" class="edge">
+<title>proc~diva&#45;&gt;module~divasc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M288.48,-148.57C283.57,-151.42 278.79,-154.88 275,-159 247.51,-188.9 268.29,-214.86 239,-243 237.73,-244.22 236.39,-245.37 234.98,-246.45"/>
+<polygon fill="#000000" stroke="#000000" points="232.9,-243.63 226.37,-251.97 236.67,-249.52 232.9,-243.63"/>
+</g>
+<!-- proc~diva&#45;&gt;module~divamc_module -->
+<g id="module~~diva_constants~~UsedByGraph_edge35" class="edge">
+<title>proc~diva&#45;&gt;module~divamc_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M290.44,-150.22C285.28,-152.99 279.91,-156.01 275,-159 262.25,-166.77 231.46,-188.31 209.22,-204.05"/>
+<polygon fill="#000000" stroke="#000000" points="207.01,-201.33 200.88,-209.97 211.06,-207.04 207.01,-201.33"/>
+</g>
+<!-- module~messages_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_constants~~UsedByGraph_edge2" class="edge">
+<title>module~messages_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.3,-119.07C139.32,-133.15 101.14,-156.53 74.95,-172.57"/>
+<polygon fill="#000000" stroke="#000000" points="72.93,-169.71 66.23,-177.92 76.58,-175.68 72.93,-169.71"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+  </li>
+  
+      </ul>
+    </div>
+    
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-kdim">kdim</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-maxord">maxord</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-maxstf">maxstf</a>
+      
+      <a class="list-group-item" href="../module/diva_constants.html#variable-d1mach">d1mach</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kdim"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>kdim</strong></td><td> =</td><td>20</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxord"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>maxord</strong></td><td> =</td><td>2</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-maxstf"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>maxstf</strong></td><td> =</td><td>1</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-d1mach"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>parameter, dimension(5)</td><td>::</td>
+  <td><strong>d1mach</strong></td><td> =</td><td>[tiny(1.0_wp), huge(1.0_wp), real(radix(1.0_wp), wp)**(-digits(1.0_wp)), epsilon(1.0_wp), log10(real(radix(1.0_wp), wp))]</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    </div>
+  </div>
+
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
+                                          </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> diva was developed by Jacob Williams</p></div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>

@@ -57,7 +57,7 @@
         <ul class="dropdown-menu">
           
               
-            <li><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+            <li><a href="../lists/files.html">Source Files</a></li>
         
         
         
@@ -73,7 +73,7 @@
             </li>
 
 
-<li class="visible-xs hidden-sm visible-lg"><a href="../sourcefile/diva_module.f90.html">Source File</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
 
 
 
@@ -122,7 +122,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="100.0% of total for modules and submodules.">4116 statements</a>
+    title="64.9% of total for modules and submodules.">2662 statements</a>
      </li> 
      
      
@@ -160,16 +160,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/diva_module.html#variable-d1mach">d1mach</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -178,20 +168,6 @@
 
 
 
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
-  <div id="funcs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messgs">messgs</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -204,9 +180,9 @@
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divaa">DIVAA</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-divabu">DIVABU</a>
+      <a class="list-group-item" href="../module/diva_module.html#proc-divabu">divabu</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-divaco">DIVACO</a>
+      <a class="list-group-item" href="../module/diva_module.html#proc-divaco">divaco</a>
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divacr">DIVACR</a>
       
@@ -222,21 +198,7 @@
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divag">DIVAG</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-dmess">DMESS</a>
-      
       <a class="list-group-item" href="../module/diva_module.html#proc-dzero">DZERO</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-mess">MESS</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messfd">MESSFD</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messfi">MESSFI</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messmh">MESSMH</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messpr">MESSPR</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messft">MESSFT</a>
       
       <a class="list-group-item" href="../module/diva_module.html#proc-optchk">OPTCHK</a>
       
@@ -260,6 +222,51 @@
     <div class="col-md-9" id='text'>
     <p>Modernized version of the DIVA Variable Order Adams Method
   Ordinary Differential Equation Solver From the MATH77 library.</p>
+<p>When converting between precisions, don't forget to change the value
+  of KDIM set in parameter statements in a variety of routines, and to
+  adjust comments for the data statements associated with EIBND in
+  <a href="../proc/divacr.html">DIVACR</a>, and B in <a href="../proc/divahc.html">DIVAHC</a>.</p>
+<h3>Entries</h3>
+<ul>
+<li><a href="../proc/diva.html">DIVA</a>    Main entry for starting the package.</li>
+<li><a href="../proc/divaa.html">DIVAA</a>   Main program inside the package, calls the other routines,
+                and does checks for output, and noise.  Called by the user
+                if reverse communication is used.</li>
+<li><a href="../proc/divabu.html">divabu</a>  Back ups the solution to the current base time, if a step
+                that has been started must be taken over for some reason.</li>
+<li><a href="../proc/divaco.html">divaco</a>  Called by user to get certain information from the common
+                blocks.</li>
+<li><a href="../proc/divacr.html">DIVACR</a>  Corrects the solution, estimates errors, and selects order.</li>
+<li><a href="../proc/divadb.html">DIVADB</a>  Subroutine to assist in debugging codes.  Called by user to
+                get a formatted list of all the variables used in the
+                integration.  Not required in usual case.</li>
+<li><a>DIVADE</a>  Needed only for delay differential equations.  This is called
+                by the user from the derivative subprogram.</li>
+<li><a href="../proc/divag.html">DIVAG</a>   Required only if the user has G-Stops, i.e. places to call
+                his output subroutine where certain functions have zeroes.</li>
+<li><a href="../proc/divahc.html">DIVAHC</a>  Compute coefficients that depend on the step size history.</li>
+<li><a href="../proc/divain.html">DIVAIN</a>  Used to interpolate to arbitrary points.</li>
+<li><a href="../proc/divaop.html">DIVAOP</a>  Used to process user option requests.</li>
+<li><a href="../proc/divapr.html">DIVAPR</a>  Used to update the differences and to predict the solution
+                at the end of the current step.</li>
+<li>DERIVS (formal) Name of subroutine to be called for computing</li>
+<li><a href="../proc/optchk.html">OPTCHK</a>  Used in checking storage allocation.</li>
+<li><a href="../proc/dmess.html">DMESS</a>   Used to output error messages and diaganostic messages.
+                (Just <a href="../proc/mess.html">MESS</a> if no floating point is output.)</li>
+<li><a href="../proc/dzero.html">DZERO</a>   Called only if <a href="../proc/divag.html">DIVAG</a> is used.  Iterates to find zeros of
+                arbitrary (continuous) functions.</li>
+</ul>
+<h3>Common blocks</h3>
+<p>As a left over from the distant past, some variables
+  are in common so that they would be saved.</p>
+<ul>
+<li>DIVAEV  Holds variables that depend on the environment.</li>
+<li>DIVAMC  The main common block for the package.</li>
+<li>DIVASC  The secondary common block for the package.  This contains
+            variables that are required for doing interpolation and is
+            separate to simplify saving the variables that are required
+            when the solution is being dumped (saved).</li>
+</ul>
 <h3>Original Copyright</h3>
 <p>Copyright (c) 1996 California Institute of Technology, Pasadena, CA.
   ALL RIGHTS RESERVED.
@@ -276,7 +283,9 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV">iso_fortran_env</a></li>
+    <li><a href='../module/messages_module.html'>messages_module</a></li>
+    
+    <li><a href='../module/diva_constants.html'>diva_constants</a></li>
     
   </ul>
       </li>
@@ -290,31 +299,67 @@
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: module~~diva_module~~UsesGraph Pages: 1 -->
-<svg id="modulediva_moduleUsesGraph" width="219pt" height="32pt"
- viewBox="0.00 0.00 219.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~diva_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<svg id="modulediva_moduleUsesGraph" width="494pt" height="52pt"
+ viewBox="0.00 0.00 494.00 52.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~diva_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 48)">
 <title>module~~diva_module~~UsesGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 215,-28 215,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-48 490,-48 490,4 -4,4"/>
 <!-- module~diva_module -->
 <g id="module~~diva_module~~UsesGraph_node1" class="node">
 <title>module~diva_module</title>
-<polygon fill="none" stroke="black" points="211,-24 130,-24 130,0 211,0 211,-24"/>
-<text text-anchor="middle" x="170.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">diva_module</text>
+<polygon fill="none" stroke="black" points="486,-24 405,-24 405,0 486,0 486,-24"/>
+<text text-anchor="middle" x="445.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">diva_module</text>
+</g>
+<!-- module~messages_module -->
+<g id="module~~diva_module~~UsesGraph_node2" class="node">
+<title>module~messages_module</title>
+<g id="a_module~~diva_module~~UsesGraph_node2"><a xlink:href=".././module/messages_module.html" xlink:title="messages_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="369,-44 257,-44 257,-20 369,-20 369,-44"/>
+<text text-anchor="middle" x="313" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">messages_module</text>
+</a>
+</g>
+</g>
+<!-- module~diva_module&#45;&gt;module~messages_module -->
+<g id="module~~diva_module~~UsesGraph_edge1" class="edge">
+<title>module~diva_module&#45;&gt;module~messages_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M404.99,-18.05C396.82,-19.31 388,-20.66 379.18,-22.01"/>
+<polygon fill="#000000" stroke="#000000" points="378.62,-18.56 369.26,-23.53 379.68,-25.48 378.62,-18.56"/>
+</g>
+<!-- module~diva_constants -->
+<g id="module~~diva_module~~UsesGraph_node3" class="node">
+<title>module~diva_constants</title>
+<g id="a_module~~diva_module~~UsesGraph_node3"><a xlink:href=".././module/diva_constants.html" xlink:title="diva_constants">
+<polygon fill="#337ab7" stroke="#337ab7" points="221,-24 130,-24 130,0 221,0 221,-24"/>
+<text text-anchor="middle" x="175.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">diva_constants</text>
+</a>
+</g>
+</g>
+<!-- module~diva_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_module~~UsesGraph_edge2" class="edge">
+<title>module~diva_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M404.93,-11.38C393.35,-11.22 380.67,-11.08 369,-11 319.22,-10.67 306.78,-10.69 257,-11 248.66,-11.05 239.84,-11.13 231.21,-11.23"/>
+<polygon fill="#000000" stroke="#000000" points="231.17,-7.73 221.21,-11.35 231.25,-14.73 231.17,-7.73"/>
+</g>
+<!-- module~messages_module&#45;&gt;module~diva_constants -->
+<g id="module~~diva_module~~UsesGraph_edge3" class="edge">
+<title>module~messages_module&#45;&gt;module~diva_constants</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256.89,-23.87C248.45,-22.62 239.74,-21.33 231.31,-20.09"/>
+<polygon fill="#000000" stroke="#000000" points="231.6,-16.6 221.2,-18.6 230.58,-23.52 231.6,-16.6"/>
 </g>
 <!-- iso_fortran_env -->
-<g id="module~~diva_module~~UsesGraph_node2" class="node">
+<g id="module~~diva_module~~UsesGraph_node4" class="node">
 <title>iso_fortran_env</title>
-<g id="a_module~~diva_module~~UsesGraph_node2"><a xlink:href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV" xlink:title="iso_fortran_env">
+<g id="a_module~~diva_module~~UsesGraph_node4"><a xlink:href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV" xlink:title="iso_fortran_env">
 <polygon fill="#337ab7" stroke="#337ab7" points="94,-24 0,-24 0,0 94,0 94,-24"/>
 <text text-anchor="middle" x="47" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 </g>
-<!-- module~diva_module&#45;&gt;iso_fortran_env -->
-<g id="module~~diva_module~~UsesGraph_edge1" class="edge">
-<title>module~diva_module&#45;&gt;iso_fortran_env</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.72,-12C121.56,-12 112.83,-12 104.21,-12"/>
-<polygon fill="#000000" stroke="#000000" points="104.2,-8.5 94.2,-12 104.2,-15.5 104.2,-8.5"/>
+<!-- module~diva_constants&#45;&gt;iso_fortran_env -->
+<g id="module~~diva_module~~UsesGraph_edge4" class="edge">
+<title>module~diva_constants&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.9,-12C121.71,-12 113.06,-12 104.57,-12"/>
+<polygon fill="#000000" stroke="#000000" points="104.34,-8.5 94.34,-12 104.34,-15.5 104.34,-8.5"/>
 </g>
 </g>
 </svg>
@@ -394,16 +439,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/diva_module.html#variable-d1mach">d1mach</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -412,20 +447,6 @@
 
 
 
-
-
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
-  <div id="funcs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messgs">messgs</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -438,9 +459,9 @@
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divaa">DIVAA</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-divabu">DIVABU</a>
+      <a class="list-group-item" href="../module/diva_module.html#proc-divabu">divabu</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-divaco">DIVACO</a>
+      <a class="list-group-item" href="../module/diva_module.html#proc-divaco">divaco</a>
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divacr">DIVACR</a>
       
@@ -456,21 +477,7 @@
       
       <a class="list-group-item" href="../module/diva_module.html#proc-divag">DIVAG</a>
       
-      <a class="list-group-item" href="../module/diva_module.html#proc-dmess">DMESS</a>
-      
       <a class="list-group-item" href="../module/diva_module.html#proc-dzero">DZERO</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-mess">MESS</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messfd">MESSFD</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messfi">MESSFI</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messmh">MESSMH</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messpr">MESSPR</a>
-      
-      <a class="list-group-item" href="../module/diva_module.html#proc-messft">MESSFT</a>
       
       <a class="list-group-item" href="../module/diva_module.html#proc-optchk">OPTCHK</a>
       
@@ -493,38 +500,6 @@
     
 
     
-    <section>
-    <h2>Variables</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-d1mach"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>parameter, dimension(5)</td><td>::</td>
-  <td><strong>d1mach</strong></td><td> =</td><td>[tiny(1.0_wp), huge(1.0_wp), real(radix(1.0_wp), wp)**(-digits(1.0_wp)), epsilon(1.0_wp), log10(real(radix(1.0_wp), wp))]</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -534,51 +509,6 @@
     
     
     
-     
-    <section>
-    <h2>Functions</h2>
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messgs"></span><h3>
-public function <a href='../proc/messgs.html'>messgs</a>()
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Get a scratch unit assigned.</p><a href="../proc/messgs.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      <em>None</em>
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>integer
-  </small></h4>
-  
-    
-
-  </div>
-  </div>
-
-    
-    </section>
-    <br>
     
 
     
@@ -947,7 +877,7 @@ public subroutine <a href='../proc/divaa.html'>DIVAA</a>(TSPECS, Y, F, KORD, DIV
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-divabu"></span><h3>
-public subroutine <a href='../proc/divabu.html'>DIVABU</a>(F, KORD)
+public subroutine <a href='../proc/divabu.html'>divabu</a>(f, kord)
     
     
    
@@ -962,12 +892,12 @@ public subroutine <a href='../proc/divabu.html'>DIVABU</a>(F, KORD)
 
 
 
-<p>THIS SUBROUTINE RESTORES THE DIFFERENCE TABLE TO ITS STATE
- AT THE BEGINNING OF THE CURRENT STEP.  IF THE INTEGRATION ORDER
- WAS INCREASED, IT IS REDUCED. THE COMMON ARRAY XI IS ALSO
- RESTORED TO ITS STATE AT THE BEGINNING OF THE STEP. IF THE
- STEPSIZE IS NOT BEING CHANGED, THE ARRAY V USED TO COMPUTE
- INTEGRATION COEFFICIENTS IS RESTORED.</p><a href="../proc/divabu.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>This subroutine restores the difference table to its state
+  at the beginning of the current step.  if the integration order
+  was increased, it is reduced. the common array xi is also
+  restored to its state at the beginning of the step. if the
+  stepsize is not being changed, the array v used to compute
+  integration coefficients is restored.</p><a href="../proc/divabu.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -993,7 +923,7 @@ public subroutine <a href='../proc/divabu.html'>DIVABU</a>(F, KORD)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>F</strong>(*)</td><td></td>
+  <td><strong>f</strong>(*)</td><td></td>
   
 </tr>
 
@@ -1008,7 +938,7 @@ public subroutine <a href='../proc/divabu.html'>DIVABU</a>(F, KORD)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td></td>
+  <td><strong>kord</strong>(*)</td><td></td>
   
 </tr>
 
@@ -1026,7 +956,7 @@ public subroutine <a href='../proc/divabu.html'>DIVABU</a>(F, KORD)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-divaco"></span><h3>
-public subroutine <a href='../proc/divaco.html'>DIVACO</a>(ID, RD)
+public subroutine <a href='../proc/divaco.html'>divaco</a>(id, rd)
     
     
    
@@ -1067,7 +997,7 @@ public subroutine <a href='../proc/divaco.html'>DIVACO</a>(ID, RD)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ID</strong>(5)</td><td></td>
+  <td><strong>id</strong>(5)</td><td></td>
   
 </tr>
 
@@ -1082,7 +1012,7 @@ public subroutine <a href='../proc/divaco.html'>DIVACO</a>(ID, RD)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>RD</strong>(3)</td><td></td>
+  <td><strong>rd</strong>(3)</td><td></td>
   
 </tr>
 
@@ -1100,7 +1030,7 @@ public subroutine <a href='../proc/divaco.html'>DIVACO</a>(ID, RD)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-divacr"></span><h3>
-public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGROUP)
+public subroutine <a href='../proc/divacr.html'>DIVACR</a>(y, f, kord, tol, lgroup)
     
     
    
@@ -1115,11 +1045,7 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
 
 
 
-<p>THIS SUBROUTINE
-   1. CORRECTS Y FOR EQUATIONS WHICH ARE NOT STIFF
-   2. ESTIMATES ERRORS
-   3. SELECTS INTEGRATION ORDERS
-   4. TESTS IF NOISE LIMITS THE PRECISION</p><a href="../proc/divacr.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>This subroutine:</p><a href="../proc/divacr.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1145,7 +1071,8 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>Y</strong>(*)</td><td></td>
+  <td><strong>y</strong>(*)</td><td><p>vector of predicted values on entry, and of corrected
+ values when the return is made.</p></td>
   
 </tr>
 
@@ -1160,7 +1087,7 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>F</strong>(*)</td><td></td>
+  <td><strong>f</strong>(*)</td><td></td>
   
 </tr>
 
@@ -1175,7 +1102,7 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>KORD</strong>(*)</td><td></td>
+  <td><strong>kord</strong>(*)</td><td></td>
   
 </tr>
 
@@ -1190,7 +1117,8 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>TOL</strong>(*)</td><td></td>
+  <td><strong>tol</strong>(*)</td><td><p>vector containing error tolerances (and possibly relative
+ error factors).</p></td>
   
 </tr>
 
@@ -1205,7 +1133,8 @@ public subroutine <a href='../proc/divacr.html'>DIVACR</a>(Y, F, KORD, TOL, LGRO
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>LGROUP</strong>(*)</td><td></td>
+  <td><strong>lgroup</strong>(*)</td><td><p>vector indicating how error tolerances are to be grouped
+ (and possibly how integration orders are to be grouped).</p></td>
   
 </tr>
 
@@ -1373,7 +1302,7 @@ public subroutine <a href='../proc/divaop.html'>DIVAOP</a>(IOPT, FOPT)
 
 
 
-<p>SUBROUTINE TO SET UP OPTIONS FOR DIFFERENTIAL EQUATION PACKAGE -IVA</p><a href="../proc/divaop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>SUBROUTINE TO SET UP OPTIONS FOR DIFFERENTIAL EQUATION PACKAGE DIVA</p><a href="../proc/divaop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1691,7 +1620,7 @@ public subroutine <a href='../proc/divag.html'>DIVAG</a>(TSPECS, Y, F, KORD, IFL
 
 <p>SUBROUTINE TO LOCATE OUTPUT POINTS AT ZEROS OF ARBITRARY
   FUNCTIONS  <strong><em>* GSTOPS </em></strong>* FOR DIFFERENTIAL EQUATION
-  INTEGRATOR -ODE (OR -IVA).</p><a href="../proc/divag.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  INTEGRATOR DODE (OR DIVA).</p><a href="../proc/divag.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1839,112 +1768,6 @@ public subroutine <a href='../proc/divag.html'>DIVAG</a>(TSPECS, Y, F, KORD, IFL
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-dmess"></span><h3>
-public subroutine <a href='../proc/dmess.html'>DMESS</a>(MACT, TEXT, IDAT, FDAT)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Processes Messages -- Actions are controlled by MACT().  See
- comment is subroutine MESS.  This program is for the extra
- argument of type real.</p><a href="../proc/dmess.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>MACT</strong>(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>TEXT</strong>(*)*(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>IDAT</strong>(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>double precision</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>FDAT</strong>(*)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-dzero"></span><h3>
 public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, TOL)
     
@@ -1961,7 +1784,7 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
 
 
 
-<p>SUBROUTINE TO FIND A BOUNDED ZERO</p><a href="../proc/dzero.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>Subroutine to find a bounded zero</p><a href="../proc/dzero.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1987,7 +1810,7 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>X1</strong></td><td></td>
+  <td><strong>X1</strong></td><td><p>independent variable</p></td>
   
 </tr>
 
@@ -2002,7 +1825,8 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>F1</strong></td><td></td>
+  <td><strong>F1</strong></td><td><p>dependent variable --  initially   F1=F(X1).
+ When MODE=1 (or 5) the user is to compute F(X1) given X1</p></td>
   
 </tr>
 
@@ -2017,7 +1841,7 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>X2</strong></td><td></td>
+  <td><strong>X2</strong></td><td><p>second value of independent variable</p></td>
   
 </tr>
 
@@ -2032,7 +1856,8 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>F2</strong></td><td></td>
+  <td><strong>F2</strong></td><td><p>F(X2) on the initial entry.  When MODE = 2-4, F2=F(X2) and
+ F1*F2 &lt;= 0.</p></td>
   
 </tr>
 
@@ -2047,7 +1872,9 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>MODE</strong></td><td></td>
+  <td><strong>MODE</strong></td><td><p>is a parameter used for communication between this
+ subroutine and the user. (The user should set MODE
+ only to initialize it to 0 before the first call)</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
   
 </tr>
 
@@ -2062,352 +1889,7 @@ public subroutine <a href='../proc/dzero.html'>DZERO</a>(X1, F1, X2, F2, MODE, T
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>TOL</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-mess"></span><h3>
-public subroutine <a href='../proc/mess.html'>MESS</a>(MACT, TEXT, IDAT)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Processes Messages -- Actions are controlled by MACT().</p><a href="../proc/mess.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>MACT</strong>(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>TEXT</strong>(*)*(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>IDAT</strong>(*)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messfd"></span><h3>
-public subroutine <a href='../proc/messfd.html'>MESSFD</a>(IDAT)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Get the format for data to be printed in vectors and arrays.</p><a href="../proc/messfd.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>IDAT</strong>(*)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messfi"></span><h3>
-public subroutine <a href='../proc/messfi.html'>MESSFI</a>()
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Get the format for the integer IMAG.</p><a href="../proc/messfi.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      <em>None</em>
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messmh"></span><h3>
-public subroutine <a href='../proc/messmh.html'>MESSMH</a>(TEXT)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Processing of multiple headings:</p><a href="../proc/messmh.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*)</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>TEXT</strong>(*)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messpr"></span><h3>
-public subroutine <a href='../proc/messpr.html'>MESSPR</a>()
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Prints the buffer for MESS</p><a href="../proc/messpr.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      <em>None</em>
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-messft"></span><h3>
-public subroutine <a href='../proc/messft.html'>MESSFT</a>(MACT, FTEXT)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Prints FTEXT, which contains a Fortran character string, and then
-  call MESS to do the actions in MACT.  Actions in MACT can not do
-  anything other than actions that reference MACT.
-  This routine intended for use by library subroutines getting text in
-  the form of a Fortran character string.</p>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>MACT</strong>(*)</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character</td>
-  <td></td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>FTEXT</strong>*(*)</td><td></td>
+  <td><strong>TOL</strong></td><td><p>is the error tolerance:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
   
 </tr>
 
