@@ -8,10 +8,10 @@
 
     public
 
-    double precision :: eeps10  !! 10. * (machine epsilon).
-    double precision :: eeps16  !! 16. * (machine epsilon).
-    double precision :: erov10  !! 10. / (largest floating point number).
-    double precision :: eeps2   !!  2. * (machine epsilon).
+    double precision :: eeps10  !! 10 * (machine epsilon).
+    double precision :: eeps16  !! 16 * (machine epsilon).
+    double precision :: erov10  !! 10 / (largest floating point number).
+    double precision :: eeps2   !! 2 * (machine epsilon).
     double precision :: eept75  !! (machine epsilon) ** (.75)
     double precision :: eovep2  !! EEPS2 * (largest floating point number).
     double precision :: ovtm75  !! (largest floating point number) ** (-.75)
