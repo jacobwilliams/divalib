@@ -17,9 +17,6 @@
       integer INEQ, IFDIM, IYDIM
       parameter (INEQ=2, IFDIM=16*INEQ+1, IYDIM=4*INEQ)
       integer          NEQ, KORD(6), IOPT(7)
-!++ Code for SHORT_LINE is inactive
-!      integer          MACT(5)
-!++ END
       double precision TSPECS(4), T, H, DELT, TFINAL
       double precision F(IFDIM), Y(IYDIM)
       external DIVAO, DIVAF
@@ -63,14 +60,6 @@
   100 continue
          call DIVA(TSPECS,Y,F,KORD,NEQ,DIVAF,DIVAO,4,IYDIM,IFDIM,6,IOPT)
          if (KORD(1) /= 1) go to 100
-!++ Code for SHORT_LINE is inactive
-!      MACT(1) = MEDDIG
-!      MACT(2) = 7
-!      MACT(3) = MEMLIN
-!      MACT(4) = 79
-!      MACT(5) = MERET
-!      call DMESS(MACT, ' ', MACT, F)
-!++ END
       call DIVADB(44, TSPECS, Y, F, KORD, ' Test of DIVADB')
       stop
       END

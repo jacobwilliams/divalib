@@ -242,10 +242,6 @@
           if (LENTRY == 10) IWF = IWF - 1
           write (FMTF, '(''(1P,99(E'',I2,''.'',I2,''E'',I1,'':1X))'')') &
      &      IWF, ID, KEXE - 2
-!++ CODE for .C. is inactive
-!c WATCOM C and others (?) man need an extra 1 here??
-!      lfprec = id
-!++ END
           go to 60
         end if
       else
@@ -261,10 +257,6 @@
 !++ CODE for ~.C. is active
       IWF = IWF + ID + max(KBIG, -1)
       write (FMTF, '(''(0P,99(F'',I2,''.'',I2,'':1X))'')') IWF,ID
-!++ CODE for .C. is inactive
-!      IWF = IWF + ID + max(KBIG, 0)
-!      lfprec = id
-!++ END
    60 if (LENTRY /= 4) then
         IWF = IWF + 1
         if (LENTRY /= 10) go to 10
@@ -284,9 +276,6 @@
           FMTSP=                                                        &
      &     '(99(' // FMTI(4:6) // ''')'' ,1P,' // FMTF(8:20)
         end if
-!++ CODE for .C. is inactive
-!c Using cmessc.fmtf in place of fmtsp
-!++ END
         IWF = IWF + KDI + 1
         go to 10
       end if
@@ -1078,11 +1067,6 @@
            FMTI = '(99I01)'
            FMTJ = '(99I06)'
            FMTG = '(1P,99Exx.xx)  '
-  !++ CODE for .C. is inactive
-  !      FMTI = '%*d'
-  !      FMTJ = '%*d\0'
-  !      FMTG = '%*.*E\0'
-  !++ END
         else
   !               1  2  3   4    5    6    7    8   9   10   11
            go to (5,10,20,850,1160,1620,1130,1530,960,1210,1220), LENTRY
@@ -1187,9 +1171,6 @@
   ! Action MEEMES -- Start an error message
     310 LENTRY = 3
         ERRCNT = ERRCNT + 1
-  !++  Code for UMESS is inactive
-  !      call UMESS(TEXT, MACT(I+1), IVAR)
-  !++  End
         IMAG = max( 0, min(999, MACT(I+2)))
         K = MACT(I+1)
         MAXERR = max(MAXERR, 1000*K + IMAG)
@@ -1410,9 +1391,6 @@
     602 continue
   !++ CODE for ~.C. is active
         FMTG='(1P,99'//TEXT(ITEXT)(NTEXT:NTEXT)
-  !++ CODE for .C. is inactive
-  !      FMTG(5:5) = TEXT(ITEXT)(NTEXT:NTEXT)
-  !++ END
     603 KSPEC = 9
     604 IMAG = 0
         GETW = .true.
@@ -1567,10 +1545,6 @@
            FMTF(9:9) = char(ICHAR0 + mod(LENOUT, 10))
            FMTF(11:11) = char(ICHAR0 + JJ / 10)
            FMTF(12:12) = char(ICHAR0 + mod(JJ, 10))
-  !++ CODE for .C. is inactive
-  !        IWF = LENOUT
-  !        lfprec = JJ
-  !++ END
            if (.not. XARGOK) go to 180
            MPT = NFDAT
            NFDAT = NFDAT + KLINE
@@ -2352,9 +2326,6 @@
         integer J, K, IDAT(1)
   !++ CODE for ~.C. is active
         character TEXT(1)*1
-  !++ CODE for .C. is inactive
-  !      character TEXT(1)*2
-  !++ END
         integer, parameter :: MESUNI=10
         integer, parameter :: MEPRNT=21
         integer, parameter :: MECONT=50
