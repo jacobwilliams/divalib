@@ -37,17 +37,6 @@
 !  * [[DZERO]]   Called only if [[DIVAG]] is used.  Iterates to find zeros of
 !                arbitrary (continuous) functions.
 !
-!### Common blocks
-!  As a left over from the distant past, some variables
-!  are in common so that they would be saved.
-!
-!  * DIVAEV  Holds variables that depend on the environment.
-!  * DIVAMC  The main common block for the package.
-!  * DIVASC  The secondary common block for the package.  This contains
-!            variables that are required for doing interpolation and is
-!            separate to simplify saving the variables that are required
-!            when the solution is being dumped (saved).
-!
 !### Original Copyright
 !
 !  Copyright (c) 1996 California Institute of Technology, Pasadena, CA.

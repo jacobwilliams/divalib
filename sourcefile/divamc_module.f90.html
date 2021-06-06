@@ -437,7 +437,7 @@
 <a id="ln-26" name="ln-26"></a>                      <span class="c">!!  *  3 Checking G&#39;s at point where a GSTOP was located.</span>
 <a id="ln-27" name="ln-27"></a>                      <span class="c">!!  *  4 Checking G&#39;s at a T output point.</span>
 <a id="ln-28" name="ln-28"></a>                      <span class="c">!!  *  5 Usual case, no sign change detected.</span>
-<a id="ln-29" name="ln-29"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">igflgs</span>
+<a id="ln-29" name="ln-29"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">igflgs</span> <span class="c">!! used in [[DIVAG]]. Equivalenced to `itolep`</span>
 <a id="ln-30" name="ln-30"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">igstop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! IGSTOP(k) is set in DIVAg to the index of the last G</span>
 <a id="ln-31" name="ln-31"></a>                          <span class="c">!! with a 0, where k is one for an interpolatory G-Stop, and k is two</span>
 <a id="ln-32" name="ln-32"></a>                          <span class="c">!! for an extrapolatory G-Stop.</span>
@@ -452,7 +452,7 @@
 <a id="ln-41" name="ln-41"></a>                          <span class="c">!!  * 8  A fatal error of some type.</span>
 <a id="ln-42" name="ln-42"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ilgrep</span> <span class="c">!! Used when correction to keep track of equations that</span>
 <a id="ln-43" name="ln-43"></a>                       <span class="c">!! are to use a certain error tolerance.</span>
-<a id="ln-44" name="ln-44"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ings</span>
+<a id="ln-44" name="ln-44"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ings</span> <span class="c">!! Current index for G-stop being examined in DIVAG.</span>
 <a id="ln-45" name="ln-45"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">iop10</span> <span class="c">!! Number of times diagnostic output is to be given when</span>
 <a id="ln-46" name="ln-46"></a>                      <span class="c">!! leaving DIVAcr (the corrector).</span>
 <a id="ln-47" name="ln-47"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">iop11</span> <span class="c">!! Gives current step number of the method.  Tells how</span>
@@ -515,268 +515,277 @@
 <a id="ln-104" name="ln-104"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">iy</span> <span class="c">!! Used for the current index to the Y() array.  (Local</span>
 <a id="ln-105" name="ln-105"></a>                   <span class="c">!! variable in DIVAIN used in computing IYI.)  Equivalenced to</span>
 <a id="ln-106" name="ln-106"></a>                   <span class="c">!! IZFLAG in DIVAG.</span>
-<a id="ln-107" name="ln-107"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">izflag</span>
-<a id="ln-108" name="ln-108"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kemax</span> <span class="c">!! Index associated with equation giving the largest</span>
-<a id="ln-109" name="ln-109"></a>                      <span class="c">!! value for (estimated error) / (requested error).</span>
-<a id="ln-110" name="ln-110"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kexit</span> <span class="c">!! Equivalenced to IOP17 which is not used after</span>
-<a id="ln-111" name="ln-111"></a>                      <span class="c">!! initialization.  Defines actions when KORD2I = -7.</span>
-<a id="ln-112" name="ln-112"></a>                      <span class="c">!! (Referenced in (DIVAA,DA,G).).</span>
-<a id="ln-113" name="ln-113"></a>                      <span class="c">!!</span>
-<a id="ln-114" name="ln-114"></a>                      <span class="c">!!  * 1  Take the step over with reduced H.</span>
-<a id="ln-115" name="ln-115"></a>                      <span class="c">!!  * 2  Take the step over.</span>
-<a id="ln-116" name="ln-116"></a>                      <span class="c">!!  * 3  Do the end of step call to OUTPUT.</span>
-<a id="ln-117" name="ln-117"></a>                      <span class="c">!!  * 4  Reset TMARK, then do same as for KEXIT = 2.</span>
-<a id="ln-118" name="ln-118"></a>                      <span class="c">!!  * 5  Reset TMARK, then do same as for KEXIT = 3.</span>
-<a id="ln-119" name="ln-119"></a>                      <span class="c">!!  * 6  Give the fatal error diagnostic.</span>
-<a id="ln-120" name="ln-120"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kis</span> <span class="c">!! Used to check if it is time to dump the solution.</span>
-<a id="ln-121" name="ln-121"></a>                    <span class="c">!! The check involves incrementing KIS at the end of the step, and</span>
-<a id="ln-122" name="ln-122"></a>                    <span class="c">!! dumping the solution if KIS is 0.</span>
-<a id="ln-123" name="ln-123"></a>                    <span class="c">!!</span>
-<a id="ln-124" name="ln-124"></a>                    <span class="c">!!  * -1  Set in DIVAcr when it is time to dump solution</span>
-<a id="ln-125" name="ln-125"></a>                    <span class="c">!!  *  0  When starting</span>
-<a id="ln-126" name="ln-126"></a>                    <span class="c">!!  *  2  After being dumped.</span>
-<a id="ln-127" name="ln-127"></a>                    <span class="c">!!</span>
-<a id="ln-128" name="ln-128"></a>                    <span class="c">!! This is set to 1000 just after a user specified discontinuity, and</span>
-<a id="ln-129" name="ln-129"></a>                    <span class="c">!! counted up from that point.</span>
-<a id="ln-130" name="ln-130"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kmark</span> <span class="c">!! Identifies the type of output associated with the next</span>
-<a id="ln-131" name="ln-131"></a>                      <span class="c">!! output point specified by TSPECS.</span>
-<a id="ln-132" name="ln-132"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kord1i</span> <span class="c">!! Helps in defining the state of the integrator.</span>
-<a id="ln-133" name="ln-133"></a>                       <span class="c">!! Frequently has the same value as KORD(1).  Meaning depends on the</span>
-<a id="ln-134" name="ln-134"></a>                       <span class="c">!! value of KORD(2), or the value about to be assigned to KORD(2).</span>
-<a id="ln-135" name="ln-135"></a>                       <span class="c">!!</span>
-<a id="ln-136" name="ln-136"></a>                       <span class="c">!!  * &lt;  0  Happens when preparing to give output with extrapolation.</span>
-<a id="ln-137" name="ln-137"></a>                       <span class="c">!!  * =  0  Happens when checking F at points for noise test.</span>
-<a id="ln-138" name="ln-138"></a>                       <span class="c">!!  * =  1  (KORD(2)=-1)  End of integration has been reached.</span>
-<a id="ln-139" name="ln-139"></a>                       <span class="c">!!  * =  1  (KORD(2)= 0)  Computing first predicted derivative.</span>
-<a id="ln-140" name="ln-140"></a>                       <span class="c">!!  * =  1  (KORD(2)= 1)  Output for initial point.</span>
-<a id="ln-141" name="ln-141"></a>                       <span class="c">!!  * =  2  (KORD(2)=-1)  Giving diagnostic for noise limiting precision.</span>
-<a id="ln-142" name="ln-142"></a>                       <span class="c">!!  * =  2  (KORD(2)= 0)  Computing corrected derivative.</span>
-<a id="ln-143" name="ln-143"></a>                       <span class="c">!!  * =  2  (KORD(2)= 1)  Output for TSPECS(3).</span>
-<a id="ln-144" name="ln-144"></a>                       <span class="c">!!  * =  3  (KORD(2)=-1)  Diagnostic for step size reduction too fast.</span>
-<a id="ln-145" name="ln-145"></a>                       <span class="c">!!  * =  3  (KORD(2)= 0)  Computing variational derivative.</span>
-<a id="ln-146" name="ln-146"></a>                       <span class="c">!!  * =  3  (KORD(2)= 1)  Output for TSPECS(4).</span>
-<a id="ln-147" name="ln-147"></a>                       <span class="c">!!  * =  4  (KORD(2)=-1)  Error, discontinuity.</span>
-<a id="ln-148" name="ln-148"></a>                       <span class="c">!!  * =  4  (KORD(2)= 1)  Output for certain number of steps.</span>
-<a id="ln-149" name="ln-149"></a>                       <span class="c">!!  * =  5  (KORD(2)= 0)  Get initial derivatives for stiff equations.</span>
-<a id="ln-150" name="ln-150"></a>                       <span class="c">!!  * =  5  (KORD(2)= 1)  Extra output from TSPECS.</span>
-<a id="ln-151" name="ln-151"></a>                       <span class="c">!!  * =  6  (KORD(2)= 1)  End of step output.</span>
-<a id="ln-152" name="ln-152"></a>                       <span class="c">!!  * =  7  (KORD(2)= 0)  Evaluate G before extrapolated output point.</span>
-<a id="ln-153" name="ln-153"></a>                       <span class="c">!!  * =  7  (KORD(2)= 1)  Evaluate G before extrapolated output point.</span>
-<a id="ln-154" name="ln-154"></a>                       <span class="c">!!    (Also used when checking for other G&#39;s after</span>
-<a id="ln-155" name="ln-155"></a>                       <span class="c">!!    finding one.)</span>
-<a id="ln-156" name="ln-156"></a>                       <span class="c">!!  * =  8  (KORD(2)= 1)  Tell user step size has changed.</span>
-<a id="ln-157" name="ln-157"></a>                       <span class="c">!!  * =  9  (KORD(2)= 1)  Request for user to save solution.</span>
-<a id="ln-158" name="ln-158"></a>                       <span class="c">!!  * = 11  (KORD(2)=-1)  Error, step size too small at end of start.</span>
-<a id="ln-159" name="ln-159"></a>                       <span class="c">!!  * = 12  (KORD(2)=-1)  Error, step size is too small.</span>
-<a id="ln-160" name="ln-160"></a>                       <span class="c">!!  * = 13  (KORD(2)=-1)  Error, output points specified badly.</span>
-<a id="ln-161" name="ln-161"></a>                       <span class="c">!!  * = 21  (KORD(2)=-1)  H too small to give reasonable change when added</span>
-<a id="ln-162" name="ln-162"></a>                       <span class="c">!!    to T.</span>
-<a id="ln-163" name="ln-163"></a>                       <span class="c">!!  * = 22  (KORD(2)=-1)  Error, bad tolerance.</span>
-<a id="ln-164" name="ln-164"></a>                       <span class="c">!!  * = 23  (KORD(2)=-1)  Set after message for a fatal error.</span>
-<a id="ln-165" name="ln-165"></a>                       <span class="c">!!  * = 24  Set on error message in DIVA, along with KORD2I = -4.</span>
-<a id="ln-166" name="ln-166"></a>                       <span class="c">!!</span>
-<a id="ln-167" name="ln-167"></a>                       <span class="c">!! Also used as an index into MLOC in DIVAA when an error is being</span>
-<a id="ln-168" name="ln-168"></a>                       <span class="c">!! processsed, see MLOC below.</span>
-<a id="ln-169" name="ln-169"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kord2i</span> <span class="c">!! Helps in defining the state of the integrator.</span>
-<a id="ln-170" name="ln-170"></a>                       <span class="c">!! Frequently has the same value as KORD(2).</span>
-<a id="ln-171" name="ln-171"></a>                       <span class="c">!!</span>
-<a id="ln-172" name="ln-172"></a>                       <span class="c">!!  * -3  Set in DIVAg, to get a derivative evaluation.</span>
-<a id="ln-173" name="ln-173"></a>                       <span class="c">!!  * -2  Set in DIVAg, to get another entry to OUTPUT.</span>
-<a id="ln-174" name="ln-174"></a>                       <span class="c">!!  * -1  Return to calling program, done, interrupt, or got an error.</span>
-<a id="ln-175" name="ln-175"></a>                       <span class="c">!!  *  1  Calling OUTPUT or returning to user for OUTPUT type action.</span>
-<a id="ln-176" name="ln-176"></a>                       <span class="c">!!  *  0  Calling DERIVS or returning to user for DERIVS type action.</span>
-<a id="ln-177" name="ln-177"></a>                       <span class="c">!!  * -4  Error message in DIVA and in DIVAop, along with KORD1I = 24.</span>
-<a id="ln-178" name="ln-178"></a>                       <span class="c">!!  * -5  Starting</span>
-<a id="ln-179" name="ln-179"></a>                       <span class="c">!!  * -6  Starting, getting the initial derivative value or derivatives</span>
-<a id="ln-180" name="ln-180"></a>                       <span class="c">!!    for the noise test.</span>
-<a id="ln-181" name="ln-181"></a>                       <span class="c">!!  * -7  Done some extrapolation, KEXIT defines the action to take.</span>
-<a id="ln-182" name="ln-182"></a>                       <span class="c">!!     Set in DIVAg to activate KEXIT action in DIVA.</span>
-<a id="ln-183" name="ln-183"></a>                       <span class="c">!!  * -8  Set when user has requested adjustment of the difference</span>
-<a id="ln-184" name="ln-184"></a>                       <span class="c">!!    tables for a discontinutiy.</span>
-<a id="ln-185" name="ln-185"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kpred</span> <span class="c">!! Value assigned to KORD1I when getting a predicted</span>
-<a id="ln-186" name="ln-186"></a>                      <span class="c">!! derivative.  (1 used now, 5 planned for use with stiff equations.)</span>
-<a id="ln-187" name="ln-187"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqdcon</span> <span class="c">!! Number of coefficients computed with constant step</span>
-<a id="ln-188" name="ln-188"></a>                       <span class="c">!! size for stiff equations.</span>
-<a id="ln-189" name="ln-189"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqicon</span> <span class="c">!! Number of coefficients computed with constant step</span>
-<a id="ln-190" name="ln-190"></a>                       <span class="c">!! size for nonstiff equations.</span>
-<a id="ln-191" name="ln-191"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmaxs</span> <span class="c">!! Maximum integration order for equations that have</span>
-<a id="ln-192" name="ln-192"></a>                       <span class="c">!! some limit on the error that can be committed.</span>
-<a id="ln-193" name="ln-193"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxds</span> <span class="c">!! Used to save KQMAXD in case step is repeated and the</span>
-<a id="ln-194" name="ln-194"></a>                       <span class="c">!! solution must be dumped.</span>
-<a id="ln-195" name="ln-195"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxil</span> <span class="c">!! Value of KQMAXI the last time integration coefficients</span>
-<a id="ln-196" name="ln-196"></a>                       <span class="c">!! were computed.</span>
-<a id="ln-197" name="ln-197"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxip</span> <span class="c">!! = KQMAXI + MAXINT, for computing integration coeffs.</span>
-<a id="ln-198" name="ln-198"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxis</span> <span class="c">!! Used to save KQMAXI in case step is repeated and the</span>
-<a id="ln-199" name="ln-199"></a>                       <span class="c">!! solution must be dumped.</span>
-<a id="ln-200" name="ln-200"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksc</span> <span class="c">!! Number of steps that have been taken with a constant</span>
-<a id="ln-201" name="ln-201"></a>                    <span class="c">!! step size.</span>
-<a id="ln-202" name="ln-202"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksout</span> <span class="c">!! When KSTEP reaches this value, the output routine is</span>
-<a id="ln-203" name="ln-203"></a>                      <span class="c">!! called with KORD(1) = 4.  The default value is a very large number.</span>
-<a id="ln-204" name="ln-204"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksstrt</span> <span class="c">!! Set when ending one derivative per step to KSTEP + 2.</span>
-<a id="ln-205" name="ln-205"></a>                       <span class="c">!! Checked later in DIVAHC to decide whether to set the step changing</span>
-<a id="ln-206" name="ln-206"></a>                       <span class="c">!! factors to their nominal values.</span>
-<a id="ln-207" name="ln-207"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kstep</span> <span class="c">!! Number of steps taken since the start of integration.</span>
-<a id="ln-208" name="ln-208"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lex</span> <span class="c">!! Indicates how to get values at next output point:</span>
-<a id="ln-209" name="ln-209"></a>                    <span class="c">!!</span>
-<a id="ln-210" name="ln-210"></a>                    <span class="c">!!  * -1  Extrapolate</span>
-<a id="ln-211" name="ln-211"></a>                    <span class="c">!!  *  0  Interpolate (The usual case.)</span>
-<a id="ln-212" name="ln-212"></a>                    <span class="c">!!  *  1  Integrate to the output point, integration is not continued.</span>
-<a id="ln-213" name="ln-213"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">linc</span> <span class="c">!! Used to indicate state of step size selection.</span>
-<a id="ln-214" name="ln-214"></a>                     <span class="c">!!</span>
-<a id="ln-215" name="ln-215"></a>                     <span class="c">!!  * -10 After computed derivatives at base time, after computing other</span>
-<a id="ln-216" name="ln-216"></a>                     <span class="c">!!    extra derivatives for the noise test.</span>
-<a id="ln-217" name="ln-217"></a>                     <span class="c">!!  * -9  After computed second extra derivative for noise test.</span>
-<a id="ln-218" name="ln-218"></a>                     <span class="c">!!  * -8  After computed first extra derivative for noise test.</span>
-<a id="ln-219" name="ln-219"></a>                     <span class="c">!!  * -7  Dumping the solution and then doing a user initiated restart,</span>
-<a id="ln-220" name="ln-220"></a>                     <span class="c">!!    or getting ready to compute extra derivatives for the noise</span>
-<a id="ln-221" name="ln-221"></a>                     <span class="c">!!    test.</span>
-<a id="ln-222" name="ln-222"></a>                     <span class="c">!!  * -6  Dumping the solution before a restart.</span>
-<a id="ln-223" name="ln-223"></a>                     <span class="c">!!  * -5  Set on the first step, and also set when dumping the solution</span>
-<a id="ln-224" name="ln-224"></a>                     <span class="c">!!    after a discontinuity.</span>
-<a id="ln-225" name="ln-225"></a>                     <span class="c">!!  * -4  Repeat step with no change in the step size.</span>
-<a id="ln-226" name="ln-226"></a>                     <span class="c">!!  * -3  Set when the error tolerance is set improperly.</span>
-<a id="ln-227" name="ln-227"></a>                     <span class="c">!!  * -2  User has complete control of selecting the step size.</span>
-<a id="ln-228" name="ln-228"></a>                     <span class="c">!!  * -1  Step is being repeated.</span>
-<a id="ln-229" name="ln-229"></a>                     <span class="c">!!  *  0  Step size is not to be increased on this step.</span>
-<a id="ln-230" name="ln-230"></a>                     <span class="c">!!  * k&gt;0 Step size can be increased by HINCC**k.</span>
-<a id="ln-231" name="ln-231"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lincd</span> <span class="c">!! Value of smallest k for which HINCC**k &gt;= 2.</span>
-<a id="ln-232" name="ln-232"></a>                      <span class="c">!! (=-2 if user is specifying all step size changes.)</span>
-<a id="ln-233" name="ln-233"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lincq</span> <span class="c">!! Value of smallest k for which HINCC**k &gt;= 4.</span>
-<a id="ln-234" name="ln-234"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lsc</span> <span class="c">!! Indicates if starting or if noise may be present.</span>
-<a id="ln-235" name="ln-235"></a>                    <span class="c">!!</span>
-<a id="ln-236" name="ln-236"></a>                    <span class="c">!!  * k&lt;0 -k steps have been taken for which noise appears to be limiting the precision.</span>
-<a id="ln-237" name="ln-237"></a>                    <span class="c">!!  * 0   Usual case</span>
-<a id="ln-238" name="ln-238"></a>                    <span class="c">!!  * 1   Doing 1 derivative per step after initial part of start.</span>
-<a id="ln-239" name="ln-239"></a>                    <span class="c">!!  * 2   Used as flag that it is time to set LSC=0.</span>
-<a id="ln-240" name="ln-240"></a>                    <span class="c">!!  * 3   Third step, hold the order constant.</span>
-<a id="ln-241" name="ln-241"></a>                    <span class="c">!!  * 4   Second step, increase orders from 2 to 3.</span>
-<a id="ln-242" name="ln-242"></a>                    <span class="c">!!  * 5   First step, third time through the first step (if required).</span>
-<a id="ln-243" name="ln-243"></a>                    <span class="c">!!  * 6   First step, second time through.</span>
-<a id="ln-244" name="ln-244"></a>                    <span class="c">!!  * 7   First step, first time through.</span>
-<a id="ln-245" name="ln-245"></a>                    <span class="c">!!  * 8   Set on initialization.</span>
-<a id="ln-246" name="ln-246"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">maxkqd</span> <span class="c">!! Largest integration order allowed for stiff equations.</span>
-<a id="ln-247" name="ln-247"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">maxkqi</span> <span class="c">!! Largest integ. order allowed for nonstiff equations.</span>
-<a id="ln-248" name="ln-248"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">method</span> <span class="c">!! Defines kind of methods being used.</span>
-<a id="ln-249" name="ln-249"></a>                       <span class="c">!!  * -1  Only stiff equations are being integrated.</span>
-<a id="ln-250" name="ln-250"></a>                       <span class="c">!!  *  0  Only nonstiff equations are being integrated.</span>
-<a id="ln-251" name="ln-251"></a>                       <span class="c">!!  *  1  Both kinds of methods are required.</span>
-<a id="ln-252" name="ln-252"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ne</span> <span class="c">!! Number of equations in the first group.  (=NTE if</span>
-<a id="ln-253" name="ln-253"></a>                   <span class="c">!! option 18 is not used.)</span>
-<a id="ln-254" name="ln-254"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">neptol</span> <span class="c">!! Used for temporary storage and to save the value of</span>
-<a id="ln-255" name="ln-255"></a>                       <span class="c">!! ITOLEP for error messages.</span>
-<a id="ln-256" name="ln-256"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ng</span> <span class="c">!! Used in DIVAg for the number of g&#39;s in the current context.</span>
-<a id="ln-257" name="ln-257"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ngstop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! Dimension 2 array equivalenced to IOP6, and IOP7.  To</span>
-<a id="ln-258" name="ln-258"></a>                          <span class="c">!! get the number of interpolating and extrapolating G-Stops.</span>
-<a id="ln-259" name="ln-259"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ngtot</span> <span class="c">!! NGTOT(1) gives the number of interpolating G-Stops,</span>
-<a id="ln-260" name="ln-260"></a>                      <span class="c">!! and NGTOT(2) gives the number of extrapolating G-Stops.</span>
-<a id="ln-261" name="ln-261"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">noiseq</span> <span class="c">!! max(2, order of equation for which (error estimate)/</span>
-<a id="ln-262" name="ln-262"></a>                       <span class="c">!! (error requested) is a maximum).</span>
-<a id="ln-263" name="ln-263"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">noutko</span> <span class="c">!! If nonzero, gives the index in KORD where information</span>
-<a id="ln-264" name="ln-264"></a>                       <span class="c">!! on what equations are to be included in the diagnostic output is</span>
-<a id="ln-265" name="ln-265"></a>                       <span class="c">!! given.   See option 10.</span>
-<a id="ln-266" name="ln-266"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ntolf</span> <span class="c">!! First location in F() where tolerance specifying</span>
-<a id="ln-267" name="ln-267"></a>                      <span class="c">!! accuracy desired is stored.</span>
-<a id="ln-268" name="ln-268"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ny</span> <span class="c">!! Total order of the system.</span>
-<a id="ln-269" name="ln-269"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Array with I-th entry = (current step size) / XI(I).</span>
-<a id="ln-270" name="ln-270"></a>                            <span class="c">!! Used in computing integration coefficients.</span>
-<a id="ln-271" name="ln-271"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">beta</span><span class="p">(</span><span class="n">kdim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c">!! Array with I-th entry = product (K=1,I-1) of</span>
-<a id="ln-272" name="ln-272"></a>                             <span class="c">!! (current (XI(K)) / XI(K) from previous step), BETA(1)=1. Used in</span>
-<a id="ln-273" name="ln-273"></a>                             <span class="c">!! updating the difference tables.</span>
-<a id="ln-274" name="ln-274"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d</span><span class="p">(</span><span class="n">maxstf</span><span class="o">+</span><span class="n">maxord</span><span class="p">,</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array to be used later to store coefficients for</span>
-<a id="ln-275" name="ln-275"></a>                                        <span class="c">!! integrating stiff equations.</span>
-<a id="ln-276" name="ln-276"></a>                                        <span class="c">!! derivatives.  Not used if option 13 is set.</span>
-<a id="ln-277" name="ln-277"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dnoise</span> <span class="c">!! Used in determining if noise is limiting the</span>
-<a id="ln-278" name="ln-278"></a>                       <span class="c">!! precision.  It is usually |highest difference used in correcting|</span>
-<a id="ln-279" name="ln-279"></a>                       <span class="c">!! of the equation with the largest error estimate.</span>
-<a id="ln-280" name="ln-280"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ds</span><span class="p">(</span><span class="n">maxstf</span><span class="o">+</span><span class="n">maxord</span><span class="p">,</span> <span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array to be used later to store coefficients for</span>
-<a id="ln-281" name="ln-281"></a>                                          <span class="c">!! estimating errors when integrating stiff equations.</span>
-<a id="ln-282" name="ln-282"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dvc1</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<a id="ln-283" name="ln-283"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dvc2</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c">!! Array used for output of variables HC to TOUT in</span>
-<a id="ln-284" name="ln-284"></a>                        <span class="c">!! common block DIVAMC.</span>
-<a id="ln-285" name="ln-285"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eave</span> <span class="c">!! This is a weighted average of past values of EIMAX.</span>
-<a id="ln-286" name="ln-286"></a>                     <span class="c">!! It is adjusted to account for expected changes due to step changes.</span>
-<a id="ln-287" name="ln-287"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eimax</span> <span class="c">!! Estimate of (error estimate / error requested) if the</span>
-<a id="ln-288" name="ln-288"></a>                      <span class="c">!! step size should be increased.</span>
-<a id="ln-289" name="ln-289"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eimin</span> <span class="c">!! An error estimate is small enough to allow a step</span>
-<a id="ln-290" name="ln-290"></a>                      <span class="c">!! increase if the estimate of ((error with the step size increased) /</span>
-<a id="ln-291" name="ln-291"></a>                      <span class="c">!! (error requested)) is less than EIMIN.</span>
-<a id="ln-292" name="ln-292"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">emax</span> <span class="c">!! Largest value computed for (error estimate) / (error</span>
-<a id="ln-293" name="ln-293"></a>                     <span class="c">!! requested).</span>
-<a id="ln-294" name="ln-294"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">erep</span> <span class="c">!! If EMAX &gt; EREP, a step is repeated.  Ordinarily</span>
-<a id="ln-295" name="ln-295"></a>                     <span class="c">!! this has the value .3.  This is set &lt; 0 if the error tolerance is</span>
-<a id="ln-296" name="ln-296"></a>                     <span class="c">!! specified improperly, and is set to a large value if the user</span>
-<a id="ln-297" name="ln-297"></a>                     <span class="c">!! requests complete control over the step size.  EREP is also set</span>
-<a id="ln-298" name="ln-298"></a>                     <span class="c">!! &lt; 0 after a user specified discontinuity.</span>
-<a id="ln-299" name="ln-299"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fdat</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="c">!! Used to store data for error messages.  (Local array in</span>
-<a id="ln-300" name="ln-300"></a>                         <span class="c">!! DIVAIN.)</span>
-<a id="ln-301" name="ln-301"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">g</span><span class="p">(</span><span class="n">kdim</span><span class="p">,</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Integration coefficients used for predicting solution.</span>
-<a id="ln-302" name="ln-302"></a>                               <span class="c">!! G(I, J) gives the I-th coefficient for integrating a J-th order</span>
-<a id="ln-303" name="ln-303"></a>                               <span class="c">!! differential equation.  G(1, 1) is equal to the step size.</span>
-<a id="ln-304" name="ln-304"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gs</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Integration coefficients used in estimating errors.</span>
-<a id="ln-305" name="ln-305"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hc</span> <span class="c">!! Ratio of (new step size) / (old step size)</span>
-<a id="ln-306" name="ln-306"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hdec</span> <span class="c">!! Default value to use for HC when reducing the step</span>
-<a id="ln-307" name="ln-307"></a>                     <span class="c">!! size.  (Values closer to 1 may be used some of the time.)</span>
-<a id="ln-308" name="ln-308"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hh</span>
-<a id="ln-309" name="ln-309"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hinc</span> <span class="c">!! Default value to use for HC when increasing the step</span>
-<a id="ln-310" name="ln-310"></a>                     <span class="c">!! size.  (Values closer to 1 may be used some of the time.)</span>
-<a id="ln-311" name="ln-311"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hincc</span> <span class="c">!! Actual value used for default value of HC when</span>
-<a id="ln-312" name="ln-312"></a>                      <span class="c">!! increasing the step size.  Set to HINC after start is considered</span>
-<a id="ln-313" name="ln-313"></a>                      <span class="c">!! complete.  During the start HINCC is set to 1.125.</span>
-<a id="ln-314" name="ln-314"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmax</span> <span class="c">!! Largest value allowed for abs(step size).  Default</span>
-<a id="ln-315" name="ln-315"></a>                     <span class="c">!! value is a very large number.</span>
-<a id="ln-316" name="ln-316"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmaxp9</span> <span class="c">!! .9 * HMAX.</span>
-<a id="ln-317" name="ln-317"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmin</span> <span class="c">!! Smallest value allowed for abs(step size).  Default</span>
-<a id="ln-318" name="ln-318"></a>                     <span class="c">!! value is 0.</span>
-<a id="ln-319" name="ln-319"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rbq</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Array containing data for the preliminary noise test.</span>
-<a id="ln-320" name="ln-320"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">robnd</span> <span class="c">!! Used to influence the selection of integration order.</span>
-<a id="ln-321" name="ln-321"></a>                      <span class="c">!! The larger ROBND, the harder it is to increase the order and the</span>
-<a id="ln-322" name="ln-322"></a>                      <span class="c">!! easier it is to decrease it.</span>
-<a id="ln-323" name="ln-323"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvc2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="c">!! Array used for output of variables DNOISE to SNOISE in</span>
-<a id="ln-324" name="ln-324"></a>                        <span class="c">!! common block DIVAMC.  These are variables that don&#39;t require a great</span>
-<a id="ln-325" name="ln-325"></a>                        <span class="c">!! deal of precision.</span>
-<a id="ln-326" name="ln-326"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! The k-th entry of this array contains a factor that</span>
-<a id="ln-327" name="ln-327"></a>                            <span class="c">!! gives the amount the k-th difference is expected to increase if the</span>
-<a id="ln-328" name="ln-328"></a>                            <span class="c">!! step size in increased.  These numbers get bigger it there is a past</span>
-<a id="ln-329" name="ln-329"></a>                            <span class="c">!! history of increasing the step size.</span>
-<a id="ln-330" name="ln-330"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">snoise</span> <span class="c">!! Value used in comparison with RBQ() on equation with</span>
-<a id="ln-331" name="ln-331"></a>                       <span class="c">!! largest value for (error estimate) / (error requested).</span>
-<a id="ln-332" name="ln-332"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tg</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! TG(1) gives the last value of TSPECS(1) for which an</span>
-<a id="ln-333" name="ln-333"></a>                      <span class="c">!! interpolatory G-Stop has been computed.  TG(2) is defined similarly</span>
-<a id="ln-334" name="ln-334"></a>                      <span class="c">!! for extrapolatory G-Stops.</span>
-<a id="ln-335" name="ln-335"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tgstop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! TGSTOP(1) gives the value of TSPECS(1) where the last</span>
-<a id="ln-336" name="ln-336"></a>                          <span class="c">!! 0 for an interpolatory G-Stop was found.  TGSTOP(2) is defined</span>
-<a id="ln-337" name="ln-337"></a>                          <span class="c">!! similarly for extrapolatory G-Stops.</span>
-<a id="ln-338" name="ln-338"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmark</span> <span class="c">!! Location of the next output point.</span>
-<a id="ln-339" name="ln-339"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmarka</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! Array of length 2 equivalenced to TMARK (and TMARKX).</span>
-<a id="ln-340" name="ln-340"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmarkx</span> <span class="c">!! Location of the next output point to be found using</span>
-<a id="ln-341" name="ln-341"></a>                       <span class="c">!! integration or extrapolation.  This variable must follow immediately</span>
-<a id="ln-342" name="ln-342"></a>                       <span class="c">!! after TMARK in the common block.</span>
-<a id="ln-343" name="ln-343"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tolg</span> <span class="c">!! Tolerance to pass to dzero when locating G-Stops.</span>
-<a id="ln-344" name="ln-344"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tout</span> <span class="c">!! Location of next output point defined by value of</span>
-<a id="ln-345" name="ln-345"></a>                     <span class="c">!! TSPECS(3).  Such output is given with KORD(1) = 2.</span>
-<a id="ln-346" name="ln-346"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">v</span><span class="p">(</span><span class="n">kdim</span><span class="o">+</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array used in computing integration coefficients.</span>
-<a id="ln-347" name="ln-347"></a>
-<a id="ln-348" name="ln-348"></a>    <span class="k">common</span> <span class="o">/</span><span class="n">divamc</span><span class="o">/</span> <span class="n">tg</span><span class="p">,</span><span class="n">tgstop</span><span class="p">,</span><span class="n">tmark</span><span class="p">,</span><span class="n">tmarkx</span><span class="p">,</span><span class="n">tout</span><span class="p">,</span><span class="n">tolg</span><span class="p">,</span><span class="n">hc</span><span class="p">,</span><span class="n">hdec</span><span class="p">,</span><span class="n">hinc</span><span class="p">,</span>    <span class="p">&amp;</span>
-<a id="ln-349" name="ln-349"></a>    <span class="p">&amp;</span>   <span class="n">hincc</span><span class="p">,</span><span class="n">hmax</span><span class="p">,</span><span class="n">hmaxp9</span><span class="p">,</span><span class="n">hmin</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">ds</span><span class="p">,</span><span class="n">gs</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">rbq</span><span class="p">,</span><span class="n">dnoise</span><span class="p">,&amp;</span>
-<a id="ln-350" name="ln-350"></a>    <span class="p">&amp;</span>   <span class="n">eave</span><span class="p">,</span><span class="n">eimax</span><span class="p">,</span><span class="n">eimin</span><span class="p">,</span><span class="n">emax</span><span class="p">,</span><span class="n">erep</span><span class="p">,</span><span class="n">robnd</span><span class="p">,</span><span class="n">snoise</span><span class="p">,</span><span class="n">fdat</span><span class="p">,</span><span class="n">icf</span><span class="p">,</span><span class="n">ics</span><span class="p">,</span><span class="n">igflg</span><span class="p">,</span>    <span class="p">&amp;</span>
-<a id="ln-351" name="ln-351"></a>    <span class="p">&amp;</span>   <span class="n">igtype</span><span class="p">,</span><span class="n">igstop</span><span class="p">,</span><span class="n">ilgrep</span><span class="p">,</span><span class="n">ings</span><span class="p">,</span><span class="n">iop3</span><span class="p">,</span><span class="n">iop4</span><span class="p">,</span><span class="n">iop5</span><span class="p">,</span><span class="n">iop6</span><span class="p">,</span><span class="n">iop7</span><span class="p">,</span><span class="n">iop8</span><span class="p">,</span><span class="n">iop9</span><span class="p">,</span>  <span class="p">&amp;</span>
-<a id="ln-352" name="ln-352"></a>    <span class="p">&amp;</span>   <span class="n">iop10</span><span class="p">,</span><span class="n">iop11</span><span class="p">,</span><span class="n">iop12</span><span class="p">,</span><span class="n">iop13</span><span class="p">,</span><span class="n">iop14</span><span class="p">,</span><span class="n">iop15</span><span class="p">,</span><span class="n">iop16</span><span class="p">,</span><span class="n">iop17</span><span class="p">,</span><span class="n">iop18</span><span class="p">,</span><span class="n">iop19</span><span class="p">,</span>   <span class="p">&amp;</span>
-<a id="ln-353" name="ln-353"></a>    <span class="p">&amp;</span>   <span class="n">iop20</span><span class="p">,</span><span class="n">iop21</span><span class="p">,</span><span class="n">iop22</span><span class="p">,</span><span class="n">iop21s</span><span class="p">,</span><span class="n">itolep</span><span class="p">,</span><span class="n">iy</span><span class="p">,</span><span class="n">kemax</span><span class="p">,</span><span class="n">kis</span><span class="p">,</span><span class="n">kmark</span><span class="p">,</span><span class="n">kord1i</span><span class="p">,</span>     <span class="p">&amp;</span>
-<a id="ln-354" name="ln-354"></a>    <span class="p">&amp;</span>   <span class="n">kord2i</span><span class="p">,</span><span class="n">kpred</span><span class="p">,</span><span class="n">kqdcon</span><span class="p">,</span><span class="n">kqicon</span><span class="p">,</span><span class="n">kqmaxs</span><span class="p">,</span><span class="n">kqmxds</span><span class="p">,</span><span class="n">kqmxil</span><span class="p">,</span><span class="n">kqmxip</span><span class="p">,</span><span class="n">kqmxis</span><span class="p">,</span> <span class="p">&amp;</span>
-<a id="ln-355" name="ln-355"></a>    <span class="p">&amp;</span>   <span class="n">ksc</span><span class="p">,</span><span class="n">ksout</span><span class="p">,</span><span class="n">ksstrt</span><span class="p">,</span><span class="n">kstep</span><span class="p">,</span><span class="n">lex</span><span class="p">,</span><span class="n">linc</span><span class="p">,</span><span class="n">lincd</span><span class="p">,</span><span class="n">lincq</span><span class="p">,</span><span class="n">lsc</span><span class="p">,</span><span class="n">maxkqd</span><span class="p">,</span><span class="n">maxkqi</span><span class="p">,</span> <span class="p">&amp;</span>
-<a id="ln-356" name="ln-356"></a>    <span class="p">&amp;</span>   <span class="n">method</span><span class="p">,</span><span class="n">ne</span><span class="p">,</span><span class="n">neptol</span><span class="p">,</span><span class="n">ng</span><span class="p">,</span><span class="n">ngtot</span><span class="p">,</span><span class="n">noiseq</span><span class="p">,</span><span class="n">noutko</span><span class="p">,</span><span class="n">ntolf</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">idat</span>
-<a id="ln-357" name="ln-357"></a>
-<a id="ln-358" name="ln-358"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">tmarka</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tmark</span><span class="p">)</span>
-<a id="ln-359" name="ln-359"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">kexit</span><span class="p">,</span>     <span class="n">iop17</span><span class="p">)</span>
-<a id="ln-360" name="ln-360"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>   <span class="n">hh</span><span class="p">)</span>
-<a id="ln-361" name="ln-361"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ngstop</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">iop6</span><span class="p">)</span>
-<a id="ln-362" name="ln-362"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">izflag</span><span class="p">,</span>    <span class="n">iy</span><span class="p">)</span>
-<a id="ln-363" name="ln-363"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">igflgs</span><span class="p">,</span>    <span class="n">itolep</span><span class="p">)</span>
-<a id="ln-364" name="ln-364"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ivc2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>   <span class="n">icf</span><span class="p">)</span>
-<a id="ln-365" name="ln-365"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ioptc</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">iop3</span><span class="p">)</span>
+<a id="ln-107" name="ln-107"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">izflag</span> <span class="c">!! Equivalenced to IY.  Set to 0 initially, and later</span>
+<a id="ln-108" name="ln-108"></a>                       <span class="c">!! set to the value returned by DZERO.</span>
+<a id="ln-109" name="ln-109"></a>                       <span class="c">!!</span>
+<a id="ln-110" name="ln-110"></a>                       <span class="c">!!  *  0  Value set on entry at start of search.</span>
+<a id="ln-111" name="ln-111"></a>                       <span class="c">!!  *  1  Compute next g again.</span>
+<a id="ln-112" name="ln-112"></a>                       <span class="c">!!  *  2  Normal terminiation.</span>
+<a id="ln-113" name="ln-113"></a>                       <span class="c">!!  *  3  Normal termination -- error criterion not satisfied.</span>
+<a id="ln-114" name="ln-114"></a>                       <span class="c">!!  *  4  Apparent discontinuity -- no zero found.</span>
+<a id="ln-115" name="ln-115"></a>                       <span class="c">!!  *  5  Couldn&#39;t find a sign change.</span>
+<a id="ln-116" name="ln-116"></a>                       <span class="c">!!  *  6  DZERO was called with a bad value in IZFLAG.</span>
+<a id="ln-117" name="ln-117"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kemax</span> <span class="c">!! Index associated with equation giving the largest</span>
+<a id="ln-118" name="ln-118"></a>                      <span class="c">!! value for (estimated error) / (requested error).</span>
+<a id="ln-119" name="ln-119"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kexit</span> <span class="c">!! Equivalenced to IOP17 which is not used after</span>
+<a id="ln-120" name="ln-120"></a>                      <span class="c">!! initialization.  Defines actions when KORD2I = -7.</span>
+<a id="ln-121" name="ln-121"></a>                      <span class="c">!! (Referenced in (DIVAA,DA,G).).</span>
+<a id="ln-122" name="ln-122"></a>                      <span class="c">!!</span>
+<a id="ln-123" name="ln-123"></a>                      <span class="c">!!  * 1  Take the step over with reduced H.</span>
+<a id="ln-124" name="ln-124"></a>                      <span class="c">!!  * 2  Take the step over.</span>
+<a id="ln-125" name="ln-125"></a>                      <span class="c">!!  * 3  Do the end of step call to OUTPUT.</span>
+<a id="ln-126" name="ln-126"></a>                      <span class="c">!!  * 4  Reset TMARK, then do same as for KEXIT = 2.</span>
+<a id="ln-127" name="ln-127"></a>                      <span class="c">!!  * 5  Reset TMARK, then do same as for KEXIT = 3.</span>
+<a id="ln-128" name="ln-128"></a>                      <span class="c">!!  * 6  Give the fatal error diagnostic.</span>
+<a id="ln-129" name="ln-129"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kis</span> <span class="c">!! Used to check if it is time to dump the solution.</span>
+<a id="ln-130" name="ln-130"></a>                    <span class="c">!! The check involves incrementing KIS at the end of the step, and</span>
+<a id="ln-131" name="ln-131"></a>                    <span class="c">!! dumping the solution if KIS is 0.</span>
+<a id="ln-132" name="ln-132"></a>                    <span class="c">!!</span>
+<a id="ln-133" name="ln-133"></a>                    <span class="c">!!  * -1  Set in DIVAcr when it is time to dump solution</span>
+<a id="ln-134" name="ln-134"></a>                    <span class="c">!!  *  0  When starting</span>
+<a id="ln-135" name="ln-135"></a>                    <span class="c">!!  *  2  After being dumped.</span>
+<a id="ln-136" name="ln-136"></a>                    <span class="c">!!</span>
+<a id="ln-137" name="ln-137"></a>                    <span class="c">!! This is set to 1000 just after a user specified discontinuity, and</span>
+<a id="ln-138" name="ln-138"></a>                    <span class="c">!! counted up from that point.</span>
+<a id="ln-139" name="ln-139"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kmark</span> <span class="c">!! Identifies the type of output associated with the next</span>
+<a id="ln-140" name="ln-140"></a>                      <span class="c">!! output point specified by TSPECS.</span>
+<a id="ln-141" name="ln-141"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kord1i</span> <span class="c">!! Helps in defining the state of the integrator.</span>
+<a id="ln-142" name="ln-142"></a>                       <span class="c">!! Frequently has the same value as KORD(1).  Meaning depends on the</span>
+<a id="ln-143" name="ln-143"></a>                       <span class="c">!! value of KORD(2), or the value about to be assigned to KORD(2).</span>
+<a id="ln-144" name="ln-144"></a>                       <span class="c">!!</span>
+<a id="ln-145" name="ln-145"></a>                       <span class="c">!!  * &lt;  0  Happens when preparing to give output with extrapolation.</span>
+<a id="ln-146" name="ln-146"></a>                       <span class="c">!!  * =  0  Happens when checking F at points for noise test.</span>
+<a id="ln-147" name="ln-147"></a>                       <span class="c">!!  * =  1  (KORD(2)=-1)  End of integration has been reached.</span>
+<a id="ln-148" name="ln-148"></a>                       <span class="c">!!  * =  1  (KORD(2)= 0)  Computing first predicted derivative.</span>
+<a id="ln-149" name="ln-149"></a>                       <span class="c">!!  * =  1  (KORD(2)= 1)  Output for initial point.</span>
+<a id="ln-150" name="ln-150"></a>                       <span class="c">!!  * =  2  (KORD(2)=-1)  Giving diagnostic for noise limiting precision.</span>
+<a id="ln-151" name="ln-151"></a>                       <span class="c">!!  * =  2  (KORD(2)= 0)  Computing corrected derivative.</span>
+<a id="ln-152" name="ln-152"></a>                       <span class="c">!!  * =  2  (KORD(2)= 1)  Output for TSPECS(3).</span>
+<a id="ln-153" name="ln-153"></a>                       <span class="c">!!  * =  3  (KORD(2)=-1)  Diagnostic for step size reduction too fast.</span>
+<a id="ln-154" name="ln-154"></a>                       <span class="c">!!  * =  3  (KORD(2)= 0)  Computing variational derivative.</span>
+<a id="ln-155" name="ln-155"></a>                       <span class="c">!!  * =  3  (KORD(2)= 1)  Output for TSPECS(4).</span>
+<a id="ln-156" name="ln-156"></a>                       <span class="c">!!  * =  4  (KORD(2)=-1)  Error, discontinuity.</span>
+<a id="ln-157" name="ln-157"></a>                       <span class="c">!!  * =  4  (KORD(2)= 1)  Output for certain number of steps.</span>
+<a id="ln-158" name="ln-158"></a>                       <span class="c">!!  * =  5  (KORD(2)= 0)  Get initial derivatives for stiff equations.</span>
+<a id="ln-159" name="ln-159"></a>                       <span class="c">!!  * =  5  (KORD(2)= 1)  Extra output from TSPECS.</span>
+<a id="ln-160" name="ln-160"></a>                       <span class="c">!!  * =  6  (KORD(2)= 1)  End of step output.</span>
+<a id="ln-161" name="ln-161"></a>                       <span class="c">!!  * =  7  (KORD(2)= 0)  Evaluate G before extrapolated output point.</span>
+<a id="ln-162" name="ln-162"></a>                       <span class="c">!!  * =  7  (KORD(2)= 1)  Evaluate G before extrapolated output point.</span>
+<a id="ln-163" name="ln-163"></a>                       <span class="c">!!    (Also used when checking for other G&#39;s after</span>
+<a id="ln-164" name="ln-164"></a>                       <span class="c">!!    finding one.)</span>
+<a id="ln-165" name="ln-165"></a>                       <span class="c">!!  * =  8  (KORD(2)= 1)  Tell user step size has changed.</span>
+<a id="ln-166" name="ln-166"></a>                       <span class="c">!!  * =  9  (KORD(2)= 1)  Request for user to save solution.</span>
+<a id="ln-167" name="ln-167"></a>                       <span class="c">!!  * = 11  (KORD(2)=-1)  Error, step size too small at end of start.</span>
+<a id="ln-168" name="ln-168"></a>                       <span class="c">!!  * = 12  (KORD(2)=-1)  Error, step size is too small.</span>
+<a id="ln-169" name="ln-169"></a>                       <span class="c">!!  * = 13  (KORD(2)=-1)  Error, output points specified badly.</span>
+<a id="ln-170" name="ln-170"></a>                       <span class="c">!!  * = 21  (KORD(2)=-1)  H too small to give reasonable change when added</span>
+<a id="ln-171" name="ln-171"></a>                       <span class="c">!!    to T.</span>
+<a id="ln-172" name="ln-172"></a>                       <span class="c">!!  * = 22  (KORD(2)=-1)  Error, bad tolerance.</span>
+<a id="ln-173" name="ln-173"></a>                       <span class="c">!!  * = 23  (KORD(2)=-1)  Set after message for a fatal error.</span>
+<a id="ln-174" name="ln-174"></a>                       <span class="c">!!  * = 24  Set on error message in DIVA, along with KORD2I = -4.</span>
+<a id="ln-175" name="ln-175"></a>                       <span class="c">!!</span>
+<a id="ln-176" name="ln-176"></a>                       <span class="c">!! Also used as an index into MLOC in DIVAA when an error is being</span>
+<a id="ln-177" name="ln-177"></a>                       <span class="c">!! processsed, see MLOC below.</span>
+<a id="ln-178" name="ln-178"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kord2i</span> <span class="c">!! Helps in defining the state of the integrator.</span>
+<a id="ln-179" name="ln-179"></a>                       <span class="c">!! Frequently has the same value as KORD(2).</span>
+<a id="ln-180" name="ln-180"></a>                       <span class="c">!!</span>
+<a id="ln-181" name="ln-181"></a>                       <span class="c">!!  * -3  Set in DIVAg, to get a derivative evaluation.</span>
+<a id="ln-182" name="ln-182"></a>                       <span class="c">!!  * -2  Set in DIVAg, to get another entry to OUTPUT.</span>
+<a id="ln-183" name="ln-183"></a>                       <span class="c">!!  * -1  Return to calling program, done, interrupt, or got an error.</span>
+<a id="ln-184" name="ln-184"></a>                       <span class="c">!!  *  1  Calling OUTPUT or returning to user for OUTPUT type action.</span>
+<a id="ln-185" name="ln-185"></a>                       <span class="c">!!  *  0  Calling DERIVS or returning to user for DERIVS type action.</span>
+<a id="ln-186" name="ln-186"></a>                       <span class="c">!!  * -4  Error message in DIVA and in DIVAop, along with KORD1I = 24.</span>
+<a id="ln-187" name="ln-187"></a>                       <span class="c">!!  * -5  Starting</span>
+<a id="ln-188" name="ln-188"></a>                       <span class="c">!!  * -6  Starting, getting the initial derivative value or derivatives</span>
+<a id="ln-189" name="ln-189"></a>                       <span class="c">!!    for the noise test.</span>
+<a id="ln-190" name="ln-190"></a>                       <span class="c">!!  * -7  Done some extrapolation, KEXIT defines the action to take.</span>
+<a id="ln-191" name="ln-191"></a>                       <span class="c">!!     Set in DIVAg to activate KEXIT action in DIVA.</span>
+<a id="ln-192" name="ln-192"></a>                       <span class="c">!!  * -8  Set when user has requested adjustment of the difference</span>
+<a id="ln-193" name="ln-193"></a>                       <span class="c">!!    tables for a discontinutiy.</span>
+<a id="ln-194" name="ln-194"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kpred</span> <span class="c">!! Value assigned to KORD1I when getting a predicted</span>
+<a id="ln-195" name="ln-195"></a>                      <span class="c">!! derivative.  (1 used now, 5 planned for use with stiff equations.)</span>
+<a id="ln-196" name="ln-196"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqdcon</span> <span class="c">!! Number of coefficients computed with constant step</span>
+<a id="ln-197" name="ln-197"></a>                       <span class="c">!! size for stiff equations.</span>
+<a id="ln-198" name="ln-198"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqicon</span> <span class="c">!! Number of coefficients computed with constant step</span>
+<a id="ln-199" name="ln-199"></a>                       <span class="c">!! size for nonstiff equations.</span>
+<a id="ln-200" name="ln-200"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmaxs</span> <span class="c">!! Maximum integration order for equations that have</span>
+<a id="ln-201" name="ln-201"></a>                       <span class="c">!! some limit on the error that can be committed.</span>
+<a id="ln-202" name="ln-202"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxds</span> <span class="c">!! Used to save KQMAXD in case step is repeated and the</span>
+<a id="ln-203" name="ln-203"></a>                       <span class="c">!! solution must be dumped.</span>
+<a id="ln-204" name="ln-204"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxil</span> <span class="c">!! Value of KQMAXI the last time integration coefficients</span>
+<a id="ln-205" name="ln-205"></a>                       <span class="c">!! were computed.</span>
+<a id="ln-206" name="ln-206"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxip</span> <span class="c">!! = KQMAXI + MAXINT, for computing integration coeffs.</span>
+<a id="ln-207" name="ln-207"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kqmxis</span> <span class="c">!! Used to save KQMAXI in case step is repeated and the</span>
+<a id="ln-208" name="ln-208"></a>                       <span class="c">!! solution must be dumped.</span>
+<a id="ln-209" name="ln-209"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksc</span> <span class="c">!! Number of steps that have been taken with a constant</span>
+<a id="ln-210" name="ln-210"></a>                    <span class="c">!! step size.</span>
+<a id="ln-211" name="ln-211"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksout</span> <span class="c">!! When KSTEP reaches this value, the output routine is</span>
+<a id="ln-212" name="ln-212"></a>                      <span class="c">!! called with KORD(1) = 4.  The default value is a very large number.</span>
+<a id="ln-213" name="ln-213"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ksstrt</span> <span class="c">!! Set when ending one derivative per step to KSTEP + 2.</span>
+<a id="ln-214" name="ln-214"></a>                       <span class="c">!! Checked later in DIVAHC to decide whether to set the step changing</span>
+<a id="ln-215" name="ln-215"></a>                       <span class="c">!! factors to their nominal values.</span>
+<a id="ln-216" name="ln-216"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">kstep</span> <span class="c">!! Number of steps taken since the start of integration.</span>
+<a id="ln-217" name="ln-217"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lex</span> <span class="c">!! Indicates how to get values at next output point:</span>
+<a id="ln-218" name="ln-218"></a>                    <span class="c">!!</span>
+<a id="ln-219" name="ln-219"></a>                    <span class="c">!!  * -1  Extrapolate</span>
+<a id="ln-220" name="ln-220"></a>                    <span class="c">!!  *  0  Interpolate (The usual case.)</span>
+<a id="ln-221" name="ln-221"></a>                    <span class="c">!!  *  1  Integrate to the output point, integration is not continued.</span>
+<a id="ln-222" name="ln-222"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">linc</span> <span class="c">!! Used to indicate state of step size selection.</span>
+<a id="ln-223" name="ln-223"></a>                     <span class="c">!!</span>
+<a id="ln-224" name="ln-224"></a>                     <span class="c">!!  * -10 After computed derivatives at base time, after computing other</span>
+<a id="ln-225" name="ln-225"></a>                     <span class="c">!!    extra derivatives for the noise test.</span>
+<a id="ln-226" name="ln-226"></a>                     <span class="c">!!  * -9  After computed second extra derivative for noise test.</span>
+<a id="ln-227" name="ln-227"></a>                     <span class="c">!!  * -8  After computed first extra derivative for noise test.</span>
+<a id="ln-228" name="ln-228"></a>                     <span class="c">!!  * -7  Dumping the solution and then doing a user initiated restart,</span>
+<a id="ln-229" name="ln-229"></a>                     <span class="c">!!    or getting ready to compute extra derivatives for the noise</span>
+<a id="ln-230" name="ln-230"></a>                     <span class="c">!!    test.</span>
+<a id="ln-231" name="ln-231"></a>                     <span class="c">!!  * -6  Dumping the solution before a restart.</span>
+<a id="ln-232" name="ln-232"></a>                     <span class="c">!!  * -5  Set on the first step, and also set when dumping the solution</span>
+<a id="ln-233" name="ln-233"></a>                     <span class="c">!!    after a discontinuity.</span>
+<a id="ln-234" name="ln-234"></a>                     <span class="c">!!  * -4  Repeat step with no change in the step size.</span>
+<a id="ln-235" name="ln-235"></a>                     <span class="c">!!  * -3  Set when the error tolerance is set improperly.</span>
+<a id="ln-236" name="ln-236"></a>                     <span class="c">!!  * -2  User has complete control of selecting the step size.</span>
+<a id="ln-237" name="ln-237"></a>                     <span class="c">!!  * -1  Step is being repeated.</span>
+<a id="ln-238" name="ln-238"></a>                     <span class="c">!!  *  0  Step size is not to be increased on this step.</span>
+<a id="ln-239" name="ln-239"></a>                     <span class="c">!!  * k&gt;0 Step size can be increased by HINCC**k.</span>
+<a id="ln-240" name="ln-240"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lincd</span> <span class="c">!! Value of smallest k for which HINCC**k &gt;= 2.</span>
+<a id="ln-241" name="ln-241"></a>                      <span class="c">!! (=-2 if user is specifying all step size changes.)</span>
+<a id="ln-242" name="ln-242"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lincq</span> <span class="c">!! Value of smallest k for which HINCC**k &gt;= 4.</span>
+<a id="ln-243" name="ln-243"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">lsc</span> <span class="c">!! Indicates if starting or if noise may be present.</span>
+<a id="ln-244" name="ln-244"></a>                    <span class="c">!!</span>
+<a id="ln-245" name="ln-245"></a>                    <span class="c">!!  * k&lt;0 -k steps have been taken for which noise appears to be limiting the precision.</span>
+<a id="ln-246" name="ln-246"></a>                    <span class="c">!!  * 0   Usual case</span>
+<a id="ln-247" name="ln-247"></a>                    <span class="c">!!  * 1   Doing 1 derivative per step after initial part of start.</span>
+<a id="ln-248" name="ln-248"></a>                    <span class="c">!!  * 2   Used as flag that it is time to set LSC=0.</span>
+<a id="ln-249" name="ln-249"></a>                    <span class="c">!!  * 3   Third step, hold the order constant.</span>
+<a id="ln-250" name="ln-250"></a>                    <span class="c">!!  * 4   Second step, increase orders from 2 to 3.</span>
+<a id="ln-251" name="ln-251"></a>                    <span class="c">!!  * 5   First step, third time through the first step (if required).</span>
+<a id="ln-252" name="ln-252"></a>                    <span class="c">!!  * 6   First step, second time through.</span>
+<a id="ln-253" name="ln-253"></a>                    <span class="c">!!  * 7   First step, first time through.</span>
+<a id="ln-254" name="ln-254"></a>                    <span class="c">!!  * 8   Set on initialization.</span>
+<a id="ln-255" name="ln-255"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">maxkqd</span> <span class="c">!! Largest integration order allowed for stiff equations.</span>
+<a id="ln-256" name="ln-256"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">maxkqi</span> <span class="c">!! Largest integ. order allowed for nonstiff equations.</span>
+<a id="ln-257" name="ln-257"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">method</span> <span class="c">!! Defines kind of methods being used.</span>
+<a id="ln-258" name="ln-258"></a>                       <span class="c">!!  * -1  Only stiff equations are being integrated.</span>
+<a id="ln-259" name="ln-259"></a>                       <span class="c">!!  *  0  Only nonstiff equations are being integrated.</span>
+<a id="ln-260" name="ln-260"></a>                       <span class="c">!!  *  1  Both kinds of methods are required.</span>
+<a id="ln-261" name="ln-261"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ne</span> <span class="c">!! Number of equations in the first group.  (=NTE if</span>
+<a id="ln-262" name="ln-262"></a>                   <span class="c">!! option 18 is not used.)</span>
+<a id="ln-263" name="ln-263"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">neptol</span> <span class="c">!! Used for temporary storage and to save the value of</span>
+<a id="ln-264" name="ln-264"></a>                       <span class="c">!! ITOLEP for error messages.</span>
+<a id="ln-265" name="ln-265"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ng</span> <span class="c">!! Used in DIVAg for the number of g&#39;s in the current context.</span>
+<a id="ln-266" name="ln-266"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ngstop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! Dimension 2 array equivalenced to IOP6, and IOP7.  To</span>
+<a id="ln-267" name="ln-267"></a>                          <span class="c">!! get the number of interpolating and extrapolating G-Stops.</span>
+<a id="ln-268" name="ln-268"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ngtot</span> <span class="c">!! NGTOT(1) gives the number of interpolating G-Stops,</span>
+<a id="ln-269" name="ln-269"></a>                      <span class="c">!! and NGTOT(2) gives the number of extrapolating G-Stops.</span>
+<a id="ln-270" name="ln-270"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">noiseq</span> <span class="c">!! max(2, order of equation for which (error estimate)/</span>
+<a id="ln-271" name="ln-271"></a>                       <span class="c">!! (error requested) is a maximum).</span>
+<a id="ln-272" name="ln-272"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">noutko</span> <span class="c">!! If nonzero, gives the index in KORD where information</span>
+<a id="ln-273" name="ln-273"></a>                       <span class="c">!! on what equations are to be included in the diagnostic output is</span>
+<a id="ln-274" name="ln-274"></a>                       <span class="c">!! given.   See option 10.</span>
+<a id="ln-275" name="ln-275"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ntolf</span> <span class="c">!! First location in F() where tolerance specifying</span>
+<a id="ln-276" name="ln-276"></a>                      <span class="c">!! accuracy desired is stored.</span>
+<a id="ln-277" name="ln-277"></a>    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">ny</span> <span class="c">!! Total order of the system.</span>
+<a id="ln-278" name="ln-278"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alpha</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Array with I-th entry = (current step size) / XI(I).</span>
+<a id="ln-279" name="ln-279"></a>                            <span class="c">!! Used in computing integration coefficients.</span>
+<a id="ln-280" name="ln-280"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">beta</span><span class="p">(</span><span class="n">kdim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c">!! Array with I-th entry = product (K=1,I-1) of</span>
+<a id="ln-281" name="ln-281"></a>                             <span class="c">!! (current (XI(K)) / XI(K) from previous step), BETA(1)=1. Used in</span>
+<a id="ln-282" name="ln-282"></a>                             <span class="c">!! updating the difference tables.</span>
+<a id="ln-283" name="ln-283"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d</span><span class="p">(</span><span class="n">maxstf</span><span class="o">+</span><span class="n">maxord</span><span class="p">,</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array to be used later to store coefficients for</span>
+<a id="ln-284" name="ln-284"></a>                                        <span class="c">!! integrating stiff equations.</span>
+<a id="ln-285" name="ln-285"></a>                                        <span class="c">!! derivatives.  Not used if option 13 is set.</span>
+<a id="ln-286" name="ln-286"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dnoise</span> <span class="c">!! Used in determining if noise is limiting the</span>
+<a id="ln-287" name="ln-287"></a>                       <span class="c">!! precision.  It is usually |highest difference used in correcting|</span>
+<a id="ln-288" name="ln-288"></a>                       <span class="c">!! of the equation with the largest error estimate.</span>
+<a id="ln-289" name="ln-289"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ds</span><span class="p">(</span><span class="n">maxstf</span><span class="o">+</span><span class="n">maxord</span><span class="p">,</span> <span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array to be used later to store coefficients for</span>
+<a id="ln-290" name="ln-290"></a>                                          <span class="c">!! estimating errors when integrating stiff equations.</span>
+<a id="ln-291" name="ln-291"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dvc1</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<a id="ln-292" name="ln-292"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dvc2</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c">!! Array used for output of variables HC to TOUT in</span>
+<a id="ln-293" name="ln-293"></a>                        <span class="c">!! common block DIVAMC.</span>
+<a id="ln-294" name="ln-294"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eave</span> <span class="c">!! This is a weighted average of past values of EIMAX.</span>
+<a id="ln-295" name="ln-295"></a>                     <span class="c">!! It is adjusted to account for expected changes due to step changes.</span>
+<a id="ln-296" name="ln-296"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eimax</span> <span class="c">!! Estimate of (error estimate / error requested) if the</span>
+<a id="ln-297" name="ln-297"></a>                      <span class="c">!! step size should be increased.</span>
+<a id="ln-298" name="ln-298"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eimin</span> <span class="c">!! An error estimate is small enough to allow a step</span>
+<a id="ln-299" name="ln-299"></a>                      <span class="c">!! increase if the estimate of ((error with the step size increased) /</span>
+<a id="ln-300" name="ln-300"></a>                      <span class="c">!! (error requested)) is less than EIMIN.</span>
+<a id="ln-301" name="ln-301"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">emax</span> <span class="c">!! Largest value computed for (error estimate) / (error</span>
+<a id="ln-302" name="ln-302"></a>                     <span class="c">!! requested).</span>
+<a id="ln-303" name="ln-303"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">erep</span> <span class="c">!! If EMAX &gt; EREP, a step is repeated.  Ordinarily</span>
+<a id="ln-304" name="ln-304"></a>                     <span class="c">!! this has the value .3.  This is set &lt; 0 if the error tolerance is</span>
+<a id="ln-305" name="ln-305"></a>                     <span class="c">!! specified improperly, and is set to a large value if the user</span>
+<a id="ln-306" name="ln-306"></a>                     <span class="c">!! requests complete control over the step size.  EREP is also set</span>
+<a id="ln-307" name="ln-307"></a>                     <span class="c">!! &lt; 0 after a user specified discontinuity.</span>
+<a id="ln-308" name="ln-308"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fdat</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="c">!! Used to store data for error messages.  (Local array in</span>
+<a id="ln-309" name="ln-309"></a>                         <span class="c">!! DIVAIN.)</span>
+<a id="ln-310" name="ln-310"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">g</span><span class="p">(</span><span class="n">kdim</span><span class="p">,</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Integration coefficients used for predicting solution.</span>
+<a id="ln-311" name="ln-311"></a>                               <span class="c">!! G(I, J) gives the I-th coefficient for integrating a J-th order</span>
+<a id="ln-312" name="ln-312"></a>                               <span class="c">!! differential equation.  G(1, 1) is equal to the step size.</span>
+<a id="ln-313" name="ln-313"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gs</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Integration coefficients used in estimating errors.</span>
+<a id="ln-314" name="ln-314"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hc</span> <span class="c">!! Ratio of (new step size) / (old step size)</span>
+<a id="ln-315" name="ln-315"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hdec</span> <span class="c">!! Default value to use for HC when reducing the step</span>
+<a id="ln-316" name="ln-316"></a>                     <span class="c">!! size.  (Values closer to 1 may be used some of the time.)</span>
+<a id="ln-317" name="ln-317"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hh</span> <span class="c">!! Equivalenced to G(1,1) = current step size in DIVAA,CR,DA,G,HC.</span>
+<a id="ln-318" name="ln-318"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hinc</span> <span class="c">!! Default value to use for HC when increasing the step</span>
+<a id="ln-319" name="ln-319"></a>                     <span class="c">!! size.  (Values closer to 1 may be used some of the time.)</span>
+<a id="ln-320" name="ln-320"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hincc</span> <span class="c">!! Actual value used for default value of HC when</span>
+<a id="ln-321" name="ln-321"></a>                      <span class="c">!! increasing the step size.  Set to HINC after start is considered</span>
+<a id="ln-322" name="ln-322"></a>                      <span class="c">!! complete.  During the start HINCC is set to 1.125.</span>
+<a id="ln-323" name="ln-323"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmax</span> <span class="c">!! Largest value allowed for abs(step size).  Default</span>
+<a id="ln-324" name="ln-324"></a>                     <span class="c">!! value is a very large number.</span>
+<a id="ln-325" name="ln-325"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmaxp9</span> <span class="c">!! .9 * HMAX.</span>
+<a id="ln-326" name="ln-326"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">hmin</span> <span class="c">!! Smallest value allowed for abs(step size).  Default</span>
+<a id="ln-327" name="ln-327"></a>                     <span class="c">!! value is 0.</span>
+<a id="ln-328" name="ln-328"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rbq</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! Array containing data for the preliminary noise test.</span>
+<a id="ln-329" name="ln-329"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">robnd</span> <span class="c">!! Used to influence the selection of integration order.</span>
+<a id="ln-330" name="ln-330"></a>                      <span class="c">!! The larger ROBND, the harder it is to increase the order and the</span>
+<a id="ln-331" name="ln-331"></a>                      <span class="c">!! easier it is to decrease it.</span>
+<a id="ln-332" name="ln-332"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvc2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="c">!! Array used for output of variables DNOISE to SNOISE in</span>
+<a id="ln-333" name="ln-333"></a>                        <span class="c">!! common block DIVAMC.  These are variables that don&#39;t require a great</span>
+<a id="ln-334" name="ln-334"></a>                        <span class="c">!! deal of precision.</span>
+<a id="ln-335" name="ln-335"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(</span><span class="n">kdim</span><span class="p">)</span> <span class="c">!! The k-th entry of this array contains a factor that</span>
+<a id="ln-336" name="ln-336"></a>                            <span class="c">!! gives the amount the k-th difference is expected to increase if the</span>
+<a id="ln-337" name="ln-337"></a>                            <span class="c">!! step size in increased.  These numbers get bigger it there is a past</span>
+<a id="ln-338" name="ln-338"></a>                            <span class="c">!! history of increasing the step size.</span>
+<a id="ln-339" name="ln-339"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">snoise</span> <span class="c">!! Value used in comparison with RBQ() on equation with</span>
+<a id="ln-340" name="ln-340"></a>                       <span class="c">!! largest value for (error estimate) / (error requested).</span>
+<a id="ln-341" name="ln-341"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tg</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! TG(1) gives the last value of TSPECS(1) for which an</span>
+<a id="ln-342" name="ln-342"></a>                      <span class="c">!! interpolatory G-Stop has been computed.  TG(2) is defined similarly</span>
+<a id="ln-343" name="ln-343"></a>                      <span class="c">!! for extrapolatory G-Stops.</span>
+<a id="ln-344" name="ln-344"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tgstop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! TGSTOP(1) gives the value of TSPECS(1) where the last</span>
+<a id="ln-345" name="ln-345"></a>                          <span class="c">!! 0 for an interpolatory G-Stop was found.  TGSTOP(2) is defined</span>
+<a id="ln-346" name="ln-346"></a>                          <span class="c">!! similarly for extrapolatory G-Stops.</span>
+<a id="ln-347" name="ln-347"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmark</span> <span class="c">!! Location of the next output point.</span>
+<a id="ln-348" name="ln-348"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmarka</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!! Array of length 2 equivalenced to TMARK (and TMARKX).</span>
+<a id="ln-349" name="ln-349"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmarkx</span> <span class="c">!! Location of the next output point to be found using</span>
+<a id="ln-350" name="ln-350"></a>                       <span class="c">!! integration or extrapolation.  This variable must follow immediately</span>
+<a id="ln-351" name="ln-351"></a>                       <span class="c">!! after TMARK in the common block.</span>
+<a id="ln-352" name="ln-352"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tolg</span> <span class="c">!! Tolerance to pass to dzero when locating G-Stops.</span>
+<a id="ln-353" name="ln-353"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tout</span> <span class="c">!! Location of next output point defined by value of</span>
+<a id="ln-354" name="ln-354"></a>                     <span class="c">!! TSPECS(3).  Such output is given with KORD(1) = 2.</span>
+<a id="ln-355" name="ln-355"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">v</span><span class="p">(</span><span class="n">kdim</span><span class="o">+</span><span class="n">maxord</span><span class="p">)</span> <span class="c">!! Array used in computing integration coefficients.</span>
+<a id="ln-356" name="ln-356"></a>
+<a id="ln-357" name="ln-357"></a>    <span class="k">common</span> <span class="o">/</span><span class="n">divamc</span><span class="o">/</span> <span class="n">tg</span><span class="p">,</span><span class="n">tgstop</span><span class="p">,</span><span class="n">tmark</span><span class="p">,</span><span class="n">tmarkx</span><span class="p">,</span><span class="n">tout</span><span class="p">,</span><span class="n">tolg</span><span class="p">,</span><span class="n">hc</span><span class="p">,</span><span class="n">hdec</span><span class="p">,</span><span class="n">hinc</span><span class="p">,</span>    <span class="p">&amp;</span>
+<a id="ln-358" name="ln-358"></a>    <span class="p">&amp;</span>   <span class="n">hincc</span><span class="p">,</span><span class="n">hmax</span><span class="p">,</span><span class="n">hmaxp9</span><span class="p">,</span><span class="n">hmin</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">ds</span><span class="p">,</span><span class="n">gs</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">rbq</span><span class="p">,</span><span class="n">dnoise</span><span class="p">,&amp;</span>
+<a id="ln-359" name="ln-359"></a>    <span class="p">&amp;</span>   <span class="n">eave</span><span class="p">,</span><span class="n">eimax</span><span class="p">,</span><span class="n">eimin</span><span class="p">,</span><span class="n">emax</span><span class="p">,</span><span class="n">erep</span><span class="p">,</span><span class="n">robnd</span><span class="p">,</span><span class="n">snoise</span><span class="p">,</span><span class="n">fdat</span><span class="p">,</span><span class="n">icf</span><span class="p">,</span><span class="n">ics</span><span class="p">,</span><span class="n">igflg</span><span class="p">,</span>    <span class="p">&amp;</span>
+<a id="ln-360" name="ln-360"></a>    <span class="p">&amp;</span>   <span class="n">igtype</span><span class="p">,</span><span class="n">igstop</span><span class="p">,</span><span class="n">ilgrep</span><span class="p">,</span><span class="n">ings</span><span class="p">,</span><span class="n">iop3</span><span class="p">,</span><span class="n">iop4</span><span class="p">,</span><span class="n">iop5</span><span class="p">,</span><span class="n">iop6</span><span class="p">,</span><span class="n">iop7</span><span class="p">,</span><span class="n">iop8</span><span class="p">,</span><span class="n">iop9</span><span class="p">,</span>  <span class="p">&amp;</span>
+<a id="ln-361" name="ln-361"></a>    <span class="p">&amp;</span>   <span class="n">iop10</span><span class="p">,</span><span class="n">iop11</span><span class="p">,</span><span class="n">iop12</span><span class="p">,</span><span class="n">iop13</span><span class="p">,</span><span class="n">iop14</span><span class="p">,</span><span class="n">iop15</span><span class="p">,</span><span class="n">iop16</span><span class="p">,</span><span class="n">iop17</span><span class="p">,</span><span class="n">iop18</span><span class="p">,</span><span class="n">iop19</span><span class="p">,</span>   <span class="p">&amp;</span>
+<a id="ln-362" name="ln-362"></a>    <span class="p">&amp;</span>   <span class="n">iop20</span><span class="p">,</span><span class="n">iop21</span><span class="p">,</span><span class="n">iop22</span><span class="p">,</span><span class="n">iop21s</span><span class="p">,</span><span class="n">itolep</span><span class="p">,</span><span class="n">iy</span><span class="p">,</span><span class="n">kemax</span><span class="p">,</span><span class="n">kis</span><span class="p">,</span><span class="n">kmark</span><span class="p">,</span><span class="n">kord1i</span><span class="p">,</span>     <span class="p">&amp;</span>
+<a id="ln-363" name="ln-363"></a>    <span class="p">&amp;</span>   <span class="n">kord2i</span><span class="p">,</span><span class="n">kpred</span><span class="p">,</span><span class="n">kqdcon</span><span class="p">,</span><span class="n">kqicon</span><span class="p">,</span><span class="n">kqmaxs</span><span class="p">,</span><span class="n">kqmxds</span><span class="p">,</span><span class="n">kqmxil</span><span class="p">,</span><span class="n">kqmxip</span><span class="p">,</span><span class="n">kqmxis</span><span class="p">,</span> <span class="p">&amp;</span>
+<a id="ln-364" name="ln-364"></a>    <span class="p">&amp;</span>   <span class="n">ksc</span><span class="p">,</span><span class="n">ksout</span><span class="p">,</span><span class="n">ksstrt</span><span class="p">,</span><span class="n">kstep</span><span class="p">,</span><span class="n">lex</span><span class="p">,</span><span class="n">linc</span><span class="p">,</span><span class="n">lincd</span><span class="p">,</span><span class="n">lincq</span><span class="p">,</span><span class="n">lsc</span><span class="p">,</span><span class="n">maxkqd</span><span class="p">,</span><span class="n">maxkqi</span><span class="p">,</span> <span class="p">&amp;</span>
+<a id="ln-365" name="ln-365"></a>    <span class="p">&amp;</span>   <span class="n">method</span><span class="p">,</span><span class="n">ne</span><span class="p">,</span><span class="n">neptol</span><span class="p">,</span><span class="n">ng</span><span class="p">,</span><span class="n">ngtot</span><span class="p">,</span><span class="n">noiseq</span><span class="p">,</span><span class="n">noutko</span><span class="p">,</span><span class="n">ntolf</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">idat</span>
 <a id="ln-366" name="ln-366"></a>
-<a id="ln-367" name="ln-367"></a>    <span class="k">end module </span><span class="n">divamc_module</span>
-<a id="ln-368" name="ln-368"></a><span class="c">!*************************************************************************</span>
+<a id="ln-367" name="ln-367"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">tmarka</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tmark</span><span class="p">)</span>
+<a id="ln-368" name="ln-368"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">kexit</span><span class="p">,</span>     <span class="n">iop17</span><span class="p">)</span>
+<a id="ln-369" name="ln-369"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>   <span class="n">hh</span><span class="p">)</span>
+<a id="ln-370" name="ln-370"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ngstop</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">iop6</span><span class="p">)</span>
+<a id="ln-371" name="ln-371"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">izflag</span><span class="p">,</span>    <span class="n">iy</span><span class="p">)</span>
+<a id="ln-372" name="ln-372"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">igflgs</span><span class="p">,</span>    <span class="n">itolep</span><span class="p">)</span>
+<a id="ln-373" name="ln-373"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ivc2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>   <span class="n">icf</span><span class="p">)</span>
+<a id="ln-374" name="ln-374"></a>    <span class="k">equivalence</span> <span class="p">(</span><span class="n">ioptc</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>  <span class="n">iop3</span><span class="p">)</span>
+<a id="ln-375" name="ln-375"></a>
+<a id="ln-376" name="ln-376"></a>    <span class="k">end module </span><span class="n">divamc_module</span>
+<a id="ln-377" name="ln-377"></a><span class="c">!*************************************************************************</span>
 </pre></div>
 
     </section>

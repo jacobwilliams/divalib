@@ -10,6 +10,12 @@
 
     public
 
+    !++S Default KDIM = 16 [for single precision]
+    !++  Default KDIM = 20
+    !++  Default MAXORD = 2, MAXSTF = 1
+    !++  Default INTEGO, VAREQ, OUTPUT, DUMP, GSTOP, EXTRAP
+    !++  Default STIFF=.F., ARGM=.F., ERRSTO=.F.
+
     !++ substitute for kdim, maxord, maxstf below
     integer, parameter :: kdim = 20
     integer, parameter :: maxord = 2
@@ -20,7 +26,7 @@
          huge(1.0_wp), &
          real(radix(1.0_wp),wp)**(-digits(1.0_wp)), &
          epsilon(1.0_wp), &
-         log10(real(radix(1.0_wp),wp))]
+         log10(real(radix(1.0_wp),wp))] !! machine constants
 
     end module diva_constants
 !*************************************************************************
