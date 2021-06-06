@@ -3937,42 +3937,45 @@
 
 !*************************************************************************
 !>
-! THIS SUBROUTINE
-!  1. UPDATES THE DIFFERENCE TABLE FROM THE PREVIOUS STEP (IF NOT
-!     DONE ALREADY).
-!  2. PREDICTS WHAT THE VALUES OF THE DEPENDENT VARIABLES, Y, AND
-!     THE DIFFERENCE TABLE, DT, WILL BE AT THE END OF THE CURRENT STEP.
+! This subroutine:
 !
-!   Y = VECTOR OF PREDICTED VALUES COMPUTED BY THIS SUBROUTINE.
-!   YN= VECTOR OF VALUES OF Y COMPUTED ON THE LAST STEP.
-!   F = VECTOR OF DERIVATIVE VALUES.
-!   DT= ARRAY CONTAINING DIFFERENCE TABLES.
-!   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
-!       EQUATIONS HAVE DIFFERENT ORDERS).
-!   KQ= VECTOR OF INTEGRATION ORDERS.
+!  1. Updates the difference table from the previous step (if not
+!     done already).
+!  2. Predicts what the values of the dependent variables, y, and
+!     the difference table, dt, will be at the end of the current step.
 !
 !### History
 !  * 1988-01-13 DIVAPR Krogh   Initial code.
 
-    subroutine DIVAPR(Y, YN, F, KORD)
+    subroutine divapr(y, yn, f, kord)
 
       use divaev_module
       use diva_constants
       use divasc_module
       use divamc_module
 
-      integer KORD(*)
-      double precision Y(*), YN(*)
-      double precision F(*)
+      double precision :: y(*) !! Vector of predicted values computed by this subroutine.
+      double precision :: yn(*) !! Vector of values of y computed on the last step.
+      double precision :: f(*) !! Vector of derivative values.
+      integer :: kord(*)
 
-      double precision, parameter :: C0 = 0.D0
-!
-      integer I, INTEG, INTEGS, J, K, KQQ, L, N
-      double precision TEMP(KDIM)
-      double precision TP1
-      double precision XP
+      double precision, parameter :: c0 = 0.d0
+
+!   KD= VECTOR GIVING ORDERS OF THE DIFFERENTIAL EQUATIONS (IF
+!       EQUATIONS HAVE DIFFERENT ORDERS).
+!   KQ= VECTOR OF INTEGRATION ORDERS.
+
+      integer :: I
+      integer :: INTEG !! Number of integrations being done.
+      integer :: INTEGS !! -1 for equations that are not stiff, 0 for those
+                        !! that are stiff.
+      integer :: J, K, KQQ, L, N
+      double precision :: TEMP(KDIM)
+      double precision :: TP1
+      double precision :: XP
+
       data INTEGS / -1 /
-!
+
 !++  Code for ARGM is inactive
 !      RETURN
 !      ENTRY DIVAPE
@@ -3980,15 +3983,15 @@
 ! ********
 ! START OF CODE
 ! ********
-      IY = 0
-      L = NDTF - 1
-      do 4680 I = 1, NTE
-         INTEG = KORDI
-         if (NKDKO /= 0) INTEG = KORD(NKDKO + I - 1)
-         KQQ = KORD(I + 3)
-         K = max(abs(KQQ), 2)
-         if (KQQ) 4530, 4520, 4540
- 4520    IY = IY + abs(INTEG)
+      iy = 0
+      l = ndtf - 1
+      do 4680 i = 1, nte
+         integ = kordi
+         if (nkdko /= 0) integ = kord(nkdko + i - 1)
+         kqq = kord(i + 3)
+         k = max(abs(kqq), 2)
+         if (kqq) 4530, 4520, 4540
+ 4520    iy = iy + abs(integ)
          go to 4670
 ! ********
 ! EQUATION IS STIFF, OR IMPLICIT
@@ -4008,56 +4011,56 @@
 ! ********
 ! EQUATION IS NOT STIFF
 ! ********
- 4540    N = KQQ
-         if (LDT /= 0) if (K - KSC) 4570, 4570, 4550
+ 4540    n = kqq
+         if (ldt /= 0) if (k - ksc) 4570, 4570, 4550
 !     DIFFERENCE TABLE HAS NOT BEEN UPDATED
-         TP1 = F(I) - F(L + 1)
-         if (K - KSC) 4610, 4610, 4590
+         tp1 = f(i) - f(l + 1)
+         if (k - ksc) 4610, 4610, 4590
 ! END OF SET-UP FOR EQUATIONS WHICH ARE NOT STIFF
 ! ********
 ! GET PREDICTED DIFFERENCES FROM UPDATED DIFFERENCE TABLE
 ! ********
- 4550    F(L + K + 1) = F(L + K + 1) * BETA(K + 1)
-         TEMP(K) = F(L + K) * BETA(K)
-         F(L + K) = TEMP(K)
+ 4550    f(l + k + 1) = f(l + k + 1) * beta(k + 1)
+         temp(k) = f(l + k) * beta(k)
+         f(l + k) = temp(k)
 ! LOOP FOR MODIFIED DIVIDED DIFFERENCES
- 4560    K = K - 1
-         if (K <= KSC) go to 4580
-         TEMP(K) = F(L + K) * BETA(K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
+ 4560    k = k - 1
+         if (k <= ksc) go to 4580
+         temp(k) = f(l + k) * beta(k)
+         f(l + k) = temp(k) + f(l + k + 1)
          go to 4560
 ! CODE FOR BACKWARD DIFFERENCES
- 4570    F(L + K + 1) = F(L + K + 1)
-         TEMP(K) = F(L + K)
-         K = K - 1
+ 4570    f(l + k + 1) = f(l + k + 1)
+         temp(k) = f(l + k)
+         k = k - 1
 !
- 4580    TEMP(K) = F(L + K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
-         K = K - 1
-         if (K /= 0) go to 4580
+ 4580    temp(k) = f(l + k)
+         f(l + k) = temp(k) + f(l + k + 1)
+         k = k - 1
+         if (k /= 0) go to 4580
          go to 4630
 ! ********
 ! UPDATE DIFFERENCE TABLE AND GET PREDICTED DIFFERENCES
 ! ********
 ! CODE FOR MODIFIED DIVIDED DIFFERENCES
- 4590    F(L + K + 1) = (F(L+K+1) + TP1) * BETA(K + 1)
-         TEMP(K) = (F(L + K) + TP1) * BETA(K)
-         F(L + K) = TEMP(K)
- 4600    K = K - 1
-         if (K <= KSC) go to 4620
-         TEMP(K) = (F(L + K) + TP1) * BETA(K)
-         F(L + K) = TEMP(K) + F(L + K + 1)
+ 4590    f(l + k + 1) = (f(l+k+1) + tp1) * beta(k + 1)
+         temp(k) = (f(l + k) + tp1) * beta(k)
+         f(l + k) = temp(k)
+ 4600    k = k - 1
+         if (k <= ksc) go to 4620
+         temp(k) = (f(l + k) + tp1) * beta(k)
+         f(l + k) = temp(k) + f(l + k + 1)
          go to 4600
 ! CODE FOR BACKWARD DIFFERENCES
- 4610    F(L + K + 1) = (F(L+K+1) + TP1)
-         TEMP(K) = F(L + K) + TP1
-         F(L + K) = TEMP(K)
-         K = K - 1
+ 4610    f(l + k + 1) = (f(l+k+1) + tp1)
+         temp(k) = f(l + k) + tp1
+         f(l + k) = temp(k)
+         k = k - 1
 !
- 4620    TEMP(K) = F(L + K) + TP1
-         F(L + K) = TEMP(K) + F(L + K + 1)
-         K = K - 1
-         if (K /= 0) go to 4620
+ 4620    temp(k) = f(l + k) + tp1
+         f(l + k) = temp(k) + f(l + k + 1)
+         k = k - 1
+         if (k /= 0) go to 4620
 ! ********
 ! COMPUTE Y-S OBTAINED USING INTEGRATION
 ! ********
@@ -4066,27 +4069,27 @@
 !++  Code for STIFF is inactive
 !      IF (INTEG==0) GO TO 4662
 !++  End
-         IY = IY + 1
+         iy = iy + 1
 !     FORM INNER PRODUCT
-         XP = C0
-         do 4650 J = INTEGS + N + 1, INTEGS + 2, -1
+         xp = c0
+         do 4650 j = integs + n + 1, integs + 2, -1
 !++  Code for ~{p,x} is active
-            XP = XP + G(J, INTEG) * TEMP(J)
+            xp = xp + g(j, integ) * temp(j)
 !++  Code for {p,x} is inactive
 !            XP = XP + dble(G(J, INTEG)) * dble(TEMP(J))
 !++  END
  4650    continue
-         K = INTEG + INTEGS
-         do 4660 J = K, 1, -1
+         k = integ + integs
+         do 4660 j = k, 1, -1
 !++  Code for ~{p,x} is active
-            XP = XP + G(1, J) * YN(IY + J)
+            xp = xp + g(1, j) * yn(iy + j)
 !++  Code for {p,x} is inactive
 !            XP = XP + dble(G(1, J)) * dble(YN(IY + J))
 !++  END
  4660    continue
-         Y(IY) = YN(IY) + XP
-         INTEG = INTEG - 1
-         if (K) 4670, 4670, 4630
+         y(iy) = yn(iy) + xp
+         integ = integ - 1
+         if (k) 4670, 4670, 4630
 ! END OF COMPUTING Y-S OBTAINED BY INTEGRATION
 ! ********
 ! COMPUTE Y-S OBTAINED USING INTERPOLATION AND DIFFERENTIATION
@@ -4113,10 +4116,10 @@
 ! 4667 CONTINUE
 !      F(L+NUMDT)=XP
 !++  End
- 4670    L = L + NUMDT
+ 4670    l = l + numdt
  4680    continue
-      LDT = -3
-      return
+      ldt = -3
+
     end subroutine divapr
 !*************************************************************************
 
