@@ -26,7 +26,7 @@
                       !!  *  3 Checking G's at point where a GSTOP was located.
                       !!  *  4 Checking G's at a T output point.
                       !!  *  5 Usual case, no sign change detected.
-    integer  :: igflgs
+    integer  :: igflgs !! used in [[DIVAG]]. Equivalenced to `itolep`
     integer  :: igstop(2) !! IGSTOP(k) is set in DIVAg to the index of the last G
                           !! with a 0, where k is one for an interpolatory G-Stop, and k is two
                           !! for an extrapolatory G-Stop.
@@ -41,7 +41,7 @@
                           !!  * 8  A fatal error of some type.
     integer  :: ilgrep !! Used when correction to keep track of equations that
                        !! are to use a certain error tolerance.
-    integer  :: ings
+    integer  :: ings !! Current index for G-stop being examined in DIVAG.
     integer  :: iop10 !! Number of times diagnostic output is to be given when
                       !! leaving DIVAcr (the corrector).
     integer  :: iop11 !! Gives current step number of the method.  Tells how
@@ -104,7 +104,16 @@
     integer  :: iy !! Used for the current index to the Y() array.  (Local
                    !! variable in DIVAIN used in computing IYI.)  Equivalenced to
                    !! IZFLAG in DIVAG.
-    integer  :: izflag
+    integer  :: izflag !! Equivalenced to IY.  Set to 0 initially, and later
+                       !! set to the value returned by DZERO.
+                       !!
+                       !!  *  0  Value set on entry at start of search.
+                       !!  *  1  Compute next g again.
+                       !!  *  2  Normal terminiation.
+                       !!  *  3  Normal termination -- error criterion not satisfied.
+                       !!  *  4  Apparent discontinuity -- no zero found.
+                       !!  *  5  Couldn't find a sign change.
+                       !!  *  6  DZERO was called with a bad value in IZFLAG.
     integer  :: kemax !! Index associated with equation giving the largest
                       !! value for (estimated error) / (requested error).
     integer  :: kexit !! Equivalenced to IOP17 which is not used after
@@ -305,7 +314,7 @@
     real(wp) :: hc !! Ratio of (new step size) / (old step size)
     real(wp) :: hdec !! Default value to use for HC when reducing the step
                      !! size.  (Values closer to 1 may be used some of the time.)
-    real(wp) :: hh
+    real(wp) :: hh !! Equivalenced to G(1,1) = current step size in DIVAA,CR,DA,G,HC.
     real(wp) :: hinc !! Default value to use for HC when increasing the step
                      !! size.  (Values closer to 1 may be used some of the time.)
     real(wp) :: hincc !! Actual value used for default value of HC when
